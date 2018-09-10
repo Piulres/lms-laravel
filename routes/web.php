@@ -1,5 +1,9 @@
 <?php
-Route::get('/', function () { return redirect('/admin/home'); });
+// Route::get('/', function () { return redirect('/admin/home'); });
+
+Route::get('/', 'HomeController@index');
+Route::get('/library', 'LibraryController@index');
+Route::get('/logout', 'Auth\LoginController@logout');
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -8,7 +12,7 @@ $this->post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 // Change Password Routes...
 $this->get('change_password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('auth.change_password');
-$this->patch('change_password', 'Auth\ChangePasswordController@changePassword')->name('auth.change_password');
+$this->patch('change_password', 'Auth\ChangePaswosrdController@changePassword')->name('auth.change_password');
 
 // Password Reset Routes...
 $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('auth.password.reset');
@@ -21,7 +25,8 @@ $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('au
 $this->post('register', 'Auth\RegisterController@register')->name('auth.register');
 
 Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/home', 'HomeController@index');
+    Route::get('/home', 'HomeController@home');
+    // Route::get('/home', 'Admin\DashboardController@index');
     
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);

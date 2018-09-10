@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="row">
-         <div class="col-md-6">
+        
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Recently added users</div>
 
@@ -38,7 +39,7 @@
                                     @endcan
 
                                     @can('user_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
@@ -47,15 +48,16 @@
                                     {!! Form::close() !!}
                                     @endcan
                                 
-</td>
+                                </td>
                             </tr>
                         @endforeach
                     </table>
                 </div>
-            </div>
- </div>
 
- <div class="col-md-6">
+            </div>
+        </div>
+
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Recently added courses</div>
 
@@ -89,7 +91,7 @@
                                     @endcan
 
                                     @can('course_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
@@ -98,15 +100,15 @@
                                     {!! Form::close() !!}
                                     @endcan
                                 
-</td>
+                                    </td>
                             </tr>
                         @endforeach
                     </table>
                 </div>
             </div>
- </div>
+        </div>
 
- <div class="col-md-6">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Recently added trails</div>
 
@@ -134,7 +136,7 @@
                                     @endcan
 
                                     @can('trail_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
@@ -143,15 +145,15 @@
                                     {!! Form::close() !!}
                                     @endcan
                                 
-</td>
+                                </td>
                             </tr>
                         @endforeach
                     </table>
                 </div>
             </div>
- </div>
+        </div>
 
- <div class="col-md-6">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Recently added teams</div>
 
@@ -179,7 +181,7 @@
                                     @endcan
 
                                     @can('team_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
@@ -188,13 +190,13 @@
                                     {!! Form::close() !!}
                                     @endcan
                                 
-</td>
+                                </td>
                             </tr>
                         @endforeach
                     </table>
                 </div>
             </div>
- </div>
+        </div>
 
 
     </div>
