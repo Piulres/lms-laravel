@@ -154,7 +154,7 @@
                             <a class="black-text" href="{{ route('auth.register') }}">
                                 Register
                             </a>
-                            </div>
+                        </div>
 
                         <div class="row center">
                             <a class="black-text" target="_blank" href="https://www.google.com">
