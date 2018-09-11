@@ -3,20 +3,21 @@
 @section('content')
     <div class="row">
         
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">Recently added users</div>
-
-                <div class="panel-body table-responsive">
-                    <table class="table table-bordered table-striped ajaxTable">
+        <div class="col-md-6 card-home">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        <h5>Recently added users</h5>
+                    </div>
+                    <table class="striped highlight responsive-table">
                         <thead>
                         <tr>
                             
-                            <th> @lang('global.users.fields.name')</th> 
-                            <th> @lang('global.users.fields.last-name')</th> 
-                            <th> @lang('global.users.fields.email')</th> 
-                            <th> @lang('global.users.fields.website')</th> 
-                            <th> @lang('global.users.fields.approved')</th> 
+                            <th><small> @lang('global.users.fields.name') </small></th> 
+                            <th><small> @lang('global.users.fields.last-name') </small></th> 
+                            <th><small> @lang('global.users.fields.email') </small></th> 
+                            <th><small> @lang('global.users.fields.website') </small></th> 
+                            <th><small> @lang('global.users.fields.approved') </small></th> 
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
@@ -28,14 +29,15 @@
                                 <td>{{ $user->email }} </td> 
                                 <td>{{ $user->website }} </td> 
                                 <td>{{ $user->approved }} </td> 
-                                <td>
+                                <td class="d-flex align-items-center">
 
                                     @can('user_view')
-                                    <a href="{{ route('admin.users.show',[$user->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn btn-small tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
                                     @endcan
 
                                     @can('user_edit')
-                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="waves-effect waves-light btn-small blue">
+                                        <i class="material-icons">edit</i></a>
                                     @endcan
 
                                     @can('user_delete')
@@ -44,7 +46,7 @@
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.users.destroy', $user->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'waves-effect waves-light btn-small red')) !!}
                                     {!! Form::close() !!}
                                     @endcan
                                 
@@ -53,16 +55,16 @@
                         @endforeach
                     </table>
                 </div>
-
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">Recently added courses</div>
-
-                <div class="panel-body table-responsive">
-                    <table class="table table-bordered table-striped ajaxTable">
+        <div class="col-md-6 card-home">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        <h5>Recently added courses</h5>
+                    </div>
+                    <table class="striped highlight responsive-table">
                         <thead>
                         <tr>
                             
@@ -108,12 +110,13 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">Recently added trails</div>
-
-                <div class="panel-body table-responsive">
-                    <table class="table table-bordered table-striped ajaxTable">
+        <div class="col-md-6 card-home">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        <h5>Recently added trails</h5>
+                    </div>
+                    <table class="striped highlight responsive-table">
                         <thead>
                         <tr>
                             
@@ -153,12 +156,14 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">Recently added teams</div>
+        <div class="col-md-6 card-home">
+            <div class="card blue white-text">
+                <div class="card-content">
+                    <div class="card-title">
+                        <h5>Recently added teams</h5>
+                    </div>
 
-                <div class="panel-body table-responsive">
-                    <table class="table table-bordered table-striped ajaxTable">
+                    <table class="striped highlight responsive-table">
                         <thead>
                         <tr>
                             

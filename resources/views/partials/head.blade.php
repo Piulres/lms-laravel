@@ -13,6 +13,7 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Font Awesome -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -23,10 +24,11 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link href="{{ url('adminlte/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-<link rel="stylesheet"
-      href="{{ url('adminlte/css') }}/select2.min.css"/>
-<link href="{{ url('adminlte/css/AdminLTE.min.css') }}" rel="stylesheet">
+<link href="{{ url('css/bootstrap-grid.min.css') }}" rel="stylesheet">
+<link href="{{ url('css/materialize.min.css') }}" rel="stylesheet">
+<!-- <link rel="stylesheet"
+      href="{{ url('adminlte/css') }}/select2.min.css"/> -->
+<!-- <link href="{{ url('adminlte/css/AdminLTE.min.css') }}" rel="stylesheet"> -->
 <link href="{{ url('adminlte/css/custom.css') }}" rel="stylesheet">
 <link href="{{ url('adminlte/css/skins/skin-blue.min.css') }}" rel="stylesheet">
 <link rel="stylesheet"

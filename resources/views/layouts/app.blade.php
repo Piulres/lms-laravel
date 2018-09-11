@@ -54,5 +54,6 @@
 {!! Form::close() !!}
 
 @include('partials.javascripts')
+@include('partials.adminfoot')
 </body>
 </html>

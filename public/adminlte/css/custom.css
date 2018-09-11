@@ -2,3 +2,42 @@
 .label {margin-right:5px;margin-bottom:5px !important;display:inline-block;} #wrapper {
     position: relative;
 }
+
+.sidenav {
+    padding-top: 70px;
+    width: 250px;
+}
+
+.main-header {
+	position: relative;
+	z-index: 1000;
+}
+
+.content-wrapper {
+	margin-left: 250px;
+	z-index: 800;
+	background-color: #ecf0f5;
+	-webkit-transition: -webkit-transform .3s ease-in-out,margin .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out,margin .3s ease-in-out;
+    -o-transition: -o-transform .3s ease-in-out,margin .3s ease-in-out;
+    transition: transform .3s ease-in-out,margin .3s ease-in-out;
+}
+
+.content-wrapper .content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.card-home {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.card-home .card {
+	height: 100%;
+	margin: 0;
+}
