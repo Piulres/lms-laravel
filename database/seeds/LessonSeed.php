@@ -13,7 +13,7 @@ class LessonSeed extends Seeder
     {
         $faker = Faker\Factory::create();     
 
-        for($i=0;$i<2;$i++){
+        for($i=0;$i<10;$i++){
             \App\Lesson::create([
                'title' => $faker->word,
                'introduction' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),

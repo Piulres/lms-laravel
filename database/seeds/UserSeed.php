@@ -31,17 +31,17 @@ class UserSeed extends Seeder
             \App\User::create($item);
         }
 
-        for($i=0;$i<2;$i++){
+        for($i=0;$i<10;$i++){
             \App\User::create([
                 'name' => $faker->firstName,
                 'last_name' => $faker->lastName,
                 'email' => $faker->email,
-                'website' => null,
+                'website' => $faker->url,
                 //'avatar' => $faker->image('public\images',300,300) ,
                 'avatar' => null,
                 'password' => Hash::make('123123'),
                 'remember_token' => '',
-                'team_id' => null,
+                'team_id' => $faker->randomDigitNotNull,
                 'approved' => 1,
             ]);
         }
