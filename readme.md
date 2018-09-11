@@ -6,11 +6,13 @@ Prepare your .env file there with database connection and other settings.
 
 ```
 composer install
+composer dump-autoload
+php artisan db:seed
 php artisan migrate --seed
 php artisan key:generate
-php artisan serve
 php artisan vendor:publish --tag=lfm_config
 php artisan vendor:publish --tag=lfm_public
+php artisan serve
 ```
 
 ### Login

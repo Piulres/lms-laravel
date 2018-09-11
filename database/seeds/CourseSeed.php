@@ -13,7 +13,7 @@ class CourseSeed extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        for($i=0;$i<2;$i++){
+        for($i=0;$i<10;$i++){
             \App\Course::create([
                'title' => $faker->word,
                'featured_image' => null,
