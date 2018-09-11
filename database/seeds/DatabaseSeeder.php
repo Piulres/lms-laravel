@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeed::class);
         $this->call(RoleSeedPivot::class);
         $this->call(UserSeedPivot::class);
+        $this->call(CourseSeed::class);
+        $this->call(LessonSeed::class);   
 
     }
 }

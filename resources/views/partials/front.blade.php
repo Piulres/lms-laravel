@@ -153,11 +153,11 @@
                                     Forgot Password?
                                 </a>
                             </div>
-                            <!-- <div class="row center">
-                                <a class="black-text" href="#!">
-                                    Problems? Click Here
+                            <div class="row center">
+                            <a class="blue-text" href="{{ route('auth.register') }}">
+                                    Register
                                  </a>
-                            </div> -->
+                            </div>
                         </form>
 
 
