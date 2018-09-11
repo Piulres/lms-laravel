@@ -14,7 +14,7 @@
                                 </h5>
                             </div>
                             <div class="row center">
-                                <a class="btn-large waves-effect waves-light blue" href="/library" id="download-button">
+                                <a class="btn-large waves-effect waves-light black" href="/library" id="download-button">
                                     Get Started
                                 </a>
                             </div>
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="parallax">
-                <img alt="Unsplashed background img 1" src="images/background1.png"/>
+                <img alt="Unsplashed background img 1" src="images/background3.jpg"/>
             </div>
         </div>
         <div class="container">
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col s12 m4">
                         <div class="icon-block">
-                            <h2 class="center blue-text">
+                            <h2 class="center black-text">
                                 <i class="material-icons">
                                     library_books
                                 </i>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="col s12 m4">
                         <div class="icon-block">
-                            <h2 class="center blue-text">
+                            <h2 class="center black-text">
                                 <i class="material-icons">
                                     group
                                 </i>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="col s12 m4">
                         <div class="icon-block">
-                            <h2 class="center blue-text">
+                            <h2 class="center black-text">
                                 <i class="material-icons">
                                     chat
                                 </i>

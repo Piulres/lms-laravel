@@ -29,6 +29,33 @@
                     <h4>Courses</h4>
 
                 </div>
+                
+            </div>
+
+            <div class="row">
+
+                @foreach($courses as $course)
+                   
+                        <div class="col s12 m6 l4 xl4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="{{ asset(env('UPLOAD_PATH') . $course->featured_image) }}"/>
+                                    <!-- <img class="responsive-img" src="images/1.beethoven.jpg"> -->
+                                    <span class="card-title">{{ $course->title }}</span>
+                                </div>
+                                <div class="card-content">
+                                    <p>{{ $course->description }}</p>
+                                    <div class="ratings">
+                                        
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <a href="#">See More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                @endforeach
             
             </div>            
 

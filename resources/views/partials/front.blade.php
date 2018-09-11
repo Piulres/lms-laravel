@@ -34,7 +34,7 @@
                     @if (Auth::check())
                     
                     <li>
-                        <a class="btn modal-trigger waves-effect waves-light blue" href="{{ url('/logout') }}">
+                        <a class="btn modal-trigger waves-effect waves-light black" href="{{ url('/logout') }}">
                             Logout
                         </a>
                     </li>
@@ -42,7 +42,7 @@
                     @else
 
                     <li>
-                        <a class="btn modal-trigger waves-effect waves-light blue" data-target="modal1" href="#modal1">
+                        <a class="btn modal-trigger waves-effect waves-light black" data-target="modal1" href="#modal1">
                             Login
                         </a>
                     </li>
@@ -91,7 +91,7 @@
                         </div>
                     </li>
                     <li>
-                        <a class="btn modal-trigger waves-effect waves-light blue" data-target="modal1" href="#modal1">
+                        <a class="btn modal-trigger waves-effect waves-light black" data-target="modal1" href="#modal1">
                             Login
                         </a>
                     </li>
@@ -105,7 +105,7 @@
                 <div class="modal" id="modal1">
                     <div class="modal-content">
                         <div class="row center">
-                            <h5 class="blue-text light">
+                            <h5 class="black-text light">
                                 Welcome to Learning Management System
                             </h5>
                         </div>
@@ -144,12 +144,12 @@
                                 </div>
                             </div>
                             <div class="row center">
-                                <button type="submit" class="modal-close btn waves-effect waves-light blue">
+                                <button type="submit" class="modal-close btn waves-effect waves-light black">
                                     Login
                                 </button>
                             </div>
                             <div class="row center">
-                                <a class="blue-text" href="{{ route('auth.password.reset') }}">
+                                <a class="black-text" href="{{ route('auth.password.reset') }}">
                                     Forgot Password?
                                 </a>
                             </div>
