@@ -10,7 +10,7 @@ class UserSeed extends Seeder
      * @return void
      */
     public function run()
-    {
+    {  
         $faker = Faker\Factory::create();
 
         $items = [            
@@ -31,18 +31,21 @@ class UserSeed extends Seeder
             \App\User::create($item);
         }
 
-        for($i=0;$i<10;$i++){
-            \App\User::create([
+       
+
+        for($i=0;$i<10;$i++){   
+          
+            DB::table('users')->insert([
                 'name' => $faker->firstName,
                 'last_name' => $faker->lastName,
                 'email' => $faker->email,
                 'website' => $faker->url,
-                //'avatar' => $faker->image('public\images',300,300) ,
-                'avatar' => null,
+                'avatar' => $faker->imageUrl(300,300),
                 'password' => Hash::make('123123'),
                 'remember_token' => '',
                 'team_id' => $faker->randomDigitNotNull,
                 'approved' => 1,
+                
             ]);
         }
     }

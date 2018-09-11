@@ -12,12 +12,11 @@ class CourseSeed extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-
+       
         for($i=0;$i<10;$i++){
             \App\Course::create([
                'title' => $faker->word,
-               'featured_image' => null,
-               //'featured_image' => $faker->image('public\images',300,300),
+               'featured_image' => $faker->imageUrl(300,300),
                'description' => $faker->realText($maxNbChars = 200, $indexSize = 2),
                'introduction' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                'duration' => $faker->randomDigitNotNull,
