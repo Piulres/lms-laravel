@@ -94,7 +94,7 @@
                     </div>
                     -->
                         
-                    <h5 class="blue-text light">
+                    <h5 class="black-text light">
                         Welcome to Learning Management System
                     </h5>                 
 
@@ -132,17 +132,17 @@
                             </div>
                         </div>
                         <div class="row center">
-                            <button type="submit" class="modal-close btn waves-effect waves-light blue">
+                            <button type="submit" class="modal-close btn waves-effect waves-light black">
                                 Login
                             </button>
                         </div>
                         <div class="row center">
-                            <a class="blue-text" href="{{ route('auth.password.reset') }}">
+                            <a class="black-text" href="{{ route('auth.password.reset') }}">
                                 Forgot Password?
                             </a>
                         </div>
                         <!-- <div class="row center">
-                            <a class="blue-text" href="#!">
+                            <a class="black-text" href="#!">
                                 Problems? Click Here
                              </a>
                         </div> -->
