@@ -123,7 +123,7 @@
                         @endif
 
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('login') }}">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="row">
                                 <div class="input-field">
@@ -134,6 +134,7 @@
                                     </input>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="input-field">
                                     <input id="password" type="password" class="form-control" name="password">
@@ -143,21 +144,25 @@
                                     </input>
                                 </div>
                             </div>
+
                             <div class="row center">
                                 <button type="submit" class="modal-close btn waves-effect waves-light black">
                                     Login
                                 </button>
                             </div>
-                            <div class="row center">
+
+                            <div class="itens row center">
                                 <a class="black-text" href="{{ route('auth.password.reset') }}">
                                     Forgot Password?
                                 </a>
-                            </div>
-                            <!-- <div class="row center">
-                                <a class="black-text" href="#!">
+                                <a class="black-text" href="{{ route('auth.register') }}">
+                                    Register
+                                </a>
+                                <a class="black-text" target="_blank" href="https://www.google.com">
                                     Problems? Click Here
-                                 </a>
-                            </div> -->
+                                </a>
+                            </div>
+
                         </form>
 
 

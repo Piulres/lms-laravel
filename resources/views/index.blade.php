@@ -5,7 +5,7 @@
                 <div class="container">
                     <br>
                         <br>
-                            <h1 class="header center white-text">
+                            <h1 class="header center black-text">
                                 Learning Management System
                             </h1>
                             <div class="row center">
@@ -18,10 +18,6 @@
                                     Get Started
                                 </a>
                             </div>
-                            <br>
-                                <br>
-                                </br>
-                            </br>
                         </br>
                     </br>
                 </div>
