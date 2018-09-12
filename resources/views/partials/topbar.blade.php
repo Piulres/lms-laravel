@@ -24,7 +24,15 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-button" href="#!" data-target="dropdown-notifications"><i class="material-icons">notifications</i></a>
+                            <a class="dropdown-button" href="#!" data-target="dropdown-notifications">
+                                <i class="material-icons">notifications</i>
+                                @php($notificationCount = \Auth::user()->internalNotifications()->where('read_at', null)->count())
+                                @if($notificationCount > 0)
+                                    <span class="new badge sup" data-badge-caption="">
+                                        {{ $notificationCount }}
+                                    </span>
+                                @endif
+                            </a>
                             <ul id='dropdown-notifications' class='dropdown-content'>
                                 @if (count($notifications = \Auth::user()->internalNotifications()->get()) > 0)
                                     @foreach($notifications as $notification)

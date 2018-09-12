@@ -25,7 +25,7 @@
 <![endif]-->
 
 <link href="{{ url('css/bootstrap-grid.min.css') }}" rel="stylesheet">
-<link href="{{ url('css/materialize.min.css') }}" rel="stylesheet">
+<link href="{{ url('css/materialize.css') }}" rel="stylesheet">
 <!-- <link rel="stylesheet"
       href="{{ url('adminlte/css') }}/select2.min.css"/> -->
 <!-- <link href="{{ url('adminlte/css/AdminLTE.min.css') }}" rel="stylesheet"> -->

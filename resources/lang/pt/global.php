@@ -35,8 +35,7 @@ return [
 			'role' => 'Role',
 			'remember-token' => 'Remember token',
 			'team' => 'Team',
-			'approved' => 'Approved',
-			'actions' => 'Actions'
+			'approved' => 'Approved'
 		],
 	],
 	
@@ -170,6 +169,7 @@ return [
 	'app_restore' => 'Restaurar',
 	'app_permadel' => 'Eliminar',
 	'app_all' => 'Todos',
+	'app_see_all' => 'Ver Todos',
 	'app_trash' => 'Lixo',
 	'app_delete_selected' => 'Eliminar Selecionados',
 	'app_category' => 'Categoria',
@@ -188,6 +188,7 @@ return [
 	'app_remember_token' => 'Lembrar Senha',
 	'app_permissions' => 'Permissões',
 	'app_action' => 'Ação',
+	'app_actions' => 'Ações',
 	'app_forgot_password' => 'Esqueceu-se da senha?',
 	'app_remember_me' => 'Lembrar',
 	'app_change_password' => 'Alterar senha',

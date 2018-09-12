@@ -1,3 +1,42 @@
+/* CUSTOM CSS MATERIALIZE RP */
+.text-subhead {
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.84rem;
+}
+
+.btn-small.btn-square {
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    width: 30px;
+    text-align: center;
+}
+
+.actions {
+    text-align: right;
+    min-width: none;
+}
+
+span.badge.new.sup {
+    margin-left: 0;
+    position: absolute;
+    top: 7px;
+    min-width: auto;
+    right: 7px;
+    background: #000000;
+}
+
+.actions a {
+    margin-right: 5px;
+}
+
+/* END CUSTOM MATERIALIZE RP */
+
+/* GENERAL CSS */
+body {
+    font-size: 13px;
+}
 
 .label {margin-right:5px;margin-bottom:5px !important;display:inline-block;} #wrapper {
     position: relative;
@@ -32,6 +71,8 @@
     padding-right: 15px;
 }
 
+
+/* CARD HOME */
 .card-home {
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -40,7 +81,16 @@
 .card-home .card {
 	height: 100%;
 	margin: 0;
-    padding: 20px;
+    padding: 10px 0;
+}
+
+.card-home .card-title {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.card-home .card-title h5, .card-home .card-title h6 {
+    margin: 0;
 }
 
 .card-home .card .card-content {
@@ -48,9 +98,38 @@
     overflow: scroll;
 }
 
-.actions a {
-    margin-right: 5px;
+.card-home .card .card-footer {
+    padding: 10px 15px 0 15px;
 }
+
+.card-home .card .card-footer a {
+    margin-right: 10px;
+}
+
+.card-home .card .card-footer a:last-child {
+    margin-right: 0;
+}
+
+/* CARD LIST */
+
+.card-list .card-title {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.card-list .collection {
+    margin: 0;
+}
+
+.card-list .collection-item {
+    border-left: none;
+    border-right: none;
+}
+
+.card-list .collection-item .secondary-content .progress {
+    margin-right: 15px;
+}
+
 
 /* TOPBAR */
 nav .sidenav-trigger {
@@ -73,10 +152,26 @@ tbody {
 
 th, td {
     min-width: 90px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+th:first-child, td:first-child {
+    padding-left: 15px;
+}
+
+th:last-child, td:last-child {
+    padding-right: 15px;
 }
 
 th {
     font-size: 12px;
+}
+
+/* PROGRESS */
+.progress {
+    margin: 0;
+    height: 8px;
 }
 
 @media screen and (max-width: 992px) {

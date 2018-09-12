@@ -9,13 +9,13 @@
                     <div class="card-title">
                         <h5>Recently added users</h5>
                     </div>
-                    <table class="striped highlight responsive-table">
+                    <table class="highlight responsive-table">
                         <thead>
                         <tr>
                             
                             <th> @lang('global.users.fields.name') </th> 
                             <th> @lang('global.users.fields.email') </th> 
-                            <th> @lang('global.users.fields.actions') </th>
+                            <th class="actions"> @lang('global.app_actions') </th>
                         </tr>
                         </thead>
                         @foreach($users as $user)
@@ -23,14 +23,14 @@
                                
                                 <td>{{ $user->name }} </td> 
                                 <td>{{ $user->email }} </td> 
-                                <td class="actions d-flex align-items-center">
+                                <td class="actions">
 
                                     @can('user_view')
-                                    <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn btn-small tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
+                                    <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
                                     @endcan
 
                                     @can('user_edit')
-                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="waves-effect waves-light btn-small blue">
+                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
                                         <i class="material-icons">edit</i></a>
                                     @endcan
 
@@ -40,7 +40,7 @@
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.users.destroy', $user->id])) !!}
-                                    {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small red', 'type'=>'submit']) !!}
+                                    {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                                     @endcan
                                 
@@ -49,58 +49,56 @@
                         @endforeach
                     </table>
                 </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a href="{{ route('admin.users.index') }}" class="waves-effect waves-light btn white black-text">@lang('global.app_see_all')</a>
+                </div>
             </div>
         </div>
 
-        <div class="col-lg-6 col-md-12 card-home">
+        <div class="col-lg-6 col-md-12 card-home card-list">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
                         <h5>Recently added courses</h5>
+                        <p class="text-subhead grey-text">Content</p>
                     </div>
-                    <table class="striped highlight responsive-table">
-                        <thead>
-                        <tr>
-                            
-                            <th> @lang('global.courses.fields.title') </th> 
-                            <th> @lang('global.courses.fields.duration') </th> 
-                            <th>&nbsp;</th>
-                        </tr>
-                        </thead>
+                    <ul class="collection">
                         @foreach($courses as $course)
-                            <tr>
-                               
-                                <td>{{ $course->title }} </td>  
-                                <td>{{ $course->duration }} </td> 
-                                <td>
+                        <li class="collection-item">
+                            <div class="d-flex justify-content-between align-items-center">{{ $course->title }}
+                                <div class="secondary-content d-flex flex-row align-items-center">
+                                    <span class="progress grey lighten-4" style="width: 120px">
+                                        <div class="determinate grey" style="width: 50%"></div>
+                                    </span>
+                                    <div class="actions">
+                                        @can('course_view')
+                                        <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
 
-                                    @can('course_view')
-                                    <a href="{{ route('admin.courses.show',[$course->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
+                                        @can('course_edit')
+                                        <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
+                                            <i class="material-icons">edit</i></a>
+                                        @endcan
 
-                                    @can('course_edit')
-                                    <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
-                                    @endcan
-
-                                    @can('course_delete')
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.courses.destroy', $course->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
-                                
-                                </td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="determinate" style="width: 70%"></div>
+                                        @can('course_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.courses.destroy', $course->id])) !!}
+                                        {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                        @endcan
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                        </li>
                         @endforeach
-                    </table>
+                    </ul>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a href="{{ route('admin.courses.index') }}" class="waves-effect waves-light btn white black-text">@lang('global.app_see_all')</a>
+                    <a href="{{ route('admin.courses.create') }}" class="waves-effect waves-light btn white black-text">@lang('global.app_see_all')</a>
                 </div>
             </div>
         </div>
@@ -111,26 +109,27 @@
                     <div class="card-title">
                         <h5>Recently added trails</h5>
                     </div>
-                    <table class="striped highlight responsive-table">
+                    <table class="highlight responsive-table">
                         <thead>
                         <tr>
                             
                             <th> @lang('global.trails.fields.title') </th> 
-                            <th>&nbsp;</th>
+                            <th class="actions"> @lang('global.app_actions') </th>
                         </tr>
                         </thead>
                         @foreach($trails as $trail)
                             <tr>
                                
                                 <td>{{ $trail->title }} </td> 
-                                <td>
+                                <td class="actions">
 
                                     @can('trail_view')
-                                    <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
                                     @endcan
 
                                     @can('trail_edit')
-                                    <a href="{{ route('admin.trails.edit',[$trail->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    <a href="{{ route('admin.trails.edit',[$trail->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
+                                        <i class="material-icons">edit</i></a>
                                     @endcan
 
                                     @can('trail_delete')
@@ -139,7 +138,7 @@
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.trails.destroy', $trail->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                                     @endcan
                                 
@@ -148,36 +147,40 @@
                         @endforeach
                     </table>
                 </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="waves-effect waves-light btn white black-text">@lang('global.app_see_all')</a>
+                </div>
             </div>
         </div>
 
         <div class="col-lg-6 col-md-12 card-home">
-            <div class="card blue white-text">
+            <div class="card blue lighten-2 white-text">
                 <div class="card-content">
                     <div class="card-title">
                         <h5>Recently added teams</h5>
                     </div>
 
-                    <table class="striped highlight responsive-table">
+                    <table class="highlight responsive-table">
                         <thead>
                         <tr>
                             
                             <th> @lang('global.teams.fields.name') </th> 
-                            <th>&nbsp;</th>
+                            <th class="actions"> @lang('global.app_actions') </th>
                         </tr>
                         </thead>
                         @foreach($teams as $team)
                             <tr>
                                
                                 <td>{{ $team->name }} </td> 
-                                <td>
+                                <td class="actions">
 
                                     @can('team_view')
-                                    <a href="{{ route('admin.teams.show',[$team->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    <a href="{{ route('admin.teams.show',[$team->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
                                     @endcan
 
                                     @can('team_edit')
-                                    <a href="{{ route('admin.teams.edit',[$team->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    <a href="{{ route('admin.teams.edit',[$team->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
+                                        <i class="material-icons">edit</i></a>
                                     @endcan
 
                                     @can('team_delete')
@@ -186,7 +189,7 @@
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.teams.destroy', $team->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                                     @endcan
                                 
