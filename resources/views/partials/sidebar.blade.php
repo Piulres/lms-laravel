@@ -1,6 +1,6 @@
 @inject('request', 'Illuminate\Http\Request')
-<aside class="sidenav sidenav-fixed">
-    <ul class="sidenav sidenav-fixed">
+<aside class="sidenav sidenav-fixed" id="sidebar-menu">
+    <ul>
         <li class="input-field col s6">
             <i class="material-icons prefix">search</i>
             <input placeholder="Search" id="first_name" type="text" class="validate">
@@ -20,6 +20,7 @@
                     <a class="collapsible-header">
                         <i class="fa fa-users"></i>
                         <span>@lang('global.user-management.title')</span>
+                        <i class="material-icons right">keyboard_arrow_down</i>
                     </a>
                     <div class="collapsible-body">
                         <ul>
@@ -71,6 +72,7 @@
                     <a class="collapsible-header">
                         <i class="fa fa-book"></i>
                         <span>@lang('global.course-management.title')</span>
+                        <i class="material-icons right">keyboard_arrow_down</i>
                     </a>
                     <div class="collapsible-body">
                         <ul>
@@ -107,6 +109,7 @@
                     <a class="collapsible-header">
                         <i class="fa fa-road"></i>
                         <span>@lang('global.trail-management.title')</span>
+                        <i class="material-icons right">keyboard_arrow_down</i>
                     </a>
                     <div class="collapsible-body">
                         <ul>
@@ -135,6 +138,7 @@
                     <a class="collapsible-header">
                         <i class="fa fa-gears"></i>
                         <span>@lang('global.settings.title')</span>
+                        <i class="material-icons right">keyboard_arrow_down</i>
                     </a>
                     <div class="collapsible-body">
                         <ul>

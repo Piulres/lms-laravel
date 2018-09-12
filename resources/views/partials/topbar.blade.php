@@ -3,8 +3,8 @@
         <nav class="grey">
             <div class="container-fluid">
                 <div class="nav-wrapper">
-                    <a href="{{ url('/') }}" class="brand-logo grey">@lang('global.global_title')</span></a>
-                    <ul class="right hide-on-med-and-down">
+                    <a href="{{ url('/') }}" class="brand-logo left grey">@lang('global.global_title')</span></a>
+                    <ul class="right">
                         <li class="dropdown languages-menu">
                             <a class="dropdown-button" href="#!" data-target="dropdown-language">
                                 {{ strtoupper(\App::getLocale()) }}
@@ -15,7 +15,7 @@
                                     @foreach(config('app.languages') as $short => $title)
                                         <li class="language-link">
                                             <a href="{{ route('admin.language', $short) }}">
-                                                {{ $title }} ({{ strtoupper($short) }})
+                                                <small>{{ $title }} ({{ strtoupper($short) }})</small>
                                             </a>
                                         </li>
                                     @endforeach
@@ -41,6 +41,9 @@
                                     </li>
                                 @endif
                             </ul>
+                        </li>
+                        <li class="hide-on-lar-and-up">
+                            <a href="#" data-target="sidebar-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                         </li>
                     </ul>
                 </div>

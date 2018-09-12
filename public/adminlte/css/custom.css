@@ -40,4 +40,53 @@
 .card-home .card {
 	height: 100%;
 	margin: 0;
+    padding: 20px;
+}
+
+.card-home .card .card-content {
+    padding: 0;
+    overflow: scroll;
+}
+
+.actions a {
+    margin-right: 5px;
+}
+
+/* TOPBAR */
+nav .sidenav-trigger {
+    margin: 0;
+}
+
+/* SIDEBAR */
+.sidenav li>a>i, .sidenav li>a>[class^="mdi-"], .sidenav li>a li>a>[class*="mdi-"], .sidenav li>a>i.material-icons {
+    width: auto;
+    margin-right: 15px;
+}
+.sidenav li>a {
+    font-size: 12px;
+}
+
+/* TABLE */
+tbody {
+    font-size: 12px;
+}
+
+th, td {
+    min-width: 90px;
+}
+
+th {
+    font-size: 12px;
+}
+
+@media screen and (max-width: 992px) {
+    .content-wrapper {
+        margin-left: auto;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .card-home {
+        padding: 15px 0;
+    }
 }

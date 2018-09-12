@@ -1,23 +1,158 @@
 <?php
 
 return [
-		'user-management' => [		'title' => 'User management',		'fields' => [		],	],
-		'permissions' => [		'title' => 'Permissions',		'fields' => [			'title' => 'Title',		],	],
-		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',			'permission' => 'Permissions',		],	],
-		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'last-name' => 'Last Name',			'email' => 'Email',			'website' => 'Website',			'avatar' => 'Avatar',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',			'team' => 'Team',			'approved' => 'Approved',		],	],
-		'course-management' => [		'title' => 'Course management',		'fields' => [		],	],
-		'trail-management' => [		'title' => 'Trail management',		'fields' => [		],	],
-		'settings' => [		'title' => 'Settings',		'fields' => [		],	],
-		'coursescategories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Title',		],	],
-		'trailscategories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Title',		],	],
-		'lessons' => [		'title' => 'Lessons',		'fields' => [			'title' => 'Title',			'introduction' => 'Introduction',			'study-material' => 'Study Material',			'content' => 'Content',		],	],
-		'courses' => [		'title' => 'Courses',		'fields' => [			'title' => 'Title',			'instructor' => 'Instructor',			'lessons' => 'Lessons',			'categories' => 'Categories',			'featured-image' => 'Featured Image',			'description' => 'Description',			'introduction' => 'Introduction',			'duration' => 'Duration',		],	],
-		'trails' => [		'title' => 'Trails',		'fields' => [			'title' => 'Title',			'categories' => 'Categories',			'courses' => 'Courses',		],	],
-		'datacourses' => [		'title' => 'Data Courses',		'fields' => [			'course' => 'Course',			'user' => 'User',			'view' => 'View',			'progress' => 'Progress',			'rating' => 'Rating',		],	],
-		'datatrails' => [		'title' => 'Data Trails',		'fields' => [			'trail' => 'Trail',			'user' => 'User',			'view' => 'View',			'progress' => 'Progress',			'rating' => 'Rating',		],	],
-		'user-actions' => [		'title' => 'User actions',		'created_at' => 'Time',		'fields' => [			'user' => 'User',			'action' => 'Action',			'action-model' => 'Action model',			'action-id' => 'Action id',		],	],
-		'teams' => [		'title' => 'Teams',		'fields' => [			'name' => 'Name',		],	],
-		'internal-notifications' => [		'title' => 'Notifications',		'fields' => [			'text' => 'Text',			'link' => 'Link',			'users' => 'Users',		],	],
+	
+	'user-management' => [
+		'title' => 'User management',
+		'fields' => [
+		],
+	],
+	
+	'permissions' => [
+		'title' => 'Permissions',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+	
+	'roles' => [
+		'title' => 'Roles',
+		'fields' => [
+			'title' => 'Title',
+			'permission' => 'Permissions',
+		],
+	],
+	
+	'users' => [
+		'title' => 'Users',
+		'fields' => [
+			'name' => 'Name',
+			'last-name' => 'Last Name',
+			'email' => 'Email',
+			'website' => 'Website',
+			'avatar' => 'Avatar',
+			'password' => 'Password',
+			'role' => 'Role',
+			'remember-token' => 'Remember token',
+			'team' => 'Team',
+			'approved' => 'Approved',
+			'actions' => 'Actions'
+		],
+	],
+	
+	'course-management' => [
+		'title' => 'Course management',
+		'fields' => [
+		],
+	],
+	
+	'trail-management' => [
+		'title' => 'Trail management',
+		'fields' => [
+		],
+	],
+	
+	'settings' => [
+		'title' => 'Settings',
+		'fields' => [
+		],
+	],
+	
+	'coursescategories' => [
+		'title' => 'Categories',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+	
+	'trailscategories' => [
+		'title' => 'Categories',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+	
+	'lessons' => [
+		'title' => 'Lessons',
+		'fields' => [
+			'title' => 'Title',
+			'introduction' => 'Introduction',
+			'study-material' => 'Study Material',
+			'content' => 'Content',
+		],
+	],
+	
+	'courses' => [
+		'title' => 'Courses',
+		'fields' => [
+			'title' => 'Title',
+			'instructor' => 'Instructor',
+			'lessons' => 'Lessons',
+			'categories' => 'Categories',
+			'featured-image' => 'Featured Image',
+			'description' => 'Description',
+			'introduction' => 'Introduction',
+			'duration' => 'Duration',
+		],
+	],
+	
+	'trails' => [
+		'title' => 'Trails',
+		'fields' => [
+			'title' => 'Title',
+			'categories' => 'Categories',
+			'courses' => 'Courses',
+		],
+	],
+	
+	'datacourses' => [
+		'title' => 'Data Courses',
+		'fields' => [
+			'course' => 'Course',
+			'user' => 'User',
+			'view' => 'View',
+			'progress' => 'Progress',
+			'rating' => 'Rating',
+		],
+	],
+	
+	'datatrails' => [
+		'title' => 'Data Trails',
+		'fields' => [
+			'trail' => 'Trail',
+			'user' => 'User',
+			'view' => 'View',
+			'progress' => 'Progress',
+			'rating' => 'Rating',
+		],
+	],
+	
+	'user-actions' => [
+		'title' => 'User actions',
+		'created_at' => 'Time',
+		'fields' => [
+			'user' => 'User',
+			'action' => 'Action',
+			'action-model' => 'Action model',
+			'action-id' => 'Action id',
+		],
+	],
+	
+	'teams' => [
+		'title' => 'Teams',
+		'fields' => [
+			'name' => 'Name',
+		],
+	],
+	
+	'internal-notifications' => [
+		'title' => 'Notifications',
+		'fields' => [
+			'text' => 'Text',
+			'link' => 'Link',
+			'users' => 'Users',
+		],
+	],
 	'app_create' => 'Create',
 	'app_save' => 'Save',
 	'app_edit' => 'Edit',
