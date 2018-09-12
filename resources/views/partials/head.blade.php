@@ -29,15 +29,16 @@
 <!-- <link rel="stylesheet"
       href="{{ url('adminlte/css') }}/select2.min.css"/> -->
 <!-- <link href="{{ url('adminlte/css/AdminLTE.min.css') }}" rel="stylesheet"> -->
-<link href="{{ url('adminlte/css/custom.css') }}" rel="stylesheet">
 <link href="{{ url('adminlte/css/skins/skin-blue.min.css') }}" rel="stylesheet">
 <link rel="stylesheet"
       href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet"
-      href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"/>
+      href="{{ url('/adminlte/plugins/datatables/jquery.dataTables.css') }}"/>
 <link rel="stylesheet"
       href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css"/>
 <link rel="stylesheet"
       href="//cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css"/>
 
 <link href="{{ url('adminlte/plugins/datetimepicker/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
+
+<link href="{{ url('adminlte/css/custom.css') }}" rel="stylesheet">

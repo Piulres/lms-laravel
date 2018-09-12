@@ -2,42 +2,46 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.users.title')</h3>
-    @can('user_create')
-    <p>
-        <a href="{{ route('admin.users.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <h4>
+        @lang('global.users.title')
+        @can('user_create')
+        <a href="{{ route('admin.users.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+        @endcan
+    </h4>
 
     
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
-        </div>
+    <div class="card">
+        <div class="card-content">
+            <div class="card-title">
+                <h6>
+                    @lang('global.app_list')
+                </h6>
+            </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('user_delete') dt-select @endcan">
-                <thead>
-                    <tr>
-                        @can('user_delete')
-                            <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
-                        @endcan
+            <div class="overflow-parent">
+                <div class="overflow-child">
+                    <table class="striped ajaxTable @can('user_delete') dt-select @endcan responsive-table">
+                        <thead>
+                            <tr>
+                                @can('user_delete')
+                                    <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                                @endcan
 
-                        <th>@lang('global.users.fields.name')</th>
-                        <th>@lang('global.users.fields.last-name')</th>
-                        <th>@lang('global.users.fields.email')</th>
-                        <th>@lang('global.users.fields.website')</th>
-                        <th>@lang('global.users.fields.avatar')</th>
-                        <th>@lang('global.users.fields.role')</th>
-                        <th>@lang('global.users.fields.team')</th>
-                        <th>@lang('global.users.fields.approved')</th>
-                                                <th>&nbsp;</th>
-
-                    </tr>
-                </thead>
-            </table>
+                                <th>@lang('global.users.fields.name')</th>
+                                <th>@lang('global.users.fields.last-name')</th>
+                                <th>@lang('global.users.fields.email')</th>
+                                <th>@lang('global.users.fields.website')</th>
+                                <th>@lang('global.users.fields.avatar')</th>
+                                <th>@lang('global.users.fields.role')</th>
+                                <th>@lang('global.users.fields.team')</th>
+                                <th>@lang('global.users.fields.approved')</th>
+                                <th>@lang('global.app_actions')</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @stop
@@ -49,9 +53,11 @@
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.users.index') !!}';
-            window.dtDefaultOptions.columns = [@can('user_delete')
+            window.dtDefaultOptions.columns = [
+                @can('user_delete')
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endcan{data: 'name', name: 'name'},
+                @endcan
+                {data: 'name', name: 'name'},
                 {data: 'last_name', name: 'last_name'},
                 {data: 'email', name: 'email'},
                 {data: 'website', name: 'website'},
