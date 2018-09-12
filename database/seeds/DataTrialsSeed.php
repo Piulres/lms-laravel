@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TrialTrialCategorySeed extends Seeder
+class DataTrialsSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,12 @@ class TrialTrialCategorySeed extends Seeder
         $faker = Faker\Factory::create();
 
         for($i=0;$i<20;$i++){
-        DB::table('trail_trailscategory')->insert([
+        DB::table('datatrails')->insert([
+            'view' => $faker->numberBetween(0,1),
+            'progress' => $faker->numberBetween(0,2),
+            'rating' => $faker->numberBetween(1,5),
             'trail_id' => $faker->randomDigitNotNull,
-            'trailscategory_id' => $faker->randomDigitNotNull,
+            'user_id' => $faker->randomDigitNotNull,
         ]);
         }
     }

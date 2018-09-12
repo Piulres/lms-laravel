@@ -31,10 +31,7 @@ class UserSeed extends Seeder
             \App\User::create($item);
         }
 
-       
-
-        for($i=0;$i<10;$i++){   
-          
+        for($i=0;$i<10;$i++){          
             DB::table('users')->insert([
                 'name' => $faker->firstName,
                 'last_name' => $faker->lastName,
@@ -44,8 +41,7 @@ class UserSeed extends Seeder
                 'password' => Hash::make('123123'),
                 'remember_token' => '',
                 'team_id' => $faker->randomDigitNotNull,
-                'approved' => 1,
-                
+                'approved' => 1,                
             ]);
         }
     }

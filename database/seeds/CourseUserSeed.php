@@ -11,11 +11,9 @@ class CourseUserSeed extends Seeder
      */
     public function run()
     {
-        DB::table('course_user')->truncate();
-
         $faker = Faker\Factory::create();
 
-        for($i=0;$i<10;$i++){
+        for($i=0;$i<20;$i++){
         DB::table('course_user')->insert([
             'course_id' => $faker->randomDigitNotNull,
             'user_id' => $faker->randomDigitNotNull,

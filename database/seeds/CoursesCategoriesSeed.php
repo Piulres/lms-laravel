@@ -13,7 +13,7 @@ class CoursesCategoriesSeed extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        for($i=0;$i<10;$i++){
+        for($i=0;$i<20;$i++){
             \App\Coursescategory::create([
                'title' => $faker->word,               
             ]);

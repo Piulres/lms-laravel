@@ -10,12 +10,10 @@ class CourseCoursesCategorySeed extends Seeder
      * @return void
      */
     public function run()
-    {
-        DB::table('course_coursescategory')->truncate();
-
+    {        
         $faker = Faker\Factory::create();
 
-        for($i=0;$i<10;$i++){
+        for($i=0;$i<20;$i++){
         DB::table('course_coursescategory')->insert([
             'course_id' => $faker->randomDigitNotNull,
             'coursescategory_id' => $faker->randomDigitNotNull,

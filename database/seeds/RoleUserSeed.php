@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CourseTrailSeed extends Seeder
+class RoleUserSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,10 +13,10 @@ class CourseTrailSeed extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        for($i=0;$i<20;$i++){
-        DB::table('course_trail')->insert([
-            'course_id' => $faker->randomDigitNotNull,
-            'trail_id' => $faker->randomDigitNotNull,
+        for($i=0;$i<10;$i++){
+        DB::table('role_user')->insert([
+            'role_id' => $faker->numberBetween(2,3),
+            'user_id' => $faker->randomDigitNotNull,
         ]);
         }
     }

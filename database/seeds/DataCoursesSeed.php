@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CourseLessonSeed extends Seeder
+class DataCoursesSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,12 @@ class CourseLessonSeed extends Seeder
         $faker = Faker\Factory::create();
 
         for($i=0;$i<20;$i++){
-        DB::table('course_lesson')->insert([
+        DB::table('datacourses')->insert([
+            'view' => $faker->numberBetween(0,1),
+            'progress' => $faker->numberBetween(0,2),
+            'rating' => $faker->numberBetween(1,5),
             'course_id' => $faker->randomDigitNotNull,
-            'lesson_id' => $faker->randomDigitNotNull,
+            'user_id' => $faker->randomDigitNotNull,
         ]);
         }
     }
