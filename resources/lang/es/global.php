@@ -94,6 +94,7 @@ return [
 			'introduction' => 'Introduction',
 			'duration' => 'Duration',
 		],
+		'create' => 'Criar curso',
 	],
 	
 	'trails' => [
