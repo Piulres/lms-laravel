@@ -1,69 +1,88 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.trails.title')</h3>
+    <div class="header-title">
+        <h4>@lang('global.trails.title')</h4>
+    </div>
     
     {!! Form::model($trail, ['method' => 'PUT', 'route' => ['admin.trails.update', $trail->id]]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_edit')
-        </div>
+    <div class="card">
 
-        <div class="panel-body">
+        <div class="card-content">
+            <div class="title col-12">
+                <h5>@lang('global.app_edit')</h5>
+            </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('global.trails.fields.title').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('title'))
-                        <p class="help-block">
-                            {{ $errors->first('title') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('title', trans('global.trails.fields.title').'', ['class' => 'control-label']) !!}
+                        {!! Form::text('title', old('title'), ['class' => 'form-control']) !!}
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        @if($errors->has('title'))
+                            <span class="helper-text" data-error="wrong" data-success="right">
+                                {{ $errors->first('title') }}
+                            </span>
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('categories', trans('global.trails.fields.categories').'', ['class' => 'control-label']) !!}
-                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-categories">
-                        {{ trans('global.app_select_all') }}
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-categories">
-                        {{ trans('global.app_deselect_all') }}
-                    </button>
-                    {!! Form::select('categories[]', $categories, old('categories') ? old('categories') : $trail->categories->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-categories' ]) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('categories'))
-                        <p class="help-block">
-                            {{ $errors->first('categories') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    <div class="col-12 no-padding">
+                        {!! Form::label('categories', trans('global.trails.fields.categories').'', ['class' => 'control-label']) !!}
+                        {!! Form::select('categories[]', $categories, old('categories') ? old('categories') : $trail->categories->pluck('id')->toArray(), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-categories' ]) !!}
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        @if($errors->has('categories'))
+                            <p class="help-block">
+                                {{ $errors->first('categories') }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary btn-xs" id="selectbtn-categories">
+                                {{ trans('global.app_select_all') }}
+                            </button>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-categories">
+                                {{ trans('global.app_deselect_all') }}
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('courses', trans('global.trails.fields.courses').'', ['class' => 'control-label']) !!}
-                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-courses">
-                        {{ trans('global.app_select_all') }}
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-courses">
-                        {{ trans('global.app_deselect_all') }}
-                    </button>
-                    {!! Form::select('courses[]', $courses, old('courses') ? old('courses') : $trail->courses->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-courses' ]) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('courses'))
-                        <p class="help-block">
-                            {{ $errors->first('courses') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="col-12 no-padding">
+                        {!! Form::label('courses', trans('global.trails.fields.courses').'', ['class' => 'control-label']) !!}
+                        {!! Form::select('courses[]', $courses, old('courses') ? old('courses') : $trail->courses->pluck('id')->toArray(), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-courses' ]) !!}
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        @if($errors->has('courses'))
+                            <p class="help-block">
+                                {{ $errors->first('courses') }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary btn-xs" id="selectbtn-courses">
+                                {{ trans('global.app_select_all') }}
+                            </button>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-courses">
+                                {{ trans('global.app_deselect_all') }}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::button('<i class="material-icons right">send</i>Update', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
     {!! Form::close() !!}
 @stop
 

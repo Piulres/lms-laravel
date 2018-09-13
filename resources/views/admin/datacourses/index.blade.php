@@ -2,29 +2,29 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.datacourses.title')</h3>
-    @can('datacourse_create')
-    <p>
-        <a href="{{ route('admin.datacourses.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h4>@lang('global.datacourses.title')</h4>
+        @can('datacourse_create')
+            <a href="{{ route('admin.datacourses.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
 
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.datacourses.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.datacourses.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
-    
+    <ul class="tabs z-depth-1">
+        <li class="tab">
+            <a href="{{ route('admin.datacourses.index') }}" class="{{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+        </li>
+        <li class="tab">
+            <a href="{{ route('admin.datacourses.index') }}?show_deleted=1" class="{{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+        </li>
+    </ul>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
-        </div>
+    <div class="card">
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('datacourse_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="card-content">
+            <div class="title col-12">
+                <h5>@lang('global.app_list')</h5>
+            </div>
+            <table class="striped responsive-table ajaxTable @can('datacourse_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         @can('datacourse_delete')

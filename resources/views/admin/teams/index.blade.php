@@ -5,10 +5,10 @@
     <div class="header-title">
         <h4>
             @lang('global.teams.title')
-            @can('team_create')
-                <a href="{{ route('admin.teams.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-            @endcan
         </h4>
+        @can('team_create')
+            <a href="{{ route('admin.teams.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+        @endcan
     </div>
 
     <div class="card">

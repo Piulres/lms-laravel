@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title d-flex align-items-center">
+    <div class="header-title">
         <h4>
             @lang('global.trails.title')
         </h4>
@@ -23,11 +23,11 @@
 
     <div class="card">
         <div class="card-content">
-            <div class="panel-heading">
-                @lang('global.app_list')
+            <div class="title col-12">
+                <h5>@lang('global.app_list')</h5>
             </div>
 
-            <table class="striped ajaxTable @can('trail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan responsive-table">
+            <table class="striped responsive-table ajaxTable @can('trail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         @can('trail_delete')

@@ -1,17 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.datatrails.title')</h3>
+    <div class="back-button">
+        <a href="{{ route('admin.datatrails.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
+    </div>
+    <div class="header-title">
+        <h4>@lang('global.datatrails.title')</h4>
+    </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_view')
-        </div>
+    <div class="card">
 
-        <div class="panel-body table-responsive">
+        <div class="card-content">
+            <div class="title col-12">
+                <h5>@lang('global.app_view')</h5>
+            </div>
             <div class="row">
                 <div class="col-md-6">
-                    <table class="table table-bordered table-striped">
+                    <table class="striped">
                         <tr>
                             <th>@lang('global.datatrails.fields.trail')</th>
                             <td field-key='trail'>{{ $datatrail->trail->title or '' }}</td>
@@ -35,10 +40,6 @@
                     </table>
                 </div>
             </div>
-
-            <p>&nbsp;</p>
-
-            <a href="{{ route('admin.datatrails.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
         </div>
     </div>
 @stop

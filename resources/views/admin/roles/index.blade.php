@@ -5,10 +5,10 @@
     <div class="header-title">
         <h4>
             @lang('global.roles.title')
-            @can('role_create')
-                <a href="{{ route('admin.roles.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
-            @endcan
         </h4>
+        @can('role_create')
+            <a href="{{ route('admin.roles.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+        @endcan
     </div>
 
     

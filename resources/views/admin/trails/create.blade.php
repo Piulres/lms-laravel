@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.trails.title')</h3>
+    <div class="header-title">
+        <h4>@lang('global.trails.title')</h4>
+    </div>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.trails.store']]) !!}
 
     <div class="card">
@@ -14,7 +16,7 @@
                 <div class="col-12 col-md-6">
                     {!! Form::label('title', trans('global.trails.fields.title').'', ['class' => 'control-label']) !!}
                     {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
                     @if($errors->has('title'))
                         <p class="help-block">
                             {{ $errors->first('title') }}
@@ -27,7 +29,7 @@
                     <div class="col-12 no-padding">
                         {!! Form::label('categories', trans('global.trails.fields.categories').'') !!}
                         {!! Form::select('categories[]', $categories, old('categories'), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-categories' ]) !!}
-                        <p class="help-block"></p>
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
                         @if($errors->has('categories'))
                             <p class="help-block">
                                 {{ $errors->first('categories') }}
@@ -52,7 +54,7 @@
                     <div class="col-12 no-padding">
                         {!! Form::label('courses', trans('global.trails.fields.courses').'') !!}
                         {!! Form::select('courses[]', $courses, old('courses'), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-courses' ]) !!}
-                        <p class="help-block"></p>
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
                         @if($errors->has('courses'))
                             <p class="help-block">
                                 {{ $errors->first('courses') }}

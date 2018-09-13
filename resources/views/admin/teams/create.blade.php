@@ -17,7 +17,7 @@
                     <div class="input-field">
                         {!! Form::label('name', trans('global.teams.fields.name').'*', ['class' => 'control-label']) !!}
                         {!! Form::text('name', old('name'), ['class' => 'form-control', 'required' => '']) !!}
-                        <p class="help-block"></p>
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
                         @if($errors->has('name'))
                             <p class="help-block">
                                 {{ $errors->first('name') }}
