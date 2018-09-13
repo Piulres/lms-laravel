@@ -1,4 +1,11 @@
 /* CUSTOM CSS MATERIALIZE RP */
+.back-button {
+    margin-bottom: 15px;
+}
+nav ul li {
+    position: relative;
+}
+
 .text-subhead {
     font-size: 1.15rem;
     font-weight: 400;
@@ -18,6 +25,10 @@
     min-width: none;
 }
 
+.buttons a {
+    margin-right: 5px;
+}
+
 span.badge.new.sup {
     margin-left: 0;
     position: absolute;
@@ -27,8 +38,78 @@ span.badge.new.sup {
     background: #000000;
 }
 
-.actions a {
-    margin-right: 5px;
+.header-title {
+    margin-bottom: 20px;
+}
+
+.header-title a {
+    margin-left: 10px;
+}
+
+.header-title h1,
+.header-title h2,
+.header-title h3,
+.header-title h4,
+.header-title h5,
+.header-title h6 {
+    margin: 0;
+}
+
+/* PAGINATION */
+
+.pagination span {
+    display: inline-block;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: top;
+    height: 30px;
+}
+
+.pagination a {
+    color: #444;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+    border-radius: 2px;
+    outline: none;
+}
+
+.pagination a.next, .pagination a.previous {
+    padding: 0 5px;
+    line-height: .9em;
+    outline: none;
+}
+
+.pagination a.next i, .pagination a.previous i {
+    font-size: 2rem;
+}
+
+.pagination .active {
+    background-color: #ee6e73;
+    color: #FFFFFF;
+}
+
+.pagination a.disabled {
+    cursor: default;
+    color: #999;
+}
+
+.overflow-parent {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.overflow-child {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    box-sizing: content-box; /* So the width will be 100% + 17px */
+}
+
+.dropdown-content {
+    min-width: 180px;
 }
 
 /* END CUSTOM MATERIALIZE RP */
@@ -65,6 +146,7 @@ body {
 .content-wrapper .content {
     min-height: 250px;
     padding: 15px;
+    padding-top: 50px;
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
@@ -95,7 +177,6 @@ body {
 
 .card-home .card .card-content {
     padding: 0;
-    overflow: scroll;
 }
 
 .card-home .card .card-footer {
@@ -129,7 +210,6 @@ body {
 .card-list .collection-item .secondary-content .progress {
     margin-right: 15px;
 }
-
 
 /* TOPBAR */
 nav .sidenav-trigger {
@@ -174,10 +254,133 @@ th {
     height: 8px;
 }
 
+/* DATATABLE */
+.dt-buttons {
+    margin-left: 20px;
+}
+
+.dataTables_length label {
+    margin-top: 5px;
+    display: block;
+}
+
+.dataTables_wrapper .dataTables_info {
+    float: none;
+    padding-bottom: 20px;
+}
+
+table.dataTable.no-footer {
+    border-bottom: none;
+}
+
+table.dataTable thead th, table.dataTable tbody td {
+    min-width: auto;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
+    background: #e0e0e0;
+}
+
+table.dataTable td.select-checkbox:before, table.dataTable td.select-checkbox:after {
+    top: 50%;
+}
+
+table.dataTable td.select-checkbox:before {
+    width: 18px;
+    height: 18px;
+    border-width: 2px;
+}
+
+table.dataTable tr.selected td.select-checkbox:after {
+    content: none;
+}
+
+table.dataTable td.select-checkbox:before {
+    content: '';
+    position: absolute;
+    border: 2px solid #5a5a5a;
+    border-radius: 1px;
+    margin-top: -9px;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+table.dataTable tr.selected td.select-checkbox:before {
+    margin-top: -14px;
+    margin-left: -10px;
+    width: 12px;
+    height: 22px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #26a69a;
+    border-bottom: 2px solid #26a69a;
+    -webkit-transform: rotate(40deg);
+    transform: rotate(40deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+button.dt-button, div.dt-button, a.dt-button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    appearance: none;
+    text-decoration: none;
+    color: #fff;
+    background-color: #26a69a;
+    background-image: none;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+}
+
+button.dt-button:hover:not(.disabled), div.dt-button:hover:not(.disabled), a.dt-button:hover:not(.disabled),
+button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-button:focus:not(.disabled) {
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+    background-image: none;
+    border: none;
+    transform: none;
+    background-color: #2bbbad;
+}
+
+@media(max-width: 1150px) {
+    .card-home .card .card-content {
+        overflow: scroll;
+    }
+
+    .card-list .collection .collection-item span {
+        min-width: 25%;
+        margin-right: 10px;
+    }
+}
+
 @media screen and (max-width: 992px) {
     .content-wrapper {
         margin-left: auto;
     }
+
 }
 
 @media screen and (max-width: 420px) {

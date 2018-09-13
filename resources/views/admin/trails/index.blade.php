@@ -2,29 +2,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.trails.title')</h3>
-    @can('trail_create')
-    <p>
-        <a href="{{ route('admin.trails.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title d-flex align-items-center">
+        <h4>
+            @lang('global.trails.title')
+        </h4>
+        @can('trail_create')
+        <a href="{{ route('admin.trails.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
 
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.trails.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.trails.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
+    <ul class="tabs z-depth-1">
+        <li class="tab">
+            <a href="{{ route('admin.trails.index') }}" class="{{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+        </li>
+        <li class="tab">
+            <a href="{{ route('admin.trails.index') }}?show_deleted=1" class="{{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+        </li>
+    </ul>
     
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
-        </div>
+    <div class="card">
+        <div class="card-content">
+            <div class="panel-heading">
+                @lang('global.app_list')
+            </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('trail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="striped ajaxTable @can('trail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan responsive-table">
                 <thead>
                     <tr>
                         @can('trail_delete')

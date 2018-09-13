@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.courses.title')</h3>
+    <div class="header-title">
+        <h4>@lang('global.courses.title')</h4>
+    </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">

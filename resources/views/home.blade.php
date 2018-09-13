@@ -24,26 +24,26 @@
                                 <td>{{ $user->name }} </td> 
                                 <td>{{ $user->email }} </td> 
                                 <td class="actions">
+                                    <div class="buttons d-flex align-items-center justify-content-end">
+                                        @can('user_view')
+                                        <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
 
-                                    @can('user_view')
-                                    <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
-                                    @endcan
+                                        @can('user_edit')
+                                        <a href="{{ route('admin.users.edit',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
+                                            <i class="material-icons">edit</i></a>
+                                        @endcan
 
-                                    @can('user_edit')
-                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
-                                        <i class="material-icons">edit</i></a>
-                                    @endcan
-
-                                    @can('user_delete')
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.users.destroy', $user->id])) !!}
-                                    {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
-                                
+                                        @can('user_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.users.destroy', $user->id])) !!}
+                                        {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                        @endcan
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -65,30 +65,33 @@
                     <ul class="collection">
                         @foreach($courses as $course)
                         <li class="collection-item">
-                            <div class="d-flex justify-content-between align-items-center">{{ $course->title }}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>{{ $course->title }}</span>
                                 <div class="secondary-content d-flex flex-row align-items-center">
                                     <span class="progress grey lighten-4" style="width: 120px">
                                         <div class="determinate grey" style="width: 50%"></div>
                                     </span>
-                                    <div class="actions">
-                                        @can('course_view')
-                                        <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
-                                        @endcan
+                                    <div class="actions hide-on-med-and-down">
+                                        <div class="buttons d-flex align-items-center justify-content-end">
+                                            @can('course_view')
+                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
+                                            @endcan
 
-                                        @can('course_edit')
-                                        <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
-                                            <i class="material-icons">edit</i></a>
-                                        @endcan
+                                            @can('course_edit')
+                                            <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
+                                                <i class="material-icons">edit</i></a>
+                                            @endcan
 
-                                        @can('course_delete')
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.courses.destroy', $course->id])) !!}
-                                        {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                        {!! Form::close() !!}
-                                        @endcan
+                                            @can('course_delete')
+                                            {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'DELETE',
+                                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                                'route' => ['admin.courses.destroy', $course->id])) !!}
+                                            {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::close() !!}
+                                            @endcan
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +101,7 @@
                 </div>
                 <div class="card-footer d-flex justify-content-end">
                     <a href="{{ route('admin.courses.index') }}" class="waves-effect waves-light btn white black-text">@lang('global.app_see_all')</a>
-                    <a href="{{ route('admin.courses.create') }}" class="waves-effect waves-light btn white black-text">@lang('global.app_see_all')</a>
+                    <a href="{{ route('admin.courses.create') }}" class="waves-effect waves-light btn blue white-text">@lang('global.courses.create')</a>
                 </div>
             </div>
         </div>
@@ -122,26 +125,26 @@
                                
                                 <td>{{ $trail->title }} </td> 
                                 <td class="actions">
+                                    <div class="buttons d-flex align-items-center justify-content-end">
+                                        @can('trail_view')
+                                        <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
 
-                                    @can('trail_view')
-                                    <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
-                                    @endcan
+                                        @can('trail_edit')
+                                        <a href="{{ route('admin.trails.edit',[$trail->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
+                                            <i class="material-icons">edit</i></a>
+                                        @endcan
 
-                                    @can('trail_edit')
-                                    <a href="{{ route('admin.trails.edit',[$trail->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
-                                        <i class="material-icons">edit</i></a>
-                                    @endcan
-
-                                    @can('trail_delete')
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.trails.destroy', $trail->id])) !!}
-                                    {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
-                                
+                                        @can('trail_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.trails.destroy', $trail->id])) !!}
+                                        {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                        @endcan
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -173,25 +176,26 @@
                                
                                 <td>{{ $team->name }} </td> 
                                 <td class="actions">
+                                    <div class="buttons d-flex align-items-center justify-content-end">
+                                        @can('team_view')
+                                        <a href="{{ route('admin.teams.show',[$team->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
 
-                                    @can('team_view')
-                                    <a href="{{ route('admin.teams.show',[$team->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
-                                    @endcan
+                                        @can('team_edit')
+                                        <a href="{{ route('admin.teams.edit',[$team->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
+                                            <i class="material-icons">edit</i></a>
+                                        @endcan
 
-                                    @can('team_edit')
-                                    <a href="{{ route('admin.teams.edit',[$team->id]) }}" class="waves-effect waves-light btn-small btn-square blue">
-                                        <i class="material-icons">edit</i></a>
-                                    @endcan
-
-                                    @can('team_delete')
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.teams.destroy', $team->id])) !!}
-                                    {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
+                                        @can('team_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.teams.destroy', $team->id])) !!}
+                                        {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                        @endcan
+                                    </div>
                                 
                                 </td>
                             </tr>
