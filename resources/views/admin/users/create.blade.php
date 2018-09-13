@@ -1,17 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.users.title')</h3>
+    <div class="header-title">
+        <h4>@lang('global.users.title')</h4>
+    </div>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.users.store'], 'files' => true,]) !!}
 
     <div class="card">
         <div class="card-content">
-            <div class="card-title col-md-12">
+            <div class="title col-md-12">
                 <h5>@lang('global.app_create')</h5>
             </div>
             
             <div class="row">
-                <div class="col-xs-12 col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="input-field">
                         {!! Form::label('name', trans('global.users.fields.name').'*') !!}
                         {!! Form::text('name', old('name'), ['class' => 'validate', 'required' => '']) !!}
@@ -24,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="input-field">
                         {!! Form::label('last_name', trans('global.users.fields.last-name').'') !!}
                         {!! Form::text('last_name', old('last_name'), ['class' => 'validate']) !!}
@@ -38,7 +40,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="input-field">
                         {!! Form::label('email', trans('global.users.fields.email').'*') !!}
                         {!! Form::email('email', old('email'), ['class' => 'validate', 'required' => '']) !!}
@@ -51,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="input-field">
                         {!! Form::label('website', trans('global.users.fields.website').'') !!}
                         {!! Form::text('website', old('website'), ['class' => 'validate']) !!}
@@ -65,11 +67,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>File</span>
-                            {!! Form::file('hidden') !!}
+                            {!! Form::file('avatar') !!}
                         </div>
                         <div class="file-path-wrapper">
                             {!! Form::text('file_text', old('file_text'), ['class' => 'file-path validate', 'placeholder' => 'Upload your avatar']) !!}
@@ -86,7 +88,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="input-field">
                         {!! Form::label('password', trans('global.users.fields.password').'*') !!}
                         {!! Form::password('password', ['class' => 'validate', 'required' => '']) !!}
@@ -100,50 +102,59 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <!-- {!! Form::label('role', trans('global.users.fields.role').'*', ['class' => 'control-label']) !!} -->
-                    <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-role">
-                        {{ trans('global.app_select_all') }}
-                    </button>
-                    <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-role">
-                        {{ trans('global.app_deselect_all') }}
-                    </button>
-                    {!! Form::select('role[]', $roles, old('role'), ['multiple' => 'multiple', 'id' => 'selectall-role' , 'required' => '']) !!}
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12 no-padding">
+                            {!! Form::label('role', trans('global.users.fields.role').'*', ['class' => 'control-label']) !!}
+                            {!! Form::select('role[]', $roles, old('role'), ['multiple' => 'multiple', 'id' => 'selectall-role' , 'required' => '']) !!}
+                            <span class="helper-text" data-error="wrong" data-success="right"></span>
+                            @if($errors->has('role'))
+                                <span class="helper-text" data-error="wrong" data-success="right">
+                                    {{ $errors->first('role') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-role">
+                                {{ trans('global.app_select_all') }}
+                            </button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-role">
+                                {{ trans('global.app_deselect_all') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    {!! Form::label('team_id', trans('global.users.fields.team').'', ['class' => 'control-label']) !!}
+                    {!! Form::select('team_id', $teams, old('team_id'), ['label' => 'Please Select']) !!}
                     <span class="helper-text" data-error="wrong" data-success="right"></span>
-                    @if($errors->has('role'))
+                    @if($errors->has('team_id'))
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            {{ $errors->first('role') }}
+                            {{ $errors->first('team_id') }}
                         </span>
                     @endif
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <div class="input-field">
-                        <!-- {!! Form::label('team_id', trans('global.users.fields.team').'', ['class' => 'control-label']) !!} -->
-                        {!! Form::select('team_id', $teams, old('team_id'), ['label' => 'Please Select']) !!}
-                        <span class="helper-text" data-error="wrong" data-success="right"></span>
-                        @if($errors->has('team_id'))
-                            <span class="helper-text" data-error="wrong" data-success="right">
-                                {{ $errors->first('team_id') }}
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <div class="input-field">
-                        {!! Form::label('approved', trans('global.users.fields.approved').'', ['class' => 'control-label']) !!}
-                        {!! Form::hidden('approved', 0) !!}
+                <div class="col-12 col-md-6">
+                    <label>
+                        <!-- {!! Form::hidden('approved', 0) !!} -->
                         {!! Form::checkbox('approved', 1, old('approved', false), []) !!}
-                        <span class="helper-text" data-error="wrong" data-success="right"></span>
-                        @if($errors->has('approved'))
-                            <span class="helper-text" data-error="wrong" data-success="right">
-                                {{ $errors->first('approved') }}
-                            </span>
-                        @endif
-                    </div>
+                        <!-- {!! Form::label('approved', trans('global.users.fields.approved').'', ['class' => 'control-label']) !!} -->
+                        <span>Approved</span>
+                    </label>
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    @if($errors->has('approved'))
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                            {{ $errors->first('approved') }}
+                        </span>
+                    @endif
                 </div>
             </div>
         </div>

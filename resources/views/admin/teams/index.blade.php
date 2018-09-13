@@ -2,23 +2,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.teams.title')</h3>
-    @can('team_create')
-    <p>
-        <a href="{{ route('admin.teams.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h4>
+            @lang('global.teams.title')
+            @can('team_create')
+                <a href="{{ route('admin.teams.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
+            @endcan
+        </h4>
+    </div>
 
-    
+    <div class="card">
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
-        </div>
-
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('team_delete') dt-select @endcan">
+        <div class="card-content">
+            <div class="title">
+                @lang('global.app_list')
+            </div>
+            <table class="striped ajaxTable @can('team_delete') dt-select @endcan">
                 <thead>
                     <tr>
                         @can('team_delete')
@@ -26,7 +25,7 @@
                         @endcan
 
                         <th>@lang('global.teams.fields.name')</th>
-                                                <th>&nbsp;</th>
+                        <th>&nbsp;</th>
 
                     </tr>
                 </thead>

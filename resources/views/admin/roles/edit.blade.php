@@ -1,51 +1,63 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.roles.title')</h3>
+    <div class="header-title">
+        <h4>@lang('global.roles.title')</h4>
+    </div>
     
     {!! Form::model($role, ['method' => 'PUT', 'route' => ['admin.roles.update', $role->id]]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_edit')
-        </div>
+    <div class="card">
 
-        <div class="panel-body">
+        <div class="card-content">
+            <div class="title col-12">
+                <h5>@lang('global.app_edit')</h5>
+            </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('global.roles.fields.title').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('title'))
-                        <p class="help-block">
-                            {{ $errors->first('title') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('title', trans('global.roles.fields.title').'*', ['class' => 'control-label']) !!}
+                        {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        @if($errors->has('title'))
+                            <span class="helper-text" data-error="wrong" data-success="right">
+                                {{ $errors->first('title') }}
+                            </span>
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('permission', trans('global.roles.fields.permission').'*', ['class' => 'control-label']) !!}
-                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-permission">
-                        {{ trans('global.app_select_all') }}
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-permission">
-                        {{ trans('global.app_deselect_all') }}
-                    </button>
-                    {!! Form::select('permission[]', $permissions, old('permission') ? old('permission') : $role->permission->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-permission' , 'required' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('permission'))
-                        <p class="help-block">
-                            {{ $errors->first('permission') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    <div class="col-12 no-padding">
+                        {!! Form::label('permission', trans('global.roles.fields.permission').'*', ['class' => 'control-label']) !!}
+                        {!! Form::select('permission[]', $permissions, old('permission') ? old('permission') : $role->permission->pluck('id')->toArray(), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-permission' , 'required' => '']) !!}
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        @if($errors->has('permission'))
+                            <span class="helper-text" data-error="wrong" data-success="right">
+                                {{ $errors->first('permission') }}
+                            </span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary btn-xs" id="selectbtn-permission">
+                                {{ trans('global.app_select_all') }}
+                            </button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-permission">
+                                {{ trans('global.app_deselect_all') }}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::button('<i class="material-icons right">send</i>Update', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
     {!! Form::close() !!}
 @stop
 

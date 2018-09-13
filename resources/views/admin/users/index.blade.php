@@ -2,21 +2,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <h4>
-        @lang('global.users.title')
-        @can('user_create')
-        <a href="{{ route('admin.users.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
-        @endcan
-    </h4>
+    <div class="header-title">
+        <h4>
+            @lang('global.users.title')
+            @can('user_create')
+            <a href="{{ route('admin.users.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+            @endcan
+        </h4>
+    </div>
 
     
 
     <div class="card">
         <div class="card-content">
-            <div class="card-title">
-                <h6>
-                    @lang('global.app_list')
-                </h6>
+            <div class="title">
+                <h5>@lang('global.app_list')</h5>
             </div>
 
             <div class="overflow-parent">

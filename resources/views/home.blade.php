@@ -24,7 +24,7 @@
                                 <td>{{ $user->name }} </td> 
                                 <td>{{ $user->email }} </td> 
                                 <td class="actions">
-                                    <div class="d-flex align-items-center justify-content-end">
+                                    <div class="buttons d-flex align-items-center justify-content-end">
                                         @can('user_view')
                                         <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
@@ -72,7 +72,7 @@
                                         <div class="determinate grey" style="width: 50%"></div>
                                     </span>
                                     <div class="actions hide-on-med-and-down">
-                                        <div class="d-flex align-items-center justify-content-end">
+                                        <div class="buttons d-flex align-items-center justify-content-end">
                                             @can('course_view')
                                             <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
@@ -125,7 +125,7 @@
                                
                                 <td>{{ $trail->title }} </td> 
                                 <td class="actions">
-                                    <div class="d-flex align-items-center justify-content-end">
+                                    <div class="buttons d-flex align-items-center justify-content-end">
                                         @can('trail_view')
                                         <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
@@ -176,7 +176,7 @@
                                
                                 <td>{{ $team->name }} </td> 
                                 <td class="actions">
-                                    <div class="d-flex align-items-center justify-content-end">
+                                    <div class="buttons d-flex align-items-center justify-content-end">
                                         @can('team_view')
                                         <a href="{{ route('admin.teams.show',[$team->id]) }}" class="waves-effect waves-light btn btn-small btn-square tooltipped" data-position="bottom" data-tooltip="@lang('global.app_view')"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan

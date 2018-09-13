@@ -1,4 +1,7 @@
 /* CUSTOM CSS MATERIALIZE RP */
+.back-button {
+    margin-bottom: 15px;
+}
 nav ul li {
     position: relative;
 }
@@ -103,6 +106,10 @@ span.badge.new.sup {
     height: 100%;
     overflow-y: scroll;
     box-sizing: content-box; /* So the width will be 100% + 17px */
+}
+
+.dropdown-content {
+    min-width: 180px;
 }
 
 /* END CUSTOM MATERIALIZE RP */
@@ -247,11 +254,6 @@ th {
     height: 8px;
 }
 
-/* TABS */
-.tabs .tab a:hover, .tabs .tab a.active {
-    border-bottom: 2px solid #ee6e73;
-}
-
 /* DATATABLE */
 .dt-buttons {
     margin-left: 20px;
@@ -267,9 +269,13 @@ th {
     padding-bottom: 20px;
 }
 
+table.dataTable.no-footer {
+    border-bottom: none;
+}
+
 table.dataTable thead th, table.dataTable tbody td {
     min-width: auto;
-    border-bottom: 1px solid #CECECE;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
