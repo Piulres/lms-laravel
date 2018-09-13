@@ -7,7 +7,6 @@ Prepare your .env file there with database connection and other settings.
 ```
 composer install
 composer dump-autoload
-php artisan db:seed
 php artisan migrate --seed
 php artisan key:generate
 php artisan vendor:publish --tag=lfm_config

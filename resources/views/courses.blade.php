@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12">
+            <div class="col s6">
                 <table class="table table-bordered table-striped">              
                     <tr>
                         <th>@lang('global.courses.fields.instructor')</th>
@@ -50,6 +50,18 @@
                         <td field-key='duration'>{{ $course->duration }}</td>
                     </tr>
                 </table>
+            </div>
+            <div class="col s6">
+                @if (Auth::check())
+                <a class="btn waves-effect waves-light black" href="#">
+                    Start Course
+                </a>
+                @else
+                <p>Login to Start Course</p>
+                <a class="btn modal-trigger waves-effect waves-light black" href="{{ url('/login') }}">
+                    Login
+                </a>
+                @endif
             </div>
         </div>
         <div class="row"> 
