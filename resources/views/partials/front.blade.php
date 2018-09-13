@@ -51,7 +51,7 @@
 
                 </ul>
                 <ul class="sidenav" id="slide-out">
-                    <li>
+                    <!-- <li>
                         <div class="user-view">
                             <div class="background">
                                 <img src="{{ url('/') }}/images/01.abb.jpg">
@@ -71,7 +71,7 @@
                                 </span>
                             </a>
                         </div>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="black-text" href="{{ url('/library') }}">
                             Get Started
@@ -155,16 +155,21 @@
                                 <a class="black-text" href="{{ route('auth.password.reset') }}">
                                     Forgot Password?
                                 </a>
+                            </div>
+
+                            <div class="itens row center">
                                 <a class="black-text" href="{{ route('auth.register') }}">
                                     Register
                                 </a>
+                            </div>
+
+                            <div class="itens row center">
                                 <a class="black-text" target="_blank" href="https://www.google.com">
                                     Problems? Click Here
                                 </a>
                             </div>
 
                         </form>
-
 
                     </div>
                 </div>

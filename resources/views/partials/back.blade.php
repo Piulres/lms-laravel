@@ -6,7 +6,7 @@
                 <div class="container">
                     Made by
                     <a class="white-text" href="http://www.rperformance.com.br">
-                        RPerformance
+                        RPerformance Group
                     </a>
                 </div>
             </div>

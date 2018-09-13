@@ -82,7 +82,7 @@ p {
 }
 @media only screen and (max-width: 992px) {
     .parallax-container .section {
-        position: absolute;
+        /*position: absolute;*/
         top: 40%;
     }
     #index-banner .section {
@@ -139,7 +139,7 @@ footer.page-footer {
 }
 
 .itens {
-    margin-bottom: 30px!important;
+    margin-bottom: 10px!important;
 }
 
 .itens a {
