@@ -3,6 +3,12 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/library', 'LibraryController@index');
+
+Route::get('courses', ['uses' => 'CoursesController@index', 'as' => 'courses']);
+Route::get('courses/{id}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
+
+
+Route::get('/courses/{id}', 'CoursesController@show');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 // Authentication Routes...

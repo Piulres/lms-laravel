@@ -8,8 +8,8 @@
         </title>
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link href="css/materialize.css" media="screen,projection" rel="stylesheet" type="text/css"/>
-            <link href="css/style.css" media="screen,projection" rel="stylesheet" type="text/css"/>
+            <link href="{{ url('/') }}/css/materialize.css" media="screen,projection" rel="stylesheet" type="text/css"/>
+            <link href="{{ url('/') }}/css/style.css" media="screen,projection" rel="stylesheet" type="text/css"/>
         </link>
     </head>
     <body>
@@ -17,17 +17,17 @@
             <div class="nav-wrapper container">
                 <a class="brand-logo" href="/">
                     <!-- <img src="http://static.campanhaporto.com.br/guide/logo/porto-seguro/institucional/marca/inst-bgd-sm.svg"/> -->
-                    <img src="images/Logo_RPX.png"/>
+                    <img src="{{ url('/') }}/images/Logo_RPX.png"/>
                     <!-- <p class="mamama">INSERT LOGO HERE</p> -->
                 </a>
                 <ul class="right hide-on-med-and-down">
                     <li>
-                        <a class="black-text" href="/library">
+                        <a class="black-text" href="{{ url('/library') }}">
                             Get Started
                         </a>
                     </li>
                     <li>
-                        <a class="black-text" href="/library">
+                        <a class="black-text" href="{{ url('/library') }}">
                             Library
                         </a>
                     </li>
@@ -54,11 +54,11 @@
                     <li>
                         <div class="user-view">
                             <div class="background">
-                                <img src="images/01.abb.jpg">
+                                <img src="{{ url('/') }}/images/01.abb.jpg">
                                 </img>
                             </div>
                             <a href="#user">
-                                <img class="circle" src="images/01.cabu.jpg"/>
+                                <img class="circle" src="{{ url('/') }}/images/01.cabu.jpg"/>
                             </a>
                             <a href="#name">
                                 <span class="white-text name">
@@ -73,7 +73,7 @@
                         </div>
                     </li>
                     <li>
-                        <a class="black-text" href="/library">
+                        <a class="black-text" href="{{ url('/library') }}">
                             Get Started
                         </a>
                     </li>
@@ -82,7 +82,7 @@
                         </div>
                     </li>
                     <li>
-                        <a class="black-text" href="/library">
+                        <a class="black-text" href="{{ url('/library') }}">
                             Library
                         </a>
                     </li>

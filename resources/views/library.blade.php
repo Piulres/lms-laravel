@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="card-action">
-                                    <a href="#">See More</a>
+                                    <a href="{{ url('courses/'. $course->id) }}">{{ $course->title }}</a>
                                 </div>
                             </div>
                         </div>

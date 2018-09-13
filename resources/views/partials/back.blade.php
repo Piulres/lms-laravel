@@ -14,9 +14,9 @@
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js">
         </script>
-        <script src="js/materialize.js">
+        <script src="{{ url('/') }}/js/materialize.js">
         </script>
-        <script src="js/init.js">
+        <script src="{{ url('/') }}/js/init.js">
         </script>
     </body>
 </html>

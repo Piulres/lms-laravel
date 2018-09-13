@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreCoursesRequest;
+use App\Http\Requests\Admin\UpdateCoursesRequest;
+use App\Http\Controllers\Traits\FileUploadTrait;
+use Yajra\DataTables\DataTables;
 
-class LibraryController extends Controller
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+class CoursesController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $courses = \App\Course::latest()->get();
-        return view('library', compact( 'courses' ));
-    }
+    use FileUploadTrait;    
 
-        /**
+    /**
      * Display Course.
      *
      * @param  int  $id
@@ -25,10 +26,7 @@ class LibraryController extends Controller
      */
     public function show($id)
     {
-        if (! Gate::allows('course_view')) {
-            return abort(401);
-        }
-        
+               
         $instructors = \App\User::get()->pluck('name', 'id');
 
         $lessons = \App\Lesson::get()->pluck('title', 'id');
@@ -41,7 +39,7 @@ class LibraryController extends Controller
 
         $course = Course::findOrFail($id);
 
-        return view('admin.courses.show', compact('course', 'datacourses', 'trails'));
+        return view('courses', compact('course', 'datacourses', 'trails'));
     }
 
 }
