@@ -39,12 +39,12 @@
                     @endif
                     <div class="row">
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-permission">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-permission">
                                 {{ trans('global.app_select_all') }}
                             </button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-permission">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-permission">
                                 {{ trans('global.app_deselect_all') }}
                             </button>
                         </div>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    {!! Form::button('<i class="material-icons right">send</i>Save', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
+    {!! Form::button('<i class="material-icons right">send</i>Save', ['class'=>'btn waves-effect waves-light grey', 'type'=>'submit']) !!}
     {!! Form::close() !!}
 @stop
 

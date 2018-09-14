@@ -38,12 +38,12 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-categories">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-categories">
                                 {{ trans('global.app_select_all') }}
                             </button>
                         </div>
                         <div class="col-6">
-                            <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-categories">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-categories">
                                 {{ trans('global.app_deselect_all') }}
                             </button>
                         </div>
@@ -63,12 +63,12 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-courses">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-courses">
                                 {{ trans('global.app_select_all') }}
                             </button>
                         </div>
                         <div class="col-6">
-                            <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-courses">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-courses">
                                 {{ trans('global.app_deselect_all') }}
                             </button>
                         </div>
@@ -79,7 +79,7 @@
         </div>
     </div>
 
-    {!! Form::button('<i class="material-icons right">send</i>Submit', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
+    {!! Form::button('<i class="material-icons right">send</i>Submit', ['class'=>'btn waves-effect waves-light grey', 'type'=>'submit']) !!}
     {!! Form::close() !!}
 @stop
 

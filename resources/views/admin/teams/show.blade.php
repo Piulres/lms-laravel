@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="back-button">
-        <a href="{{ route('admin.teams.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
+        <a href="{{ route('admin.teams.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
     </div>
     <div class="header-title">
         <h4>@lang('global.teams.title')</h4>
@@ -29,7 +29,7 @@
     <div class="card">
         <div class="card-tabs">
             <ul class="shuffle-tabs tabs tabs-fixed-width">
-                <li class="tab"><a href="#users">Users</a></li>
+                <li class="tab grey-text"><a class="grey-text" href="#users">Users</a></li>
             </ul>
         </div>
         <div class="card-content">
@@ -69,7 +69,7 @@
                                     <td class="actions">
                                         <div class="buttons d-flex justify-content-end">
                                             @can('user_view')
-                                            <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('user_edit')
                                             <a href="{{ route('admin.users.edit',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>

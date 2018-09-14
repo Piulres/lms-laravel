@@ -28,7 +28,7 @@
 
               <!--  <div class="col-12 col-md-6">
                     <div class="file-field input-field">
-                        <div class="btn">
+                        <div class="btn grey">
                             <span>File</span>
                             {!! Form::file('study_material[]', [
                                 'multiple',
@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
+    {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light grey', 'type'=>'submit']) !!}
     {!! Form::close() !!}
 @stop
 

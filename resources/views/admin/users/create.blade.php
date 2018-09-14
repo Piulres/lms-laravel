@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="col-12 col-md-3">
                     <div class="file-field input-field">
-                        <div class="btn">
+                        <div class="btn grey">
                             <span>File</span>
                             {!! Form::file('avatar') !!}
                         </div>
@@ -117,12 +117,12 @@
                     </div>
                     <div class="row">
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-role">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-role">
                                 {{ trans('global.app_select_all') }}
                             </button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-role">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-role">
                                 {{ trans('global.app_deselect_all') }}
                             </button>
                         </div>
@@ -160,7 +160,7 @@
         </div>
     </div>
 
-    {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
+    {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light grey', 'type'=>'submit']) !!}
     {!! Form::close() !!}
 @stop
 

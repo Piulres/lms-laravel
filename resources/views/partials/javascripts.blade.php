@@ -37,7 +37,12 @@
         }
     });
 
+    $(window).on('load', function(e){
+        $('.indicator').addClass('grey');
+    });
+
     $(document).ready(function() {
+
         $('.searchable-field').select2({
             minimumInputLength: 3,
             ajax: {
