@@ -259,10 +259,19 @@ th {
 /* DATATABLE */
 .dt-buttons {
     margin-left: 20px;
+    float: left;
+}
+
+.dt-buttons .dt-button {
+    margin-right: 5px;
+}
+
+.dt-buttons .dt-button:last-child {
+    margin-right: 0;
 }
 
 .dataTables_length label {
-    margin-top: 5px;
+    margin-top: 10px;
     display: block;
 }
 
@@ -324,48 +333,6 @@ table.dataTable tr.selected td.select-checkbox:before {
     backface-visibility: hidden;
     -webkit-transform-origin: 100% 100%;
     transform-origin: 100% 100%;
-}
-
-button.dt-button, div.dt-button, a.dt-button {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    border: none;
-    appearance: none;
-    text-decoration: none;
-    color: #fff;
-    background-color: #26a69a;
-    background-image: none;
-    text-align: center;
-    letter-spacing: .5px;
-    -webkit-transition: background-color .2s ease-out;
-    transition: background-color .2s ease-out;
-    cursor: pointer;
-    -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
-    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
-
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    vertical-align: middle;
-    z-index: 1;
-    -webkit-transition: .3s ease-out;
-    transition: .3s ease-out;
-}
-
-button.dt-button:hover:not(.disabled), div.dt-button:hover:not(.disabled), a.dt-button:hover:not(.disabled),
-button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-button:focus:not(.disabled) {
-    -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
-    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
-    background-image: none;
-    border: none;
-    transform: none;
-    background-color: #2bbbad;
 }
 
 @media(max-width: 1150px) {

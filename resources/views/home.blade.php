@@ -26,7 +26,7 @@
                                 <td class="actions">
                                     <div class="buttons d-flex align-items-center justify-content-end">
                                         @can('user_view')
-                                        <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
 
                                         @can('user_edit')
@@ -74,7 +74,7 @@
                                     <div class="actions hide-on-med-and-down">
                                         <div class="buttons d-flex align-items-center justify-content-end">
                                             @can('course_view')
-                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
 
                                             @can('course_edit')
@@ -127,7 +127,7 @@
                                 <td class="actions">
                                     <div class="buttons d-flex align-items-center justify-content-end">
                                         @can('trail_view')
-                                        <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="waves-effect waves-light btn btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="waves-effect waves-light btn btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
 
                                         @can('trail_edit')
@@ -178,7 +178,7 @@
                                 <td class="actions">
                                     <div class="buttons d-flex align-items-center justify-content-end">
                                         @can('team_view')
-                                        <a href="{{ route('admin.teams.show',[$team->id]) }}" class="waves-effect waves-light btn btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.teams.show',[$team->id]) }}" class="waves-effect waves-light btn btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
 
                                         @can('team_edit')

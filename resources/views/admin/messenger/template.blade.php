@@ -10,7 +10,7 @@
 
         {{--Sidebar--}}
         <div class="col-3">
-            <a href="{{ route('admin.messenger.create') }}" class="waves-effect waves-light btn-large" style="width: 100%;">New message</a>
+            <a href="{{ route('admin.messenger.create') }}" class="waves-effect waves-light btn-large grey" style="width: 100%;">New message</a>
 
             <div class="collection" style="margin-top:8px;">
                 <a href="{{ route('admin.messenger.index') }}" class="collection-item">All Messages</a>

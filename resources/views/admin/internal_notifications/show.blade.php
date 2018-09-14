@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="back-button">
-        <a href="{{ route('admin.internal_notifications.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
+        <a href="{{ route('admin.internal_notifications.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
     </div>
     <div class="header-title">
         <h4>@lang('global.internal-notifications.title')</h4>

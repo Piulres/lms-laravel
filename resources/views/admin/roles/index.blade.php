@@ -7,7 +7,7 @@
             @lang('global.roles.title')
         </h4>
         @can('role_create')
-            <a href="{{ route('admin.roles.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+            <a href="{{ route('admin.roles.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
         @endcan
     </div>
 
@@ -50,7 +50,7 @@
                                 <td class="actions">
                                     <div class="buttons d-flex justify-content-end">
                                         @can('role_view')
-                                        <a href="{{ route('admin.roles.show',[$role->id]) }}"  class="waves-effect waves-light btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.roles.show',[$role->id]) }}"  class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('role_edit')
                                         <a href="{{ route('admin.roles.edit',[$role->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>

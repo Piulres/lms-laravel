@@ -7,16 +7,16 @@
             @lang('global.trails.title')
         </h4>
         @can('trail_create')
-        <a href="{{ route('admin.trails.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+        <a href="{{ route('admin.trails.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
         @endcan
     </div>
 
     <ul class="tabs z-depth-1">
         <li class="tab">
-            <a href="{{ route('admin.trails.index') }}" class="{{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+            <a href="{{ route('admin.trails.index') }}" class="grey-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
         </li>
         <li class="tab">
-            <a href="{{ route('admin.trails.index') }}?show_deleted=1" class="{{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+            <a href="{{ route('admin.trails.index') }}?show_deleted=1" class="grey-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
         </li>
     </ul>
     

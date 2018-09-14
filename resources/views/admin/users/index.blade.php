@@ -6,7 +6,7 @@
         <h4>
             @lang('global.users.title')
             @can('user_create')
-            <a href="{{ route('admin.users.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+            <a href="{{ route('admin.users.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
             @endcan
         </h4>
     </div>

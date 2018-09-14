@@ -14204,7 +14204,7 @@
 	
 		/* Paging buttons */
 		"sPageButton": "waves-effect",
-		"sPageButtonActive": "active",
+		"sPageButtonActive": "grey white-text",
 		"sPageButtonDisabled": "disabled",
 	
 		/* Striping classes */
@@ -14218,7 +14218,7 @@
 		"sWrapper": "dataTables_wrapper",
 		"sFilter": "dataTables_filter",
 		"sInfo": "dataTables_info",
-		"sPaging": "pagination paging_", /* Note that the type is postfixed */
+		"sPaging": "pagination ", /* Note that the type is postfixed */
 		"sLength": "dataTables_length",
 		"sProcessing": "dataTables_processing",
 	
@@ -14345,7 +14345,7 @@
 			numbers.splice( 0, 0, 0 );
 		}
 	
-		numbers.DT_el = 'span';
+		numbers.DT_el = 'li';
 		return numbers;
 	}
 	
@@ -14411,7 +14411,7 @@
 	
 								case 'first':
 									btnDisplay = lang.sFirst;
-									btnClass = button + (page > 0 ?
+									btnClass = '<div>' + button + (page > 0 ?
 										'' : ' '+classes.sPageButtonDisabled);
 									break;
 	

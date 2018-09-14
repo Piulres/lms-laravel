@@ -77,7 +77,7 @@
         </div>
     </div>
 
-    {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
+    {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light grey', 'type'=>'submit']) !!}
     {!! Form::close() !!}
 @stop
 

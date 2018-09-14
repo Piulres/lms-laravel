@@ -7,7 +7,7 @@
             @lang('global.teams.title')
         </h4>
         @can('team_create')
-            <a href="{{ route('admin.teams.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+            <a href="{{ route('admin.teams.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
         @endcan
     </div>
 

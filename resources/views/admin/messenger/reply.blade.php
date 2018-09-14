@@ -11,8 +11,7 @@
 
             @include('admin.messenger.form-partials.fields')
 
-            {!! Form::submit('Reply', ['class' => 'btn btn-danger']) !!}
-            {!! Form::close() !!}
+            {!! Form::submit('Reply', ['class' => 'btn waves-effect waves-light grey']) !!}
         </div>
     </div>
 
