@@ -40,6 +40,8 @@ span.badge.new.sup {
 
 .header-title {
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .header-title a {
@@ -276,6 +278,7 @@ table.dataTable.no-footer {
 table.dataTable thead th, table.dataTable tbody td {
     min-width: auto;
     border-bottom: 1px solid #e0e0e0;
+    padding: 8px 18px;
 }
 
 table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {

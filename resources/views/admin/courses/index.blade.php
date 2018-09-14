@@ -5,10 +5,10 @@
     <div class="header-title">
         <h4>
             @lang('global.courses.title')
-            @can('course_create')
-            <a href="{{ route('admin.courses.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
-            @endcan
         </h4>
+        @can('course_create')
+        <a href="{{ route('admin.courses.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+        @endcan
     </div>
 
     <ul class="tabs z-depth-1">

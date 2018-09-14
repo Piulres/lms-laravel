@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     $('.collapsible').collapsible();
 
-    $('.tooltipped').tooltip();
+    $('.material-tooltip').remove();
 
     $('.sidenav').sidenav();
 

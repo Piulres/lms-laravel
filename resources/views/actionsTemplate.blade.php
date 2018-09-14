@@ -1,4 +1,4 @@
-<div class="buttons d-flex align-items-center justify-content-end justify-content-md-center">
+<div class="buttons d-flex align-items-center justify-content-center justify-content-lg-end">
 	@can($gateKey.'view')
 	    <a href="{{ route($routeKey.'.show', $row->id) }}" class="waves-effect waves-light btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
 	@endcan

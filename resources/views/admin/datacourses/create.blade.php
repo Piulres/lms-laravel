@@ -1,73 +1,75 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.datacourses.title')</h3>
+    <div class="header-title">
+        <h4>@lang('global.datacourses.title')</h4>
+    </div>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.datacourses.store']]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_create')
-        </div>
+    <div class="card">
         
-        <div class="panel-body">
+        <div class="card-content">
+            <div class="title col-12">
+                <h5>@lang('global.app_create')</h5>
+            </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class="col-12 col-md-6">
                     {!! Form::label('course_id', trans('global.datacourses.fields.course').'', ['class' => 'control-label']) !!}
-                    {!! Form::select('course_id', $courses, old('course_id'), ['class' => 'form-control select2']) !!}
-                    <p class="help-block"></p>
+                    {!! Form::select('course_id', $courses, old('course_id'), ['class' => 'form-control']) !!}
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
                     @if($errors->has('course_id'))
-                        <p class="help-block">
+                        <span class="helper-text" data-error="wrong" data-success="right">
                             {{ $errors->first('course_id') }}
-                        </p>
+                        </span>
                     @endif
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
+
+                <div class="col-12 col-md-6">
                     {!! Form::label('user_id', trans('global.datacourses.fields.user').'', ['class' => 'control-label']) !!}
-                    {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control select2']) !!}
-                    <p class="help-block"></p>
+                    {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control']) !!}
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
                     @if($errors->has('user_id'))
-                        <p class="help-block">
+                        <span class="helper-text" data-error="wrong" data-success="right">
                             {{ $errors->first('user_id') }}
-                        </p>
+                        </span>
                     @endif
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('view', trans('global.datacourses.fields.view').'', ['class' => 'control-label']) !!}
-                    {!! Form::hidden('view', 0) !!}
-                    {!! Form::checkbox('view', 1, old('view', false), []) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('view'))
-                        <p class="help-block">
-                            {{ $errors->first('view') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class="col-12 col-md-6">
                     {!! Form::label('progress', trans('global.datacourses.fields.progress').'', ['class' => 'control-label']) !!}
                     {!! Form::number('progress', old('progress'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
                     @if($errors->has('progress'))
-                        <p class="help-block">
+                        <span class="helper-text" data-error="wrong" data-success="right">
                             {{ $errors->first('progress') }}
-                        </p>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="col-12 col-md-6">
+                    {!! Form::label('rating', trans('global.datacourses.fields.rating').'', ['class' => 'control-label']) !!}
+                    {!! Form::number('rating', old('rating'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    @if($errors->has('rating'))
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                            {{ $errors->first('rating') }}
+                        </span>
                     @endif
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('rating', trans('global.datacourses.fields.rating').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('rating', old('rating'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('rating'))
-                        <p class="help-block">
-                            {{ $errors->first('rating') }}
-                        </p>
+                <div class="col-12 col-md-6">
+                    <label>
+                        {!! Form::hidden('view', 0) !!}
+                        {!! Form::checkbox('view', 1, old('view', false), []) !!}
+                        <span>@lang('global.datacourses.fields.view')</span>
+                    </label>
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    @if($errors->has('view'))
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                            {{ $errors->first('view') }}
+                        </span>
                     @endif
                 </div>
             </div>
@@ -75,7 +77,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
     {!! Form::close() !!}
 @stop
 

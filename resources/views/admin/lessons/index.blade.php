@@ -2,29 +2,30 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.lessons.title')</h3>
-    @can('lesson_create')
-    <p>
-        <a href="{{ route('admin.lessons.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h4>
+            @lang('global.lessons.title')
+        </h4>
+        @can('lesson_create')
+            <a href="{{ route('admin.lessons.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
+    <ul class="tabs z-depth-1">
+        <li class="tab">
+            <a href="{{ route('admin.lessons.index') }}" class="{{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+        </li>
+        <li class="tab">
+            <a href="{{ route('admin.lessons.index') }}?show_deleted=1" class="{{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+        </li>
+    </ul>
 
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.lessons.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.lessons.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
-    
+    <div class="card">
+        <div class="card-content">
+            <div class="title col-12">
+                <h5>@lang('global.app_list')</h5>
+            </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
-        </div>
-
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('lesson_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="striped responsive-table ajaxTable @can('lesson_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         @can('lesson_delete')

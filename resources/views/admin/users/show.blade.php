@@ -70,19 +70,8 @@
             </ul>
         </div>
         <div class="card-content">
-
-            <!-- <ul class="nav nav-tabs" role="tablist">
-                
-                <li role="presentation" class="active"><a href="#" aria-controls="user_actions" role="tab" data-toggle="tab"></a></li>
-                <li role="presentation" class=""><a href="#" aria-controls="datacourses" role="tab" data-toggle="tab"></a></li>
-                <li role="presentation" class=""><a href="#" aria-controls="datatrails" role="tab" data-toggle="tab"></a></li>
-                <li role="presentation" class=""><a href="#" aria-controls="courses" role="tab" data-toggle="tab"></a></li>
-                <li role="presentation" class=""><a href="#" aria-controls="internal_notifications" role="tab" data-toggle="tab"></a></li>
-            </ul> -->
-
-            <!-- Tab panes -->
             <div id="user_actions">
-                <table class="striped {{ count($user_actions) > 0 ? 'datatable' : '' }}">
+                <table class="striped responsive-table {{ count($user_actions) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
                             <th>@lang('global.user-actions.created_at')</th>
@@ -114,7 +103,7 @@
             </div>
 
             <div id="datacourses">
-                <table class="striped {{ count($datacourses) > 0 ? 'datatable' : '' }}">
+                <table class="striped responsive-table {{ count($datacourses) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
                             <th>@lang('global.datacourses.fields.course')</th>
@@ -189,7 +178,7 @@
             </div>
 
             <div id="datatrails">
-                <table class="striped {{ count($datatrails) > 0 ? 'datatable' : '' }}">
+                <table class="striped responsive-table {{ count($datatrails) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
                             <th>@lang('global.datatrails.fields.trail')</th>
@@ -264,7 +253,7 @@
             </div>
 
             <div id="courses">
-                <table class="striped {{ count($courses) > 0 ? 'datatable' : '' }}">
+                <table class="striped responsive-table {{ count($courses) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
                             <th>@lang('global.courses.fields.title')</th>

@@ -34,7 +34,7 @@
         </div>
         <div class="card-content">
             <div class="active" id="users">
-                <table class="striped {{ count($users) > 0 ? 'datatable' : '' }}">
+                <table class="striped responsive-table {{ count($users) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
                             <th>@lang('global.users.fields.name')</th>

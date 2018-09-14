@@ -1,70 +1,78 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.lessons.title')</h3>
+    <div class="header-title">
+        <h4>@lang('global.lessons.title')</h4>
+    </div>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.lessons.store'], 'files' => true,]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_create')
-        </div>
+    <div class="card">
         
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('global.lessons.fields.title').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('title'))
-                        <p class="help-block">
-                            {{ $errors->first('title') }}
-                        </p>
-                    @endif
-                </div>
+        <div class="card-content">
+            <div class="title">
+                <h5>@lang('global.app_create')</h5>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('introduction', trans('global.lessons.fields.introduction').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('introduction'))
-                        <p class="help-block">
-                            {{ $errors->first('introduction') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('study_material', trans('global.lessons.fields.study-material').'', ['class' => 'control-label']) !!}
-                    {!! Form::file('study_material[]', [
-                        'multiple',
-                        'class' => 'form-control file-upload',
-                        'data-url' => route('admin.media.upload'),
-                        'data-bucket' => 'study_material',
-                        'data-filekey' => 'study_material',
-                        ]) !!}
-                    <p class="help-block"></p>
-                    <div class="photo-block">
-                        <div class="progress-bar form-group">&nbsp;</div>
-                        <div class="files-list"></div>
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('title', trans('global.lessons.fields.title').'', ['class' => 'control-label']) !!}
+                        {!! Form::text('title', old('title'), ['class' => 'form-control']) !!}
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        @if($errors->has('title'))
+                            <span class="helper-text" data-error="wrong" data-success="right">
+                                {{ $errors->first('title') }}
+                            </span>
+                        @endif
                     </div>
-                    @if($errors->has('study_material'))
-                        <p class="help-block">
-                            {{ $errors->first('study_material') }}
-                        </p>
-                    @endif
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>File</span>
+                            {!! Form::file('study_material[]', [
+                                'multiple',
+                                'data-url' => route('admin.media.upload'),
+                                'data-bucket' => 'study_material',
+                                'data-filekey' => 'study_material',
+                                ]) !!}
+                        </div>
+                        <div class="file-path-wrapper">
+                            {!! Form::text('file_text', old('file_text'), ['class' => 'file-path validate', 'placeholder' => 'Upload your avatar']) !!}
+                        </div>
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        <div class="photo-block">
+                            <div class="progress-bar form-group">&nbsp;</div>
+                            <div class="files-list"></div>
+                        </div>
+                        @if($errors->has('study_material'))
+                            <span class="helper-text" data-error="wrong" data-success="right">
+                                {{ $errors->first('study_material') }}
+                            </span>
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class="col-12 col-md-6">
+                    {!! Form::label('introduction', trans('global.lessons.fields.introduction').'', ['class' => 'control-label']) !!}
+                    {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control editor']) !!}
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    @if($errors->has('introduction'))
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                            {{ $errors->first('introduction') }}
+                        </span>
+                    @endif
+                </div>
+
+                <div class="col-12 col-md-6">
                     {!! Form::label('content', trans('global.lessons.fields.content').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('content', old('content'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
+                    {!! Form::textarea('content', old('content'), ['class' => 'form-control editor']) !!}
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
                     @if($errors->has('content'))
-                        <p class="help-block">
+                        <span class="helper-text" data-error="wrong" data-success="right">
                             {{ $errors->first('content') }}
-                        </p>
+                        </span>
                     @endif
                 </div>
             </div>
@@ -72,7 +80,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
     {!! Form::close() !!}
 @stop
 
