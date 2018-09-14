@@ -25,7 +25,7 @@
                     @endif
                 </div>
 
-                <div class="col-12 col-md-6">
+            <!--    <div class="col-12 col-md-6">
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>File</span>
@@ -58,7 +58,7 @@
                             </span>
                         @endif
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="row">
                 <div class="col-12 col-md-6">
