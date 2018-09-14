@@ -39,12 +39,12 @@
                     </div>
                     <div class="row">
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-instructor">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-instructor">
                                 {{ trans('global.app_select_all') }}
                             </button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-instructor">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-instructor">
                                 {{ trans('global.app_deselect_all') }}
                             </button>
                         </div>
@@ -65,12 +65,12 @@
                     </div>
                     <div class="row">
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-lessons">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-lessons">
                                 {{ trans('global.app_select_all') }}
                             </button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-lessons">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-lessons">
                                 {{ trans('global.app_deselect_all') }}
                             </button>
                         </div>
@@ -90,12 +90,12 @@
                     </div>
                     <div class="row">
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-categories">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-categories">
                                 {{ trans('global.app_select_all') }}
                             </button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-categories">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-categories">
                                 {{ trans('global.app_deselect_all') }}
                             </button>
                         </div>
@@ -105,7 +105,7 @@
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="file-field input-field">
-                        <div class="btn">
+                        <div class="btn grey">
                             <span>File</span>
                             {!! Form::file('featured_image') !!}
                         </div>

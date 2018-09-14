@@ -28,7 +28,7 @@
 
               <!--  <div class="col-12 col-md-6">
                     <div class="file-field input-field">
-                        <div class="btn">
+                        <div class="btn grey">
                             <span>File</span>
                             {!! Form::file('study_material[]', [
                                 'multiple',

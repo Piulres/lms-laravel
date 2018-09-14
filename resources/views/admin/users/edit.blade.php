@@ -71,7 +71,7 @@
                         @if ($user->avatar)
                             <a href="{{ asset(env('UPLOAD_PATH').'/'.$user->avatar) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/'.$user->avatar) }}"></a>
                         @endif
-                        <div class="btn">
+                        <div class="btn grey">
                             <span>File</span>
                             {!! Form::file('avatar', ['class' => 'form-control', 'style' => 'margin-top: 4px;']) !!}
                         </div>
@@ -115,12 +115,12 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <button type="button" class="waves-effect waves-light btn-small" id="selectbtn-role">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-role">
                                 {{ trans('global.app_select_all') }}
                             </button>
                         </div>
                         <div class="col-6">
-                            <button type="button" class="waves-effect waves-light btn-small" id="deselectbtn-role">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-role">
                                 {{ trans('global.app_deselect_all') }}
                             </button>
                         </div>
