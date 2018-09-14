@@ -74,7 +74,7 @@
                                     <div class="actions hide-on-med-and-down">
                                         <div class="buttons d-flex align-items-center justify-content-end">
                                             @can('course_view')
-                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn btn-small btne><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
 
                                             @can('course_edit')
