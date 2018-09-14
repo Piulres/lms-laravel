@@ -7,7 +7,7 @@
             @lang('global.permissions.title')
         </h4>
         @can('permission_create')
-            <a href="{{ route('admin.permissions.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+            <a href="{{ route('admin.permissions.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
         @endcan
     </div>
 
@@ -43,7 +43,7 @@
                                 <td class="actions">
                                     <div class="buttons d-flex justify-content-end">
                                         @can('permission_view')
-                                        <a href="{{ route('admin.permissions.show',[$permission->id]) }}" class="waves-effect waves-light btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.permissions.show',[$permission->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('permission_edit')
                                         <a href="{{ route('admin.permissions.edit',[$permission->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>

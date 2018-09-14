@@ -26,7 +26,7 @@
     <div class="card">
         <div class="card-tabs">
             <ul class="shuffle-tabs tabs tabs-fixed-width">
-                <li class="tab"><a href="#trails">Trails</a></li>
+                <li class="tab grey-text"><a class="grey-text" href="#trails">Trails</a></li>
             </ul>
         </div>
         <div class="card-content">

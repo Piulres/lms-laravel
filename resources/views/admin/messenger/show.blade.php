@@ -5,7 +5,7 @@
 @section('messenger-content')
 
     <div class="row justify-content-end col-12">
-        <a href="{{ route('admin.messenger.edit', [$topic->id]) }}" class="btn btn-primary">Reply</a>
+        <a href="{{ route('admin.messenger.edit', [$topic->id]) }}" class="btn waves-effect waves-light grey">Reply</a>
     </div>
 
     <div class="row">

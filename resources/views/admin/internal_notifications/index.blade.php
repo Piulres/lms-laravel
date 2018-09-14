@@ -5,7 +5,7 @@
     <div class="header-title">
         <h4>@lang('global.internal-notifications.title')</h4>
         @can('internal_notification_create')
-            <a href="{{ route('admin.internal_notifications.create') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
+            <a href="{{ route('admin.internal_notifications.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
         @endcan
     </div>
 
@@ -48,7 +48,7 @@
                                 <td class="actions">
                                     <div class="buttons d-flex justify-content-end">
                                         @can('internal_notification_view')
-                                        <a href="{{ route('admin.internal_notifications.show',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.internal_notifications.show',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('internal_notification_edit')
                                         <a href="{{ route('admin.internal_notifications.edit',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="back-button">
-        <a href="{{ route('admin.roles.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
+        <a href="{{ route('admin.roles.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
     </div>
     <div class="header-title">
         <h4>@lang('global.roles.title')</h4>
@@ -38,7 +38,7 @@
 
         <div class="card-tabs">
             <ul class="shuffle-tabs tabs tabs-fixed-width">
-                <li class="tab"><a href="#users">users</a></li>
+                <li class="tab grey-text"><a class="grey-text" href="#users">users</a></li>
             </ul>
         </div>
         <div class="card-content">
