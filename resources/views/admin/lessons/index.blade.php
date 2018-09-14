@@ -34,7 +34,7 @@
 
                         <th>@lang('global.lessons.fields.title')</th>
                         <th>@lang('global.lessons.fields.introduction')</th>
-                        <th>@lang('global.lessons.fields.study-material')</th>
+                    <!--    <th>@lang('global.lessons.fields.study-material')</th> -->
                         <th>@lang('global.lessons.fields.content')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
@@ -61,7 +61,7 @@
                 @endif
                 @endcan{data: 'title', name: 'title'},
                 {data: 'introduction', name: 'introduction'},
-                {data: 'study_material', name: 'study_material'},
+               // {data: 'study_material', name: 'study_material'},
                 {data: 'content', name: 'content'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}

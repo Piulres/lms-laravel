@@ -25,14 +25,14 @@
                             <th>@lang('global.lessons.fields.introduction')</th>
                             <td field-key='introduction'>{!! $lesson->introduction !!}</td>
                         </tr>
-                        <tr>
+                   <!--     <tr>
                             <th>@lang('global.lessons.fields.study-material')</th>
                             <td field-key='study_material's> @foreach($lesson->getMedia('study_material') as $media)
                                 <p class="form-group">
                                     <a href="{{ $media->getUrl() }}" target="_blank">{{ $media->name }} ({{ $media->size }} KB)</a>
                                 </p>
                             @endforeach</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>@lang('global.lessons.fields.content')</th>
                             <td field-key='content'>{!! $lesson->content !!}</td>
