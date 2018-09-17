@@ -24,7 +24,7 @@
                     <table class="striped ajaxTable @can('user_delete') dt-select @endcan responsive-table">
                         <thead>
                             <tr>
-                                <th>Order</th>
+                                <th>@lang('global.app_order')</th>
                                 @can('user_delete')
                                     <th style="text-align:center;" id="select-all"><input type="checkbox" /></th>
                                 @endcan

@@ -27,6 +27,7 @@
             <table class="striped responsive-table ajaxTable @can('datatrail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.app_order')</th>
                         @can('datatrail_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
@@ -56,10 +57,12 @@
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.datatrails.index') !!}?show_deleted={{ request('show_deleted') }}';
             window.dtDefaultOptions.columns = [@can('datatrail_delete')
+                {data: 'trail.title', name: 'trail.title'},
                 @if ( request('show_deleted') != 1 )
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endif
-                @endcan{data: 'trail.title', name: 'trail.title'},
+                @endcan
+                {data: 'trail.title', name: 'trail.title'},
                 {data: 'user.name', name: 'user.name'},
                 {data: 'view', name: 'view'},
                 {data: 'progress', name: 'progress'},

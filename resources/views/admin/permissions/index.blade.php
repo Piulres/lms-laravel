@@ -21,6 +21,7 @@
             <table class="striped {{ count($permissions) > 0 ? 'datatable' : '' }} @can('permission_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.app_order')</th>
                         @can('permission_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -35,6 +36,7 @@
                     @if (count($permissions) > 0)
                         @foreach ($permissions as $permission)
                             <tr data-entry-id="{{ $permission->id }}">
+                                <td>1</td>
                                 @can('permission_delete')
                                     <td></td>
                                 @endcan

@@ -22,6 +22,7 @@
             <table class="striped {{ count($roles) > 0 ? 'datatable' : '' }} @can('role_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.app_order')</th>
                         @can('role_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -37,6 +38,7 @@
                     @if (count($roles) > 0)
                         @foreach ($roles as $role)
                             <tr data-entry-id="{{ $role->id }}">
+                                <td>1</td>
                                 @can('role_delete')
                                     <td></td>
                                 @endcan
@@ -85,6 +87,5 @@
         @can('role_delete')
             window.route_mass_crud_entries_destroy = '{{ route('admin.roles.mass_destroy') }}';
         @endcan
-
     </script>
 @endsection

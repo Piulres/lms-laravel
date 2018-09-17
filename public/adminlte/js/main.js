@@ -76,17 +76,12 @@ $(document).ready(function () {
             },
         ]
     };
-    editor
-        .on( 'postCreate postRemove', function () {
-            // After create or edit, a number of other rows might have been effected -
-            // so we need to reload the table, keeping the paging in the current position
-            table.ajax.reload( null, false );
-        } )
+
     $('.datatable').each(function () {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {
                 style: 'multi',
-                selector: 'td:first-child'
+                selector: 'td:nth-child(2)'
             };
 
             window.dtDefaultOptions.columnDefs.push({
@@ -99,7 +94,7 @@ $(document).ready(function () {
     });
     $(document).on( 'init.dt', function ( e, settings ) {
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
         }
     });
 
@@ -234,7 +229,7 @@ function processAjaxTables() {
         }
         $(this).DataTable(window.dtDefaultOptions);
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
         }
     });
 

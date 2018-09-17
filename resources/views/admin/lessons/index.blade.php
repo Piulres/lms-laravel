@@ -28,6 +28,7 @@
             <table class="striped responsive-table ajaxTable @can('lesson_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.app_order')</th>
                         @can('lesson_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
@@ -56,10 +57,12 @@
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.lessons.index') !!}?show_deleted={{ request('show_deleted') }}';
             window.dtDefaultOptions.columns = [@can('lesson_delete')
+                {data: 'title', name: 'title'},
                 @if ( request('show_deleted') != 1 )
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endif
-                @endcan{data: 'title', name: 'title'},
+                @endcan
+                {data: 'title', name: 'title'},
                 {data: 'introduction', name: 'introduction'},
                // {data: 'study_material', name: 'study_material'},
                 {data: 'content', name: 'content'},
