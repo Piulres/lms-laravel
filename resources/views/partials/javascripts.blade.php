@@ -7,7 +7,8 @@
     window.printButtonTrans = '{{ trans("global.app_print") }}';
     window.colvisButtonTrans = '{{ trans("global.app_colvis") }}';
 </script>
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="{{ url('js/') }}/materialize.min.js"></script>
 <script src="{{ url('/adminlte/plugins/datatables/jquery.dataTables.js') }}"></script>
 <script src="//cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
@@ -19,6 +20,8 @@
 <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.5/js/dataTables.rowReorder.min.js"></script>
+<script src="https://mpryvkin.github.io/jquery-datatables-row-reordering/1.2.3/jquery.dataTables.rowReordering.js"></script>
 <!-- <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script> -->
 <!-- <script src="{{ url('adminlte/js') }}/bootstrap.min.js"></script> -->
 <script src="{{ url('adminlte/js') }}/select2.full.min.js"></script>

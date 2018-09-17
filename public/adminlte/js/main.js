@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    var editor;
     var handleCheckboxes = function (html, rowIndex, colIndex, cellNode) {
         var $cellNode = $(cellNode);
         var $check = $cellNode.find(':checked');
@@ -18,6 +18,13 @@ $(document).ready(function () {
         columnDefs: [],
         "iDisplayLength": 100,
         "aaSorting": [],
+        columnDefs: [
+            { orderable: false, targets: [ 1,2,3 ] }
+        ],
+        rowReorder: {
+            dataSrc: 'readingOrder',
+            editor:  editor
+        },
         buttons: [
             {
                 extend: 'copy',
@@ -69,6 +76,12 @@ $(document).ready(function () {
             },
         ]
     };
+    editor
+        .on( 'postCreate postRemove', function () {
+            // After create or edit, a number of other rows might have been effected -
+            // so we need to reload the table, keeping the paging in the current position
+            table.ajax.reload( null, false );
+        } )
     $('.datatable').each(function () {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {
@@ -79,7 +92,7 @@ $(document).ready(function () {
             window.dtDefaultOptions.columnDefs.push({
                 orderable: false,
                 className: 'select-checkbox',
-                targets: 0
+                targets: 1
             });
         }
         $(this).dataTable(window.dtDefaultOptions);
@@ -210,13 +223,13 @@ function processAjaxTables() {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {
                 style: 'multi',
-                selector: 'td:first-child'
+                selector: 'td:nth-child(2)'
             };
 
             window.dtDefaultOptions.columnDefs.push({
                 orderable: false,
                 className: 'select-checkbox',
-                targets: 0
+                targets: 1
             });
         }
         $(this).DataTable(window.dtDefaultOptions);

@@ -24,10 +24,10 @@
                     <table class="striped ajaxTable @can('user_delete') dt-select @endcan responsive-table">
                         <thead>
                             <tr>
+                                <th>Order</th>
                                 @can('user_delete')
-                                    <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                                    <th style="text-align:center;" id="select-all"><input type="checkbox" /></th>
                                 @endcan
-
                                 <th>@lang('global.users.fields.name')</th>
                                 <th>@lang('global.users.fields.last-name')</th>
                                 <th>@lang('global.users.fields.email')</th>
@@ -54,10 +54,11 @@
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.users.index') !!}';
             window.dtDefaultOptions.columns = [
+                {data: 'name', name: 'name'},
                 @can('user_delete')
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endcan
-                {data: 'name', name: 'name'},
+                {data: 'name', name: 'order'},
                 {data: 'last_name', name: 'last_name'},
                 {data: 'email', name: 'email'},
                 {data: 'website', name: 'website'},
