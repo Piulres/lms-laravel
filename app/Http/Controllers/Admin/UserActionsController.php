@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUserActionsRequest;
 use App\Http\Requests\Admin\UpdateUserActionsRequest;
 
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 class UserActionsController extends Controller
 {
     /**

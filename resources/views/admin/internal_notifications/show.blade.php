@@ -1,22 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.internal_notifications.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
-    </div>
-    <div class="header-title">
-        <h4>@lang('global.internal-notifications.title')</h4>
-    </div>
+    <h3 class="page-title">@lang('global.internal-notifications.title')</h3>
 
-    <div class="card">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @lang('global.app_view')
+        </div>
 
-        <div class="card-content">
-            <div class="title col-12">
-                <h5>@lang('global.app_view')</h5>
-            </div>
+        <div class="panel-body table-responsive">
             <div class="row">
                 <div class="col-md-6">
-                    <table class="striped">
+                    <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('global.internal-notifications.fields.text')</th>
                             <td field-key='text'>{{ $internal_notification->text }}</td>
@@ -36,6 +31,10 @@
                     </table>
                 </div>
             </div>
+
+            <p>&nbsp;</p>
+
+            <a href="{{ route('admin.internal_notifications.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
         </div>
     </div>
 @stop

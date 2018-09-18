@@ -2,41 +2,42 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h4>@lang('global.datatrails.title')</h4>
-        @can('datatrail_create')
-            <a href="{{ route('admin.datatrails.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
-    </div>
+    <h3 class="page-title">@lang('global.datatrail.title')</h3>
+    @can('datatrail_create')
+    <p>
+        <a href="{{ route('admin.datatrails.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
+        
+    </p>
+    @endcan
 
-    <ul class="tabs z-depth-1">
-        <li class="tab">
-            <a href="{{ route('admin.datatrails.index') }}" class="grey-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
-        </li>
-        <li class="tab">
-            <a href="{{ route('admin.datatrails.index') }}?show_deleted=1" class="grey-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
-        </li>
-    </ul>
+    <p>
+        <ul class="list-inline">
+            <li><a href="{{ route('admin.datatrails.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
+            <li><a href="{{ route('admin.datatrails.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
+        </ul>
+    </p>
+    
 
-    <div class="card">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @lang('global.app_list')
+        </div>
 
-        <div class="card-content">
-            <div class="title col-12">
-                <h5>@lang('global.app_list')</h5>
-            </div>
-            <table class="striped responsive-table ajaxTable @can('datatrail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="panel-body table-responsive">
+            <table class="table table-bordered table-striped ajaxTable @can('datatrail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
-                        <th>@lang('global.app_order')</th>
                         @can('datatrail_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
-                        <th>@lang('global.datatrails.fields.trail')</th>
-                        <th>@lang('global.datatrails.fields.user')</th>
-                        <th>@lang('global.datatrails.fields.view')</th>
-                        <th>@lang('global.datatrails.fields.progress')</th>
-                        <th>@lang('global.datatrails.fields.rating')</th>
+                        <th>@lang('global.datatrail.fields.view')</th>
+                        <th>@lang('global.datatrail.fields.progress')</th>
+                        <th>@lang('global.datatrail.fields.rating')</th>
+                        <th>@lang('global.datatrail.fields.testimonal')</th>
+                        <th>@lang('global.datatrail.fields.user')</th>
+                        <th>@lang('global.datatrail.fields.trail')</th>
+                        <th>@lang('global.datatrail.fields.certificate')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -57,16 +58,16 @@
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.datatrails.index') !!}?show_deleted={{ request('show_deleted') }}';
             window.dtDefaultOptions.columns = [@can('datatrail_delete')
-                {data: 'trail.title', name: 'trail.title'},
                 @if ( request('show_deleted') != 1 )
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endif
-                @endcan
-                {data: 'trail.title', name: 'trail.title'},
-                {data: 'user.name', name: 'user.name'},
-                {data: 'view', name: 'view'},
+                @endcan{data: 'view', name: 'view'},
                 {data: 'progress', name: 'progress'},
                 {data: 'rating', name: 'rating'},
+                {data: 'testimonal', name: 'testimonal'},
+                {data: 'user.name', name: 'user.name'},
+                {data: 'trail.title', name: 'trail.title'},
+                {data: 'certificate.title', name: 'certificate.title'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

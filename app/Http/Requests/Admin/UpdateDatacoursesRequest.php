@@ -24,6 +24,7 @@ class UpdateDatacoursesRequest extends FormRequest
     {
         return [
             
+            'view' => 'max:2147483647|nullable|numeric',
             'progress' => 'max:2147483647|nullable|numeric',
             'rating' => 'max:2147483647|nullable|numeric',
         ];

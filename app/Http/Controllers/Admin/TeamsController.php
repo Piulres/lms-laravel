@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreTeamsRequest;
 use App\Http\Requests\Admin\UpdateTeamsRequest;
-use Yajra\DataTables\DataTables;
 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -27,35 +26,9 @@ class TeamsController extends Controller
         }
 
 
-        
-        if (request()->ajax()) {
-            $query = Team::query();
-            $template = 'actionsTemplate';
-            
-            $query->select([
-                'teams.id',
-                'teams.name',
-            ]);
-            $table = Datatables::of($query);
+                $teams = Team::all();
 
-            $table->setRowAttr([
-                'data-entry-id' => '{{$id}}',
-            ]);
-            $table->addColumn('massDelete', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
-            $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'team_';
-                $routeKey = 'admin.teams';
-
-                return view($template, compact('row', 'gateKey', 'routeKey'));
-            });
-
-            $table->rawColumns(['actions','massDelete']);
-
-            return $table->make(true);
-        }
-
-        return view('admin.teams.index');
+        return view('admin.teams.index', compact('teams'));
     }
 
     /**

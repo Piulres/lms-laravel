@@ -2,17 +2,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h4>@lang('global.user-actions.title')</h4>
-    </div>
+    <h3 class="page-title">@lang('global.user-actions.title')</h3>
+    @can('user_action_create')
+    <p>
+        
+        
+    </p>
+    @endcan
 
-    <div class="card">
-        <div class="card-content">
-            <div class="card-title">
-                <h5>@lang('global.app_list')</h5>
-            </div>
+    
 
-            <table class="striped responsive-table {{ count($user_actions) > 0 ? 'datatable' : '' }} ">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @lang('global.app_list')
+        </div>
+
+        <div class="panel-body table-responsive">
+            <table class="table table-bordered table-striped {{ count($user_actions) > 0 ? 'datatable' : '' }} ">
                 <thead>
                     <tr>
                         

@@ -8,17 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class Datatrail
  *
  * @package App
- * @property string $trail
- * @property string $user
- * @property tinyInteger $view
+ * @property integer $view
  * @property integer $progress
  * @property integer $rating
+ * @property text $testimonal
+ * @property string $user
+ * @property string $trail
+ * @property string $certificate
 */
 class Datatrail extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['view', 'progress', 'rating', 'trail_id', 'user_id'];
+    protected $fillable = ['view', 'progress', 'rating', 'testimonal', 'user_id', 'trail_id', 'certificate_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -31,21 +33,12 @@ class Datatrail extends Model
     }
 
     /**
-     * Set to null if empty
+     * Set attribute to money format
      * @param $input
      */
-    public function setTrailIdAttribute($input)
+    public function setViewAttribute($input)
     {
-        $this->attributes['trail_id'] = $input ? $input : null;
-    }
-
-    /**
-     * Set to null if empty
-     * @param $input
-     */
-    public function setUserIdAttribute($input)
-    {
-        $this->attributes['user_id'] = $input ? $input : null;
+        $this->attributes['view'] = $input ? $input : null;
     }
 
     /**
@@ -65,15 +58,47 @@ class Datatrail extends Model
     {
         $this->attributes['rating'] = $input ? $input : null;
     }
+
+    /**
+     * Set to null if empty
+     * @param $input
+     */
+    public function setUserIdAttribute($input)
+    {
+        $this->attributes['user_id'] = $input ? $input : null;
+    }
+
+    /**
+     * Set to null if empty
+     * @param $input
+     */
+    public function setTrailIdAttribute($input)
+    {
+        $this->attributes['trail_id'] = $input ? $input : null;
+    }
+
+    /**
+     * Set to null if empty
+     * @param $input
+     */
+    public function setCertificateIdAttribute($input)
+    {
+        $this->attributes['certificate_id'] = $input ? $input : null;
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     
     public function trail()
     {
         return $this->belongsTo(Trail::class, 'trail_id')->withTrashed();
     }
     
-    public function user()
+    public function certificate()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Trailscertificate::class, 'certificate_id')->withTrashed();
     }
     
 }

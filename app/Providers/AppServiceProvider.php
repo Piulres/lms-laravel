@@ -32,12 +32,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        /**
-         * Added missing method for package to work
-         */
-        \Illuminate\Support\Collection::macro('lists', function ($a, $b = null) {
-            return collect($this->items)->pluck($a, $b);
-        });
+        
         if ($this->app->environment('local', 'testing')) {
             $this->app->register(DuskServiceProvider::class);
         }

@@ -30,8 +30,9 @@ class DatatrailsController extends Controller
         
         if (request()->ajax()) {
             $query = Datatrail::query();
-            $query->with("trail");
             $query->with("user");
+            $query->with("trail");
+            $query->with("certificate");
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
                 
@@ -43,11 +44,13 @@ class DatatrailsController extends Controller
             }
             $query->select([
                 'datatrails.id',
-                'datatrails.trail_id',
-                'datatrails.user_id',
                 'datatrails.view',
                 'datatrails.progress',
                 'datatrails.rating',
+                'datatrails.testimonal',
+                'datatrails.user_id',
+                'datatrails.trail_id',
+                'datatrails.certificate_id',
             ]);
             $table = Datatables::of($query);
 
@@ -62,14 +65,8 @@ class DatatrailsController extends Controller
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
             });
-            $table->editColumn('trail.title', function ($row) {
-                return $row->trail ? $row->trail->title : '';
-            });
-            $table->editColumn('user.name', function ($row) {
-                return $row->user ? $row->user->name : '';
-            });
             $table->editColumn('view', function ($row) {
-                return \Form::checkbox("view", 1, $row->view == 1, ["disabled"]);
+                return $row->view ? $row->view : '';
             });
             $table->editColumn('progress', function ($row) {
                 return $row->progress ? $row->progress : '';
@@ -77,8 +74,20 @@ class DatatrailsController extends Controller
             $table->editColumn('rating', function ($row) {
                 return $row->rating ? $row->rating : '';
             });
+            $table->editColumn('testimonal', function ($row) {
+                return $row->testimonal ? $row->testimonal : '';
+            });
+            $table->editColumn('user.name', function ($row) {
+                return $row->user ? $row->user->name : '';
+            });
+            $table->editColumn('trail.title', function ($row) {
+                return $row->trail ? $row->trail->title : '';
+            });
+            $table->editColumn('certificate.title', function ($row) {
+                return $row->certificate ? $row->certificate->title : '';
+            });
 
-            $table->rawColumns(['actions','massDelete','view']);
+            $table->rawColumns(['actions','massDelete']);
 
             return $table->make(true);
         }
@@ -97,10 +106,11 @@ class DatatrailsController extends Controller
             return abort(401);
         }
         
-        $trails = \App\Trail::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
         $users = \App\User::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
+        $trails = \App\Trail::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
+        $certificates = \App\Trailscertificate::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
 
-        return view('admin.datatrails.create', compact('trails', 'users'));
+        return view('admin.datatrails.create', compact('users', 'trails', 'certificates'));
     }
 
     /**
@@ -134,12 +144,13 @@ class DatatrailsController extends Controller
             return abort(401);
         }
         
-        $trails = \App\Trail::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
         $users = \App\User::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
+        $trails = \App\Trail::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
+        $certificates = \App\Trailscertificate::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
 
         $datatrail = Datatrail::findOrFail($id);
 
-        return view('admin.datatrails.edit', compact('datatrail', 'trails', 'users'));
+        return view('admin.datatrails.edit', compact('datatrail', 'users', 'trails', 'certificates'));
     }
 
     /**
