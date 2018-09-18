@@ -1,4 +1,5 @@
 # LMS - Laravel
+### v1
 
 Prepare your .env file there with database connection and other settings.
 
@@ -14,7 +15,7 @@ php artisan vendor:publish --tag=lfm_public
 php artisan serve
 ```
 
-### Login
+## Login
 
 Email: admin@admin.com
 Password: password
