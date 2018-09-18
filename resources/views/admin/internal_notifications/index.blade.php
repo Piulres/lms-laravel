@@ -18,6 +18,7 @@
             <table class="striped responsive-table {{ count($internal_notifications) > 0 ? 'datatable' : '' }} @can('internal_notification_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.app_order')</th>
                         @can('internal_notification_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -34,6 +35,7 @@
                     @if (count($internal_notifications) > 0)
                         @foreach ($internal_notifications as $internal_notification)
                             <tr data-entry-id="{{ $internal_notification->id }}">
+                                <td>1</td>
                                 @can('internal_notification_delete')
                                     <td></td>
                                 @endcan

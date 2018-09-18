@@ -36,6 +36,8 @@
       href="{{ url('/adminlte/plugins/datatables/jquery.dataTables.css') }}"/>
 <link rel="stylesheet"
       href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css"/>
+<link rel="stylesheet"
+      href="https://cdn.datatables.net/rowreorder/1.2.5/css/rowReorder.dataTables.min.css"/>
 <!-- <link rel="stylesheet"
       href="//cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css"/> -->
 

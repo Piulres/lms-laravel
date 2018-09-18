@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    var editor;
     var handleCheckboxes = function (html, rowIndex, colIndex, cellNode) {
         var $cellNode = $(cellNode);
         var $check = $cellNode.find(':checked');
@@ -18,6 +18,13 @@ $(document).ready(function () {
         columnDefs: [],
         "iDisplayLength": 100,
         "aaSorting": [],
+        columnDefs: [
+            { orderable: false, targets: [ 1,2,3 ] }
+        ],
+        rowReorder: {
+            dataSrc: 'readingOrder',
+            editor:  editor
+        },
         buttons: [
             {
                 extend: 'copy',
@@ -69,24 +76,25 @@ $(document).ready(function () {
             },
         ]
     };
+
     $('.datatable').each(function () {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {
                 style: 'multi',
-                selector: 'td:first-child'
+                selector: 'td:nth-child(2)'
             };
 
             window.dtDefaultOptions.columnDefs.push({
                 orderable: false,
                 className: 'select-checkbox',
-                targets: 0
+                targets: 1
             });
         }
         $(this).dataTable(window.dtDefaultOptions);
     });
     $(document).on( 'init.dt', function ( e, settings ) {
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
         }
     });
 
@@ -210,18 +218,18 @@ function processAjaxTables() {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {
                 style: 'multi',
-                selector: 'td:first-child'
+                selector: 'td:nth-child(2)'
             };
 
             window.dtDefaultOptions.columnDefs.push({
                 orderable: false,
                 className: 'select-checkbox',
-                targets: 0
+                targets: 1
             });
         }
         $(this).DataTable(window.dtDefaultOptions);
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
         }
     });
 

@@ -288,27 +288,35 @@ table.dataTable thead th, table.dataTable tbody td {
     min-width: auto;
     border-bottom: 1px solid #e0e0e0;
     padding: 8px 18px;
+    position: relative;
 }
 
 table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
     background: #e0e0e0;
 }
 
-table.dataTable td.select-checkbox:before, table.dataTable td.select-checkbox:after {
+table.dataTable td.select-checkbox:before,
+table.dataTable td.select-checkbox:after
+/*table.dataTable th.select-checkbox:before,*/
+/*table.dataTable th.select-checkbox:after*/ {
     top: 50%;
 }
 
-table.dataTable td.select-checkbox:before {
+table.dataTable td.select-checkbox:before
+/*table.dataTable th.select-checkbox:before*/ {
     width: 18px;
     height: 18px;
     border-width: 2px;
+    margin-left: -10px;
 }
 
-table.dataTable tr.selected td.select-checkbox:after {
+table.dataTable tr.selected td.select-checkbox:after
+/*table.dataTable th.select-checkbox.selected-all:after*/ {
     content: none;
 }
 
-table.dataTable td.select-checkbox:before {
+table.dataTable td.select-checkbox:before
+/*table.dataTable th.select-checkbox:before*/ {
     content: '';
     position: absolute;
     border: 2px solid #5a5a5a;
@@ -318,7 +326,8 @@ table.dataTable td.select-checkbox:before {
     transition: .2s;
 }
 
-table.dataTable tr.selected td.select-checkbox:before {
+table.dataTable tr.selected td.select-checkbox:before
+/*table.dataTable th.select-checkbox.selected-all:before*/ {
     margin-top: -14px;
     margin-left: -10px;
     width: 12px;

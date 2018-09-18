@@ -20,6 +20,7 @@
             <table class="striped ajaxTable @can('team_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.app_order')</th>
                         @can('team_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -41,9 +42,12 @@
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.teams.index') !!}';
-            window.dtDefaultOptions.columns = [@can('team_delete')
+            window.dtDefaultOptions.columns = [
+                {data: 'name', name: 'name'},
+                @can('team_delete')
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endcan{data: 'name', name: 'name'},
+                @endcan
+                {data: 'name', name: 'name'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

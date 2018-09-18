@@ -153,6 +153,7 @@ return [
 			'users' => 'Users',
 		],
 	],
+	'app_order' => 'Ordem',
 	'app_create' => 'Criar',
 	'app_save' => 'Guardar',
 	'app_edit' => 'Editar',

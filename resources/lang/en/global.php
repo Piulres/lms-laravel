@@ -154,6 +154,7 @@ return [
 			'users' => 'Users',
 		],
 	],
+	'app_order' => 'Order',
 	'app_create' => 'Create',
 	'app_save' => 'Save',
 	'app_edit' => 'Edit',
