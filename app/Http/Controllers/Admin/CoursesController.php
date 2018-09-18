@@ -261,14 +261,14 @@ class CoursesController extends Controller
         $categories = \App\Coursecategory::get()->pluck('title', 'id');
 
         $tags = \App\Coursetag::get()->pluck('title', 'id');
-$coursesdata = \App\Coursesdatum::where('course_id', $id)->get();$trails = \App\Trail::whereHas('courses',
+$datacourses = \App\Datacourse::where('course_id', $id)->get();$trails = \App\Trail::whereHas('courses',
                     function ($query) use ($id) {
                         $query->where('id', $id);
                     })->get();
 
         $course = Course::findOrFail($id);
 
-        return view('admin.courses.show', compact('course', 'coursesdata', 'trails'));
+        return view('admin.courses.show', compact('course', 'datacourses', 'trails'));
     }
 
 

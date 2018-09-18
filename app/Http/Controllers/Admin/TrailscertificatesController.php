@@ -165,11 +165,11 @@ class TrailscertificatesController extends Controller
         if (! Gate::allows('trailscertificate_view')) {
             return abort(401);
         }
-        $traildata = \App\Traildatum::where('certificate_id', $id)->get();
+        $datatrails = \App\Datatrail::where('certificate_id', $id)->get();
 
         $trailscertificate = Trailscertificate::findOrFail($id);
 
-        return view('admin.trailscertificates.show', compact('trailscertificate', 'traildata'));
+        return view('admin.trailscertificates.show', compact('trailscertificate', 'datatrails'));
     }
 
 

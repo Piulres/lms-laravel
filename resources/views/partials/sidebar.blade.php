@@ -161,19 +161,19 @@
                         </a>
                     </li>@endcan
                     
-                    @can('coursesdatum_access')
+                    @can('datatrail_access')
                     <li>
-                        <a href="{{ route('admin.coursesdatas.index') }}">
+                        <a href="{{ route('admin.datatrails.index') }}">
                             <i class="fa fa-gear"></i>
-                            <span>@lang('global.coursesdata.title')</span>
+                            <span>@lang('global.datatrail.title')</span>
                         </a>
                     </li>@endcan
                     
-                    @can('traildatum_access')
+                    @can('datacourse_access')
                     <li>
-                        <a href="{{ route('admin.traildatas.index') }}">
+                        <a href="{{ route('admin.datacourses.index') }}">
                             <i class="fa fa-gear"></i>
-                            <span>@lang('global.traildata.title')</span>
+                            <span>@lang('global.datacourse.title')</span>
                         </a>
                     </li>@endcan
                     

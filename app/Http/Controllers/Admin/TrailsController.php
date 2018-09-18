@@ -235,11 +235,11 @@ class TrailsController extends Controller
         $categories = \App\Trailcategory::get()->pluck('title', 'id');
 
         $tags = \App\Trailtag::get()->pluck('title', 'id');
-$traildata = \App\Traildatum::where('trail_id', $id)->get();
+$datatrails = \App\Datatrail::where('trail_id', $id)->get();
 
         $trail = Trail::findOrFail($id);
 
-        return view('admin.trails.show', compact('trail', 'traildata'));
+        return view('admin.trails.show', compact('trail', 'datatrails'));
     }
 
 

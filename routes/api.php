@@ -14,10 +14,6 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
 
         Route::resource('generals', 'GeneralsController', ['except' => ['create', 'edit']]);
 
-        Route::resource('coursesdatas', 'CoursesdatasController', ['except' => ['create', 'edit']]);
-
-        Route::resource('traildatas', 'TraildatasController', ['except' => ['create', 'edit']]);
-
         Route::resource('trailcategories', 'TrailcategoriesController', ['except' => ['create', 'edit']]);
 
         Route::resource('trailtags', 'TrailtagsController', ['except' => ['create', 'edit']]);
@@ -27,5 +23,9 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
         Route::resource('trailscertificates', 'TrailscertificatesController', ['except' => ['create', 'edit']]);
 
         Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
+
+        Route::resource('datatrails', 'DatatrailsController', ['except' => ['create', 'edit']]);
+
+        Route::resource('datacourses', 'DatacoursesController', ['except' => ['create', 'edit']]);
 
 });

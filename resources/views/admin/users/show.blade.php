@@ -55,8 +55,8 @@
     
 <li role="presentation" class="active"><a href="#user_actions" aria-controls="user_actions" role="tab" data-toggle="tab">User actions</a></li>
 <li role="presentation" class=""><a href="#internal_notifications" aria-controls="internal_notifications" role="tab" data-toggle="tab">Notifications</a></li>
-<li role="presentation" class=""><a href="#coursesdata" aria-controls="coursesdata" role="tab" data-toggle="tab">Data Courses</a></li>
-<li role="presentation" class=""><a href="#traildata" aria-controls="traildata" role="tab" data-toggle="tab">Data Trail</a></li>
+<li role="presentation" class=""><a href="#datatrail" aria-controls="datatrail" role="tab" data-toggle="tab">Data Trail</a></li>
+<li role="presentation" class=""><a href="#datacourse" aria-controls="datacourse" role="tab" data-toggle="tab">Data Course</a></li>
 <li role="presentation" class=""><a href="#courses" aria-controls="courses" role="tab" data-toggle="tab">Courses</a></li>
 </ul>
 
@@ -147,17 +147,17 @@
     </tbody>
 </table>
 </div>
-<div role="tabpanel" class="tab-pane " id="coursesdata">
-<table class="table table-bordered table-striped {{ count($coursesdatas) > 0 ? 'datatable' : '' }}">
+<div role="tabpanel" class="tab-pane " id="datatrail">
+<table class="table table-bordered table-striped {{ count($datatrails) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('global.coursesdata.fields.view')</th>
-                        <th>@lang('global.coursesdata.fields.progress')</th>
-                        <th>@lang('global.coursesdata.fields.rating')</th>
-                        <th>@lang('global.coursesdata.fields.testimonal')</th>
-                        <th>@lang('global.coursesdata.fields.user')</th>
-                        <th>@lang('global.coursesdata.fields.course')</th>
-                        <th>@lang('global.coursesdata.fields.certificate')</th>
+            <th>@lang('global.datatrail.fields.view')</th>
+                        <th>@lang('global.datatrail.fields.progress')</th>
+                        <th>@lang('global.datatrail.fields.rating')</th>
+                        <th>@lang('global.datatrail.fields.testimonal')</th>
+                        <th>@lang('global.datatrail.fields.user')</th>
+                        <th>@lang('global.datatrail.fields.trail')</th>
+                        <th>@lang('global.datatrail.fields.certificate')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -167,47 +167,47 @@
     </thead>
 
     <tbody>
-        @if (count($coursesdatas) > 0)
-            @foreach ($coursesdatas as $coursesdata)
-                <tr data-entry-id="{{ $coursesdata->id }}">
-                    <td field-key='view'>{{ $coursesdata->view }}</td>
-                                <td field-key='progress'>{{ $coursesdata->progress }}</td>
-                                <td field-key='rating'>{{ $coursesdata->rating }}</td>
-                                <td field-key='testimonal'>{!! $coursesdata->testimonal !!}</td>
-                                <td field-key='user'>{{ $coursesdata->user->name or '' }}</td>
-                                <td field-key='course'>{{ $coursesdata->course->title or '' }}</td>
-                                <td field-key='certificate'>{{ $coursesdata->certificate->title or '' }}</td>
+        @if (count($datatrails) > 0)
+            @foreach ($datatrails as $datatrail)
+                <tr data-entry-id="{{ $datatrail->id }}">
+                    <td field-key='view'>{{ $datatrail->view }}</td>
+                                <td field-key='progress'>{{ $datatrail->progress }}</td>
+                                <td field-key='rating'>{{ $datatrail->rating }}</td>
+                                <td field-key='testimonal'>{!! $datatrail->testimonal !!}</td>
+                                <td field-key='user'>{{ $datatrail->user->name or '' }}</td>
+                                <td field-key='trail'>{{ $datatrail->trail->title or '' }}</td>
+                                <td field-key='certificate'>{{ $datatrail->certificate->title or '' }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'POST',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.coursesdatas.restore', $coursesdata->id])) !!}
+                                        'route' => ['admin.datatrails.restore', $datatrail->id])) !!}
                                     {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
                                     {!! Form::close() !!}
                                                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.coursesdatas.perma_del', $coursesdata->id])) !!}
+                                        'route' => ['admin.datatrails.perma_del', $datatrail->id])) !!}
                                     {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                                                 </td>
                                 @else
                                 <td>
-                                    @can('coursesdatum_view')
-                                    <a href="{{ route('admin.coursesdatas.show',[$coursesdata->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @can('datatrail_view')
+                                    <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
                                     @endcan
-                                    @can('coursesdatum_edit')
-                                    <a href="{{ route('admin.coursesdatas.edit',[$coursesdata->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @can('datatrail_edit')
+                                    <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan
-                                    @can('coursesdatum_delete')
+                                    @can('datatrail_delete')
 {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.coursesdatas.destroy', $coursesdata->id])) !!}
+                                        'route' => ['admin.datatrails.destroy', $datatrail->id])) !!}
                                     {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan
@@ -223,17 +223,17 @@
     </tbody>
 </table>
 </div>
-<div role="tabpanel" class="tab-pane " id="traildata">
-<table class="table table-bordered table-striped {{ count($traildatas) > 0 ? 'datatable' : '' }}">
+<div role="tabpanel" class="tab-pane " id="datacourse">
+<table class="table table-bordered table-striped {{ count($datacourses) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('global.traildata.fields.view')</th>
-                        <th>@lang('global.traildata.fields.progress')</th>
-                        <th>@lang('global.traildata.fields.rating')</th>
-                        <th>@lang('global.traildata.fields.testimonal')</th>
-                        <th>@lang('global.traildata.fields.user')</th>
-                        <th>@lang('global.traildata.fields.trail')</th>
-                        <th>@lang('global.traildata.fields.certificate')</th>
+            <th>@lang('global.datacourse.fields.view')</th>
+                        <th>@lang('global.datacourse.fields.progress')</th>
+                        <th>@lang('global.datacourse.fields.rating')</th>
+                        <th>@lang('global.datacourse.fields.testimonal')</th>
+                        <th>@lang('global.datacourse.fields.user')</th>
+                        <th>@lang('global.datacourse.fields.course')</th>
+                        <th>@lang('global.datacourse.fields.certificate')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -243,47 +243,47 @@
     </thead>
 
     <tbody>
-        @if (count($traildatas) > 0)
-            @foreach ($traildatas as $traildata)
-                <tr data-entry-id="{{ $traildata->id }}">
-                    <td field-key='view'>{{ $traildata->view }}</td>
-                                <td field-key='progress'>{{ $traildata->progress }}</td>
-                                <td field-key='rating'>{{ $traildata->rating }}</td>
-                                <td field-key='testimonal'>{!! $traildata->testimonal !!}</td>
-                                <td field-key='user'>{{ $traildata->user->name or '' }}</td>
-                                <td field-key='trail'>{{ $traildata->trail->title or '' }}</td>
-                                <td field-key='certificate'>{{ $traildata->certificate->title or '' }}</td>
+        @if (count($datacourses) > 0)
+            @foreach ($datacourses as $datacourse)
+                <tr data-entry-id="{{ $datacourse->id }}">
+                    <td field-key='view'>{{ $datacourse->view }}</td>
+                                <td field-key='progress'>{{ $datacourse->progress }}</td>
+                                <td field-key='rating'>{{ $datacourse->rating }}</td>
+                                <td field-key='testimonal'>{!! $datacourse->testimonal !!}</td>
+                                <td field-key='user'>{{ $datacourse->user->name or '' }}</td>
+                                <td field-key='course'>{{ $datacourse->course->title or '' }}</td>
+                                <td field-key='certificate'>{{ $datacourse->certificate->title or '' }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'POST',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.traildatas.restore', $traildata->id])) !!}
+                                        'route' => ['admin.datacourses.restore', $datacourse->id])) !!}
                                     {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
                                     {!! Form::close() !!}
                                                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.traildatas.perma_del', $traildata->id])) !!}
+                                        'route' => ['admin.datacourses.perma_del', $datacourse->id])) !!}
                                     {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                                                 </td>
                                 @else
                                 <td>
-                                    @can('traildatum_view')
-                                    <a href="{{ route('admin.traildatas.show',[$traildata->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @can('datacourse_view')
+                                    <a href="{{ route('admin.datacourses.show',[$datacourse->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
                                     @endcan
-                                    @can('traildatum_edit')
-                                    <a href="{{ route('admin.traildatas.edit',[$traildata->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @can('datacourse_edit')
+                                    <a href="{{ route('admin.datacourses.edit',[$datacourse->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan
-                                    @can('traildatum_delete')
+                                    @can('datacourse_delete')
 {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.traildatas.destroy', $traildata->id])) !!}
+                                        'route' => ['admin.datacourses.destroy', $datacourse->id])) !!}
                                     {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan

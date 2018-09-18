@@ -165,11 +165,11 @@ class CoursescertificatesController extends Controller
         if (! Gate::allows('coursescertificate_view')) {
             return abort(401);
         }
-        $coursesdata = \App\Coursesdatum::where('certificate_id', $id)->get();
+        $datacourses = \App\Datacourse::where('certificate_id', $id)->get();
 
         $coursescertificate = Coursescertificate::findOrFail($id);
 
-        return view('admin.coursescertificates.show', compact('coursescertificate', 'coursesdata'));
+        return view('admin.coursescertificates.show', compact('coursescertificate', 'datacourses'));
     }
 
 

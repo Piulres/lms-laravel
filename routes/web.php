@@ -64,14 +64,6 @@ Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' =>
     Route::post('generals_mass_destroy', ['uses' => 'Admin\GeneralsController@massDestroy', 'as' => 'generals.mass_destroy']);
     Route::post('generals_restore/{id}', ['uses' => 'Admin\GeneralsController@restore', 'as' => 'generals.restore']);
     Route::delete('generals_perma_del/{id}', ['uses' => 'Admin\GeneralsController@perma_del', 'as' => 'generals.perma_del']);
-    Route::resource('coursesdatas', 'Admin\CoursesdatasController');
-    Route::post('coursesdatas_mass_destroy', ['uses' => 'Admin\CoursesdatasController@massDestroy', 'as' => 'coursesdatas.mass_destroy']);
-    Route::post('coursesdatas_restore/{id}', ['uses' => 'Admin\CoursesdatasController@restore', 'as' => 'coursesdatas.restore']);
-    Route::delete('coursesdatas_perma_del/{id}', ['uses' => 'Admin\CoursesdatasController@perma_del', 'as' => 'coursesdatas.perma_del']);
-    Route::resource('traildatas', 'Admin\TraildatasController');
-    Route::post('traildatas_mass_destroy', ['uses' => 'Admin\TraildatasController@massDestroy', 'as' => 'traildatas.mass_destroy']);
-    Route::post('traildatas_restore/{id}', ['uses' => 'Admin\TraildatasController@restore', 'as' => 'traildatas.restore']);
-    Route::delete('traildatas_perma_del/{id}', ['uses' => 'Admin\TraildatasController@perma_del', 'as' => 'traildatas.perma_del']);
     Route::resource('trailcategories', 'Admin\TrailcategoriesController');
     Route::post('trailcategories_mass_destroy', ['uses' => 'Admin\TrailcategoriesController@massDestroy', 'as' => 'trailcategories.mass_destroy']);
     Route::post('trailcategories_restore/{id}', ['uses' => 'Admin\TrailcategoriesController@restore', 'as' => 'trailcategories.restore']);
@@ -97,6 +89,14 @@ Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' =>
     Route::resource('teams', 'Admin\TeamsController');
     Route::post('teams_mass_destroy', ['uses' => 'Admin\TeamsController@massDestroy', 'as' => 'teams.mass_destroy']);
     Route::resource('user_actions', 'Admin\UserActionsController');
+    Route::resource('datatrails', 'Admin\DatatrailsController');
+    Route::post('datatrails_mass_destroy', ['uses' => 'Admin\DatatrailsController@massDestroy', 'as' => 'datatrails.mass_destroy']);
+    Route::post('datatrails_restore/{id}', ['uses' => 'Admin\DatatrailsController@restore', 'as' => 'datatrails.restore']);
+    Route::delete('datatrails_perma_del/{id}', ['uses' => 'Admin\DatatrailsController@perma_del', 'as' => 'datatrails.perma_del']);
+    Route::resource('datacourses', 'Admin\DatacoursesController');
+    Route::post('datacourses_mass_destroy', ['uses' => 'Admin\DatacoursesController@massDestroy', 'as' => 'datacourses.mass_destroy']);
+    Route::post('datacourses_restore/{id}', ['uses' => 'Admin\DatacoursesController@restore', 'as' => 'datacourses.restore']);
+    Route::delete('datacourses_perma_del/{id}', ['uses' => 'Admin\DatacoursesController@perma_del', 'as' => 'datacourses.perma_del']);
 
     Route::model('messenger', 'App\MessengerTopic');
     Route::get('messenger/inbox', 'Admin\MessengerController@inbox')->name('messenger.inbox');

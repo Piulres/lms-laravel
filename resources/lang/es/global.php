@@ -20,9 +20,9 @@ return [
 		'trails' => [		'title' => 'Trails',		'fields' => [			'order' => 'Order',			'title' => 'Title',			'slug' => 'Slug',			'description' => 'Description',			'introduction' => 'Introduction',			'featured-image' => 'Featured Image',			'courses' => 'Courses',			'start-date' => 'Start Date',			'end-date' => 'End Date',			'categories' => 'Categories',			'tags' => 'Tags',			'approved' => 'Approved',		],	],
 		'general' => [		'title' => 'General',		'fields' => [			'site-name' => 'Site Name',			'site-logo' => 'Site Logo',			'theme-color' => 'Theme Color',		],	],
 		'coursescertificates' => [		'title' => 'Certificates',		'fields' => [			'order' => 'Order',			'title' => 'Title',			'slug' => 'Slug',			'image' => 'Image',		],	],
-		'coursesdata' => [		'title' => 'Data Courses',		'fields' => [			'view' => 'View',			'progress' => 'Progress',			'rating' => 'Rating',			'testimonal' => 'Testimonal',			'user' => 'User',			'course' => 'Course',			'certificate' => 'Certificate',		],	],
+		'coursesdata' => [		'title' => 'Data Courses',		'fields' => [		],	],
 		'trailscertificates' => [		'title' => 'Certificates',		'fields' => [			'order' => 'Order',			'title' => 'Title',			'slug' => 'Slug',			'image' => 'Image',		],	],
-		'traildata' => [		'title' => 'Data Trail',		'fields' => [			'view' => 'View',			'progress' => 'Progress',			'rating' => 'Rating',			'testimonal' => 'Testimonal',			'user' => 'User',			'trail' => 'Trail',			'certificate' => 'Certificate',		],	],
+		'traildata' => [		'title' => 'Data Trail',		'fields' => [		],	],
 		'user-actions' => [		'title' => 'User actions',		'created_at' => 'Hora',		'fields' => [			'user' => 'User',			'action' => 'Action',			'action-model' => 'Action model',			'action-id' => 'Action id',		],	],
 		'faq-management' => [		'title' => 'FAQ Management',		'fields' => [		],	],
 		'faq-categories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Category',		],	],
@@ -31,6 +31,8 @@ return [
 		'content-categories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Category',			'slug' => 'Slug',		],	],
 		'content-tags' => [		'title' => 'Tags',		'fields' => [			'title' => 'Tag',			'slug' => 'Slug',		],	],
 		'content-pages' => [		'title' => 'Pages',		'fields' => [			'title' => 'Title',			'category-id' => 'Categories',			'tag-id' => 'Tags',			'page-text' => 'Text',			'excerpt' => 'Excerpt',			'featured-image' => 'Featured image',		],	],
+		'datatrail' => [		'title' => 'Data Trail',		'fields' => [			'view' => 'View',			'progress' => 'Progress',			'rating' => 'Rating',			'testimonal' => 'Testimonal',			'user' => 'User',			'trail' => 'Trail',			'certificate' => 'Certificate',		],	],
+		'datacourse' => [		'title' => 'Data Course',		'fields' => [			'view' => 'View',			'progress' => 'Progress',			'rating' => 'Rating',			'testimonal' => 'Testimonal',			'user' => 'User',			'course' => 'Course',			'certificate' => 'Certificate',		],	],
 	'app_create' => 'Crear',
 	'app_save' => 'Guardar',
 	'app_edit' => 'Editar',

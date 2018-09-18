@@ -89,24 +89,24 @@
             </div><!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     
-<li role="presentation" class="active"><a href="#coursesdata" aria-controls="coursesdata" role="tab" data-toggle="tab">Data Courses</a></li>
+<li role="presentation" class="active"><a href="#datacourse" aria-controls="datacourse" role="tab" data-toggle="tab">Data Course</a></li>
 <li role="presentation" class=""><a href="#trails" aria-controls="trails" role="tab" data-toggle="tab">Trails</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
     
-<div role="tabpanel" class="tab-pane active" id="coursesdata">
-<table class="table table-bordered table-striped {{ count($coursesdatas) > 0 ? 'datatable' : '' }}">
+<div role="tabpanel" class="tab-pane active" id="datacourse">
+<table class="table table-bordered table-striped {{ count($datacourses) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('global.coursesdata.fields.view')</th>
-                        <th>@lang('global.coursesdata.fields.progress')</th>
-                        <th>@lang('global.coursesdata.fields.rating')</th>
-                        <th>@lang('global.coursesdata.fields.testimonal')</th>
-                        <th>@lang('global.coursesdata.fields.user')</th>
-                        <th>@lang('global.coursesdata.fields.course')</th>
-                        <th>@lang('global.coursesdata.fields.certificate')</th>
+            <th>@lang('global.datacourse.fields.view')</th>
+                        <th>@lang('global.datacourse.fields.progress')</th>
+                        <th>@lang('global.datacourse.fields.rating')</th>
+                        <th>@lang('global.datacourse.fields.testimonal')</th>
+                        <th>@lang('global.datacourse.fields.user')</th>
+                        <th>@lang('global.datacourse.fields.course')</th>
+                        <th>@lang('global.datacourse.fields.certificate')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -116,47 +116,47 @@
     </thead>
 
     <tbody>
-        @if (count($coursesdatas) > 0)
-            @foreach ($coursesdatas as $coursesdata)
-                <tr data-entry-id="{{ $coursesdata->id }}">
-                    <td field-key='view'>{{ $coursesdata->view }}</td>
-                                <td field-key='progress'>{{ $coursesdata->progress }}</td>
-                                <td field-key='rating'>{{ $coursesdata->rating }}</td>
-                                <td field-key='testimonal'>{!! $coursesdata->testimonal !!}</td>
-                                <td field-key='user'>{{ $coursesdata->user->name or '' }}</td>
-                                <td field-key='course'>{{ $coursesdata->course->title or '' }}</td>
-                                <td field-key='certificate'>{{ $coursesdata->certificate->title or '' }}</td>
+        @if (count($datacourses) > 0)
+            @foreach ($datacourses as $datacourse)
+                <tr data-entry-id="{{ $datacourse->id }}">
+                    <td field-key='view'>{{ $datacourse->view }}</td>
+                                <td field-key='progress'>{{ $datacourse->progress }}</td>
+                                <td field-key='rating'>{{ $datacourse->rating }}</td>
+                                <td field-key='testimonal'>{!! $datacourse->testimonal !!}</td>
+                                <td field-key='user'>{{ $datacourse->user->name or '' }}</td>
+                                <td field-key='course'>{{ $datacourse->course->title or '' }}</td>
+                                <td field-key='certificate'>{{ $datacourse->certificate->title or '' }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'POST',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.coursesdatas.restore', $coursesdata->id])) !!}
+                                        'route' => ['admin.datacourses.restore', $datacourse->id])) !!}
                                     {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
                                     {!! Form::close() !!}
                                                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.coursesdatas.perma_del', $coursesdata->id])) !!}
+                                        'route' => ['admin.datacourses.perma_del', $datacourse->id])) !!}
                                     {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                                                 </td>
                                 @else
                                 <td>
-                                    @can('coursesdatum_view')
-                                    <a href="{{ route('admin.coursesdatas.show',[$coursesdata->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @can('datacourse_view')
+                                    <a href="{{ route('admin.datacourses.show',[$datacourse->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
                                     @endcan
-                                    @can('coursesdatum_edit')
-                                    <a href="{{ route('admin.coursesdatas.edit',[$coursesdata->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @can('datacourse_edit')
+                                    <a href="{{ route('admin.datacourses.edit',[$datacourse->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan
-                                    @can('coursesdatum_delete')
+                                    @can('datacourse_delete')
 {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.coursesdatas.destroy', $coursesdata->id])) !!}
+                                        'route' => ['admin.datacourses.destroy', $datacourse->id])) !!}
                                     {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan
