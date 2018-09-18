@@ -36,6 +36,7 @@ class CoursesController extends Controller
             $query->with("instructor");
             $query->with("lessons");
             $query->with("categories");
+            $query->with("tags");
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
                 
@@ -47,11 +48,16 @@ class CoursesController extends Controller
             }
             $query->select([
                 'courses.id',
+                'courses.order',
                 'courses.title',
-                'courses.featured_image',
+                'courses.slug',
                 'courses.description',
                 'courses.introduction',
+                'courses.featured_image',
                 'courses.duration',
+                'courses.start_date',
+                'courses.end_date',
+                'courses.approved',
             ]);
             $table = Datatables::of($query);
 
@@ -66,8 +72,23 @@ class CoursesController extends Controller
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
             });
+            $table->editColumn('order', function ($row) {
+                return $row->order ? $row->order : '';
+            });
             $table->editColumn('title', function ($row) {
                 return $row->title ? $row->title : '';
+            });
+            $table->editColumn('slug', function ($row) {
+                return $row->slug ? $row->slug : '';
+            });
+            $table->editColumn('description', function ($row) {
+                return $row->description ? $row->description : '';
+            });
+            $table->editColumn('introduction', function ($row) {
+                return $row->introduction ? $row->introduction : '';
+            });
+            $table->editColumn('featured_image', function ($row) {
+                if($row->featured_image) { return '<a href="'. asset(env('UPLOAD_PATH').'/' . $row->featured_image) .'" target="_blank"><img src="'. asset(env('UPLOAD_PATH').'/thumb/' . $row->featured_image) .'"/>'; };
             });
             $table->editColumn('instructor.name', function ($row) {
                 if(count($row->instructor) == 0) {
@@ -85,6 +106,15 @@ class CoursesController extends Controller
                 return '<span class="label label-info label-many">' . implode('</span><span class="label label-info label-many"> ',
                         $row->lessons->pluck('title')->toArray()) . '</span>';
             });
+            $table->editColumn('duration', function ($row) {
+                return $row->duration ? $row->duration : '';
+            });
+            $table->editColumn('start_date', function ($row) {
+                return $row->start_date ? $row->start_date : '';
+            });
+            $table->editColumn('end_date', function ($row) {
+                return $row->end_date ? $row->end_date : '';
+            });
             $table->editColumn('categories.title', function ($row) {
                 if(count($row->categories) == 0) {
                     return '';
@@ -93,20 +123,19 @@ class CoursesController extends Controller
                 return '<span class="label label-info label-many">' . implode('</span><span class="label label-info label-many"> ',
                         $row->categories->pluck('title')->toArray()) . '</span>';
             });
-            $table->editColumn('featured_image', function ($row) {
-                if($row->featured_image) { return '<a href="'. asset(env('UPLOAD_PATH').'/' . $row->featured_image) .'" target="_blank"><img src="'. asset(env('UPLOAD_PATH').'/thumb/' . $row->featured_image) .'"/>'; };
+            $table->editColumn('tags.title', function ($row) {
+                if(count($row->tags) == 0) {
+                    return '';
+                }
+
+                return '<span class="label label-info label-many">' . implode('</span><span class="label label-info label-many"> ',
+                        $row->tags->pluck('title')->toArray()) . '</span>';
             });
-            $table->editColumn('description', function ($row) {
-                return $row->description ? $row->description : '';
-            });
-            $table->editColumn('introduction', function ($row) {
-                return $row->introduction ? $row->introduction : '';
-            });
-            $table->editColumn('duration', function ($row) {
-                return $row->duration ? $row->duration : '';
+            $table->editColumn('approved', function ($row) {
+                return \Form::checkbox("approved", 1, $row->approved == 1, ["disabled"]);
             });
 
-            $table->rawColumns(['actions','massDelete','instructor.name','lessons.title','categories.title','featured_image']);
+            $table->rawColumns(['actions','massDelete','featured_image','instructor.name','lessons.title','categories.title','tags.title','approved']);
 
             return $table->make(true);
         }
@@ -129,10 +158,12 @@ class CoursesController extends Controller
 
         $lessons = \App\Lesson::get()->pluck('title', 'id');
 
-        $categories = \App\Coursescategory::get()->pluck('title', 'id');
+        $categories = \App\Coursecategory::get()->pluck('title', 'id');
+
+        $tags = \App\Coursetag::get()->pluck('title', 'id');
 
 
-        return view('admin.courses.create', compact('instructors', 'lessons', 'categories'));
+        return view('admin.courses.create', compact('instructors', 'lessons', 'categories', 'tags'));
     }
 
     /**
@@ -151,6 +182,7 @@ class CoursesController extends Controller
         $course->instructor()->sync(array_filter((array)$request->input('instructor')));
         $course->lessons()->sync(array_filter((array)$request->input('lessons')));
         $course->categories()->sync(array_filter((array)$request->input('categories')));
+        $course->tags()->sync(array_filter((array)$request->input('tags')));
 
 
 
@@ -174,12 +206,14 @@ class CoursesController extends Controller
 
         $lessons = \App\Lesson::get()->pluck('title', 'id');
 
-        $categories = \App\Coursescategory::get()->pluck('title', 'id');
+        $categories = \App\Coursecategory::get()->pluck('title', 'id');
+
+        $tags = \App\Coursetag::get()->pluck('title', 'id');
 
 
         $course = Course::findOrFail($id);
 
-        return view('admin.courses.edit', compact('course', 'instructors', 'lessons', 'categories'));
+        return view('admin.courses.edit', compact('course', 'instructors', 'lessons', 'categories', 'tags'));
     }
 
     /**
@@ -200,6 +234,7 @@ class CoursesController extends Controller
         $course->instructor()->sync(array_filter((array)$request->input('instructor')));
         $course->lessons()->sync(array_filter((array)$request->input('lessons')));
         $course->categories()->sync(array_filter((array)$request->input('categories')));
+        $course->tags()->sync(array_filter((array)$request->input('tags')));
 
 
 
@@ -223,7 +258,9 @@ class CoursesController extends Controller
 
         $lessons = \App\Lesson::get()->pluck('title', 'id');
 
-        $categories = \App\Coursescategory::get()->pluck('title', 'id');
+        $categories = \App\Coursecategory::get()->pluck('title', 'id');
+
+        $tags = \App\Coursetag::get()->pluck('title', 'id');
 $datacourses = \App\Datacourse::where('course_id', $id)->get();$trails = \App\Trail::whereHas('courses',
                     function ($query) use ($id) {
                         $query->where('id', $id);

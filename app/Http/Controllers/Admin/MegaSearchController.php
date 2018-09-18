@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 class MegaSearchController extends Controller
 {
     protected $models = [
+        'User' => 'global.users.title',
+        'Coursecategory' => 'global.coursecategories.title',
+        'Trailcategory' => 'global.trailcategories.title',
+        'Coursetag' => 'global.coursetags.title',
+        'Trailtag' => 'global.trailtags.title',
+        'Lesson' => 'global.lessons.title',
+        'Course' => 'global.courses.title',
+        'Trail' => 'global.trails.title',
     ];
 
     public function search(Request $request)

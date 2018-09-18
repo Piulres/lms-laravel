@@ -1,18 +1,18 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
-            <div class="col-12">
+
+            <div class="col-xs-12 form-group">
                 {!! Form::label('receiver', 'Recipient', ['class' => 'control-label']) !!}
 
                 @if(isset($users))
-                    {!! Form::select('receiver', $users, old('receiver'), ['class' => 'form-control']) !!}
+                    {!! Form::select('receiver', $users, old('receiver'), ['class' => 'form-control select2']) !!}
                 @elseif(isset($user))
                     {!! Form::text('receiver', old('receiver', $user ? $user : ''), ['class' => 'form-control', 'disabled']) !!}
                 @endif
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
+
+            <div class="col-xs-12 form-group">
                 {!! Form::label('subject', 'Subject', ['class' => 'control-label']) !!}
 
                 @if(!isset($user))
@@ -22,23 +22,24 @@
                 @endif
 
                 @if ($errors->has('subject'))
-                    <span class="helper-text" data-error="wrong" data-success="right">
+                    <span class="help-block">
                         <strong>{{ $errors->first('subject') }}</strong>
                     </span>
                 @endif
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
+
+            <div class="col-xs-12 form-group">
                 {!! Form::label('content', 'Message', ['class' => 'control-label']) !!}
-                {!! Form::textarea('content', old('content'), ['class' => 'materialize-textarea']) !!}
-                <span class="helper-text" data-error="wrong" data-success="right"></span>
+                {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                <p class="help-block"></p>
                 @if($errors->has('content'))
-                    <span class="helper-text" data-error="wrong" data-success="right">
+                    <p class="help-block">
                         {{ $errors->first('content') }}
-                    </span>
+                    </p>
                 @endif
             </div>
+
+
         </div>
     </div>
 </div>

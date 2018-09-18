@@ -30,8 +30,9 @@ class DatacoursesController extends Controller
         
         if (request()->ajax()) {
             $query = Datacourse::query();
-            $query->with("course");
             $query->with("user");
+            $query->with("course");
+            $query->with("certificate");
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
                 
@@ -43,11 +44,13 @@ class DatacoursesController extends Controller
             }
             $query->select([
                 'datacourses.id',
-                'datacourses.course_id',
-                'datacourses.user_id',
                 'datacourses.view',
                 'datacourses.progress',
                 'datacourses.rating',
+                'datacourses.testimonal',
+                'datacourses.user_id',
+                'datacourses.course_id',
+                'datacourses.certificate_id',
             ]);
             $table = Datatables::of($query);
 
@@ -62,14 +65,8 @@ class DatacoursesController extends Controller
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
             });
-            $table->editColumn('course.title', function ($row) {
-                return $row->course ? $row->course->title : '';
-            });
-            $table->editColumn('user.name', function ($row) {
-                return $row->user ? $row->user->name : '';
-            });
             $table->editColumn('view', function ($row) {
-                return \Form::checkbox("view", 1, $row->view == 1, ["disabled"]);
+                return $row->view ? $row->view : '';
             });
             $table->editColumn('progress', function ($row) {
                 return $row->progress ? $row->progress : '';
@@ -77,8 +74,20 @@ class DatacoursesController extends Controller
             $table->editColumn('rating', function ($row) {
                 return $row->rating ? $row->rating : '';
             });
+            $table->editColumn('testimonal', function ($row) {
+                return $row->testimonal ? $row->testimonal : '';
+            });
+            $table->editColumn('user.name', function ($row) {
+                return $row->user ? $row->user->name : '';
+            });
+            $table->editColumn('course.title', function ($row) {
+                return $row->course ? $row->course->title : '';
+            });
+            $table->editColumn('certificate.title', function ($row) {
+                return $row->certificate ? $row->certificate->title : '';
+            });
 
-            $table->rawColumns(['actions','massDelete','view']);
+            $table->rawColumns(['actions','massDelete']);
 
             return $table->make(true);
         }
@@ -97,10 +106,11 @@ class DatacoursesController extends Controller
             return abort(401);
         }
         
-        $courses = \App\Course::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
         $users = \App\User::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
+        $courses = \App\Course::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
+        $certificates = \App\Coursescertificate::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
 
-        return view('admin.datacourses.create', compact('courses', 'users'));
+        return view('admin.datacourses.create', compact('users', 'courses', 'certificates'));
     }
 
     /**
@@ -134,12 +144,13 @@ class DatacoursesController extends Controller
             return abort(401);
         }
         
-        $courses = \App\Course::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
         $users = \App\User::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
+        $courses = \App\Course::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
+        $certificates = \App\Coursescertificate::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
 
         $datacourse = Datacourse::findOrFail($id);
 
-        return view('admin.datacourses.edit', compact('datacourse', 'courses', 'users'));
+        return view('admin.datacourses.edit', compact('datacourse', 'users', 'courses', 'certificates'));
     }
 
     /**

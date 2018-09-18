@@ -10,7 +10,7 @@
 
             @include('admin.messenger.form-partials.fields')
 
-            {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey white-color']) !!}
+            {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
         </div>
     </div>

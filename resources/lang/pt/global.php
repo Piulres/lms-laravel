@@ -1,159 +1,38 @@
 <?php
 
 return [
-	
-	'user-management' => [
-		'title' => 'User management',
-		'fields' => [
-		],
-	],
-	
-	'permissions' => [
-		'title' => 'Permissions',
-		'fields' => [
-			'title' => 'Title',
-		],
-	],
-	
-	'roles' => [
-		'title' => 'Roles',
-		'fields' => [
-			'title' => 'Title',
-			'permission' => 'Permissions',
-		],
-	],
-	
-	'users' => [
-		'title' => 'Users',
-		'fields' => [
-			'name' => 'Name',
-			'last-name' => 'Last Name',
-			'email' => 'Email',
-			'website' => 'Website',
-			'avatar' => 'Avatar',
-			'password' => 'Password',
-			'role' => 'Role',
-			'remember-token' => 'Remember token',
-			'team' => 'Team',
-			'approved' => 'Approved'
-		],
-	],
-	
-	'course-management' => [
-		'title' => 'Course management',
-		'fields' => [
-		],
-	],
-	
-	'trail-management' => [
-		'title' => 'Trail management',
-		'fields' => [
-		],
-	],
-	
-	'settings' => [
-		'title' => 'Settings',
-		'fields' => [
-		],
-	],
-	
-	'coursescategories' => [
-		'title' => 'Categories',
-		'fields' => [
-			'title' => 'Title',
-		],
-	],
-	
-	'trailscategories' => [
-		'title' => 'Categories',
-		'fields' => [
-			'title' => 'Title',
-		],
-	],
-	
-	'lessons' => [
-		'title' => 'Lessons',
-		'fields' => [
-			'title' => 'Title',
-			'introduction' => 'Introduction',
-			'study-material' => 'Study Material',
-			'content' => 'Content',
-		],
-	],
-	
-	'courses' => [
-		'title' => 'Courses',
-		'fields' => [
-			'title' => 'Title',
-			'instructor' => 'Instructor',
-			'lessons' => 'Lessons',
-			'categories' => 'Categories',
-			'featured-image' => 'Featured Image',
-			'description' => 'Description',
-			'introduction' => 'Introduction',
-			'duration' => 'Duration',
-		],
-		'create' => 'Criar curso',
-	],
-	
-	'trails' => [
-		'title' => 'Trails',
-		'fields' => [
-			'title' => 'Title',
-			'categories' => 'Categories',
-			'courses' => 'Courses',
-		],
-	],
-	
-	'datacourses' => [
-		'title' => 'Data Courses',
-		'fields' => [
-			'course' => 'Course',
-			'user' => 'User',
-			'view' => 'View',
-			'progress' => 'Progress',
-			'rating' => 'Rating',
-		],
-	],
-	
-	'datatrails' => [
-		'title' => 'Data Trails',
-		'fields' => [
-			'trail' => 'Trail',
-			'user' => 'User',
-			'view' => 'View',
-			'progress' => 'Progress',
-			'rating' => 'Rating',
-		],
-	],
-	
-	'user-actions' => [
-		'title' => 'User actions',
-		'created_at' => 'Tempo',
-		'fields' => [
-			'user' => 'User',
-			'action' => 'Action',
-			'action-model' => 'Action model',
-			'action-id' => 'Action id',
-		],
-	],
-	
-	'teams' => [
-		'title' => 'Teams',
-		'fields' => [
-			'name' => 'Name',
-		],
-	],
-	
-	'internal-notifications' => [
-		'title' => 'Notifications',
-		'fields' => [
-			'text' => 'Text',
-			'link' => 'Link',
-			'users' => 'Users',
-		],
-	],
-	'app_order' => 'Ordem',
+		'user-management' => [		'title' => 'User management',		'fields' => [		],	],
+		'permissions' => [		'title' => 'Permissions',		'fields' => [			'title' => 'Title',		],	],
+		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',			'permission' => 'Permissions',		],	],
+		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'lastname' => 'Last Name',			'website' => 'Website',			'email' => 'Email',			'password' => 'Password',			'avatar' => 'Avatar',			'remember-token' => 'Remember token',			'role' => 'Role',			'team' => 'Team',			'approved' => 'Approved',		],	],
+		'teams' => [		'title' => 'Teams',		'fields' => [			'name' => 'Name',		],	],
+		'internal-notifications' => [		'title' => 'Notifications',		'fields' => [			'text' => 'Text',			'link' => 'Link',			'users' => 'Users',		],	],
+		'course-management' => [		'title' => 'Course management',		'fields' => [		],	],
+		'trail-management' => [		'title' => 'Trail management',		'fields' => [		],	],
+		'settings' => [		'title' => 'Settings',		'fields' => [		],	],
+		'coursecategories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Title',			'slug' => 'Slug',		],	],
+		'trailcategories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Title',			'slug' => 'Slug',		],	],
+		'coursetags' => [		'title' => 'Tags',		'fields' => [			'title' => 'Title',			'slug' => 'Slug',		],	],
+		'trailtags' => [		'title' => 'Tags',		'fields' => [			'title' => 'Title',			'slug' => 'Slug',		],	],
+		'lessons' => [		'title' => 'Lessons',		'fields' => [			'order' => 'Order',			'title' => 'Title',			'slug' => 'Slug',			'introduction' => 'Introduction',			'content' => 'Content',			'study-material' => 'Study material',		],	],
+		'course' => [		'title' => 'Course',		'fields' => [		],	],
+		'courses' => [		'title' => 'Courses',		'fields' => [			'order' => 'Order',			'title' => 'Title',			'slug' => 'Slug',			'description' => 'Description',			'introduction' => 'Introduction',			'featured-image' => 'Featured Image',			'instructor' => 'Instructor',			'lessons' => 'Lessons',			'duration' => 'Duration',			'start-date' => 'Start Date',			'end-date' => 'End Date',			'categories' => 'Categories',			'tags' => 'Tags',			'approved' => 'Approved',		],	],
+		'trails' => [		'title' => 'Trails',		'fields' => [			'order' => 'Order',			'title' => 'Title',			'slug' => 'Slug',			'description' => 'Description',			'introduction' => 'Introduction',			'featured-image' => 'Featured Image',			'courses' => 'Courses',			'start-date' => 'Start Date',			'end-date' => 'End Date',			'categories' => 'Categories',			'tags' => 'Tags',			'approved' => 'Approved',		],	],
+		'general' => [		'title' => 'General',		'fields' => [			'site-name' => 'Site Name',			'site-logo' => 'Site Logo',			'theme-color' => 'Theme Color',		],	],
+		'coursescertificates' => [		'title' => 'Certificates',		'fields' => [			'order' => 'Order',			'title' => 'Title',			'slug' => 'Slug',			'image' => 'Image',		],	],
+		'coursesdata' => [		'title' => 'Data Courses',		'fields' => [		],	],
+		'trailscertificates' => [		'title' => 'Certificates',		'fields' => [			'order' => 'Order',			'title' => 'Title',			'slug' => 'Slug',			'image' => 'Image',		],	],
+		'traildata' => [		'title' => 'Data Trail',		'fields' => [		],	],
+		'user-actions' => [		'title' => 'User actions',		'created_at' => 'Tempo',		'fields' => [			'user' => 'User',			'action' => 'Action',			'action-model' => 'Action model',			'action-id' => 'Action id',		],	],
+		'faq-management' => [		'title' => 'FAQ Management',		'fields' => [		],	],
+		'faq-categories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Category',		],	],
+		'faq-questions' => [		'title' => 'Questions',		'fields' => [			'category' => 'Category',			'question-text' => 'Question',			'answer-text' => 'Answer',		],	],
+		'content-management' => [		'title' => 'Content management',		'fields' => [		],	],
+		'content-categories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Category',			'slug' => 'Slug',		],	],
+		'content-tags' => [		'title' => 'Tags',		'fields' => [			'title' => 'Tag',			'slug' => 'Slug',		],	],
+		'content-pages' => [		'title' => 'Pages',		'fields' => [			'title' => 'Title',			'category-id' => 'Categories',			'tag-id' => 'Tags',			'page-text' => 'Text',			'excerpt' => 'Excerpt',			'featured-image' => 'Featured image',		],	],
+		'datatrail' => [		'title' => 'Data Trail',		'fields' => [			'view' => 'View',			'progress' => 'Progress',			'rating' => 'Rating',			'testimonal' => 'Testimonal',			'user' => 'User',			'trail' => 'Trail',			'certificate' => 'Certificate',		],	],
+		'datacourse' => [		'title' => 'Data Course',		'fields' => [			'view' => 'View',			'progress' => 'Progress',			'rating' => 'Rating',			'testimonal' => 'Testimonal',			'user' => 'User',			'course' => 'Course',			'certificate' => 'Certificate',		],	],
 	'app_create' => 'Criar',
 	'app_save' => 'Guardar',
 	'app_edit' => 'Editar',
@@ -171,7 +50,6 @@ return [
 	'app_restore' => 'Restaurar',
 	'app_permadel' => 'Eliminar',
 	'app_all' => 'Todos',
-	'app_see_all' => 'Ver Todos',
 	'app_trash' => 'Lixo',
 	'app_delete_selected' => 'Eliminar Selecionados',
 	'app_category' => 'Categoria',
@@ -190,7 +68,6 @@ return [
 	'app_remember_token' => 'Lembrar Senha',
 	'app_permissions' => 'Permissões',
 	'app_action' => 'Ação',
-	'app_actions' => 'Ações',
 	'app_forgot_password' => 'Esqueceu-se da senha?',
 	'app_remember_me' => 'Lembrar',
 	'app_change_password' => 'Alterar senha',
@@ -232,7 +109,7 @@ return [
 	'app_work_types' => 'Tipos de trabalho',
 	'app_project' => 'Projeto',
 	'app_start_time' => 'Tempo de início',
-	'app_end_time' => 'Tempo de final',
+	'app_end_time' => 'Tempo final',
 	'app_expense_category' => 'Categoria de Despesa',
 	'app_expense_categories' => 'Categorias de Despesa',
 	'app_expense_management' => 'Gestão de Despesa',

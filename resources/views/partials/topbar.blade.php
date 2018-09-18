@@ -1,63 +1,93 @@
 <header class="main-header">
-    <div class="navbar-fixed">
-        <nav class="grey">
-            <div class="container-fluid">
-                <div class="nav-wrapper">
-                    <a href="{{ url('/') }}" class="brand-logo left grey">@lang('global.global_title')</span></a>
-                    <ul class="right">
-                        <li class="dropdown languages-menu">
-                            <a class="dropdown-button" href="#!" data-target="dropdown-language">
-                                {{ strtoupper(\App::getLocale()) }}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header"></li>
-                                <ul id='dropdown-language' class='dropdown-content'>
-                                    @foreach(config('app.languages') as $short => $title)
-                                        <li class="language-link">
-                                            <a href="{{ route('admin.language', $short) }}">
-                                                <small>{{ $title }} ({{ strtoupper($short) }})</small>
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <li class="footer"></li>
-                            </ul>
-                        </li>
+    <!-- Logo -->
+    <a href="{{ url('/admin/home') }}" class="logo"
+       style="font-size: 16px;">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">
+           @lang('global.global_title')</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">
+           @lang('global.global_title')</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+        
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <li class="dropdown notifications-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-bell-o"></i>
+                        @php($notificationCount = \Auth::user()->internalNotifications()->where('read_at', null)->count())
+                        @if($notificationCount > 0)
+                            <span class="label label-warning">
+                            {{ $notificationCount }}
+                        </span>
+                        @endif
+                    </a>
+                    <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-button" href="#!" data-target="dropdown-notifications">
-                                <i class="material-icons">notifications</i>
-                                @php($notificationCount = \Auth::user()->internalNotifications()->where('read_at', null)->count())
-                                @if($notificationCount > 0)
-                                    <span class="new badge sup" data-badge-caption="">
-                                        {{ $notificationCount }}
-                                    </span>
-                                @endif
-                            </a>
-                            <ul id='dropdown-notifications' class='dropdown-content'>
-                                @if (count($notifications = \Auth::user()->internalNotifications()->get()) > 0)
-                                    @foreach($notifications as $notification)
-                                        <li class="notification-link {{ $notification->pivot->read_at === null ? "unread" : false }}">
-                                            <a href="{{ $notification->link ? $notification->link : "#" }}"
-                                               class="{{ $notification->link ? 'is-link' : false }}">
-                                                {{ $notification->text }}
-                                            </a>
+                            <div class="slimScrollDiv"
+                                 style="position: relative;">
+                                <ul class="menu notification-menu">
+                                    @if (count($notifications = \Auth::user()->internalNotifications()->get()) > 0)
+                                        @foreach($notifications as $notification)
+                                            <li class="notification-link {{ $notification->pivot->read_at === null ? "unread" : false }}">
+                                                <a href="{{ $notification->link ? $notification->link : "#" }}"
+                                                   class="{{ $notification->link ? 'is-link' : false }}">
+                                                    {{ $notification->text }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    @else
+                                        <li class="notification-link" style="text-align:center;">
+                                            No notifications
                                         </li>
-                                    @endforeach
-                                @else
-                                    <li class="notification-link" style="text-align:center;">
-                                        No notifications
-                                    </li>
-                                @endif
-                            </ul>
-                        </li>
-                        <li class="hide-on-lar-and-up">
-                            <a href="#" data-target="sidebar-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                                    @endif
+                                </ul>
+                            </div>
                         </li>
                     </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+                </li>
+
+            </ul>
+        </div>
+
+                <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown languages-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        {{ strtoupper(\App::getLocale()) }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header"></li>
+                        <ul class="menu language-menu">
+                            @foreach(config('app.languages') as $short => $title)
+                                <li class="language-link">
+                                    <a href="{{ route('admin.language', $short) }}">
+                                        {{ $title }} ({{ strtoupper($short) }})
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <li class="footer"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+    </nav>
 </header>
 
 

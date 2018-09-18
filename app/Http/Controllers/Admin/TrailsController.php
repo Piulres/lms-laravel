@@ -30,8 +30,9 @@ class TrailsController extends Controller
         
         if (request()->ajax()) {
             $query = Trail::query();
-            $query->with("categories");
             $query->with("courses");
+            $query->with("categories");
+            $query->with("tags");
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
                 
@@ -43,7 +44,15 @@ class TrailsController extends Controller
             }
             $query->select([
                 'trails.id',
+                'trails.order',
                 'trails.title',
+                'trails.slug',
+                'trails.description',
+                'trails.introduction',
+                'trails.featured_image',
+                'trails.start_date',
+                'trails.end_date',
+                'trails.approved',
             ]);
             $table = Datatables::of($query);
 
@@ -58,16 +67,23 @@ class TrailsController extends Controller
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
             });
+            $table->editColumn('order', function ($row) {
+                return $row->order ? $row->order : '';
+            });
             $table->editColumn('title', function ($row) {
                 return $row->title ? $row->title : '';
             });
-            $table->editColumn('categories.title', function ($row) {
-                if(count($row->categories) == 0) {
-                    return '';
-                }
-
-                return '<span class="label label-info label-many">' . implode('</span><span class="label label-info label-many"> ',
-                        $row->categories->pluck('title')->toArray()) . '</span>';
+            $table->editColumn('slug', function ($row) {
+                return $row->slug ? $row->slug : '';
+            });
+            $table->editColumn('description', function ($row) {
+                return $row->description ? $row->description : '';
+            });
+            $table->editColumn('introduction', function ($row) {
+                return $row->introduction ? $row->introduction : '';
+            });
+            $table->editColumn('featured_image', function ($row) {
+                return $row->featured_image ? $row->featured_image : '';
             });
             $table->editColumn('courses.title', function ($row) {
                 if(count($row->courses) == 0) {
@@ -77,8 +93,33 @@ class TrailsController extends Controller
                 return '<span class="label label-info label-many">' . implode('</span><span class="label label-info label-many"> ',
                         $row->courses->pluck('title')->toArray()) . '</span>';
             });
+            $table->editColumn('start_date', function ($row) {
+                return $row->start_date ? $row->start_date : '';
+            });
+            $table->editColumn('end_date', function ($row) {
+                return $row->end_date ? $row->end_date : '';
+            });
+            $table->editColumn('categories.title', function ($row) {
+                if(count($row->categories) == 0) {
+                    return '';
+                }
 
-            $table->rawColumns(['actions','massDelete','categories.title','courses.title']);
+                return '<span class="label label-info label-many">' . implode('</span><span class="label label-info label-many"> ',
+                        $row->categories->pluck('title')->toArray()) . '</span>';
+            });
+            $table->editColumn('tags.title', function ($row) {
+                if(count($row->tags) == 0) {
+                    return '';
+                }
+
+                return '<span class="label label-info label-many">' . implode('</span><span class="label label-info label-many"> ',
+                        $row->tags->pluck('title')->toArray()) . '</span>';
+            });
+            $table->editColumn('approved', function ($row) {
+                return \Form::checkbox("approved", 1, $row->approved == 1, ["disabled"]);
+            });
+
+            $table->rawColumns(['actions','massDelete','courses.title','categories.title','tags.title','approved']);
 
             return $table->make(true);
         }
@@ -97,12 +138,14 @@ class TrailsController extends Controller
             return abort(401);
         }
         
-        $categories = \App\Trailscategory::get()->pluck('title', 'id');
-
         $courses = \App\Course::get()->pluck('title', 'id');
 
+        $categories = \App\Trailcategory::get()->pluck('title', 'id');
 
-        return view('admin.trails.create', compact('categories', 'courses'));
+        $tags = \App\Trailtag::get()->pluck('title', 'id');
+
+
+        return view('admin.trails.create', compact('courses', 'categories', 'tags'));
     }
 
     /**
@@ -117,8 +160,9 @@ class TrailsController extends Controller
             return abort(401);
         }
         $trail = Trail::create($request->all());
-        $trail->categories()->sync(array_filter((array)$request->input('categories')));
         $trail->courses()->sync(array_filter((array)$request->input('courses')));
+        $trail->categories()->sync(array_filter((array)$request->input('categories')));
+        $trail->tags()->sync(array_filter((array)$request->input('tags')));
 
 
 
@@ -138,14 +182,16 @@ class TrailsController extends Controller
             return abort(401);
         }
         
-        $categories = \App\Trailscategory::get()->pluck('title', 'id');
-
         $courses = \App\Course::get()->pluck('title', 'id');
+
+        $categories = \App\Trailcategory::get()->pluck('title', 'id');
+
+        $tags = \App\Trailtag::get()->pluck('title', 'id');
 
 
         $trail = Trail::findOrFail($id);
 
-        return view('admin.trails.edit', compact('trail', 'categories', 'courses'));
+        return view('admin.trails.edit', compact('trail', 'courses', 'categories', 'tags'));
     }
 
     /**
@@ -162,8 +208,9 @@ class TrailsController extends Controller
         }
         $trail = Trail::findOrFail($id);
         $trail->update($request->all());
-        $trail->categories()->sync(array_filter((array)$request->input('categories')));
         $trail->courses()->sync(array_filter((array)$request->input('courses')));
+        $trail->categories()->sync(array_filter((array)$request->input('categories')));
+        $trail->tags()->sync(array_filter((array)$request->input('tags')));
 
 
 
@@ -183,9 +230,11 @@ class TrailsController extends Controller
             return abort(401);
         }
         
-        $categories = \App\Trailscategory::get()->pluck('title', 'id');
-
         $courses = \App\Course::get()->pluck('title', 'id');
+
+        $categories = \App\Trailcategory::get()->pluck('title', 'id');
+
+        $tags = \App\Trailtag::get()->pluck('title', 'id');
 $datatrails = \App\Datatrail::where('trail_id', $id)->get();
 
         $trail = Trail::findOrFail($id);

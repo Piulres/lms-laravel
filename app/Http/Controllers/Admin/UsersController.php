@@ -40,11 +40,11 @@ class UsersController extends Controller
             $query->select([
                 'users.id',
                 'users.name',
-                'users.last_name',
-                'users.email',
+                'users.lastname',
                 'users.website',
-                'users.avatar',
+                'users.email',
                 'users.password',
+                'users.avatar',
                 'users.remember_token',
                 'users.team_id',
                 'users.approved',
@@ -62,17 +62,20 @@ class UsersController extends Controller
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
             });
-            $table->editColumn('last_name', function ($row) {
-                return $row->last_name ? $row->last_name : '';
+            $table->editColumn('lastname', function ($row) {
+                return $row->lastname ? $row->lastname : '';
             });
             $table->editColumn('website', function ($row) {
                 return $row->website ? $row->website : '';
             });
+            $table->editColumn('password', function ($row) {
+                return '---';
+            });
             $table->editColumn('avatar', function ($row) {
                 if($row->avatar) { return '<a href="'. asset(env('UPLOAD_PATH').'/' . $row->avatar) .'" target="_blank"><img src="'. asset(env('UPLOAD_PATH').'/thumb/' . $row->avatar) .'"/>'; };
             });
-            $table->editColumn('password', function ($row) {
-                return '---';
+            $table->editColumn('remember_token', function ($row) {
+                return $row->remember_token ? $row->remember_token : '';
             });
             $table->editColumn('role.title', function ($row) {
                 if(count($row->role) == 0) {
@@ -81,9 +84,6 @@ class UsersController extends Controller
 
                 return '<span class="label label-info label-many">' . implode('</span><span class="label label-info label-many"> ',
                         $row->role->pluck('title')->toArray()) . '</span>';
-            });
-            $table->editColumn('remember_token', function ($row) {
-                return $row->remember_token ? $row->remember_token : '';
             });
             $table->editColumn('team.name', function ($row) {
                 return $row->team ? $row->team->name : '';
@@ -197,17 +197,17 @@ class UsersController extends Controller
         
         $roles = \App\Role::get()->pluck('title', 'id');
 
-        $teams = \App\Team::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');$user_actions = \App\UserAction::where('user_id', $id)->get();$datacourses = \App\Datacourse::where('user_id', $id)->get();$datatrails = \App\Datatrail::where('user_id', $id)->get();$courses = \App\Course::whereHas('instructor',
+        $teams = \App\Team::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');$user_actions = \App\UserAction::where('user_id', $id)->get();$internal_notifications = \App\InternalNotification::whereHas('users',
                     function ($query) use ($id) {
                         $query->where('id', $id);
-                    })->get();$internal_notifications = \App\InternalNotification::whereHas('users',
+                    })->get();$datatrails = \App\Datatrail::where('user_id', $id)->get();$datacourses = \App\Datacourse::where('user_id', $id)->get();$courses = \App\Course::whereHas('instructor',
                     function ($query) use ($id) {
                         $query->where('id', $id);
                     })->get();
 
         $user = User::findOrFail($id);
 
-        return view('admin.users.show', compact('user', 'user_actions', 'datacourses', 'datatrails', 'courses', 'internal_notifications'));
+        return view('admin.users.show', compact('user', 'user_actions', 'internal_notifications', 'datatrails', 'datacourses', 'courses'));
     }
 
 
