@@ -186,8 +186,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
         Unisharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
-        Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         
         /*
          * Application Service Providers...
@@ -253,6 +253,7 @@ return [
         'Image'        => Intervention\Image\Facades\Image::class,
         'Form'         => Collective\Html\FormFacade::class,
         'Html'         => Collective\Html\HtmlFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         
     ],
 

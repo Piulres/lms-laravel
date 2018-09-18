@@ -41,4 +41,25 @@ class LoginController extends Controller
     }
 
     
+    public function redirectToSocial($driver)
+    {
+        return Socialite::driver($driver)->redirect();
+    }
+
+    public function handleSocialCallback($driver)
+    {
+        try
+        {
+            $social_user = Socialite::driver($driver)->user();
+            $user = User::where('email', '=', $social_user->getEmail())->first();
+            if (!is_null($user)) {
+                Auth::login($user);
+                return redirect($this->redirectPath());
+            } else {
+                return redirect()->back()->withErrors(trans('auth.failed'));
+            }
+        } catch (Exception $e) {
+            return redirect('auth/google');
+        }
+    }
 }

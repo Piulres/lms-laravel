@@ -2,23 +2,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h4>@lang('global.internal-notifications.title')</h4>
-        @can('internal_notification_create')
-            <a href="{{ route('admin.internal_notifications.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
-    </div>
+    <h3 class="page-title">@lang('global.internal-notifications.title')</h3>
+    @can('internal_notification_create')
+    <p>
+        <a href="{{ route('admin.internal_notifications.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
+        
+    </p>
+    @endcan
 
-    <div class="card">
+    
 
-        <div class="card-content">
-            <div class="title">
-                <h5>@lang('global.app_list')</h5>
-            </div>
-            <table class="striped responsive-table {{ count($internal_notifications) > 0 ? 'datatable' : '' }} @can('internal_notification_delete') dt-select @endcan">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @lang('global.app_list')
+        </div>
+
+        <div class="panel-body table-responsive">
+            <table class="table table-bordered table-striped {{ count($internal_notifications) > 0 ? 'datatable' : '' }} @can('internal_notification_delete') dt-select @endcan">
                 <thead>
                     <tr>
-                        <th>@lang('global.app_order')</th>
                         @can('internal_notification_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -35,7 +37,6 @@
                     @if (count($internal_notifications) > 0)
                         @foreach ($internal_notifications as $internal_notification)
                             <tr data-entry-id="{{ $internal_notification->id }}">
-                                <td>1</td>
                                 @can('internal_notification_delete')
                                     <td></td>
                                 @endcan
@@ -47,24 +48,22 @@
                                         <span class="label label-info label-many">{{ $singleUsers->name }}</span>
                                     @endforeach
                                 </td>
-                                <td class="actions">
-                                    <div class="buttons d-flex justify-content-end">
-                                        @can('internal_notification_view')
-                                        <a href="{{ route('admin.internal_notifications.show',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
-                                        @endcan
-                                        @can('internal_notification_edit')
-                                        <a href="{{ route('admin.internal_notifications.edit',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
-                                        @endcan
-                                        @can('internal_notification_delete')
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.internal_notifications.destroy', $internal_notification->id])) !!}
-                                        {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                        {!! Form::close() !!}
-                                        @endcan
-                                    </div>
+                                                                <td>
+                                    @can('internal_notification_view')
+                                    <a href="{{ route('admin.internal_notifications.show',[$internal_notification->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @endcan
+                                    @can('internal_notification_edit')
+                                    <a href="{{ route('admin.internal_notifications.edit',[$internal_notification->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @endcan
+                                    @can('internal_notification_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.internal_notifications.destroy', $internal_notification->id])) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
                                 </td>
 
                             </tr>

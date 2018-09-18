@@ -13,8 +13,8 @@
         "intervention/image": "^2.4",
         "doctrine/dbal": "^2.5",
         "yajra/laravel-datatables-oracle": "^8.4.1",
-        "unisharp/laravel-filemanager": "^1.8",
-        "spatie/laravel-medialibrary": "^6.0"
+        "laravel/socialite": "^3.0",
+        "unisharp/laravel-filemanager": "^1.8"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

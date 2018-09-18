@@ -4,23 +4,29 @@
 
 @section('messenger-content')
 
-    <div class="row justify-content-end col-12">
-        <a href="{{ route('admin.messenger.edit', [$topic->id]) }}" class="btn waves-effect waves-light grey">Reply</a>
-    </div>
-
     <div class="row">
+        <a href="{{ route('admin.messenger.edit', [$topic->id]) }}" class="btn btn-primary">Reply</a>
+
         <div class="col-md-12">
-            <div class="card" style="margin-top:8px;">
+            <div class="list-group" style="margin-top:8px;">
                 @foreach($topic->messages as $message)
-                <div class="card-content" style="padding-left:15px;">
-                    <div class="card-title padding-5">
-                        <h6><strong>Sender:</strong> {{ $message->sender->email }}</h6>
-                        <h6><strong>At: </strong>{{  $message->sent_at->diffForHumans()/*format('d F Y h:i')*/ }}</h6>
+                    <div class="row list-group-item">
+                        <div class="row">
+                            <div class="col col-xs-10 {{ (in_array($message->id, $unreadMessages)?"unread":false) }}">
+                                {{ $message->sender->email }}
+                            </div>
+                            <div class="col col-xs-2">
+                                {{  $message->sent_at->diffForHumans()/*format('d F Y h:i')*/ }}
+                            </div>
+                        </div>
+                        <div>
+                        </div>
+                        <div class="row" style="padding-left:15px;">
+                            <div class="col col-xs-12">
+                                {{ $message->content }}
+                            </div>
+                        </div>
                     </div>
-                    <div class="divider"></div>
-                    <h5><strong>Message:</strong></h5>
-                    <p>{{ $message->content }}</p>
-                </div>
 
                 @endforeach
             </div>

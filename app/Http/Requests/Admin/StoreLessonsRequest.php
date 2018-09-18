@@ -23,6 +23,7 @@ class StoreLessonsRequest extends FormRequest
     public function rules()
     {
         return [
+            'order' => 'max:2147483647|nullable|numeric',
         ];
     }
 }

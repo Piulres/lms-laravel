@@ -23,8 +23,11 @@ class StoreTrailsRequest extends FormRequest
     public function rules()
     {
         return [
-            'categories.*' => 'exists:trailscategories,id',
             'courses.*' => 'exists:courses,id',
+            'start_date' => 'nullable|date_format:'.config('app.date_format'),
+            'end_date' => 'nullable|date_format:'.config('app.date_format'),
+            'categories.*' => 'exists:trailcategories,id',
+            'tags.*' => 'exists:trailtags,id',
         ];
     }
 }

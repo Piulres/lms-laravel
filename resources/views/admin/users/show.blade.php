@@ -1,37 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.users.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
-    </div>
-    <div class="header-title">
-        <h4>@lang('global.users.title')</h4>
-    </div>
+    <h3 class="page-title">@lang('global.users.title')</h3>
 
-    <div class="card">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @lang('global.app_view')
+        </div>
 
-        <div class="card-content">
-            <div class="title col-12">
-                <h5>@lang('global.app_view')</h5>
-            </div>
+        <div class="panel-body table-responsive">
             <div class="row">
                 <div class="col-md-6">
-                    <table class="striped">
+                    <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('global.users.fields.name')</th>
                             <td field-key='name'>{{ $user->name }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('global.users.fields.last-name')</th>
-                            <td field-key='last_name'>{{ $user->last_name }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('global.users.fields.email')</th>
-                            <td field-key='email'>{{ $user->email }}</td>
+                            <th>@lang('global.users.fields.lastname')</th>
+                            <td field-key='lastname'>{{ $user->lastname }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.users.fields.website')</th>
                             <td field-key='website'>{{ $user->website }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.users.fields.email')</th>
+                            <td field-key='email'>{{ $user->email }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.users.fields.avatar')</th>
@@ -56,347 +51,365 @@
                     </table>
                 </div>
             </div><!-- Nav tabs -->
-        </div>
-    </div>
+<ul class="nav nav-tabs" role="tablist">
+    
+<li role="presentation" class="active"><a href="#user_actions" aria-controls="user_actions" role="tab" data-toggle="tab">User actions</a></li>
+<li role="presentation" class=""><a href="#internal_notifications" aria-controls="internal_notifications" role="tab" data-toggle="tab">Notifications</a></li>
+<li role="presentation" class=""><a href="#coursesdata" aria-controls="coursesdata" role="tab" data-toggle="tab">Data Courses</a></li>
+<li role="presentation" class=""><a href="#traildata" aria-controls="traildata" role="tab" data-toggle="tab">Data Trail</a></li>
+<li role="presentation" class=""><a href="#courses" aria-controls="courses" role="tab" data-toggle="tab">Courses</a></li>
+</ul>
 
-    <div class="card">
-        <div class="card-tabs">
-            <ul class="shuffle-tabs tabs tabs-fixed-width">
-                <li class="tab grey-text"><a class="grey-text" href="#user_actions">User actions</a></li>
-                <li class="tab grey-text"><a class="grey-text" href="#datacourses">Data Courses</a></li>
-                <li class="tab grey-text"><a class="grey-text" href="#datatrails">Data Trails</a></li>
-                <li class="tab grey-text"><a class="grey-text" href="#courses">Courses</a></li>
-                <li class="tab grey-text"><a class="grey-text" href="#internal_notifications">Notifications</a></li>
-            </ul>
-        </div>
-        <div class="card-content">
-            <div id="user_actions">
-                <table class="striped responsive-table {{ count($user_actions) > 0 ? 'datatable' : '' }}">
-                    <thead>
-                        <tr>
-                            <th>@lang('global.user-actions.created_at')</th>
-                            <th>@lang('global.user-actions.fields.user')</th>
-                            <th>@lang('global.user-actions.fields.action')</th>
-                            <th>@lang('global.user-actions.fields.action-model')</th>
-                            <th>@lang('global.user-actions.fields.action-id')</th>
-                        </tr>
-                    </thead>
+<!-- Tab panes -->
+<div class="tab-content">
+    
+<div role="tabpanel" class="tab-pane active" id="user_actions">
+<table class="table table-bordered table-striped {{ count($user_actions) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('global.user-actions.created_at')</th>
+                        <th>@lang('global.user-actions.fields.user')</th>
+                        <th>@lang('global.user-actions.fields.action')</th>
+                        <th>@lang('global.user-actions.fields.action-model')</th>
+                        <th>@lang('global.user-actions.fields.action-id')</th>
+                        
+        </tr>
+    </thead>
 
-                    <tbody>
-                        @if (count($user_actions) > 0)
-                            @foreach ($user_actions as $user_action)
-                                <tr data-entry-id="{{ $user_action->id }}">
-                                    <td>{{ $user_action->created_at or '' }}</td>
-                                    <td field-key='user'>{{ $user_action->user->name or '' }}</td>
-                                    <td field-key='action'>{{ $user_action->action }}</td>
-                                    <td field-key='action_model'>{{ $user_action->action_model }}</td>
-                                    <td field-key='action_id'>{{ $user_action->action_id }}</td>
-                                </tr>
-                            @endforeach
+    <tbody>
+        @if (count($user_actions) > 0)
+            @foreach ($user_actions as $user_action)
+                <tr data-entry-id="{{ $user_action->id }}">
+                    <td>{{ $user_action->created_at or '' }}</td>
+                                <td field-key='user'>{{ $user_action->user->name or '' }}</td>
+                                <td field-key='action'>{{ $user_action->action }}</td>
+                                <td field-key='action_model'>{{ $user_action->action_model }}</td>
+                                <td field-key='action_id'>{{ $user_action->action_id }}</td>
+                                
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="7">@lang('global.app_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+<div role="tabpanel" class="tab-pane " id="internal_notifications">
+<table class="table table-bordered table-striped {{ count($internal_notifications) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('global.internal-notifications.fields.text')</th>
+                        <th>@lang('global.internal-notifications.fields.link')</th>
+                        <th>@lang('global.internal-notifications.fields.users')</th>
+                                                <th>&nbsp;</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (count($internal_notifications) > 0)
+            @foreach ($internal_notifications as $internal_notification)
+                <tr data-entry-id="{{ $internal_notification->id }}">
+                    <td field-key='text'>{{ $internal_notification->text }}</td>
+                                <td field-key='link'>{{ $internal_notification->link }}</td>
+                                <td field-key='users'>
+                                    @foreach ($internal_notification->users as $singleUsers)
+                                        <span class="label label-info label-many">{{ $singleUsers->name }}</span>
+                                    @endforeach
+                                </td>
+                                                                <td>
+                                    @can('internal_notification_view')
+                                    <a href="{{ route('admin.internal_notifications.show',[$internal_notification->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @endcan
+                                    @can('internal_notification_edit')
+                                    <a href="{{ route('admin.internal_notifications.edit',[$internal_notification->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @endcan
+                                    @can('internal_notification_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.internal_notifications.destroy', $internal_notification->id])) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="8">@lang('global.app_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+<div role="tabpanel" class="tab-pane " id="coursesdata">
+<table class="table table-bordered table-striped {{ count($coursesdatas) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('global.coursesdata.fields.view')</th>
+                        <th>@lang('global.coursesdata.fields.progress')</th>
+                        <th>@lang('global.coursesdata.fields.rating')</th>
+                        <th>@lang('global.coursesdata.fields.testimonal')</th>
+                        <th>@lang('global.coursesdata.fields.user')</th>
+                        <th>@lang('global.coursesdata.fields.course')</th>
+                        <th>@lang('global.coursesdata.fields.certificate')</th>
+                        @if( request('show_deleted') == 1 )
+                        <th>&nbsp;</th>
                         @else
-                            <tr>
-                                <td colspan="7">@lang('global.app_no_entries_in_table')</td>
-                            </tr>
+                        <th>&nbsp;</th>
                         @endif
-                    </tbody>
-                </table>
-            </div>
+        </tr>
+    </thead>
 
-            <div id="datacourses">
-                <table class="striped responsive-table {{ count($datacourses) > 0 ? 'datatable' : '' }}">
-                    <thead>
-                        <tr>
-                            <th>@lang('global.datacourses.fields.course')</th>
-                            <th>@lang('global.datacourses.fields.user')</th>
-                            <th>@lang('global.datacourses.fields.view')</th>
-                            <th>@lang('global.datacourses.fields.progress')</th>
-                            <th>@lang('global.datacourses.fields.rating')</th>
-                            @if( request('show_deleted') == 1 )
-                            <th>&nbsp;</th>
-                            @else
-                            <th>&nbsp;</th>
-                            @endif
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @if (count($datacourses) > 0)
-                            @foreach ($datacourses as $datacourse)
-                                <tr data-entry-id="{{ $datacourse->id }}">
-                                    <td field-key='course'>{{ $datacourse->course->title or '' }}</td>
-                                    <td field-key='user'>{{ $datacourse->user->name or '' }}</td>
-                                    <td field-key='view'>{{ Form::checkbox("view", 1, $datacourse->view == 1 ? true : false, ["disabled"]) }}</td>
-                                    <td field-key='progress'>{{ $datacourse->progress }}</td>
-                                    <td field-key='rating'>{{ $datacourse->rating }}</td>
-                                    @if( request('show_deleted') == 1 )
-                                    <td>
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'POST',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.datacourses.restore', $datacourse->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                        {!! Form::close() !!}
-                                                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.datacourses.perma_del', $datacourse->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                    @else
-                                    <td class="actions">
-                                        <div class="buttons d-flex align-items-center justify-content-end">
-                                            @can('datacourse_view')
-                                            <a href="{{ route('admin.datacourses.show',[$datacourse->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
-                                            @endcan
-                                            @can('datacourse_edit')
-                                            <a href="{{ route('admin.datacourses.edit',[$datacourse->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
-                                            @endcan
-                                            @can('datacourse_delete')
-                                            {!! Form::open(array(
-                                                'style' => 'display: inline-block;',
-                                                'method' => 'DELETE',
-                                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                                'route' => ['admin.datacourses.destroy', $datacourse->id])) !!}
-                                            {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                            {!! Form::close() !!}
-                                            @endcan
-                                            </div>
-                                        </td>
-                                        @endif
-                                </tr>
-                            @endforeach
+    <tbody>
+        @if (count($coursesdatas) > 0)
+            @foreach ($coursesdatas as $coursesdata)
+                <tr data-entry-id="{{ $coursesdata->id }}">
+                    <td field-key='view'>{{ $coursesdata->view }}</td>
+                                <td field-key='progress'>{{ $coursesdata->progress }}</td>
+                                <td field-key='rating'>{{ $coursesdata->rating }}</td>
+                                <td field-key='testimonal'>{!! $coursesdata->testimonal !!}</td>
+                                <td field-key='user'>{{ $coursesdata->user->name or '' }}</td>
+                                <td field-key='course'>{{ $coursesdata->course->title or '' }}</td>
+                                <td field-key='certificate'>{{ $coursesdata->certificate->title or '' }}</td>
+                                @if( request('show_deleted') == 1 )
+                                <td>
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'POST',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.coursesdatas.restore', $coursesdata->id])) !!}
+                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                    {!! Form::close() !!}
+                                                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.coursesdatas.perma_del', $coursesdata->id])) !!}
+                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                                                </td>
+                                @else
+                                <td>
+                                    @can('coursesdatum_view')
+                                    <a href="{{ route('admin.coursesdatas.show',[$coursesdata->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @endcan
+                                    @can('coursesdatum_edit')
+                                    <a href="{{ route('admin.coursesdatas.edit',[$coursesdata->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @endcan
+                                    @can('coursesdatum_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.coursesdatas.destroy', $coursesdata->id])) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                                @endif
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="12">@lang('global.app_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+<div role="tabpanel" class="tab-pane " id="traildata">
+<table class="table table-bordered table-striped {{ count($traildatas) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('global.traildata.fields.view')</th>
+                        <th>@lang('global.traildata.fields.progress')</th>
+                        <th>@lang('global.traildata.fields.rating')</th>
+                        <th>@lang('global.traildata.fields.testimonal')</th>
+                        <th>@lang('global.traildata.fields.user')</th>
+                        <th>@lang('global.traildata.fields.trail')</th>
+                        <th>@lang('global.traildata.fields.certificate')</th>
+                        @if( request('show_deleted') == 1 )
+                        <th>&nbsp;</th>
                         @else
-                            <tr>
-                                <td colspan="10">@lang('global.app_no_entries_in_table')</td>
-                            </tr>
+                        <th>&nbsp;</th>
                         @endif
-                    </tbody>
-                </table>
-            </div>
+        </tr>
+    </thead>
 
-            <div id="datatrails">
-                <table class="striped responsive-table {{ count($datatrails) > 0 ? 'datatable' : '' }}">
-                    <thead>
-                        <tr>
-                            <th>@lang('global.datatrails.fields.trail')</th>
-                            <th>@lang('global.datatrails.fields.user')</th>
-                            <th>@lang('global.datatrails.fields.view')</th>
-                            <th>@lang('global.datatrails.fields.progress')</th>
-                            <th>@lang('global.datatrails.fields.rating')</th>
-                            @if( request('show_deleted') == 1 )
-                            <th>&nbsp;</th>
-                            @else
-                            <th>&nbsp;</th>
-                            @endif
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @if (count($datatrails) > 0)
-                            @foreach ($datatrails as $datatrail)
-                                <tr data-entry-id="{{ $datatrail->id }}">
-                                    <td field-key='trail'>{{ $datatrail->trail->title or '' }}</td>
-                                    <td field-key='user'>{{ $datatrail->user->name or '' }}</td>
-                                    <td field-key='view'>{{ Form::checkbox("view", 1, $datatrail->view == 1 ? true : false, ["disabled"]) }}</td>
-                                    <td field-key='progress'>{{ $datatrail->progress }}</td>
-                                    <td field-key='rating'>{{ $datatrail->rating }}</td>
-                                    @if( request('show_deleted') == 1 )
-                                    <td>
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'POST',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.datatrails.restore', $datatrail->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                        {!! Form::close() !!}
-                                                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.datatrails.perma_del', $datatrail->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                    @else
-                                    <td class="actions">
-                                        <div class="buttons d-flex align-items-center justify-content-end">
-                                            @can('datatrail_view')
-                                            <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
-                                            @endcan
-                                            @can('datatrail_edit')
-                                            <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
-                                            @endcan
-                                            @can('datatrail_delete')
-                                            {!! Form::open(array(
-                                                'style' => 'display: inline-block;',
-                                                'method' => 'DELETE',
-                                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                                'route' => ['admin.datatrails.destroy', $datatrail->id])) !!}
-                                            {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                            {!! Form::close() !!}
-                                            @endcan
-                                        </div>
-                                    </td>
-                                    @endif
-                                </tr>
-                            @endforeach
+    <tbody>
+        @if (count($traildatas) > 0)
+            @foreach ($traildatas as $traildata)
+                <tr data-entry-id="{{ $traildata->id }}">
+                    <td field-key='view'>{{ $traildata->view }}</td>
+                                <td field-key='progress'>{{ $traildata->progress }}</td>
+                                <td field-key='rating'>{{ $traildata->rating }}</td>
+                                <td field-key='testimonal'>{!! $traildata->testimonal !!}</td>
+                                <td field-key='user'>{{ $traildata->user->name or '' }}</td>
+                                <td field-key='trail'>{{ $traildata->trail->title or '' }}</td>
+                                <td field-key='certificate'>{{ $traildata->certificate->title or '' }}</td>
+                                @if( request('show_deleted') == 1 )
+                                <td>
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'POST',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.traildatas.restore', $traildata->id])) !!}
+                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                    {!! Form::close() !!}
+                                                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.traildatas.perma_del', $traildata->id])) !!}
+                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                                                </td>
+                                @else
+                                <td>
+                                    @can('traildatum_view')
+                                    <a href="{{ route('admin.traildatas.show',[$traildata->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @endcan
+                                    @can('traildatum_edit')
+                                    <a href="{{ route('admin.traildatas.edit',[$traildata->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @endcan
+                                    @can('traildatum_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.traildatas.destroy', $traildata->id])) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                                @endif
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="12">@lang('global.app_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+<div role="tabpanel" class="tab-pane " id="courses">
+<table class="table table-bordered table-striped {{ count($courses) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('global.courses.fields.order')</th>
+                        <th>@lang('global.courses.fields.title')</th>
+                        <th>@lang('global.courses.fields.slug')</th>
+                        <th>@lang('global.courses.fields.description')</th>
+                        <th>@lang('global.courses.fields.introduction')</th>
+                        <th>@lang('global.courses.fields.featured-image')</th>
+                        <th>@lang('global.courses.fields.instructor')</th>
+                        <th>@lang('global.courses.fields.lessons')</th>
+                        <th>@lang('global.courses.fields.duration')</th>
+                        <th>@lang('global.courses.fields.start-date')</th>
+                        <th>@lang('global.courses.fields.end-date')</th>
+                        <th>@lang('global.courses.fields.categories')</th>
+                        <th>@lang('global.courses.fields.tags')</th>
+                        <th>@lang('global.courses.fields.approved')</th>
+                        @if( request('show_deleted') == 1 )
+                        <th>&nbsp;</th>
                         @else
-                            <tr>
-                                <td colspan="10">@lang('global.app_no_entries_in_table')</td>
-                            </tr>
+                        <th>&nbsp;</th>
                         @endif
-                    </tbody>
-                </table>
-            </div>
+        </tr>
+    </thead>
 
-            <div id="courses">
-                <table class="striped responsive-table {{ count($courses) > 0 ? 'datatable' : '' }}">
-                    <thead>
-                        <tr>
-                            <th>@lang('global.courses.fields.title')</th>
-                            <th>@lang('global.courses.fields.instructor')</th>
-                            <th>@lang('global.courses.fields.lessons')</th>
-                            <th>@lang('global.courses.fields.categories')</th>
-                            <th>@lang('global.courses.fields.featured-image')</th>
-                            <th>@lang('global.courses.fields.description')</th>
-                            <th>@lang('global.courses.fields.introduction')</th>
-                            <th>@lang('global.courses.fields.duration')</th>
-                            @if( request('show_deleted') == 1 )
-                            <th>&nbsp;</th>
-                            @else
-                            <th>&nbsp;</th>
-                            @endif
-                        </tr>
-                    </thead>
+    <tbody>
+        @if (count($courses) > 0)
+            @foreach ($courses as $course)
+                <tr data-entry-id="{{ $course->id }}">
+                    <td field-key='order'>{{ $course->order }}</td>
+                                <td field-key='title'>{{ $course->title }}</td>
+                                <td field-key='slug'>{{ $course->slug }}</td>
+                                <td field-key='description'>{!! $course->description !!}</td>
+                                <td field-key='introduction'>{!! $course->introduction !!}</td>
+                                <td field-key='featured_image'>@if($course->featured_image)<a href="{{ asset(env('UPLOAD_PATH').'/' . $course->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $course->featured_image) }}"/></a>@endif</td>
+                                <td field-key='instructor'>
+                                    @foreach ($course->instructor as $singleInstructor)
+                                        <span class="label label-info label-many">{{ $singleInstructor->name }}</span>
+                                    @endforeach
+                                </td>
+                                <td field-key='lessons'>
+                                    @foreach ($course->lessons as $singleLessons)
+                                        <span class="label label-info label-many">{{ $singleLessons->title }}</span>
+                                    @endforeach
+                                </td>
+                                <td field-key='duration'>{{ $course->duration }}</td>
+                                <td field-key='start_date'>{{ $course->start_date }}</td>
+                                <td field-key='end_date'>{{ $course->end_date }}</td>
+                                <td field-key='categories'>
+                                    @foreach ($course->categories as $singleCategories)
+                                        <span class="label label-info label-many">{{ $singleCategories->title }}</span>
+                                    @endforeach
+                                </td>
+                                <td field-key='tags'>
+                                    @foreach ($course->tags as $singleTags)
+                                        <span class="label label-info label-many">{{ $singleTags->title }}</span>
+                                    @endforeach
+                                </td>
+                                <td field-key='approved'>{{ Form::checkbox("approved", 1, $course->approved == 1 ? true : false, ["disabled"]) }}</td>
+                                @if( request('show_deleted') == 1 )
+                                <td>
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'POST',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.courses.restore', $course->id])) !!}
+                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                    {!! Form::close() !!}
+                                                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.courses.perma_del', $course->id])) !!}
+                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                                                </td>
+                                @else
+                                <td>
+                                    @can('course_view')
+                                    <a href="{{ route('admin.courses.show',[$course->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @endcan
+                                    @can('course_edit')
+                                    <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @endcan
+                                    @can('course_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.courses.destroy', $course->id])) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                                @endif
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="19">@lang('global.app_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+</div>
 
-                    <tbody>
-                        @if (count($courses) > 0)
-                            @foreach ($courses as $course)
-                                <tr data-entry-id="{{ $course->id }}">
-                                    <td field-key='title'>{{ $course->title }}</td>
-                                    <td field-key='instructor'>
-                                        @foreach ($course->instructor as $singleInstructor)
-                                            <span class="label label-info label-many">{{ $singleInstructor->name }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td field-key='lessons'>
-                                        @foreach ($course->lessons as $singleLessons)
-                                            <span class="label label-info label-many">{{ $singleLessons->title }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td field-key='categories'>
-                                        @foreach ($course->categories as $singleCategories)
-                                            <span class="label label-info label-many">{{ $singleCategories->title }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td field-key='featured_image'>@if($course->featured_image)<a href="{{ asset(env('UPLOAD_PATH').'/' . $course->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $course->featured_image) }}"/></a>@endif</td>
-                                    <td field-key='description'>{!! $course->description !!}</td>
-                                    <td field-key='introduction'>{!! $course->introduction !!}</td>
-                                    <td field-key='duration'>{{ $course->duration }}</td>
-                                    @if( request('show_deleted') == 1 )
-                                    <td>
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'POST',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.courses.restore', $course->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                        {!! Form::close() !!}
-                                                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.courses.perma_del', $course->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                        {!! Form::close() !!}
-                                                                    </td>
-                                    @else
-                                    <td class="actions">
-                                        <div class="buttons d-flex align-items-center justify-content-end">
-                                            @can('course_view')
-                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
-                                            @endcan
-                                            @can('course_edit')
-                                            <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
-                                            @endcan
-                                            @can('course_delete')
-                                            {!! Form::open(array(
-                                                'style' => 'display: inline-block;',
-                                                'method' => 'DELETE',
-                                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                                'route' => ['admin.courses.destroy', $course->id])) !!}
-                                            {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                            {!! Form::close() !!}
-                                            @endcan
-                                        </div>
-                                    </td>
-                                    @endif
-                                </tr>
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="13">@lang('global.app_no_entries_in_table')</td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
-            </div>
+            <p>&nbsp;</p>
 
-            <div id="internal_notifications">
-                <table class="striped {{ count($internal_notifications) > 0 ? 'datatable' : '' }}">
-                    <thead>
-                        <tr>
-                            <th>@lang('global.internal-notifications.fields.text')</th>
-                            <th>@lang('global.internal-notifications.fields.link')</th>
-                            <th>@lang('global.internal-notifications.fields.users')</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @if (count($internal_notifications) > 0)
-                            @foreach ($internal_notifications as $internal_notification)
-                                <tr data-entry-id="{{ $internal_notification->id }}">
-                                    <td field-key='text'>{{ $internal_notification->text }}</td>
-                                    <td field-key='link'>{{ $internal_notification->link }}</td>
-                                    <td field-key='users'>
-                                        @foreach ($internal_notification->users as $singleUsers)
-                                            <span class="label label-info label-many">{{ $singleUsers->name }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td class="actions">
-                                        <div class="buttons d-flex align-items-center justify-content-end">
-                                            @can('internal_notification_view')
-                                            <a href="{{ route('admin.internal_notifications.show',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
-                                            @endcan
-                                            @can('internal_notification_edit')
-                                            <a href="{{ route('admin.internal_notifications.edit',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
-                                            @endcan
-                                            @can('internal_notification_delete')
-                                            {!! Form::open(array(
-                                                'style' => 'display: inline-block;',
-                                                'method' => 'DELETE',
-                                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                                'route' => ['admin.internal_notifications.destroy', $internal_notification->id])) !!}
-                                            {!! Form::button('<i class="fa fa-trash-o"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                            {!! Form::close() !!}
-                                            @endcan
-                                        </div>
-                                    </td>
-
-                                </tr>
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="8">@lang('global.app_no_entries_in_table')</td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
-            </div>
+            <a href="{{ route('admin.users.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
         </div>
     </div>
 @stop

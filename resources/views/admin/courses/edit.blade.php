@@ -1,141 +1,57 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h4>@lang('global.courses.title')</h4>
-    </div>
+    <h3 class="page-title">@lang('global.courses.title')</h3>
     
     {!! Form::model($course, ['method' => 'PUT', 'route' => ['admin.courses.update', $course->id], 'files' => true,]) !!}
 
-    <div class="card">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @lang('global.app_edit')
+        </div>
 
-        <div class="card-content">
+        <div class="panel-body">
             <div class="row">
-                <div class="title col-md-12">
-                    <h5>@lang('global.app_edit')</h5>
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('order', trans('global.courses.fields.order').'', ['class' => 'control-label']) !!}
+                    {!! Form::number('order', old('order'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('order'))
+                        <p class="help-block">
+                            {{ $errors->first('order') }}
+                        </p>
+                    @endif
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="input-field">
-                        {!! Form::label('title', trans('global.courses.fields.title').'', ['class' => 'control-label']) !!}
-                        {!! Form::text('title', old('title'), ['class' => 'form-control']) !!}
-                        <span class="helper-text" data-error="wrong" data-success="right"></span>
-                        @if($errors->has('title'))
-                            <span class="helper-text" data-error="wrong" data-success="right">
-                                {{ $errors->first('title') }}
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <div class="col-12 no-padding">
-                        {!! Form::label('instructor', trans('global.courses.fields.instructor').'', ['class' => 'control-label']) !!}
-                        {!! Form::select('instructor[]', $instructors, old('instructor') ? old('instructor') : $course->instructor->pluck('id')->toArray(), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-instructor' ]) !!}
-                        <span class="helper-text" data-error="wrong" data-success="right"></span>
-                        @if($errors->has('instructor'))
-                            <span class="helper-text" data-error="wrong" data-success="right">
-                                {{ $errors->first('instructor') }}
-                            </span>
-                        @endif
-                    </div>
-                    <div class="row">
-                        <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-instructor">
-                                {{ trans('global.app_select_all') }}
-                            </button>
-                        </div>
-                        <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-instructor">
-                                {{ trans('global.app_deselect_all') }}
-                            </button>
-                        </div>
-                    </div>
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('title', trans('global.courses.fields.title').'', ['class' => 'control-label']) !!}
+                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('title'))
+                        <p class="help-block">
+                            {{ $errors->first('title') }}
+                        </p>
+                    @endif
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="col-12 no-padding">
-                        {!! Form::label('lessons', trans('global.courses.fields.lessons').'', ['class' => 'control-label']) !!}
-                        {!! Form::select('lessons[]', $lessons, old('lessons') ? old('lessons') : $course->lessons->pluck('id')->toArray(), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-lessons' ]) !!}
-                        <span class="helper-text" data-error="wrong" data-success="right"></span>
-                        @if($errors->has('lessons'))
-                            <span class="helper-text" data-error="wrong" data-success="right">
-                                {{ $errors->first('lessons') }}
-                            </span>
-                        @endif
-                    </div>
-                    <div class="row">
-                        <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-lessons">
-                                {{ trans('global.app_select_all') }}
-                            </button>
-                        </div>
-                        <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-lessons">
-                                {{ trans('global.app_deselect_all') }}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <div class="col-12 no-padding">
-                        {!! Form::label('categories', trans('global.courses.fields.categories').'', ['class' => 'control-label']) !!}
-                        {!! Form::select('categories[]', $categories, old('categories') ? old('categories') : $course->categories->pluck('id')->toArray(), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-categories' ]) !!}
-                        <span class="helper-text" data-error="wrong" data-success="right"></span>
-                        @if($errors->has('categories'))
-                            <span class="helper-text" data-error="wrong" data-success="right">
-                                {{ $errors->first('categories') }}
-                            </span>
-                        @endif
-                    </div>
-                    <div class="row">
-                        <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-categories">
-                                {{ trans('global.app_select_all') }}
-                            </button>
-                        </div>
-                        <div class="col-6 d-flex justify-content-center">
-                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-categories">
-                                {{ trans('global.app_deselect_all') }}
-                            </button>
-                        </div>
-                    </div>
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('slug', trans('global.courses.fields.slug').'', ['class' => 'control-label']) !!}
+                    {!! Form::text('slug', old('slug'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('slug'))
+                        <p class="help-block">
+                            {{ $errors->first('slug') }}
+                        </p>
+                    @endif
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="file-field input-field">
-                        <div class="row">
-                        @if ($course->featured_image)
-                            <a href="{{ asset(env('UPLOAD_PATH').'/'.$course->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/'.$course->featured_image) }}"></a>
-                        @endif
-                        </div>
-                        <div class="btn grey">
-                            <span>File</span>
-                            {!! Form::file('featured_image', ['class' => 'form-control', 'style' => 'margin-top: 4px;']) !!}
-                        </div>
-                        <div class="file-path-wrapper">
-                            {!! Form::text('file_text', old('file_text'), ['class' => 'file-path validate', 'placeholder' => 'Upload your avatar']) !!}
-                        </div>
-                        {!! Form::hidden('featured_image_max_size', 5) !!}
-                        {!! Form::hidden('featured_image_max_width', 4096) !!}
-                        {!! Form::hidden('featured_image_max_height', 4096) !!}
-                        <span class="helper-text" data-error="wrong" data-success="right"></span>
-                        @if($errors->has('featured_image'))
-                            <span class="helper-text" data-error="wrong" data-success="right">
-                                {{ $errors->first('featured_image') }}
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('description', trans('global.courses.fields.description').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('description', old('description'), ['class' => 'form-control ']) !!}
-                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    {!! Form::textarea('description', old('description'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
                     @if($errors->has('description'))
                         <p class="help-block">
                             {{ $errors->first('description') }}
@@ -144,24 +60,152 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('introduction', trans('global.courses.fields.introduction').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control editor']) !!}
-                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
                     @if($errors->has('introduction'))
                         <p class="help-block">
                             {{ $errors->first('introduction') }}
                         </p>
                     @endif
                 </div>
-
-                <div class="col-12 col-md-6">
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    @if ($course->featured_image)
+                        <a href="{{ asset(env('UPLOAD_PATH').'/'.$course->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/'.$course->featured_image) }}"></a>
+                    @endif
+                    {!! Form::label('featured_image', trans('global.courses.fields.featured-image').'', ['class' => 'control-label']) !!}
+                    {!! Form::file('featured_image', ['class' => 'form-control', 'style' => 'margin-top: 4px;']) !!}
+                    {!! Form::hidden('featured_image_max_size', 4) !!}
+                    {!! Form::hidden('featured_image_max_width', 4096) !!}
+                    {!! Form::hidden('featured_image_max_height', 4096) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('featured_image'))
+                        <p class="help-block">
+                            {{ $errors->first('featured_image') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('instructor', trans('global.courses.fields.instructor').'', ['class' => 'control-label']) !!}
+                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-instructor">
+                        {{ trans('global.app_select_all') }}
+                    </button>
+                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-instructor">
+                        {{ trans('global.app_deselect_all') }}
+                    </button>
+                    {!! Form::select('instructor[]', $instructors, old('instructor') ? old('instructor') : $course->instructor->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-instructor' ]) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('instructor'))
+                        <p class="help-block">
+                            {{ $errors->first('instructor') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('lessons', trans('global.courses.fields.lessons').'', ['class' => 'control-label']) !!}
+                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-lessons">
+                        {{ trans('global.app_select_all') }}
+                    </button>
+                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-lessons">
+                        {{ trans('global.app_deselect_all') }}
+                    </button>
+                    {!! Form::select('lessons[]', $lessons, old('lessons') ? old('lessons') : $course->lessons->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-lessons' ]) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('lessons'))
+                        <p class="help-block">
+                            {{ $errors->first('lessons') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('duration', trans('global.courses.fields.duration').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('duration', old('duration'), ['class' => 'form-control']) !!}
-                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    {!! Form::number('duration', old('duration'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
                     @if($errors->has('duration'))
                         <p class="help-block">
                             {{ $errors->first('duration') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('start_date', trans('global.courses.fields.start-date').'', ['class' => 'control-label']) !!}
+                    {!! Form::text('start_date', old('start_date'), ['class' => 'form-control date', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('start_date'))
+                        <p class="help-block">
+                            {{ $errors->first('start_date') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('end_date', trans('global.courses.fields.end-date').'', ['class' => 'control-label']) !!}
+                    {!! Form::text('end_date', old('end_date'), ['class' => 'form-control date', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('end_date'))
+                        <p class="help-block">
+                            {{ $errors->first('end_date') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('categories', trans('global.courses.fields.categories').'', ['class' => 'control-label']) !!}
+                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-categories">
+                        {{ trans('global.app_select_all') }}
+                    </button>
+                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-categories">
+                        {{ trans('global.app_deselect_all') }}
+                    </button>
+                    {!! Form::select('categories[]', $categories, old('categories') ? old('categories') : $course->categories->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-categories' ]) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('categories'))
+                        <p class="help-block">
+                            {{ $errors->first('categories') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('tags', trans('global.courses.fields.tags').'', ['class' => 'control-label']) !!}
+                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-tags">
+                        {{ trans('global.app_select_all') }}
+                    </button>
+                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-tags">
+                        {{ trans('global.app_deselect_all') }}
+                    </button>
+                    {!! Form::select('tags[]', $tags, old('tags') ? old('tags') : $course->tags->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-tags' ]) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('tags'))
+                        <p class="help-block">
+                            {{ $errors->first('tags') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('approved', trans('global.courses.fields.approved').'', ['class' => 'control-label']) !!}
+                    {!! Form::hidden('approved', 0) !!}
+                    {!! Form::checkbox('approved', 1, old('approved', old('approved')), []) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('approved'))
+                        <p class="help-block">
+                            {{ $errors->first('approved') }}
                         </p>
                     @endif
                 </div>
@@ -170,7 +214,7 @@
         </div>
     </div>
 
-    {!! Form::button('<i class="material-icons right">send</i>Update', ['class'=>'btn waves-effect waves-light grey', 'type'=>'submit']) !!}
+    {!! Form::submit(trans('global.app_update'), ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 @stop
 
@@ -188,6 +232,22 @@
         });
     </script>
 
+    <script src="{{ url('adminlte/plugins/datetimepicker/moment-with-locales.min.js') }}"></script>
+    <script src="{{ url('adminlte/plugins/datetimepicker/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+        $(function(){
+            moment.updateLocale('{{ App::getLocale() }}', {
+                week: { dow: 1 } // Monday is the first day of the week
+            });
+            
+            $('.date').datetimepicker({
+                format: "{{ config('app.date_format_moment') }}",
+                locale: "{{ App::getLocale() }}",
+            });
+            
+        });
+    </script>
+            
     <script>
         $("#selectbtn-instructor").click(function(){
             $("#selectall-instructor > option").prop("selected","selected");
@@ -218,6 +278,17 @@
         $("#deselectbtn-categories").click(function(){
             $("#selectall-categories > option").prop("selected","");
             $("#selectall-categories").trigger("change");
+        });
+    </script>
+
+    <script>
+        $("#selectbtn-tags").click(function(){
+            $("#selectall-tags > option").prop("selected","selected");
+            $("#selectall-tags").trigger("change");
+        });
+        $("#deselectbtn-tags").click(function(){
+            $("#selectall-tags > option").prop("selected","");
+            $("#selectall-tags").trigger("change");
         });
     </script>
 @stop

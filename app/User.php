@@ -12,11 +12,11 @@ use App\Traits\FilterByTeam;
  *
  * @package App
  * @property string $name
- * @property string $last_name
- * @property string $email
+ * @property string $lastname
  * @property string $website
- * @property string $avatar
+ * @property string $email
  * @property string $password
+ * @property string $avatar
  * @property string $remember_token
  * @property string $team
  * @property tinyInteger $approved
@@ -26,9 +26,12 @@ class User extends Authenticatable
     use Notifiable;
     use FilterByTeam;
 
-    protected $fillable = ['name', 'last_name', 'email', 'website', 'avatar', 'password', 'remember_token', 'approved', 'team_id'];
+    protected $fillable = ['name', 'lastname', 'website', 'email', 'password', 'avatar', 'remember_token', 'approved', 'team_id'];
     protected $hidden = ['password', 'remember_token'];
     public static $searchable = [
+        'name',
+        'lastname',
+        'email',
     ];
     
     public static function boot()

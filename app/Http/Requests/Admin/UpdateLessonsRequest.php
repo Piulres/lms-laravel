@@ -24,6 +24,7 @@ class UpdateLessonsRequest extends FormRequest
     {
         return [
             
+            'order' => 'max:2147483647|nullable|numeric',
         ];
     }
 }

@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreLessonsRequest;
 use App\Http\Requests\Admin\UpdateLessonsRequest;
 use App\Http\Controllers\Traits\FileUploadTrait;
-use Yajra\DataTables\DataTables;
 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -30,61 +29,16 @@ class LessonsController extends Controller
         }
 
 
-        
-        if (request()->ajax()) {
-            $query = Lesson::query();
-            $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('lesson_delete')) {
-            return abort(401);
-        }
-                $query->onlyTrashed();
-                $template = 'restoreTemplate';
+        if (request('show_deleted') == 1) {
+            if (! Gate::allows('lesson_delete')) {
+                return abort(401);
             }
-            $query->select([
-                'lessons.id',
-                'lessons.title',
-                'lessons.introduction',
-                'lessons.content',
-            ]);
-            $table = Datatables::of($query);
-
-            $table->setRowAttr([
-                'data-entry-id' => '{{$id}}',
-            ]);
-            $table->addColumn('massDelete', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
-            $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'lesson_';
-                $routeKey = 'admin.lessons';
-
-                return view($template, compact('row', 'gateKey', 'routeKey'));
-            });
-            $table->editColumn('title', function ($row) {
-                return $row->title ? $row->title : '';
-            });
-            $table->editColumn('introduction', function ($row) {
-                return $row->introduction ? $row->introduction : '';
-            });
-            $table->editColumn('study_material', function ($row) {
-                $build  = '';
-                foreach ($row->getMedia('study_material') as $media) {
-                    $build .= '<p class="form-group"><a href="' . $media->getUrl() . '" target="_blank">' . $media->name . '</a></p>';
-                }
-                
-                return $build;
-            });
-            $table->editColumn('content', function ($row) {
-                return $row->content ? $row->content : '';
-            });
-
-            $table->rawColumns(['actions','massDelete','study_material']);
-
-            return $table->make(true);
+            $lessons = Lesson::onlyTrashed()->get();
+        } else {
+            $lessons = Lesson::all();
         }
 
-        return view('admin.lessons.index');
+        return view('admin.lessons.index', compact('lessons'));
     }
 
     /**
@@ -115,12 +69,6 @@ class LessonsController extends Controller
         $lesson = Lesson::create($request->all());
 
 
-        foreach ($request->input('study_material_id', []) as $index => $id) {
-            $model          = config('laravel-medialibrary.media_model');
-            $file           = $model::find($id);
-            $file->model_id = $lesson->id;
-            $file->save();
-        }
 
         return redirect()->route('admin.lessons.index');
     }
@@ -159,15 +107,6 @@ class LessonsController extends Controller
         $lesson->update($request->all());
 
 
-        $media = [];
-        foreach ($request->input('study_material_id', []) as $index => $id) {
-            $model          = config('laravel-medialibrary.media_model');
-            $file           = $model::find($id);
-            $file->model_id = $lesson->id;
-            $file->save();
-            $media[] = $file->toArray();
-        }
-        $lesson->updateMedia($media, 'study_material');
 
         return redirect()->route('admin.lessons.index');
     }
@@ -207,7 +146,7 @@ class LessonsController extends Controller
             return abort(401);
         }
         $lesson = Lesson::findOrFail($id);
-        $lesson->deletePreservingMedia();
+        $lesson->delete();
 
         return redirect()->route('admin.lessons.index');
     }
@@ -226,7 +165,7 @@ class LessonsController extends Controller
             $entries = Lesson::whereIn('id', $request->input('ids'))->get();
 
             foreach ($entries as $entry) {
-                $entry->deletePreservingMedia();
+                $entry->delete();
             }
         }
     }
