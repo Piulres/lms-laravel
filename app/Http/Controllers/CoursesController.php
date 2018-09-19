@@ -18,16 +18,17 @@ class CoursesController extends Controller
 {
     use FileUploadTrait;    
 
-    /**
-     * Display Course.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    public function index()
+    {
+        $courses = Course::latest()->get();
+        return view('courses', compact('course', 'datacourses', 'trails'));
+    }
+
     public function show($id)
     {
                
-        $instructors = \App\User::get()->pluck('name', 'id');
+        $instructors = \App\User::get()->pluck('name', 'id');       
 
         $lessons = \App\Lesson::get()->pluck('title', 'id');
 
@@ -40,6 +41,26 @@ class CoursesController extends Controller
         $course = Course::findOrFail($id);
 
         return view('courses', compact('course', 'datacourses', 'trails'));
+    }
+ 
+    public function start($id)
+    {   
+
+        if (! Gate::allows('course_access')) {
+            return redirect('login');
+        }
+
+        $course = Course::findOrFail($id);
+
+        $test = \App\Datacourse::create([
+            'user_id' => Auth::id(),
+            'course_id' => $course->id,
+            'view' => '1',
+            // 'progress' => '0',
+        ]);
+
+        // return redirect()->route('results.show', [$test->id]);
+        return view('oncourse', compact('course', 'datacourses', 'trails'));
     }
 
 }
