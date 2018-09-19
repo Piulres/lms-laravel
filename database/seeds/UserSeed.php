@@ -22,5 +22,22 @@ class UserSeed extends Seeder
         foreach ($items as $item) {
             \App\User::create($item);
         }
+    
+        $faker = Faker\Factory::create();
+
+        for($i=0;$i<10;$i++){
+            DB::table('users')->insert([
+                'name' => $faker->firstName,
+                'lastname' => null,
+                'website' => $faker->url,
+                'email' => $faker->email,
+                'password' => Hash::make('123123'),
+                'avatar' => $faker->imageUrl(300,300),
+                'remember_token' => '',
+                'approved' => 1,
+                'team_id' => $faker->randomDigitNotNull,
+                            
+            ]);
+        }
     }
 }
