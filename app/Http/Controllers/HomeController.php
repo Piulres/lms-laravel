@@ -12,10 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +23,17 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        
+        $users = \App\User::latest()->limit(5)->get(); 
+        $courses = \App\Course::latest()->limit(5)->get(); 
+        $trails = \App\Trail::latest()->limit(5)->get(); 
+        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get(); 
+
+        return view('index', compact( 'users', 'courses', 'trails', 'faqquestions' ));
+    }
+
+    public function home()
     {
         
         $users = \App\User::latest()->limit(5)->get(); 

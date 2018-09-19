@@ -1,5 +1,15 @@
 <?php
-Route::get('/', function () { return redirect('/admin/home'); });
+// Route::get('/', function () { return redirect('/admin/home'); });
+
+Route::get('/', 'HomeController@index');
+Route::get('/library', 'LibraryController@index');
+
+Route::get('courses', ['uses' => 'CoursesController@index', 'as' => 'courses']);
+Route::get('courses/{id}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
+
+
+Route::get('/courses/{id}', 'CoursesController@show');
+Route::get('/logout', 'Auth\LoginController@logout');
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -25,7 +35,8 @@ Route::get('login/{driver}', 'Auth\LoginController@redirectToSocial')->name('aut
 Route::get('{driver}/callback', 'Auth\LoginController@handleSocialCallback')->name('auth.login.social_callback');
 
 Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/home', 'HomeController@index');
+    Route::get('/home', 'HomeController@home');
+    // Route::get('/home', 'Admin\DashboardController@index');
     
     Route::resource('content_categories', 'Admin\ContentCategoriesController');
     Route::post('content_categories_mass_destroy', ['uses' => 'Admin\ContentCategoriesController@massDestroy', 'as' => 'content_categories.mass_destroy']);
