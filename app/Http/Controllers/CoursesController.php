@@ -31,7 +31,7 @@ class CoursesController extends Controller
 
         $lessons = \App\Lesson::get()->pluck('title', 'id');
 
-        $categories = \App\Coursescategory::get()->pluck('title', 'id');
+        $categories = \App\Coursecategory::get()->pluck('title', 'id');
         $datacourses = \App\Datacourse::where('course_id', $id)->get();$trails = \App\Trail::whereHas('courses',
                     function ($query) use ($id) {
                         $query->where('id', $id);
