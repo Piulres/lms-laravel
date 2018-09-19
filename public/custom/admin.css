@@ -1,0 +1,512 @@
+/* CUSTOM CSS MATERIALIZE RP */
+.border-bottom {
+    border-bottom: 1px solid #e2e9e6;
+}
+
+.border-top {
+    border-top: 1px solid #e2e9e6;
+}
+
+.border-right {
+    border-right: 1px solid #e2e9e6;
+}
+
+.border-left {
+    border-left: 1px solid #e2e9e6;
+}
+
+.border-all {
+    border: 1px solid #e2e9e6;
+}
+
+.border-vertical {
+    border-bottom: 1px solid #e2e9e6;
+    border-top: 1px solid #e2e9e6;
+}
+
+.border-horizontal {
+    border-right: 1px solid #e2e9e6;
+    border-left: 1px solid #e2e9e6;
+}
+
+.paper-shadow {
+    position: relative;
+}
+
+.paper-shadow::before,
+.paper-shadow::after {
+    border-radius: inherit;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    display: block;
+    z-index: -1;
+}
+
+.paper-shadow::after {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.17);
+}
+
+.back-button {
+    margin-bottom: 15px;
+}
+nav ul li {
+    position: relative;
+}
+
+nav .brand-logo {
+    width: 250px;
+    left: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-subhead {
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.84rem;
+}
+
+.btn-small.btn-square {
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    width: 30px;
+    text-align: center;
+}
+
+.actions {
+    text-align: right;
+    min-width: none;
+}
+
+.buttons a {
+    margin-right: 5px;
+}
+
+span.badge.new.sup {
+    margin-left: 0;
+    position: absolute;
+    top: 7px;
+    min-width: auto;
+    right: 7px;
+    background: #000000;
+}
+
+.header-title {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.header-title a {
+    margin-left: 10px;
+}
+
+.header-title h1,
+.header-title h2,
+.header-title h3,
+.header-title h4,
+.header-title h5,
+.header-title h6 {
+    margin: 0;
+}
+
+/* PAGINATION */
+
+.pagination span {
+    display: inline-block;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: top;
+    height: 30px;
+}
+
+.pagination a {
+    color: #444;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+    border-radius: 2px;
+    outline: none;
+}
+
+.pagination a.next, .pagination a.previous {
+    padding: 0 5px;
+    line-height: .9em;
+    outline: none;
+}
+
+.pagination a.next i, .pagination a.previous i {
+    font-size: 2rem;
+}
+
+.pagination .active {
+    background-color: #ee6e73;
+    color: #FFFFFF;
+}
+
+.pagination a.disabled {
+    cursor: default;
+    color: #999;
+}
+
+.overflow-parent {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.overflow-child {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    box-sizing: content-box; /* So the width will be 100% + 17px */
+}
+
+.dropdown-content {
+    min-width: 180px;
+}
+
+/* END CUSTOM MATERIALIZE RP */
+
+/* GENERAL CSS */
+body {
+    font-size: 13px;
+}
+
+.label {margin-right:5px;margin-bottom:5px !important;display:inline-block;} #wrapper {
+    position: relative;
+}
+
+.sidenav {
+    padding-top: 64px;
+    width: 250px;
+}
+
+.main-header {
+	position: relative;
+	z-index: 1000;
+}
+
+.content-wrapper {
+	margin-left: 250px;
+	z-index: 800;
+	background-color: #ecf0f5;
+	-webkit-transition: -webkit-transform .3s ease-in-out,margin .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out,margin .3s ease-in-out;
+    -o-transition: -o-transform .3s ease-in-out,margin .3s ease-in-out;
+    transition: transform .3s ease-in-out,margin .3s ease-in-out;
+}
+
+.content-wrapper .content {
+    min-height: 250px;
+    padding: 15px;
+    padding-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* CARD */
+
+.card {
+    border-radius: 3px;
+    box-shadow: none;
+    border: 1px solid #e2e9e6;
+}
+
+.card-home {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.card-home .card {
+	height: 100%;
+	margin: 0;
+    padding: 10px 0;
+}
+
+.card-title {
+    padding: 10px 24px;
+    border-bottom: 1px solid #e2e9e6;
+}
+
+.card-home .card-title h5, .card-home .card-title h6 {
+    margin: 0;
+}
+
+.card-home .card .card-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card-home .card .card-footer {
+    padding: 10px 15px 0 15px;
+}
+
+.card-home .card .card-footer a {
+    margin-right: 10px;
+}
+
+.card-home .card .card-footer a:last-child {
+    margin-right: 0;
+}
+
+/* CARD LIST */
+
+.card-list .card-title {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.card-list .collection {
+    margin: 0;
+}
+
+.card-list .collection-item {
+    border-left: none;
+    border-right: none;
+}
+
+.card-list .collection-item .secondary-content .progress {
+    margin-right: 15px;
+}
+
+/* TOPBAR */
+nav .sidenav-trigger {
+    margin: 0;
+}
+
+.search-icon {
+    color: #757575;
+}
+
+/* SIDEBAR */
+.sidenav li>a>i, .sidenav li>a>[class^="mdi-"], .sidenav li>a li>a>[class*="mdi-"], .sidenav li>a>i.material-icons {
+    width: auto;
+    margin-right: 15px;
+}
+.sidenav li>a {
+    font-size: 1rem;
+    color: #555;
+    transition: all .2s linear;
+    font-weight: 400;
+}
+
+.sidenav li > a > i {
+    color: #555;
+    font-size: 14px;
+    transition: all .2s linear;
+}
+
+.sidenav .collapsible-body li > a,
+.sidenav .collapsible-body li > a > i {
+    color: #757575;
+}
+
+.sidenav li > a:hover > i,
+.sidenav li > a:hover {
+    color: white;
+}
+
+.sidenav li > a > i.icon-expand {
+    margin-right: 0;
+}
+
+.sidenav li.active > a > i.icon-expand::before {
+    content: '\f068';
+}
+
+/* TABLE */
+tbody {
+    font-size: 12px;
+}
+
+th, td {
+    min-width: 90px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+th:first-child, td:first-child {
+    padding-left: 15px;
+}
+
+th:last-child, td:last-child {
+    padding-right: 15px;
+}
+
+th {
+    font-size: 12px;
+}
+
+.dataTables_filter {
+    padding-right: 20px;
+    margin-bottom: 50px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    margin: 0;
+    margin-left: 0;
+}
+
+table.dataTable {
+    border: 1px solid #e0e0e0;
+}
+
+/* PROGRESS */
+.progress {
+    margin: 0;
+    height: 8px;
+}
+
+/* DATATABLE */
+.dt-buttons {
+    margin-left: 20px;
+    float: left;
+}
+
+.dt-buttons .dt-button {
+    margin-right: 5px;
+}
+
+.dt-buttons .dt-button:last-child {
+    margin-right: 0;
+}
+
+.dataTables_length label {
+    margin-top: 6px;
+    display: block;
+}
+
+.dataTables_wrapper .dataTables_info {
+    float: none;
+    padding-bottom: 20px;
+}
+
+table.dataTable.no-footer {
+    border-bottom: none;
+}
+
+table.dataTable thead th, table.dataTable tbody td {
+    min-width: auto;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px 18px;
+    position: relative;
+}
+
+table.dataTable thead th:first-child,
+table.dataTable tbody td:first-child,
+table.dataTable thead th:nth-child(2),
+table.dataTable tbody td:nth-child(2) {
+    width: 50px;
+}
+
+table.dataTable thead th.order-null,
+table.dataTable tbody td.order-null,
+table.dataTable thead th.order-null,
+table.dataTable tbody td.order-null {
+    width: 0.01px;
+    border: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+table.dataTable thead th:last-child,
+table.dataTable tbody td:last-child {
+    width: 120px;
+    text-align: center;
+}
+
+table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
+    background: #e0e0e0;
+}
+
+[type="checkbox"]:not(:checked)#select-all,
+[type="checkbox"]:checked#select-all {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
+}
+
+table.dataTable td.select-checkbox:before,
+table.dataTable td.select-checkbox:after
+/*table.dataTable th.select-checkbox:before,*/
+/*table.dataTable th.select-checkbox:after*/ {
+    top: 50%;
+}
+
+table.dataTable td.select-checkbox:before
+/*table.dataTable th.select-checkbox:before*/ {
+    width: 18px;
+    height: 18px;
+    border-width: 2px;
+    margin-left: -10px;
+}
+
+table.dataTable tr.selected td.select-checkbox:after
+/*table.dataTable th.select-checkbox.selected-all:after*/ {
+    content: none;
+}
+
+table.dataTable td.select-checkbox:before
+/*table.dataTable th.select-checkbox:before*/ {
+    content: '';
+    position: absolute;
+    border: 2px solid #5a5a5a;
+    border-radius: 1px;
+    margin-top: -9px;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+table.dataTable tr.selected td.select-checkbox:before
+/*table.dataTable th.select-checkbox.selected-all:before*/ {
+    margin-top: -14px;
+    margin-left: -10px;
+    width: 12px;
+    height: 22px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #26a69a;
+    border-bottom: 2px solid #26a69a;
+    -webkit-transform: rotate(40deg);
+    transform: rotate(40deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+@media(max-width: 1150px) {
+    .card-home .card .card-content {
+        overflow: scroll;
+    }
+
+    .card-list .collection .collection-item span {
+        min-width: 25%;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .content-wrapper {
+        margin-left: auto;
+    }
+
+}
+
+@media screen and (max-width: 420px) {
+    .card-home {
+        padding: 15px 0;
+    }
+}

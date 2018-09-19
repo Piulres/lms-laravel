@@ -2,25 +2,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.content-pages.title')</h3>
-    @can('content_page_create')
-    <p>
-        <a href="{{ route('admin.content_pages.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h2>@lang('global.content-pages.title')</h2>
+        @can('content_page_create')
+            <a href="{{ route('admin.content_pages.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
 
-    
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($content_pages) > 0 ? 'datatable' : '' }} @can('content_page_delete') dt-select @endcan">
+        <div class="card-content">
+            <table class="striped responsive-table {{ count($content_pages) > 0 ? 'datatable' : '' }} @can('content_page_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th class="order-null"></th>
                         @can('content_page_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -31,7 +29,7 @@
                         <th>@lang('global.content-pages.fields.page-text')</th>
                         <th>@lang('global.content-pages.fields.excerpt')</th>
                         <th>@lang('global.content-pages.fields.featured-image')</th>
-                                                <th>&nbsp;</th>
+                        <th>&nbsp;</th>
 
                     </tr>
                 </thead>
@@ -40,6 +38,7 @@
                     @if (count($content_pages) > 0)
                         @foreach ($content_pages as $content_page)
                             <tr data-entry-id="{{ $content_page->id }}">
+                                <td class="order-null"></td>
                                 @can('content_page_delete')
                                     <td></td>
                                 @endcan
@@ -58,22 +57,24 @@
                                 <td field-key='page_text'>{!! $content_page->page_text !!}</td>
                                 <td field-key='excerpt'>{!! $content_page->excerpt !!}</td>
                                 <td field-key='featured_image'>@if($content_page->featured_image)<a href="{{ asset(env('UPLOAD_PATH').'/' . $content_page->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $content_page->featured_image) }}"/></a>@endif</td>
-                                                                <td>
-                                    @can('content_page_view')
-                                    <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
-                                    @can('content_page_edit')
-                                    <a href="{{ route('admin.content_pages.edit',[$content_page->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
-                                    @endcan
-                                    @can('content_page_delete')
-{!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.content_pages.destroy', $content_page->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
+                                <td>
+                                    <div class="buttons d-flex justify-content">
+                                        @can('content_page_view')
+                                        <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                        @can('content_page_edit')
+                                        <a href="{{ route('admin.content_pages.edit',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        @endcan
+                                        @can('content_page_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.content_pages.destroy', $content_page->id])) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                        @endcan
+                                    </div>
                                 </td>
 
                             </tr>

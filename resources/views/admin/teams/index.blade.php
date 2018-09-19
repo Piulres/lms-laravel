@@ -2,31 +2,29 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.teams.title')</h3>
-    @can('team_create')
-    <p>
-        <a href="{{ route('admin.teams.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h2>@lang('global.teams.title')</h2>
+        @can('team_create')
+            <a href="{{ route('admin.teams.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
 
-    
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="panel-body table-responsive">
+        <div class="card-content">
             <table class="table table-bordered table-striped {{ count($teams) > 0 ? 'datatable' : '' }} @can('team_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.app_order')</th>
                         @can('team_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
 
                         <th>@lang('global.teams.fields.name')</th>
-                                                <th>&nbsp;</th>
+                        <th>&nbsp;</th>
 
                     </tr>
                 </thead>
@@ -35,25 +33,25 @@
                     @if (count($teams) > 0)
                         @foreach ($teams as $team)
                             <tr data-entry-id="{{ $team->id }}">
+                                <td>1</td>
                                 @can('team_delete')
                                     <td></td>
                                 @endcan
-
                                 <td field-key='name'>{{ $team->name }}</td>
-                                                                <td>
+                                <td>
                                     @can('team_view')
-                                    <a href="{{ route('admin.teams.show',[$team->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    <a href="{{ route('admin.teams.show',[$team->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                     @endcan
                                     @can('team_edit')
-                                    <a href="{{ route('admin.teams.edit',[$team->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    <a href="{{ route('admin.teams.edit',[$team->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
                                     @endcan
                                     @can('team_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.teams.destroy', $team->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                                     @endcan
                                 </td>

@@ -2,25 +2,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.content-tags.title')</h3>
-    @can('content_tag_create')
-    <p>
-        <a href="{{ route('admin.content_tags.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h2>@lang('global.content-tags.title')</h2>
+        @can('content_tag_create')
+            <a href="{{ route('admin.content_tags.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
 
-    
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($content_tags) > 0 ? 'datatable' : '' }} @can('content_tag_delete') dt-select @endcan">
+        <div class="card-content">
+            <table class="striped responsive-table {{ count($content_tags) > 0 ? 'datatable' : '' }} @can('content_tag_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th class="order-null"></th>
                         @can('content_tag_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -36,28 +34,31 @@
                     @if (count($content_tags) > 0)
                         @foreach ($content_tags as $content_tag)
                             <tr data-entry-id="{{ $content_tag->id }}">
+                                <td class="order-null"></td>
                                 @can('content_tag_delete')
                                     <td></td>
                                 @endcan
 
                                 <td field-key='title'>{{ $content_tag->title }}</td>
                                 <td field-key='slug'>{{ $content_tag->slug }}</td>
-                                                                <td>
-                                    @can('content_tag_view')
-                                    <a href="{{ route('admin.content_tags.show',[$content_tag->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
-                                    @can('content_tag_edit')
-                                    <a href="{{ route('admin.content_tags.edit',[$content_tag->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
-                                    @endcan
-                                    @can('content_tag_delete')
-{!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.content_tags.destroy', $content_tag->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
+                                    <td>
+                                    <div class="buttons d-flex justify-content">
+                                        @can('content_tag_view')
+                                        <a href="{{ route('admin.content_tags.show',[$content_tag->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                        @can('content_tag_edit')
+                                        <a href="{{ route('admin.content_tags.edit',[$content_tag->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        @endcan
+                                        @can('content_tag_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.content_tags.destroy', $content_tag->id])) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                        @endcan
+                                    </div>
                                 </td>
 
                             </tr>

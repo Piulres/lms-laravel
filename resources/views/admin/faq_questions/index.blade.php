@@ -2,25 +2,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.faq-questions.title')</h3>
-    @can('faq_question_create')
-    <p>
-        <a href="{{ route('admin.faq_questions.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h2>@lang('global.faq-questions.title')</h2>
+        @can('faq_question_create')
+            <a href="{{ route('admin.faq_questions.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
 
-    
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('faq_question_delete') dt-select @endcan">
+        <div class="card-content">
+            <table class="striped responsive-table ajaxTable @can('faq_question_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th class="order-null"></th>
                         @can('faq_question_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -44,9 +42,12 @@
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.faq_questions.index') !!}';
-            window.dtDefaultOptions.columns = [@can('faq_question_delete')
+            window.dtDefaultOptions.columns = [
+                {data: 'category.title', name: 'category.title'},
+                @can('faq_question_delete')
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endcan{data: 'category.title', name: 'category.title'},
+                @endcan
+                {data: 'category.title', name: 'category.title'},
                 {data: 'question_text', name: 'question_text'},
                 {data: 'answer_text', name: 'answer_text'},
                 
