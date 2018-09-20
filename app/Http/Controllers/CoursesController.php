@@ -51,16 +51,63 @@ class CoursesController extends Controller
         }
 
         $course = Course::findOrFail($id);
+        $user = Auth::id();
 
-        $test = \App\Datacourse::create([
+        \App\Datacourse::updateOrCreate([
             'user_id' => Auth::id(),
             'course_id' => $course->id,
-            'view' => '1',
+            'view' => '0',
             // 'progress' => '0',
         ]);
 
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->limit(1)
+        ->update(['datacourses.view'=> '1']);      
+
         // return redirect()->route('results.show', [$test->id]);
         return view('oncourse', compact('course', 'datacourses', 'trails'));
+    }
+
+    public function test($id)
+    {
+
+        if 
+            (! Gate::allows('course_access')) {
+            return redirect('login');
+        }
+
+        $course = Course::findOrFail($id);
+        $user = Auth::id();
+
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->where("datacourses.view", '=',  '1')
+         ->limit(1)
+        ->update(['datacourses.view'=> '2']);
+
+            // DB::table('users')
+            // ->where('name', '=', 'John')
+            // ->where(function ($query) {
+            //     $query->where('votes', '>', 100)
+            //           ->orWhere('title', '=', 'Admin');
+            // })
+            // ->get();
+
+        // if($datacourses) {
+        //     $test = \App\Datacourse::create([
+        //         'user_id' => Auth::id(),
+        //         'course_id' => $course->id,
+        //         'view' => '1',
+        //         // 'progress' => '0',
+        //     ]);
+        // }
+
+        // return redirect()->back();
+        return view('oncourse', compact('course', 'datacourses', 'trails'));
+
     }
 
 }
