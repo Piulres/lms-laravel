@@ -2,31 +2,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.trailtags.title')</h3>
-    @can('trailtag_create')
-    <p>
-        <a href="{{ route('admin.trailtags.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h2>@lang('global.trailtags.title')</h2>
+        @can('trailtag_create')
+            <a href="{{ route('admin.trailtags.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
 
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.trailtags.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.trailtags.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
+    <ul class="tabs z-depth-1">
+        <li class="tab">
+            <a href="{{ route('admin.trailtags.index') }}" class="grey-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+        </li>
+        <li class="tab">
+            <a href="{{ route('admin.trailtags.index') }}?show_deleted=1" class="grey-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+        </li>
+    </ul>
     
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($trailtags) > 0 ? 'datatable' : '' }} @can('trailtag_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="card-content">
+            <table class="striped responsive-table {{ count($trailtags) > 0 ? 'datatable' : '' }} @can('trailtag_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.app_order')</th>
                         @can('trailtag_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
@@ -45,10 +47,10 @@
                     @if (count($trailtags) > 0)
                         @foreach ($trailtags as $trailtag)
                             <tr data-entry-id="{{ $trailtag->id }}">
+                                <td field-key="order">1</td>
                                 @can('trailtag_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
-
                                 <td field-key='title'>{{ $trailtag->title }}</td>
                                 <td field-key='slug'>{{ $trailtag->slug }}</td>
                                 @if( request('show_deleted') == 1 )
@@ -70,21 +72,23 @@
                                                                 </td>
                                 @else
                                 <td>
-                                    @can('trailtag_view')
-                                    <a href="{{ route('admin.trailtags.show',[$trailtag->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
-                                    @can('trailtag_edit')
-                                    <a href="{{ route('admin.trailtags.edit',[$trailtag->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
-                                    @endcan
-                                    @can('trailtag_delete')
-{!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.trailtags.destroy', $trailtag->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
+                                    <div class="buttons d-flex justify-content">
+                                        @can('trailtag_view')
+                                        <a href="{{ route('admin.trailtags.show',[$trailtag->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                        @can('trailtag_edit')
+                                        <a href="{{ route('admin.trailtags.edit',[$trailtag->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        @endcan
+                                        @can('trailtag_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.trailtags.destroy', $trailtag->id])) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                        @endcan
+                                    </div>
                                 </td>
                                 @endif
                             </tr>

@@ -13,17 +13,17 @@
 	@else
 		{!! Form::open(['method' => 'PATCH', 'route' => ['auth.change_password']]) !!}
 		<!-- If no success message in flash session show change password form  -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
+		<div class="card">
+			<div class="card-title">
 				@lang('global.app_edit')
 			</div>
 
-			<div class="panel-body">
+			<div class="card-content">
 				<div class="row">
-					<div class="col-xs-12 form-group">
+					<div class="col-12 col-md-6">
 						{!! Form::label('current_password', trans('global.app_current_password'), ['class' => 'control-label']) !!}
-						{!! Form::password('current_password', ['class' => 'form-control', 'placeholder' => '']) !!}
-						<p class="help-block"></p>
+						{!! Form::password('current_password', ['class' => 'validate']) !!}
+						<span class="helper-text" data-error="@if($errors->has('slug')){{ $errors->first('slug') }}@endif" data-success="right"></span>
 						@if($errors->has('current_password'))
 							<p class="help-block">
 								{{ $errors->first('current_password') }}
@@ -33,10 +33,10 @@
 				</div>
 
 				<div class="row">
-					<div class="col-xs-12 form-group">
+					<div class="col-12 col-md-6">
 						{!! Form::label('new_password', trans('global.app_new_password'), ['class' => 'control-label']) !!}
-						{!! Form::password('new_password', ['class' => 'form-control', 'placeholder' => '']) !!}
-						<p class="help-block"></p>
+						{!! Form::password('new_password', ['class' => 'validate']) !!}
+						<span class="helper-text" data-error="@if($errors->has('slug')){{ $errors->first('slug') }}@endif" data-success="right"></span>
 						@if($errors->has('new_password'))
 							<p class="help-block">
 								{{ $errors->first('new_password') }}
@@ -46,10 +46,10 @@
 				</div>
 
 				<div class="row">
-					<div class="col-xs-12 form-group">
+					<div class="col-12 col-md-6">
 						{!! Form::label('new_password_confirmation', trans('global.app_password_confirm'), ['class' => 'control-label']) !!}
-						{!! Form::password('new_password_confirmation', ['class' => 'form-control', 'placeholder' => '']) !!}
-						<p class="help-block"></p>
+						{!! Form::password('new_password_confirmation', ['class' => 'validate']) !!}
+						<span class="helper-text" data-error="@if($errors->has('slug')){{ $errors->first('slug') }}@endif" data-success="right"></span>
 						@if($errors->has('new_password_confirmation'))
 							<p class="help-block">
 								{{ $errors->first('new_password_confirmation') }}
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 
-		{!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+		{!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey']) !!}
 		{!! Form::close() !!}
 	@endif
 @stop
