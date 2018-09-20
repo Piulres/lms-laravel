@@ -141,6 +141,7 @@ return [
 			'tags' => 'Tags',
 			'approved' => 'Approved',
 		],
+		'create' => 'Create Course'
 	],
 	
 	'trails' => [
@@ -301,6 +302,7 @@ return [
 	'app_restore' => 'Restore',
 	'app_permadel' => 'Delete Permanently',
 	'app_all' => 'All',
+	'app_see_all' => 'See All',
 	'app_trash' => 'Trash',
 	'app_view' => 'View',
 	'app_update' => 'Update',

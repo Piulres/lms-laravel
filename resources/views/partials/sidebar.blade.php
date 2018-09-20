@@ -1,5 +1,5 @@
 @inject('request', 'Illuminate\Http\Request')
-<aside class="sidenav sidenav-fixed grey lighten-1 z-depth-0" id="sidebar-menu">
+<aside class="sidenav sidenav-fixed grey lighten-3 z-depth-0" id="sidebar-menu">
     <ul>
         <li class="input-field col s6">
             <i class="material-icons prefix search-icon">search</i>
@@ -8,7 +8,7 @@
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
 
-                <li class="divider grey darken-3"></li>
+                <li class="divider grey darken-1"></li>
                 <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
                     <a href="{{ url('/') }}" class="collapsible-header">
                         <i class="fas fa-tachometer-alt"></i>
@@ -23,7 +23,7 @@
                         <span>@lang('global.content-management.title')</span>
                         <i class="fas fa-plus right icon-expand"></i>
                     </a>
-                    <div class="collapsible-body grey darken-3">
+                    <div class="collapsible-body grey darken-4">
                         <ul>
                             @can('content_category_access')
                             <li>
@@ -59,7 +59,7 @@
                         <span>@lang('global.course-management.title')</span>
                         <i class="fas fa-plus right icon-expand"></i>
                     </a>
-                    <div class="collapsible-body grey darken-3">
+                    <div class="collapsible-body grey darken-4">
                         <ul>
                             @can('lesson_access')
                             <li>
@@ -119,7 +119,7 @@
                         <span>@lang('global.faq-management.title')</span>
                         <i class="fas fa-plus right icon-expand"></i>
                     </a>
-                    <div class="collapsible-body grey darken-3">
+                    <div class="collapsible-body grey darken-4">
                         <ul>
                             @can('faq_category_access')
                             <li>
@@ -147,7 +147,7 @@
                         <span>@lang('global.settings.title')</span>
                         <i class="fas fa-plus right icon-expand"></i>
                     </a>
-                    <div class="collapsible-body grey darken-3">
+                    <div class="collapsible-body grey darken-4">
                         <ul>
                             @can('general_access')
                             <li>
@@ -183,7 +183,7 @@
                         <span>@lang('global.trail-management.title')</span>
                         <i class="fas fa-plus right icon-expand"></i>
                     </a>
-                    <div class="collapsible-body grey darken-3">
+                    <div class="collapsible-body grey darken-4">
                         <ul>
                             @can('trailcategory_access')
                             <li>
@@ -227,7 +227,7 @@
                         <span>@lang('global.user-management.title')</span>
                         <i class="fas fa-plus right icon-expand"></i>
                     </a>
-                    <div class="collapsible-body grey darken-3">
+                    <div class="collapsible-body grey darken-4">
                         <ul>
                             @can('permission_access')
                             <li>

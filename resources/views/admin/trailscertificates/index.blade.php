@@ -5,7 +5,7 @@
     <div class="header-title">
         <h2>@lang('global.trailscertificates.title')</h2>
         @can('trailscertificate_create')
-            <a href="{{ route('admin.trailscertificates.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
+            <a href="{{ route('admin.trailscertificates.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
         @endcan
     </div>
 

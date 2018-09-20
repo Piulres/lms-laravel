@@ -24,9 +24,10 @@
         </div>
 
         <div class="card-content">
-            <table class="table table-bordered table-striped {{ count($coursecategories) > 0 ? 'datatable' : '' }} @can('coursecategory_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan no-order">
+            <table class="striped responsive-table {{ count($coursecategories) > 0 ? 'datatable' : '' }} @can('coursecategory_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan no-order">
                 <thead>
                     <tr>
+                        <th class="order-null"></th>
                         @can('coursecategory_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
@@ -45,6 +46,7 @@
                     @if (count($coursecategories) > 0)
                         @foreach ($coursecategories as $coursecategory)
                             <tr data-entry-id="{{ $coursecategory->id }}">
+                                <td class="oder-null"></td>
                                 @can('coursecategory_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
@@ -70,7 +72,7 @@
                                                                 </td>
                                 @else
                                 <td>
-                                    <div class="buttons d-flex justify-content">
+                                    <div class="buttons">
                                         @can('coursecategory_view')
                                         <a href="{{ route('admin.coursecategories.show',[$coursecategory->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan

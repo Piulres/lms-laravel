@@ -42,7 +42,7 @@
                                 <td field-key='title'>{{ $content_category->title }}</td>
                                 <td field-key='slug'>{{ $content_category->slug }}</td>
                                 <td>
-                                    <div class="buttons d-flex justify-content">
+                                    <div class="buttons">
                                         @can('content_category_view')
                                         <a href="{{ route('admin.content_categories.show',[$content_category->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan

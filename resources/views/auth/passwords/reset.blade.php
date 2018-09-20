@@ -3,9 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">@lang('global.app_reset_password')</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-title">@lang('global.app_reset_password')</div>
+                <div class="card-content">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             @lang('global.app_reset_password_woops')

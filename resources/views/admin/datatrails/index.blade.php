@@ -24,9 +24,10 @@
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table ajaxTable @can('datatrail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="no-order striped responsive-table ajaxTable @can('datatrail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
+                        <th></th>
                         @can('datatrail_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
@@ -58,11 +59,13 @@
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.datatrails.index') !!}?show_deleted={{ request('show_deleted') }}';
             window.dtDefaultOptions.columns = [
+                {data: 'view', name: 'view'},
                 @can('datatrail_delete')
                     @if ( request('show_deleted') != 1 )
                         {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                     @endif
-                @endcan{data: 'view', name: 'view'},
+                @endcan
+                {data: 'view', name: 'view'},
                 {data: 'progress', name: 'progress'},
                 {data: 'rating', name: 'rating'},
                 {data: 'testimonal', name: 'testimonal'},

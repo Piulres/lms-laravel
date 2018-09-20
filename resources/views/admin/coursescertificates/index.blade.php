@@ -24,14 +24,14 @@
         </div>
 
         <div class="card-content">
-            <table class="table table-bordered table-striped ajaxTable @can('coursescertificate_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="striped ajaxTable @can('coursescertificate_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.coursescertificates.fields.order')</th>
                         @can('coursescertificate_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
-                        <th>@lang('global.coursescertificates.fields.order')</th>
                         <th>@lang('global.coursescertificates.fields.title')</th>
                         <th>@lang('global.coursescertificates.fields.slug')</th>
                         <th>@lang('global.coursescertificates.fields.image')</th>
@@ -54,11 +54,13 @@
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.coursescertificates.index') !!}?show_deleted={{ request('show_deleted') }}';
-            window.dtDefaultOptions.columns = [@can('coursescertificate_delete')
-                @if ( request('show_deleted') != 1 )
-                    {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endif
-                @endcan{data: 'order', name: 'order'},
+            window.dtDefaultOptions.columns = [
+                {data: 'order', name: 'order'},
+                @can('coursescertificate_delete')
+                    @if ( request('show_deleted') != 1 )
+                        {data: 'massDelete', name: 'id', searchable: false, sortable: false},
+                    @endif
+                @endcan
                 {data: 'title', name: 'title'},
                 {data: 'slug', name: 'slug'},
                 {data: 'image', name: 'image'},

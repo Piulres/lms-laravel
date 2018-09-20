@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-content">
-            <table class="table table-bordered table-striped {{ count($teams) > 0 ? 'datatable' : '' }} @can('team_delete') dt-select @endcan">
+            <table class="striped responsive-table {{ count($teams) > 0 ? 'datatable' : '' }} @can('team_delete') dt-select @endcan">
                 <thead>
                     <tr>
                         <th>@lang('global.app_order')</th>
@@ -39,21 +39,23 @@
                                 @endcan
                                 <td field-key='name'>{{ $team->name }}</td>
                                 <td>
-                                    @can('team_view')
-                                    <a href="{{ route('admin.teams.show',[$team->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
-                                    @endcan
-                                    @can('team_edit')
-                                    <a href="{{ route('admin.teams.edit',[$team->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
-                                    @endcan
-                                    @can('team_delete')
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.teams.destroy', $team->id])) !!}
-                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
+                                    <div class="buttons d-flex justify-content-center">
+                                        @can('team_view')
+                                        <a href="{{ route('admin.teams.show',[$team->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                        @can('team_edit')
+                                        <a href="{{ route('admin.teams.edit',[$team->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        @endcan
+                                        @can('team_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.teams.destroy', $team->id])) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                        @endcan
+                                    </div>
                                 </td>
 
                             </tr>

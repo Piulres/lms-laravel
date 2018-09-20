@@ -141,6 +141,7 @@ return [
 			'tags' => 'Tags',
 			'approved' => 'Approved',
 		],
+		'create' => 'Criar Curso'
 	],
 	
 	'trails' => [
@@ -312,6 +313,7 @@ return [
 	'app_restore' => 'Restaurar',
 	'app_permadel' => 'Eliminar',
 	'app_all' => 'Todos',
+	'app_see_all' => 'Ver Todos',
 	'app_trash' => 'Lixo',
 	'app_delete_selected' => 'Eliminar Selecionados',
 	'app_category' => 'Categoria',

@@ -58,7 +58,7 @@
                                 <td field-key='excerpt'>{!! $content_page->excerpt !!}</td>
                                 <td field-key='featured_image'>@if($content_page->featured_image)<a href="{{ asset(env('UPLOAD_PATH').'/' . $content_page->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $content_page->featured_image) }}"/></a>@endif</td>
                                 <td>
-                                    <div class="buttons d-flex justify-content">
+                                    <div class="buttons">
                                         @can('content_page_view')
                                         <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan

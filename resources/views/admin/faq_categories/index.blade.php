@@ -15,9 +15,10 @@
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table ajaxTable @can('faq_category_delete') dt-select @endcan">
+            <table class="no-order striped responsive-table ajaxTable @can('faq_category_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th class="order-null"></th>
                         @can('faq_category_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -39,9 +40,12 @@
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.faq_categories.index') !!}';
-            window.dtDefaultOptions.columns = [@can('faq_category_delete')
+            window.dtDefaultOptions.columns = [
+                {data: 'title', name: 'title'},
+                @can('faq_category_delete')
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endcan{data: 'title', name: 'title'},
+                @endcan
+                {data: 'title', name: 'title'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

@@ -24,7 +24,7 @@
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table ajaxTable @can('general_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="no-order striped responsive-table ajaxTable @can('general_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         <th class="order-null"></th>
@@ -54,10 +54,12 @@
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.generals.index') !!}?show_deleted={{ request('show_deleted') }}';
-            window.dtDefaultOptions.columns = [@can('general_delete')
-                @if ( request('show_deleted') != 1 )
-                    {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endif
+            window.dtDefaultOptions.columns = [
+                {data: 'site_logo', name: 'site_logo'},
+                @can('general_delete')
+                    @if ( request('show_deleted') != 1 )
+                        {data: 'massDelete', name: 'id', searchable: false, sortable: false},
+                    @endif
                 @endcan{data: 'site_name', name: 'site_name'},
                 {data: 'site_logo', name: 'site_logo'},
                 {data: 'theme_color', name: 'theme_color'},

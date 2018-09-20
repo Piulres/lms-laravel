@@ -1,4 +1,7 @@
 /* CUSTOM CSS MATERIALIZE RP */
+body {
+    font-size: 16px;
+}
 .border-bottom {
     border-bottom: 1px solid #e2e9e6;
 }
@@ -85,10 +88,6 @@ nav .brand-logo {
     min-width: none;
 }
 
-.buttons a {
-    margin-right: 5px;
-}
-
 span.badge.new.sup {
     margin-left: 0;
     position: absolute;
@@ -117,7 +116,23 @@ span.badge.new.sup {
     margin: 0;
 }
 
+.header-title h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.header-title h3 {
+    font-size: 1.8rem;
+}
+
 /* PAGINATION */
+.pagination {
+    display: flex;
+    align-items: center;
+    float: right;
+    margin-top: 10px;
+    margin-left: 20px;
+}
 
 .pagination span {
     display: inline-block;
@@ -135,6 +150,7 @@ span.badge.new.sup {
     line-height: 30px;
     border-radius: 2px;
     outline: none;
+    height: auto;
 }
 
 .pagination a.next, .pagination a.previous {
@@ -172,6 +188,10 @@ span.badge.new.sup {
 
 .dropdown-content {
     min-width: 180px;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    font-size: 12px;
 }
 
 /* END CUSTOM MATERIALIZE RP */
@@ -238,6 +258,20 @@ body {
 .card-title {
     padding: 10px 24px;
     border-bottom: 1px solid #e2e9e6;
+}
+
+.card-title h3, .card-title h4 {
+    margin: 0;
+}
+.card-title h3 {
+    font-size: 2rem;
+    margin: 0;
+    padding-top: 10px;
+}
+
+.card-title h4 {
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 .card-home .card-title h5, .card-home .card-title h6 {
@@ -315,7 +349,7 @@ nav .sidenav-trigger {
 
 .sidenav li > a:hover > i,
 .sidenav li > a:hover {
-    color: white;
+    color: grey;
 }
 
 .sidenav li > a > i.icon-expand {
@@ -327,6 +361,13 @@ nav .sidenav-trigger {
 }
 
 /* TABLE */
+table.no-order th:first-child,
+table.no-order td:first-child {
+    display: block;
+    width: 0!important;
+    overflow: hidden;
+    padding: 0!important;
+}
 tbody {
     font-size: 12px;
 }
@@ -370,6 +411,19 @@ table.dataTable {
 }
 
 /* DATATABLE */
+.bordered {
+    border: 1px solid #f4f4f4;
+}
+
+.bordered>thead>tr>th,
+.bordered>tbody>tr>th,
+.bordered>tfoot>tr>th,
+.bordered>thead>tr>td,
+.bordered>tbody>tr>td,
+.bordered>tfoot>tr>td {
+    border: 1px solid #f4f4f4;
+}
+
 .dt-buttons {
     margin-left: 20px;
     float: left;
@@ -425,6 +479,15 @@ table.dataTable thead th:last-child,
 table.dataTable tbody td:last-child {
     width: 120px;
     text-align: center;
+}
+
+table.dataTable tbody td .buttons {
+    display: flex;
+    justify-content: center;
+}
+
+table.dataTable tbody td .buttons a {
+    margin-right: 5px;
 }
 
 table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {

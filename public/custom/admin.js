@@ -20,6 +20,11 @@ $(document).ready(function() {
     $('.shuffle-tabs').tabs({
       swipeable : false,
     });
+
+    $('.datepicker').datepicker({
+      format: 'dd/mm/yyyy'
+    });
+
 });
 
 

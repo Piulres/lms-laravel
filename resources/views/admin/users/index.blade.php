@@ -11,7 +11,7 @@
 
    <div class="card paper-shadow">
         <div class="card-title">
-            <h5>@lang('global.app_list')</h5>
+            <h3>@lang('global.app_list')</h3>
         </div>
         <div class="card-content">
 
@@ -24,8 +24,8 @@
                         @endcan
                         <th>@lang('global.users.fields.name')</th>
                         <th>@lang('global.users.fields.lastname')</th>
-                        <th>@lang('global.users.fields.email')</th>
                         <th>@lang('global.users.fields.website')</th>
+                        <th>@lang('global.users.fields.email')</th>
                         <th>@lang('global.users.fields.avatar')</th>
                         <th>@lang('global.users.fields.role')</th>
                         <th>@lang('global.users.fields.team')</th>

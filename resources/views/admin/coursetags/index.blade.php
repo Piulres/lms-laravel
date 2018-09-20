@@ -27,6 +27,7 @@
             <table class="striped responsive-table {{ count($coursetags) > 0 ? 'datatable' : '' }} @can('coursetag_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
+                        <th class="order-null"></th>
                         @can('coursetag_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
@@ -45,6 +46,7 @@
                     @if (count($coursetags) > 0)
                         @foreach ($coursetags as $coursetag)
                             <tr data-entry-id="{{ $coursetag->id }}">
+                                <td class="order-null"></td>
                                 @can('coursetag_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
@@ -67,10 +69,10 @@
                                         'route' => ['admin.coursetags.perma_del', $coursetag->id])) !!}
                                     {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                                                </td>
+                                </td>
                                 @else
                                 <td>
-                                    <div class="buttons d-flex justify-content">
+                                    <div class="buttons">
                                         @can('coursetag_view')
                                         <a href="{{ route('admin.coursetags.show',[$coursetag->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
