@@ -481,12 +481,16 @@ table.dataTable tbody td:last-child {
     text-align: center;
 }
 
-table.dataTable tbody td .buttons {
+.buttons {
     display: flex;
     justify-content: center;
 }
 
-table.dataTable tbody td .buttons a {
+.buttons.end {
+    justify-content: flex-end;
+}
+
+.buttons a {
     margin-right: 5px;
 }
 

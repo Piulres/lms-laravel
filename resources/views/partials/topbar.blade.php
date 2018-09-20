@@ -3,7 +3,7 @@
         <nav class="grey lighten-5 z-depth-0 border-bottom">
             <div class="container-fluid">
                 <div class="nav-wrapper">
-                    <a href="{{ url('/admin/home') }}" class="brand-logo left cyan"><span>@lang('global.global_title')</span></a>
+                    <a href="{{ url('/') }}" class="brand-logo left cyan"><span>@lang('global.global_title')</span></a>
                     <ul class="right">
                         <li class="dropdown languages-menu">
                             <a class="dropdown-button grey-text" href="#!" data-target="dropdown-language">

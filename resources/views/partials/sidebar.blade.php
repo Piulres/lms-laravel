@@ -10,7 +10,7 @@
 
                 <li class="divider grey darken-1"></li>
                 <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
-                    <a href="{{ url('/') }}" class="collapsible-header">
+                    <a href="{{ url('/admin/home') }}" class="collapsible-header">
                         <i class="fas fa-tachometer-alt"></i>
                         <span class="title">@lang('global.app_dashboard')</span>
                     </a>
