@@ -23,26 +23,27 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeedPivot::class);
         $this->call(UserSeedPivot::class);
 
-        //DUMMY DATA
-        
+        //DUMMY DATA        
         $this->call(CoursesSeed::class);
         $this->call(LessonsSeed::class);
         $this->call(TrailsSeed::class);
 
         $this->call(CourseCategoriesSeed::class);
         $this->call(CoursesCertificatesSeed::class);
-        $this->call(CourseTagsSeed::class);        
-        $this->call(CourseCourseTagSeed::class);
-        $this->call(CourseLessonSeed::class);        
-        $this->call(CourseUserSeed::class);   
+        $this->call(CourseTagsSeed::class);
         $this->call(TrailCategoriesSeed::class);        
         $this->call(TrailsCertificatesSeed::class);
         $this->call(TrailTagsSeed::class);
+
+        $this->call(CourseCourseTagSeed::class);
+        $this->call(CourseLessonSeed::class);        
+        $this->call(CourseUserSeed::class);           
         $this->call(TrailTrailCategorySeed::class);
-        $this->call(TrailTrailtagSeed::class);
-        $this->call(DataCoursesSeed::class);
-        $this->call(DataTrailsSeed::class);
+        $this->call(TrailTrailtagSeed::class);        
         $this->call(CourseTrailSeed::class);
         $this->call(CourseCourseCategorySeed::class);
+
+        $this->call(DataCoursesSeed::class);
+        $this->call(DataTrailsSeed::class);
     }
 }

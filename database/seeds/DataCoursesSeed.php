@@ -13,7 +13,7 @@ class DataCoursesSeed extends Seeder
     {
         $faker = Faker\Factory::create();
        
-        for($i=0;$i<10;$i++){
+        for($i=0;$i<30;$i++){
             \App\Datacourse::create([
                 'view' => $faker->numberBetween(0,1),
                 'progress' => $faker->numberBetween(0,100),

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 
 class TrailsSeed extends Seeder
 {
@@ -21,8 +22,8 @@ class TrailsSeed extends Seeder
                 'description' => $faker->realText($maxNbChars = 200, $indexSize = 2),
                 'introduction' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                 'featured_image' => $faker->imageUrl(300,300),
-                'start_date' => $faker->date($format = 'd/m/Y', $max = 'now'),
-                'end_date' => $faker->date($format = 'd/m/Y', $min = 'now'),
+                'start_date' => Carbon::createFromTimeStamp($faker->dateTimeBetween('-90 days', 'now')->getTimestamp())->format('d/m/Y'),
+                'end_date' => Carbon::createFromTimeStamp($faker->dateTimeBetween('now', '+90 days')->getTimestamp())->format('d/m/Y'),
                 'approved' => 1,
             ]);
         }

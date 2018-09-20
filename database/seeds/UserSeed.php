@@ -28,7 +28,7 @@ class UserSeed extends Seeder
         for($i=0;$i<10;$i++){
             DB::table('users')->insert([
                 'name' => $faker->firstName,
-                'lastname' => null,
+                'lastname' => $faker->lastName,
                 'website' => $faker->url,
                 'email' => $faker->email,
                 'password' => Hash::make('123123'),
