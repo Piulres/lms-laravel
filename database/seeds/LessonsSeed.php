@@ -21,6 +21,7 @@ class LessonsSeed extends Seeder
                 'introduction' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                 'content' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                 'study_material' => $faker->imageUrl(300,300),
+                'status' => $faker->numberBetween(0,1),
             ]);
         }
     }

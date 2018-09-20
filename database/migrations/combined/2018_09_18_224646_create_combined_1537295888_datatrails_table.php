@@ -16,7 +16,7 @@ class CreateCombined1537295888DatatrailsTable extends Migration
             Schema::create('datatrails', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('view')->nullable();
-                $table->integer('progress')->nullable();
+                $table->float('progress')->nullable();
                 $table->integer('rating')->nullable();
                 $table->text('testimonal')->nullable();
                 

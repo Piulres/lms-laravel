@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CourseTrailSeed::class);
         $this->call(CourseCourseCategorySeed::class);
 
-        $this->call(DataCoursesSeed::class);
-        $this->call(DataTrailsSeed::class);
+        //$this->call(DataCoursesSeed::class);
+        //$this->call(DataTrailsSeed::class);
     }
 }

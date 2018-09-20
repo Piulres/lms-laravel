@@ -26,7 +26,7 @@ class Drop5ba1463ca0216TraildatasTable extends Migration
             Schema::create('traildatas', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('view')->nullable();
-                $table->integer('progress')->nullable();
+                $table->float('progress')->nullable();
                 $table->integer('rating')->nullable();
                 $table->text('testimonal')->nullable();
                 

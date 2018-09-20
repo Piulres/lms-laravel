@@ -21,6 +21,7 @@ class Create1537284956LessonsTable extends Migration
                 $table->text('introduction')->nullable();
                 $table->text('content')->nullable();
                 $table->string('study_material')->nullable();
+                $table->integer('status')->nullable();
                 
                 $table->timestamps();
                 $table->softDeletes();
