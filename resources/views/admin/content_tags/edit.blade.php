@@ -1,45 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.content-tags.title')</h3>
-    
+    <div class="back-button">
+        <a href="{{ route('admin.content_tags.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
+    </div>
+    <div class="header-title">
+        <h2>@lang('global.content-tags.title')</h2>
+    </div>    
     {!! Form::model($content_tag, ['method' => 'PUT', 'route' => ['admin.content_tags.update', $content_tag->id]]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_edit')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_edit')</h3>
         </div>
 
-        <div class="panel-body">
+        <div class="card-content">
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('global.content-tags.fields.title').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('title'))
-                        <p class="help-block">
-                            {{ $errors->first('title') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    {!! Form::label('title', trans('global.content-tags.fields.title').'') !!}
+                    {!! Form::text('title', old('title'), ['class' => 'validate']) !!}
+                    <span class="helper-text" data-error="@if($errors->has('title')){{ $errors->first('title') }}@endif" data-success="right"></span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('slug', trans('global.content-tags.fields.slug').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('slug', old('slug'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('slug'))
-                        <p class="help-block">
-                            {{ $errors->first('slug') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    {!! Form::label('slug', trans('global.content-tags.fields.slug').'') !!}
+                    {!! Form::text('slug', old('slug'), ['class' => 'validate']) !!}
+                    <span class="helper-text" data-error="@if($errors->has('slug')){{ $errors->first('slug') }}@endif" data-success="right"></span>
                 </div>
             </div>
             
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light grey white-text']) !!}
     {!! Form::close() !!}
 @stop
 

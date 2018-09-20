@@ -1,98 +1,88 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.lessons.title')</h3>
-    
+    <div class="back-button">
+        <a href="{{ route('admin.lessons.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
+    </div>
+    <div class="header-title">
+        <h2>@lang('global.lessons.title')</h2>
+    </div>    
     {!! Form::model($lesson, ['method' => 'PUT', 'route' => ['admin.lessons.update', $lesson->id], 'files' => true,]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_edit')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_edit')</h3>
         </div>
 
-        <div class="panel-body">
+        <div class="card-content">
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('order', trans('global.lessons.fields.order').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('order', old('order'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('order'))
-                        <p class="help-block">
-                            {{ $errors->first('order') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('order', trans('global.lessons.fields.order').'') !!}
+                        {!! Form::number('order', old('order'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('order')){{ $errors->first('order') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('global.lessons.fields.title').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('title'))
-                        <p class="help-block">
-                            {{ $errors->first('title') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('title', trans('global.lessons.fields.title').'') !!}
+                        {!! Form::text('title', old('title'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('title')){{ $errors->first('title') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('slug', trans('global.lessons.fields.slug').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('slug', old('slug'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('slug'))
-                        <p class="help-block">
-                            {{ $errors->first('slug') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('slug', trans('global.lessons.fields.slug').'') !!}
+                        {!! Form::text('slug', old('slug'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('slug')){{ $errors->first('slug') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('introduction', trans('global.lessons.fields.introduction').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('introduction'))
-                        <p class="help-block">
-                            {{ $errors->first('introduction') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('introduction', trans('global.lessons.fields.introduction').'') !!}
+                        {!! Form::textarea('introduction', old('introduction'), ['class' => 'materialize-textarea ', 'placeholder' => '']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('introduction')){{ $errors->first('introduction') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('content', trans('global.lessons.fields.content').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('content', old('content'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('content'))
-                        <p class="help-block">
-                            {{ $errors->first('content') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12 no-padding">
+                            <div class="file-field input-field">
+                                <div class="btn grey">
+                                    <span>File</span>
+                                    {!! Form::file('study_material') !!}
+                                </div>
+                                <div class="file-path-wrapper">
+                                    {!! Form::text('file_text', old('file_text'), ['class' => 'file-path validate', 'placeholder' => trans('global.lessons.fields.study-material')]) !!}
+                                </div>
+                                {!! Form::hidden('study_material', old('study_material')) !!}
+                                {!! Form::hidden('study_material_max_size', 5) !!}
+                            </div>
+                            @if ($lesson->study_material)
+                                <a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" target="_blank">Download file</a>
+                            @endif
+                            <span class="helper-text" data-error="@if($errors->has('study_material')){{ $errors->first('study_material') }}@endif" data-success="right"></span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('study_material', trans('global.lessons.fields.study-material').'', ['class' => 'control-label']) !!}
-                    {!! Form::hidden('study_material', old('study_material')) !!}
-                    @if ($lesson->study_material)
-                        <a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" target="_blank">Download file</a>
-                    @endif
-                    {!! Form::file('study_material', ['class' => 'form-control']) !!}
-                    {!! Form::hidden('study_material_max_size', 5) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('study_material'))
-                        <p class="help-block">
-                            {{ $errors->first('study_material') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-12">
+                    <div class="input-field">
+                        {!! Form::label('content', trans('global.lessons.fields.content').'') !!}
+                        {!! Form::textarea('content', old('content'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('content')){{ $errors->first('content') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
             </div>
             
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light grey white-text']) !!}
     {!! Form::close() !!}
 @stop
 

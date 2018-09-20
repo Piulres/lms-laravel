@@ -2,31 +2,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.general.title')</h3>
-    @can('general_create')
-    <p>
-        <a href="{{ route('admin.generals.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h2>@lang('global.general.title')</h2>
+        @can('general_create')
+            <a href="{{ route('admin.generals.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
 
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.generals.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.generals.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
-    
+    <ul class="tabs z-depth-1">
+        <li class="tab">
+            <a href="{{ route('admin.generals.index') }}" class="grey-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+        </li>
+        <li class="tab">
+            <a href="{{ route('admin.generals.index') }}?show_deleted=1" class="grey-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+        </li>
+    </ul>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('general_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="card-content">
+            <table class="no-order striped responsive-table ajaxTable @can('general_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
+                        <th class="order-null"></th>
                         @can('general_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
@@ -53,10 +54,12 @@
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.generals.index') !!}?show_deleted={{ request('show_deleted') }}';
-            window.dtDefaultOptions.columns = [@can('general_delete')
-                @if ( request('show_deleted') != 1 )
-                    {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endif
+            window.dtDefaultOptions.columns = [
+                {data: 'site_logo', name: 'site_logo'},
+                @can('general_delete')
+                    @if ( request('show_deleted') != 1 )
+                        {data: 'massDelete', name: 'id', searchable: false, sortable: false},
+                    @endif
                 @endcan{data: 'site_name', name: 'site_name'},
                 {data: 'site_logo', name: 'site_logo'},
                 {data: 'theme_color', name: 'theme_color'},

@@ -1,105 +1,75 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.datatrail.title')</h3>
-    
+    <div class="back-button">
+        <a href="{{ route('admin.datatrails.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
+    </div>
+    <div class="header-title">
+        <h2>@lang('global.datatrail.title')</h2>
+    </div>    
     {!! Form::model($datatrail, ['method' => 'PUT', 'route' => ['admin.datatrails.update', $datatrail->id]]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_edit')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_edit')</h3>
         </div>
 
-        <div class="panel-body">
+        <div class="card-content">
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('view', trans('global.datatrail.fields.view').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('view', old('view'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('view'))
-                        <p class="help-block">
-                            {{ $errors->first('view') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('view', trans('global.datatrail.fields.view').'') !!}
+                        {!! Form::number('view', old('view'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('view')){{ $errors->first('view') }}@endif" data-success="right"></span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('progress', trans('global.datatrail.fields.progress').'') !!}
+                        {!! Form::number('progress', old('progress'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('progress')){{ $errors->first('progress') }}@endif" data-success="right"></span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('rating', trans('global.datatrail.fields.rating').'') !!}
+                        {!! Form::number('rating', old('rating'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('rating')){{ $errors->first('rating') }}@endif" data-success="right"></span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('testimonal', trans('global.datatrail.fields.testimonal').'') !!}
+                        {!! Form::textarea('testimonal', old('testimonal'), ['class' => 'materialize-textarea ', 'placeholder' => '']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('testimonal')){{ $errors->first('testimonal') }}@endif" data-success="right"></span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    {!! Form::label('user_id', trans('global.datatrail.fields.user').'') !!}
+                    {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control']) !!}
+                    <span class="helper-text" data-error="@if($errors->has('user_id')){{ $errors->first('user_id') }}@endif" data-success="right"></span>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    {!! Form::label('trail_id', trans('global.datatrail.fields.trail').'') !!}
+                    {!! Form::select('trail_id', $trails, old('trail_id'), ['class' => 'form-control']) !!}
+                    <span class="helper-text" data-error="@if($errors->has('trail_id')){{ $errors->first('trail_id') }}@endif" data-success="right"></span>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    {!! Form::label('certificate_id', trans('global.datatrail.fields.certificate').'') !!}
+                    {!! Form::select('certificate_id', $certificates, old('certificate_id'), ['class' => 'form-control']) !!}
+                    <span class="helper-text" data-error="@if($errors->has('certificate_id')){{ $errors->first('certificate_id') }}@endif" data-success="right"></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('progress', trans('global.datatrail.fields.progress').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('progress', old('progress'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('progress'))
-                        <p class="help-block">
-                            {{ $errors->first('progress') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('rating', trans('global.datatrail.fields.rating').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('rating', old('rating'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('rating'))
-                        <p class="help-block">
-                            {{ $errors->first('rating') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('testimonal', trans('global.datatrail.fields.testimonal').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('testimonal', old('testimonal'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('testimonal'))
-                        <p class="help-block">
-                            {{ $errors->first('testimonal') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('user_id', trans('global.datatrail.fields.user').'', ['class' => 'control-label']) !!}
-                    {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control select2']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('user_id'))
-                        <p class="help-block">
-                            {{ $errors->first('user_id') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('trail_id', trans('global.datatrail.fields.trail').'', ['class' => 'control-label']) !!}
-                    {!! Form::select('trail_id', $trails, old('trail_id'), ['class' => 'form-control select2']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('trail_id'))
-                        <p class="help-block">
-                            {{ $errors->first('trail_id') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('certificate_id', trans('global.datatrail.fields.certificate').'', ['class' => 'control-label']) !!}
-                    {!! Form::select('certificate_id', $certificates, old('certificate_id'), ['class' => 'form-control select2']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('certificate_id'))
-                        <p class="help-block">
-                            {{ $errors->first('certificate_id') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light grey white-text']) !!}
     {!! Form::close() !!}
 @stop
 

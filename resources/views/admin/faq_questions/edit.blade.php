@@ -1,57 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.faq-questions.title')</h3>
-    
+    <div class="back-button">
+        <a href="{{ route('admin.faq_questions.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
+    </div>
+    <div class="header-title">
+        <h2>@lang('global.faq-questions.title')</h2>
+    </div>    
     {!! Form::model($faq_question, ['method' => 'PUT', 'route' => ['admin.faq_questions.update', $faq_question->id]]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_edit')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_edit')</h3>
         </div>
 
-        <div class="panel-body">
+        <div class="card-content">
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('category_id', trans('global.faq-questions.fields.category').'*', ['class' => 'control-label']) !!}
-                    {!! Form::select('category_id', $categories, old('category_id'), ['class' => 'form-control select2', 'required' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('category_id'))
-                        <p class="help-block">
-                            {{ $errors->first('category_id') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    {!! Form::label('category_id', trans('global.faq-questions.fields.category').'*') !!}
+                    {!! Form::select('category_id', $categories, old('category_id'), ['class' => 'form-control', 'required' => '']) !!}
+                    <span class="helper-text" data-error="@if($errors->has('category_id')){{ $errors->first('category_id') }}@endif" data-success="right"></span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('question_text', trans('global.faq-questions.fields.question-text').'*', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('question_text', old('question_text'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('question_text'))
-                        <p class="help-block">
-                            {{ $errors->first('question_text') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('question_text', trans('global.faq-questions.fields.question-text').'*') !!}
+                        {!! Form::textarea('question_text', old('question_text'), ['class' => 'materialize-textarea ', 'placeholder' => '', 'required' => '']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('question_text')){{ $errors->first('question_text') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('answer_text', trans('global.faq-questions.fields.answer-text').'*', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('answer_text', old('answer_text'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('answer_text'))
-                        <p class="help-block">
-                            {{ $errors->first('answer_text') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('answer_text', trans('global.faq-questions.fields.answer-text').'*') !!}
+                        {!! Form::textarea('answer_text', old('answer_text'), ['class' => 'materialize-textarea ', 'placeholder' => '', 'required' => '']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('answer_text')){{ $errors->first('answer_text') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
             </div>
             
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light grey white-text']) !!}
     {!! Form::close() !!}
 @stop
 

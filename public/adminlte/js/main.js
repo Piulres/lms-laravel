@@ -22,6 +22,7 @@ $(document).ready(function () {
             {
                 extend: 'copy',
                 text: window.copyButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -29,6 +30,7 @@ $(document).ready(function () {
             {
                 extend: 'csv',
                 text: window.csvButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -36,6 +38,7 @@ $(document).ready(function () {
             {
                 extend: 'excel',
                 text: window.excelButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -43,6 +46,7 @@ $(document).ready(function () {
             {
                 extend: 'pdf',
                 text: window.pdfButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -50,6 +54,7 @@ $(document).ready(function () {
             {
                 extend: 'print',
                 text: window.printButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -57,6 +62,7 @@ $(document).ready(function () {
             {
                 extend: 'colvis',
                 text: window.colvisButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -67,20 +73,20 @@ $(document).ready(function () {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {
                 style: 'multi',
-                selector: 'td:first-child'
+                selector: 'td:nth-child(2)'
             };
 
             window.dtDefaultOptions.columnDefs.push({
                 orderable: false,
                 className: 'select-checkbox',
-                targets: 0
+                targets: 1
             });
         }
         $(this).dataTable(window.dtDefaultOptions);
     });
     $(document).on( 'init.dt', function ( e, settings ) {
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-xs btn-danger js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
         }
     });
 
@@ -111,7 +117,7 @@ $(document).ready(function () {
     $(document).on('click', '#select-all', function () {
         var selected = $(this).is(':checked');
 
-        $(this).closest('table.datatable, table.ajaxTable').find('td:first-child').each(function () {
+        $(this).closest('table.datatable, table.ajaxTable').find('td:nth-child(2)').each(function () {
             if (selected != $(this).closest('tr').hasClass('selected')) {
                 $(this).click();
             }
@@ -204,18 +210,18 @@ function processAjaxTables() {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {
                 style: 'multi',
-                selector: 'td:first-child'
+                selector: 'td:nth-child(2)'
             };
 
             window.dtDefaultOptions.columnDefs.push({
                 orderable: false,
                 className: 'select-checkbox',
-                targets: 0
+                targets: 1
             });
         }
         $(this).DataTable(window.dtDefaultOptions);
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-xs btn-danger js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
         }
     });
 
