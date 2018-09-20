@@ -33,6 +33,11 @@
 
             <div class="row">
 
+                <div class="col s12 center">                
+                    
+
+                </div>                
+                
                 <div class="col s12 center">
                 
                     <h4>Courses</h4>

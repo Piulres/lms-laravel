@@ -53,7 +53,7 @@
             </div>
             <div class="col s6">
                 @if (Auth::check())
-                <a class="btn waves-effect waves-light black" href="#">
+                <a class="btn waves-effect waves-light black" href="{{ url('start/'. $course->id) }}">
                     Start Course
                 </a>
                 @else

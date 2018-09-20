@@ -7,6 +7,8 @@ Route::get('/library', 'LibraryController@index');
 Route::get('courses', ['uses' => 'CoursesController@index', 'as' => 'courses']);
 Route::get('courses/{id}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
 
+Route::get('start/{id}', 'CoursesController@start');   
+
 
 Route::get('/courses/{id}', 'CoursesController@show');
 Route::get('/logout', 'Auth\LoginController@logout');
@@ -37,7 +39,7 @@ Route::get('{driver}/callback', 'Auth\LoginController@handleSocialCallback')->na
 Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/home', 'HomeController@home');
     // Route::get('/home', 'Admin\DashboardController@index');
-    
+
     Route::resource('content_categories', 'Admin\ContentCategoriesController');
     Route::post('content_categories_mass_destroy', ['uses' => 'Admin\ContentCategoriesController@massDestroy', 'as' => 'content_categories.mass_destroy']);
     Route::resource('content_tags', 'Admin\ContentTagsController');
