@@ -2,13 +2,14 @@
 // Route::get('/', function () { return redirect('/admin/home'); });
 
 Route::get('/', 'HomeController@index');
+// Route::get('/library', 'LibraryController@index');
 Route::get('/library', 'LibraryController@index');
 
 Route::get('courses', ['uses' => 'CoursesController@index', 'as' => 'courses']);
 Route::get('courses/{id}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
 
 Route::get('start/{id}', 'CoursesController@start');   
-Route::get('test/{id}', 'CoursesController@test');   
+Route::get('remove/{id}', 'CoursesController@remove');   
 
 Route::get('/courses/{id}', 'CoursesController@show');
 Route::get('/logout', 'Auth\LoginController@logout');

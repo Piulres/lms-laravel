@@ -38,7 +38,7 @@ class MasterCommand2 extends Command
     public function handle()
     {
         // echo exec('php artisan serve');
-        echo ' Wait a minute doctor ';
+        echo ' Wait a few minutes doctor ';
         echo ' > ';
         echo exec('composer install');
         echo exec('composer dump-autoload');

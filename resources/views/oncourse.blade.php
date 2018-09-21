@@ -14,8 +14,10 @@
             </div>
             <div class="col s6">
                 
-                
-                     <a href="{{ url('test/'. $course->id) }}">Finalizar Curso</a>
+                <ul>
+                    <li><a href="{{ url('remove/'. $course->id) }}">Remover Curso</a></li>
+                    <!-- <li><a href="{{ url('end/'. $course->id) }}">Finalizar Curso</a></li> -->
+                </ul> 
 
             </div>
         </div>
@@ -23,8 +25,7 @@
             <div class="col s12">  
                 <a href="{{ url('library') }}" class="btn black">@lang('global.app_back_to_list')</a>
             </div>
-        </div>
-            
+        </div>           
        
 
     </div>

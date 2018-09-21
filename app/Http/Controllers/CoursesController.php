@@ -57,20 +57,26 @@ class CoursesController extends Controller
             'user_id' => Auth::id(),
             'course_id' => $course->id,
             'view' => '0',
-            // 'progress' => '0',
+            'progress' => '0',
         ]);
 
         DB::table('datacourses')
          ->where("datacourses.user_id", '=',  $user)
          ->where("datacourses.course_id", '=',  $course->id)
          ->limit(1)
-        ->update(['datacourses.view'=> '1']);      
+        ->update(['datacourses.view'=> '1']);
+
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->where('view', '=', NULL)
+        ->delete();      
 
         // return redirect()->route('results.show', [$test->id]);
         return view('oncourse', compact('course', 'datacourses', 'trails'));
     }
 
-    public function test($id)
+    public function remove($id)
     {
 
         if 
@@ -86,9 +92,9 @@ class CoursesController extends Controller
          ->where("datacourses.course_id", '=',  $course->id)
          ->where("datacourses.view", '=',  '1')
          ->limit(1)
-        ->update(['datacourses.view'=> '2']);
+        ->update(['datacourses.view'=> '0']);
 
-            // DB::table('users')
+            // DB::table('jaja')
             // ->where('name', '=', 'John')
             // ->where(function ($query) {
             //     $query->where('votes', '>', 100)
@@ -96,17 +102,8 @@ class CoursesController extends Controller
             // })
             // ->get();
 
-        // if($datacourses) {
-        //     $test = \App\Datacourse::create([
-        //         'user_id' => Auth::id(),
-        //         'course_id' => $course->id,
-        //         'view' => '1',
-        //         // 'progress' => '0',
-        //     ]);
-        // }
-
-        // return redirect()->back();
-        return view('oncourse', compact('course', 'datacourses', 'trails'));
+        // return view('oncourse', compact('course', 'datacourses', 'trails'));
+        return redirect('library');
 
     }
 
