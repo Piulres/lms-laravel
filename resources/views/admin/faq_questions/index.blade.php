@@ -15,10 +15,10 @@
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table ajaxTable @can('faq_question_delete') dt-select @endcan">
+            <table class="no-order striped responsive-table ajaxTable @can('faq_question_delete') dt-select @endcan">
                 <thead>
                     <tr>
-                        <th class="order-null"></th>
+                        <th></th>
                         @can('faq_question_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan

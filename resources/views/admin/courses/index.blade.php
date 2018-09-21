@@ -66,7 +66,7 @@
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.courses.index') !!}?show_deleted={{ request('show_deleted') }}';
             window.dtDefaultOptions.columns = [@can('course_delete')
-                @endcan{data: 'order', name: 'order'},
+                @endcan{data: 'order', name: 'order', className: 'reorder'},
                 @if ( request('show_deleted') != 1 )
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endif

@@ -24,7 +24,7 @@
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table {{ count($lessons) > 0 ? 'datatable' : '' }} @can('lesson_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="striped responsive-table ajaxTable dt-select">
                 <thead>
                     <tr>
                         <th>@lang('global.lessons.fields.order')</th>
@@ -36,19 +36,13 @@
                         <th>@lang('global.lessons.fields.introduction')</th>
                         <th>@lang('global.lessons.fields.content')</th>
                         <th>@lang('global.lessons.fields.study-material')</th>
-                        @if( request('show_deleted') == 1 )
-                        <th>&nbsp;</th>
-                        @else
-                        <th>&nbsp;</th>
-                        @endif
                     </tr>
                 </thead>
-                
                 <tbody>
                     @if (count($lessons) > 0)
                         @foreach ($lessons as $lesson)
                             <tr data-entry-id="{{ $lesson->id }}">
-                                <td field-key='order'>{{ $lesson->order }}</td>
+                                <td field-key='order' class="reorder">{{ $lesson->order }}</td>
                                 @can('lesson_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan

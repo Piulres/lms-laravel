@@ -62,9 +62,6 @@
                         {!! Form::hidden('featured_image_max_height', 4096) !!}
                     </div>
                     <span class="helper-text" data-error="@if($errors->has('featured_image')){{ $errors->first('featured_image') }}@endif" data-success="right"></span>
-                    @if ($course->featured_image)
-                        <a href="{{ asset(env('UPLOAD_PATH').'/'.$course->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/'.$course->featured_image) }}"></a>
-                    @endif
                 </div>
 
                 <div class="col-12 col-md-6">

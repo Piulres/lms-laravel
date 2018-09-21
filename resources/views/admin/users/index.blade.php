@@ -15,7 +15,7 @@
         </div>
         <div class="card-content">
 
-            <table class="responsive-table striped ajaxTable @can('user_delete') dt-select @endcan">
+            <table class="no-order responsive-table striped ajaxTable @can('user_delete') dt-select @endcan">
                 <thead>
                     <tr>
                         <th>@lang('global.app_order')</th>

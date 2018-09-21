@@ -260,7 +260,7 @@ return [
     'languages' => [
         'en' => 'English',
         'es' => 'Spanish',
-        'pt' => 'Brazilian Portuguese',
+        'pt' => 'Portugues-Brasil',
     ],
 
 ];

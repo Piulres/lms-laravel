@@ -24,7 +24,7 @@
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table ajaxTable @can('trailcategory_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="no-order striped responsive-table ajaxTable @can('trailcategory_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         <th>@lang('global.app_order')</th>

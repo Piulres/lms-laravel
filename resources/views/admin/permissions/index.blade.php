@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table {{ count($permissions) > 0 ? 'datatable' : '' }} @can('permission_delete') dt-select @endcan">
+            <table class="no-order striped responsive-table {{ count($permissions) > 0 ? 'datatable' : '' }} @can('permission_delete') dt-select @endcan">
                 <thead>
                     <tr>
                         <th class="order-null"></th>

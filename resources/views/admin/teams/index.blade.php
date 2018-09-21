@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table {{ count($teams) > 0 ? 'datatable' : '' }} @can('team_delete') dt-select @endcan">
+            <table class="no-order striped responsive-table {{ count($teams) > 0 ? 'datatable' : '' }} @can('team_delete') dt-select @endcan">
                 <thead>
                     <tr>
                         <th>@lang('global.app_order')</th>

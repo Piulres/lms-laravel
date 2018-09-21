@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    var editor;
     var handleCheckboxes = function (html, rowIndex, colIndex, cellNode) {
         var $cellNode = $(cellNode);
         var $check = $cellNode.find(':checked');
@@ -18,6 +18,13 @@ $(document).ready(function () {
         columnDefs: [],
         "iDisplayLength": 100,
         "aaSorting": [],
+        columnDefs: [
+            { orderable: false, targets: [ 1,2,3 ] }
+        ],
+        rowReorder: {
+            dataSrc: 'order',
+            editor:  editor
+        },
         buttons: [
             {
                 extend: 'copy',
@@ -69,6 +76,25 @@ $(document).ready(function () {
             },
         ]
     };
+
+    editor
+        // .on( 'postCreate postRemove', function () {
+        //     // After create or edit, a number of other rows might have been effected -
+        //     // so we need to reload the table, keeping the paging in the current position
+        //     // table.ajax.reload( null, false );
+        //     console.log('Remove')
+        // } )
+        // .on( 'initCreate', function () {
+        //     // Enable order for create
+        //     // editor.field( 'readingOrder' ).enable();
+        //     console.log('Init');
+        // } )
+        // .on( 'initEdit', function () {
+        //     // Disable for edit (re-ordering is performed by click and drag)
+        //     // editor.field( 'readingOrder' ).disable();
+        //     $('Edit');
+        // } );
+
     $('.datatable').each(function () {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {

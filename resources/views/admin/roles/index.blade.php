@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table {{ count($roles) > 0 ? 'datatable' : '' }} @can('role_delete') dt-select @endcan">
+            <table class="no-oreder striped responsive-table {{ count($roles) > 0 ? 'datatable' : '' }} @can('role_delete') dt-select @endcan">
                 <thead>
                     <tr>
                         <th>@lang('global.app_order')</th>
