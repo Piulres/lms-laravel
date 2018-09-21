@@ -10,6 +10,13 @@
             <div class="col s6">
                 {{ $course->title }}
                 {{ $course->description }}
+                
+            </div>
+            <div class="col s6">
+                
+                
+                     <a href="{{ url('test/'. $course->id) }}">Finalizar Curso</a>
+
             </div>
         </div>
         <div class="row"> 

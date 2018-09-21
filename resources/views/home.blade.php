@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="row">
+
         <div class="col-lg-6 col-md-12 card-home">
             <div class="card">
                 <div class="card-title">
@@ -11,6 +12,7 @@
                 <div class="card-content">
                     <table class="highlight responsive-table ajaxTable">
                         <thead>
+
                             <tr>
                                 
                                 <th> @lang('global.users.fields.name')</th>
@@ -43,6 +45,7 @@
                                         @endcan
                                     </div>
                                 </td>
+
                             </tr>
                         @endforeach
                     </table>
@@ -52,6 +55,7 @@
                 </div>
             </div>
         </div>
+
 
  
         <div class="col-lg-6 col-md-12 card-home">
@@ -64,24 +68,25 @@
                     <table class="table table-bordered table-striped ajaxTable">
                         <thead>
                         <tr>
-                            
-                            <th> @lang('global.courses.fields.order')</th> 
-                            <th> @lang('global.courses.fields.title')</th> 
-                            <th> @lang('global.courses.fields.slug')</th> 
-                            <th> @lang('global.courses.fields.description')</th> 
-                            <th> @lang('global.courses.fields.introduction')</th> 
+
+                            <th> @lang('global.courses.fields.order')</th>
+                            <th> @lang('global.courses.fields.title')</th>
+                            <th> @lang('global.courses.fields.slug')</th>
+                            <th> @lang('global.courses.fields.description')</th>
+                            <th> @lang('global.courses.fields.introduction')</th>
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
                         @foreach($courses as $course)
                             <tr>
-                               
-                                <td>{{ $course->order }} </td> 
-                                <td>{{ $course->title }} </td> 
-                                <td>{{ $course->slug }} </td> 
-                                <td>{{ $course->description }} </td> 
-                                <td>{{ $course->introduction }} </td> 
+
+                                <td>{{ $course->order }} </td>
+                                <td>{{ $course->title }} </td>
+                                <td>{{ $course->slug }} </td>
+                                <td>{{ $course->description }} </td>
+                                <td>{{ $course->introduction }} </td>
                                 <td>
+
                                     <div class="buttons end">
                                         @can('course_view')
                                         <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
@@ -113,6 +118,7 @@
             </div>
         </div>
 
+
  
         <div class="col-lg-6 col-md-12 card-home">
             <div class="card">
@@ -124,24 +130,25 @@
                     <table class="table table-bordered table-striped ajaxTable">
                         <thead>
                         <tr>
-                            
-                            <th> @lang('global.trails.fields.order')</th> 
-                            <th> @lang('global.trails.fields.title')</th> 
-                            <th> @lang('global.trails.fields.slug')</th> 
-                            <th> @lang('global.trails.fields.description')</th> 
-                            <th> @lang('global.trails.fields.introduction')</th> 
+
+                            <th> @lang('global.trails.fields.order')</th>
+                            <th> @lang('global.trails.fields.title')</th>
+                            <th> @lang('global.trails.fields.slug')</th>
+                            <th> @lang('global.trails.fields.description')</th>
+                            <th> @lang('global.trails.fields.introduction')</th>
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
                         @foreach($trails as $trail)
                             <tr>
-                               
-                                <td>{{ $trail->order }} </td> 
-                                <td>{{ $trail->title }} </td> 
-                                <td>{{ $trail->slug }} </td> 
-                                <td>{{ $trail->description }} </td> 
-                                <td>{{ $trail->introduction }} </td> 
+
+                                <td>{{ $trail->order }} </td>
+                                <td>{{ $trail->title }} </td>
+                                <td>{{ $trail->slug }} </td>
+                                <td>{{ $trail->description }} </td>
+                                <td>{{ $trail->introduction }} </td>
                                 <td>
+
                                     <div class="buttons end">
                                         @can('trail_view')
                                         <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
@@ -172,6 +179,7 @@
             </div>
         </div>
 
+
  
         <div class="col-lg-6 col-md-12 card-home">
             <div class="card">
@@ -183,17 +191,17 @@
                     <table class="table table-bordered table-striped ajaxTable">
                         <thead>
                         <tr>
-                            
-                            <th> @lang('global.faq-questions.fields.question-text')</th> 
-                            <th> @lang('global.faq-questions.fields.answer-text')</th> 
+
+                            <th> @lang('global.faq-questions.fields.question-text')</th>
+                            <th> @lang('global.faq-questions.fields.answer-text')</th>
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
                         @foreach($faqquestions as $faqquestion)
                             <tr>
-                               
-                                <td>{{ $faqquestion->question_text }} </td> 
-                                <td>{{ $faqquestion->answer_text }} </td> 
+
+                                <td>{{ $faqquestion->question_text }} </td>
+                                <td>{{ $faqquestion->answer_text }} </td>
                                 <td>
                                     <div class="buttons end">
                                         @can('faq_question_view')
@@ -214,6 +222,7 @@
                                         {!! Form::close() !!}
                                     </div>
                                     @endcan
+
                                 </td>
                             </tr>
                         @endforeach
@@ -224,4 +233,3 @@
 
     </div>
 @endsection
-
