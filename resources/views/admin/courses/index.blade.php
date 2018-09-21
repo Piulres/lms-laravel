@@ -2,36 +2,37 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.courses.title')</h3>
-    @can('course_create')
-    <p>
-        <a href="{{ route('admin.courses.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h2>@lang('global.courses.title')</h2>
+        @can('course_create')
+            <a href="{{ route('admin.courses.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
 
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.courses.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.courses.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
-    
+    <ul class="tabs z-depth-1">
+        <li class="tab">
+            <a href="{{ route('admin.courses.index') }}" class="grey-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+        </li>
+        <li class="tab">
+            <a href="{{ route('admin.courses.index') }}?show_deleted=1" class="grey-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+        </li>
+    </ul>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('course_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="card-content">
+            <table class="striped responsive-table ajaxTable @can('course_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.courses.fields.order')</th>
+
                         @can('course_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
-                        <th>@lang('global.courses.fields.order')</th>
                         <th>@lang('global.courses.fields.title')</th>
                         <th>@lang('global.courses.fields.slug')</th>
                         <th>@lang('global.courses.fields.description')</th>
@@ -65,10 +66,10 @@
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.courses.index') !!}?show_deleted={{ request('show_deleted') }}';
             window.dtDefaultOptions.columns = [@can('course_delete')
+                @endcan{data: 'order', name: 'order', className: 'reorder'},
                 @if ( request('show_deleted') != 1 )
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endif
-                @endcan{data: 'order', name: 'order'},
                 {data: 'title', name: 'title'},
                 {data: 'slug', name: 'slug'},
                 {data: 'description', name: 'description'},

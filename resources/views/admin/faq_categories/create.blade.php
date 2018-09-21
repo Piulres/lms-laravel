@@ -1,32 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.faq-categories.title')</h3>
+    <div class="back-button">
+        <a href="{{ route('admin.faq_categories.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
+    </div>
+    <div class="header-title">
+        <h2>@lang('global.faq-categories.title')</h2>
+    </div>
+
     {!! Form::open(['method' => 'POST', 'route' => ['admin.faq_categories.store']]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_create')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_create')</h3>
         </div>
         
-        <div class="panel-body">
+        <div class="card-content">
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('global.faq-categories.fields.title').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('title'))
-                        <p class="help-block">
-                            {{ $errors->first('title') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    {!! Form::label('title', trans('global.faq-categories.fields.title').'*') !!}
+                    {!! Form::text('title', old('title'), ['class' => 'validate', 'required' => '']) !!}
+                    <span class="helper-text" data-error="@if($errors->has('title')){{ $errors->first('title') }}@endif" data-success="right"></span>
                 </div>
             </div>
             
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey']) !!}
     {!! Form::close() !!}
 @stop
 

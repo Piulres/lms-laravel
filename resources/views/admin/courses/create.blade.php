@@ -1,216 +1,198 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.courses.title')</h3>
+    <div class="back-button">
+        <a href="{{ route('admin.courses.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
+    </div>
+    <div class="header-title">
+        <h2>@lang('global.courses.title')</h2>
+    </div>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.courses.store'], 'files' => true,]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_create')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_create')</h3>
         </div>
         
-        <div class="panel-body">
+        <div class="card-content">
             <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('order', trans('global.courses.fields.order').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('order', old('order'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('order'))
-                        <p class="help-block">
-                            {{ $errors->first('order') }}
-                        </p>
-                    @endif
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('order', trans('global.courses.fields.order').'') !!}
+                        {!! Form::number('order', old('order'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('order')){{ $errors->first('order') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('global.courses.fields.title').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('title'))
-                        <p class="help-block">
-                            {{ $errors->first('title') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('title', trans('global.courses.fields.title').'') !!}
+                        {!! Form::text('title', old('title'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('title')){{ $errors->first('title') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('slug', trans('global.courses.fields.slug').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('slug', old('slug'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('slug'))
-                        <p class="help-block">
-                            {{ $errors->first('slug') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('slug', trans('global.courses.fields.slug').'') !!}
+                        {!! Form::text('slug', old('slug'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('slug')){{ $errors->first('slug') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('description', trans('global.courses.fields.description').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('description', old('description'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('description'))
-                        <p class="help-block">
-                            {{ $errors->first('description') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('description', trans('global.courses.fields.description').'') !!}
+                        {!! Form::textarea('description', old('description'), ['class' => 'materialize-textarea ', 'placeholder' => '']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('description')){{ $errors->first('description') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('introduction', trans('global.courses.fields.introduction').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('introduction'))
-                        <p class="help-block">
-                            {{ $errors->first('introduction') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="file-field input-field">
+                        <div class="btn grey">
+                            <span>File</span>
+                            {!! Form::file('featured_image') !!}
+                        </div>
+                        <div class="file-path-wrapper">
+                            {!! Form::text('file_text', old('file_text'), ['class' => 'file-path validate', 'placeholder' => 'Upload your avatar']) !!}
+                        </div>
+                        {!! Form::hidden('featured_image_max_size', 4) !!}
+                        {!! Form::hidden('featured_image_max_width', 4096) !!}
+                        {!! Form::hidden('featured_image_max_height', 4096) !!}
+                    </div>
+                    <span class="helper-text" data-error="@if($errors->has('featured_image')){{ $errors->first('featured_image') }}@endif" data-success="right"></span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('featured_image', trans('global.courses.fields.featured-image').'', ['class' => 'control-label']) !!}
-                    {!! Form::file('featured_image', ['class' => 'form-control', 'style' => 'margin-top: 4px;']) !!}
-                    {!! Form::hidden('featured_image_max_size', 4) !!}
-                    {!! Form::hidden('featured_image_max_width', 4096) !!}
-                    {!! Form::hidden('featured_image_max_height', 4096) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('featured_image'))
-                        <p class="help-block">
-                            {{ $errors->first('featured_image') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12 no-padding">
+                            {!! Form::label('instructor', trans('global.courses.fields.instructor').'') !!}
+                            {!! Form::select('instructor[]', $instructors, old('instructor'), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-instructor' ]) !!}
+                            <span class="helper-text" data-error="@if($errors->has('instructor')){{ $errors->first('instructor') }}@endif" data-success="right"></span>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-instructor">
+                                {{ trans('global.app_select_all') }}
+                            </button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-instructor">
+                                {{ trans('global.app_deselect_all') }}
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('instructor', trans('global.courses.fields.instructor').'', ['class' => 'control-label']) !!}
-                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-instructor">
-                        {{ trans('global.app_select_all') }}
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-instructor">
-                        {{ trans('global.app_deselect_all') }}
-                    </button>
-                    {!! Form::select('instructor[]', $instructors, old('instructor'), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-instructor' ]) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('instructor'))
-                        <p class="help-block">
-                            {{ $errors->first('instructor') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12 no-padding">
+                            {!! Form::label('lessons', trans('global.courses.fields.lessons').'') !!}
+                            {!! Form::select('lessons[]', $lessons, old('lessons'), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-lessons' ]) !!}
+                            <span class="helper-text" data-error="@if($errors->has('lessons')){{ $errors->first('lessons') }}@endif" data-success="right"></span>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-lessons">
+                                {{ trans('global.app_select_all') }}
+                            </button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-lessons">
+                                {{ trans('global.app_deselect_all') }}
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('lessons', trans('global.courses.fields.lessons').'', ['class' => 'control-label']) !!}
-                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-lessons">
-                        {{ trans('global.app_select_all') }}
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-lessons">
-                        {{ trans('global.app_deselect_all') }}
-                    </button>
-                    {!! Form::select('lessons[]', $lessons, old('lessons'), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-lessons' ]) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('lessons'))
-                        <p class="help-block">
-                            {{ $errors->first('lessons') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('duration', trans('global.courses.fields.duration').'') !!}
+                        {!! Form::number('duration', old('duration'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('duration')){{ $errors->first('duration') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('duration', trans('global.courses.fields.duration').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('duration', old('duration'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('duration'))
-                        <p class="help-block">
-                            {{ $errors->first('duration') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('start_date', trans('global.courses.fields.start-date').'') !!}
+                        {!! Form::text('start_date', old('start_date'), ['class' => 'form-control datepicker']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('start_date')){{ $errors->first('start_date') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('start_date', trans('global.courses.fields.start-date').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('start_date', old('start_date'), ['class' => 'form-control date', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('start_date'))
-                        <p class="help-block">
-                            {{ $errors->first('start_date') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="input-field">
+                        {!! Form::label('end_date', trans('global.courses.fields.end-date').'') !!}
+                        {!! Form::text('end_date', old('end_date'), ['class' => 'form-control datepicker']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('end_date')){{ $errors->first('end_date') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('end_date', trans('global.courses.fields.end-date').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('end_date', old('end_date'), ['class' => 'form-control date', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('end_date'))
-                        <p class="help-block">
-                            {{ $errors->first('end_date') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12 no-padding">
+                            {!! Form::label('categories', trans('global.courses.fields.categories').'') !!}
+                            {!! Form::select('categories[]', $categories, old('categories'), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-categories' ]) !!}
+                            <span class="helper-text" data-error="@if($errors->has('categories')){{ $errors->first('categories') }}@endif" data-success="right"></span>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-categories">
+                                {{ trans('global.app_select_all') }}
+                            </button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-categories">
+                                {{ trans('global.app_deselect_all') }}
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('categories', trans('global.courses.fields.categories').'', ['class' => 'control-label']) !!}
-                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-categories">
-                        {{ trans('global.app_select_all') }}
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-categories">
-                        {{ trans('global.app_deselect_all') }}
-                    </button>
-                    {!! Form::select('categories[]', $categories, old('categories'), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-categories' ]) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('categories'))
-                        <p class="help-block">
-                            {{ $errors->first('categories') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12 no-padding">
+                            {!! Form::label('tags', trans('global.courses.fields.tags').'') !!}
+                            {!! Form::select('tags[]', $tags, old('tags'), ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'selectall-tags' ]) !!}
+                            <span class="helper-text" data-error="@if($errors->has('tags')){{ $errors->first('tags') }}@endif" data-success="right"></span>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="selectbtn-tags">
+                                {{ trans('global.app_select_all') }}
+                            </button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="waves-effect waves-light btn-small grey" id="deselectbtn-tags">
+                                {{ trans('global.app_deselect_all') }}
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('tags', trans('global.courses.fields.tags').'', ['class' => 'control-label']) !!}
-                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-tags">
-                        {{ trans('global.app_select_all') }}
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-tags">
-                        {{ trans('global.app_deselect_all') }}
-                    </button>
-                    {!! Form::select('tags[]', $tags, old('tags'), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-tags' ]) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('tags'))
-                        <p class="help-block">
-                            {{ $errors->first('tags') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <label for="approved">
+                            <!-- {!! Form::label('approved', trans('global.courses.fields.approved').'') !!} -->
+                            <!-- {!! Form::hidden('approved', 0) !!} -->
+                            {!! Form::checkbox('approved', 1, old('approved', false), []) !!}
+                            <span>@lang('global.courses.fields.approved')</span>
+                        </label>
+                        <span class="helper-text" data-error="@if($errors->has('approved')){{ $errors->first('approved') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('approved', trans('global.courses.fields.approved').'', ['class' => 'control-label']) !!}
-                    {!! Form::hidden('approved', 0) !!}
-                    {!! Form::checkbox('approved', 1, old('approved', false), []) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('approved'))
-                        <p class="help-block">
-                            {{ $errors->first('approved') }}
-                        </p>
-                    @endif
+
+                <div class="col-12 col-md-12">
+                    <div class="input-field">
+                        {!! Form::label('introduction', trans('global.courses.fields.introduction').'') !!}
+                        {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('introduction')){{ $errors->first('introduction') }}@endif" data-success="right"></span>
+                    </div>
                 </div>
             </div>
             
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey']) !!}
     {!! Form::close() !!}
 @stop
 

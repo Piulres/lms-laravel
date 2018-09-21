@@ -27,8 +27,6 @@ class LessonsController extends Controller
         if (! Gate::allows('lesson_access')) {
             return abort(401);
         }
-
-
         if (request('show_deleted') == 1) {
             if (! Gate::allows('lesson_delete')) {
                 return abort(401);
@@ -37,7 +35,6 @@ class LessonsController extends Controller
         } else {
             $lessons = Lesson::all();
         }
-
         return view('admin.lessons.index', compact('lessons'));
     }
 

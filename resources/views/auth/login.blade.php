@@ -16,9 +16,9 @@
                             Login
                         </h4>
                         
-                        <div class="panel panel-default">
-                            <div class="panel-heading">{{ ucfirst(config('app.name')) }} @lang('global.app_login')</div>
-                            <div class="panel-body">
+                        <div class="card">
+                            <div class="card-title">{{ ucfirst(config('app.name')) }} @lang('global.app_login')</div>
+                            <div class="card-content">
                                 @if (count($errors) > 0)
                                 <div class="alert alert-danger">
                                     <strong>Whoops!</strong> @lang('global.app_there_were_problems_with_input'):

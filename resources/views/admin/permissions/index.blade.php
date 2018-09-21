@@ -2,25 +2,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.permissions.title')</h3>
-    @can('permission_create')
-    <p>
-        <a href="{{ route('admin.permissions.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
+    <div class="header-title">
+        <h2>@lang('global.permissions.title')</h2>
+        @can('permission_create')
+            <a href="{{ route('admin.permissions.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
+        @endcan
+    </div>
 
-    
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="card">
+        <div class="card-title">
             @lang('global.app_list')
         </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($permissions) > 0 ? 'datatable' : '' }} @can('permission_delete') dt-select @endcan">
+        <div class="card-content">
+            <table class="no-order striped responsive-table {{ count($permissions) > 0 ? 'datatable' : '' }} @can('permission_delete') dt-select @endcan">
                 <thead>
                     <tr>
+                        <th class="order-null"></th>
                         @can('permission_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
@@ -35,29 +33,31 @@
                     @if (count($permissions) > 0)
                         @foreach ($permissions as $permission)
                             <tr data-entry-id="{{ $permission->id }}">
+                                <td class="order-null"></td>
                                 @can('permission_delete')
                                     <td></td>
                                 @endcan
 
                                 <td field-key='title'>{{ $permission->title }}</td>
-                                                                <td>
-                                    @can('permission_view')
-                                    <a href="{{ route('admin.permissions.show',[$permission->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
-                                    @can('permission_edit')
-                                    <a href="{{ route('admin.permissions.edit',[$permission->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
-                                    @endcan
-                                    @can('permission_delete')
-{!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.permissions.destroy', $permission->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
+                                <td>
+                                    <div class="buttons">
+                                        @can('permission_view')
+                                        <a href="{{ route('admin.permissions.show',[$permission->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                        @can('permission_edit')
+                                        <a href="{{ route('admin.permissions.edit',[$permission->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        @endcan
+                                        @can('permission_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.permissions.destroy', $permission->id])) !!}
+                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                        @endcan
+                                    </div>
                                 </td>
-
                             </tr>
                         @endforeach
                     @else

@@ -2,31 +2,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.trailcategories.title')</h3>
-    @can('trailcategory_create')
-    <p>
-        <a href="{{ route('admin.trailcategories.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
-
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.trailcategories.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.trailcategories.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
+    <div class="header-title">
+        <h2>@lang('global.trailcategories.title')</h2>
+        @can('trailcategory_create')
+            <a href="{{ route('admin.trailcategories.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
+        @endcan
+    </div>
     
+    <ul class="tabs z-depth-1">
+        <li class="tab">
+            <a href="{{ route('admin.trailcategories.index') }}" class="grey-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+        </li>
+        <li class="tab">
+            <a href="{{ route('admin.trailcategories.index') }}?show_deleted=1" class="grey-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+        </li>
+    </ul>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('global.app_list')
+    <div class="card">
+        <div class="card-title">
+            <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('trailcategory_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="card-content">
+            <table class="no-order striped responsive-table ajaxTable @can('trailcategory_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
+                        <th>@lang('global.app_order')</th>
                         @can('trailcategory_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
@@ -52,11 +53,14 @@
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.trailcategories.index') !!}?show_deleted={{ request('show_deleted') }}';
-            window.dtDefaultOptions.columns = [@can('trailcategory_delete')
-                @if ( request('show_deleted') != 1 )
-                    {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endif
-                @endcan{data: 'title', name: 'title'},
+            window.dtDefaultOptions.columns = [
+                {data: 'title', name: 'title'},
+                @can('trailcategory_delete')
+                    @if ( request('show_deleted') != 1 )
+                        {data: 'massDelete', name: 'id', searchable: false, sortable: false},
+                    @endif
+                @endcan
+                {data: 'title', name: 'title'},
                 {data: 'slug', name: 'slug'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    var editor;
     var handleCheckboxes = function (html, rowIndex, colIndex, cellNode) {
         var $cellNode = $(cellNode);
         var $check = $cellNode.find(':checked');
@@ -18,10 +18,18 @@ $(document).ready(function () {
         columnDefs: [],
         "iDisplayLength": 100,
         "aaSorting": [],
+        columnDefs: [
+            { orderable: false, targets: [ 1,2,3 ] }
+        ],
+        rowReorder: {
+            dataSrc: 'order',
+            editor:  editor
+        },
         buttons: [
             {
                 extend: 'copy',
                 text: window.copyButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -29,6 +37,7 @@ $(document).ready(function () {
             {
                 extend: 'csv',
                 text: window.csvButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -36,6 +45,7 @@ $(document).ready(function () {
             {
                 extend: 'excel',
                 text: window.excelButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -43,6 +53,7 @@ $(document).ready(function () {
             {
                 extend: 'pdf',
                 text: window.pdfButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -50,6 +61,7 @@ $(document).ready(function () {
             {
                 extend: 'print',
                 text: window.printButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -57,30 +69,50 @@ $(document).ready(function () {
             {
                 extend: 'colvis',
                 text: window.colvisButtonTrans,
+                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
             },
         ]
     };
+
+    editor
+        // .on( 'postCreate postRemove', function () {
+        //     // After create or edit, a number of other rows might have been effected -
+        //     // so we need to reload the table, keeping the paging in the current position
+        //     // table.ajax.reload( null, false );
+        //     console.log('Remove')
+        // } )
+        // .on( 'initCreate', function () {
+        //     // Enable order for create
+        //     // editor.field( 'readingOrder' ).enable();
+        //     console.log('Init');
+        // } )
+        // .on( 'initEdit', function () {
+        //     // Disable for edit (re-ordering is performed by click and drag)
+        //     // editor.field( 'readingOrder' ).disable();
+        //     $('Edit');
+        // } );
+
     $('.datatable').each(function () {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {
                 style: 'multi',
-                selector: 'td:first-child'
+                selector: 'td:nth-child(2)'
             };
 
             window.dtDefaultOptions.columnDefs.push({
                 orderable: false,
                 className: 'select-checkbox',
-                targets: 0
+                targets: 1
             });
         }
         $(this).dataTable(window.dtDefaultOptions);
     });
     $(document).on( 'init.dt', function ( e, settings ) {
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-xs btn-danger js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
         }
     });
 
@@ -111,7 +143,7 @@ $(document).ready(function () {
     $(document).on('click', '#select-all', function () {
         var selected = $(this).is(':checked');
 
-        $(this).closest('table.datatable, table.ajaxTable').find('td:first-child').each(function () {
+        $(this).closest('table.datatable, table.ajaxTable').find('td:nth-child(2)').each(function () {
             if (selected != $(this).closest('tr').hasClass('selected')) {
                 $(this).click();
             }
@@ -204,18 +236,18 @@ function processAjaxTables() {
         if ($(this).hasClass('dt-select')) {
             window.dtDefaultOptions.select = {
                 style: 'multi',
-                selector: 'td:first-child'
+                selector: 'td:nth-child(2)'
             };
 
             window.dtDefaultOptions.columnDefs.push({
                 orderable: false,
                 className: 'select-checkbox',
-                targets: 0
+                targets: 1
             });
         }
         $(this).DataTable(window.dtDefaultOptions);
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-xs btn-danger js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
         }
     });
 
