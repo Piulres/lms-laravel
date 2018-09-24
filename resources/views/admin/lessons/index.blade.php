@@ -24,6 +24,71 @@
         </div>
 
         <div class="card-content">
+            <ul id="list" class="list">
+                @if (count($lessons) > 0)
+                @foreach ($lessons as $lesson)
+                <li class="list__item">
+                    <div class="left">
+                        <div class="drag-me">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="infos">
+                            <h3>{{ $lesson->title }}</h3>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        @if( request('show_deleted') == 1 )
+                            {!! Form::open(array(
+                                'style' => 'display: inline-block;',
+                                'method' => 'POST',
+                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                'route' => ['admin.lessons.restore', $lesson->id])) !!}
+                            {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                            {!! Form::close() !!}
+                                                            {!! Form::open(array(
+                                'style' => 'display: inline-block;',
+                                'method' => 'DELETE',
+                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                'route' => ['admin.lessons.perma_del', $lesson->id])) !!}
+                            {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                            {!! Form::close() !!}
+                        @else
+                            @can('lesson_view')
+                            <a href="{{ route('admin.lessons.show',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                            @endcan
+                            @can('lesson_edit')
+                            <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                            @endcan
+                            @can('lesson_delete')
+                            {!! Form::open(array(
+                                'style' => 'display: inline-block;',
+                                'method' => 'DELETE',
+                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                'route' => ['admin.lessons.destroy', $lesson->id])) !!}
+                                {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                            {!! Form::close() !!}
+                            @endcan
+                    </div>
+                    @endif
+                </li>
+                @endforeach
+                @endif
+            </div>
+
+            <div id="drop-area" class="drop-area">
+                <div>
+                    <div class="drop-area__item">
+                        <div class="dummy"></div>
+                    </div>
+                    <div class="drop-area__item"><div class="dummy"></div></div>
+                    <div class="drop-area__item"><div class="dummy"></div></div>
+                    <div class="drop-area__item"><div class="dummy"></div></div>
+                    <div class="drop-area__item"><div class="dummy"></div></div>
+                    <div class="drop-area__item"><div class="dummy"></div></div>
+                    <div class="drop-area__item"><div class="dummy"></div></div>
+                    <div class="drop-area__item"><div class="dummy"></div></div>
+                </div>
+            </div>
             <table class="striped responsive-table ajaxTable dt-select">
                 <thead>
                     <tr>

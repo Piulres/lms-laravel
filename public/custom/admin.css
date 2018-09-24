@@ -554,6 +554,49 @@ table.dataTable tr.selected td.select-checkbox:before
     transform-origin: 100% 100%;
 }
 
+
+/* LISTS */
+.list__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: inherit;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background: #CCC;
+    border-radius: 5px;
+}
+
+.list__item .left {
+    display: flex;
+    align-items: center;
+}
+
+.list__item .drag-me {
+    top: auto;
+    left: 0;
+    font-size: 13px;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.list__item .drag-me::before {
+    content: none;
+}
+
+.list__item h3 {
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.drop-area__item, .drop-area__item,
+.drop-area__item::before, .drop-area__item::after {
+    font-family: "Font Awesome 5 Free";
+}
+
 @media(max-width: 1150px) {
     .card-home .card .card-content {
         overflow: scroll;
