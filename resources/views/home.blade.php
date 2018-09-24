@@ -69,22 +69,16 @@
                         <thead>
                         <tr>
 
-                            <th> @lang('global.courses.fields.order')</th>
                             <th> @lang('global.courses.fields.title')</th>
-                            <th> @lang('global.courses.fields.slug')</th>
                             <th> @lang('global.courses.fields.description')</th>
-                            <th> @lang('global.courses.fields.introduction')</th>
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
                         @foreach($courses as $course)
                             <tr>
 
-                                <td>{{ $course->order }} </td>
                                 <td>{{ $course->title }} </td>
-                                <td>{{ $course->slug }} </td>
                                 <td>{{ $course->description }} </td>
-                                <td>{{ $course->introduction }} </td>
                                 <td>
 
                                     <div class="buttons end">
@@ -131,22 +125,16 @@
                         <thead>
                         <tr>
 
-                            <th> @lang('global.trails.fields.order')</th>
                             <th> @lang('global.trails.fields.title')</th>
-                            <th> @lang('global.trails.fields.slug')</th>
                             <th> @lang('global.trails.fields.description')</th>
-                            <th> @lang('global.trails.fields.introduction')</th>
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
                         @foreach($trails as $trail)
                             <tr>
 
-                                <td>{{ $trail->order }} </td>
                                 <td>{{ $trail->title }} </td>
-                                <td>{{ $trail->slug }} </td>
                                 <td>{{ $trail->description }} </td>
-                                <td>{{ $trail->introduction }} </td>
                                 <td>
 
                                     <div class="buttons end">
