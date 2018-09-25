@@ -27,63 +27,7 @@
 <script src="{{ url('adminlte') }}/plugins/jQueryUI/jquery-ui.js"></script>
 <script src="{{ url('libs') }}/draggable/draggabilly.pkgd.min.js"></script>
 <script src="{{ url('libs') }}/draggable/dragdrop.js"></script>
-
-<script>
-
-    (function() {
-        var body = document.body,
-            dropArea = document.querySelector( '.drop-area' ),
-            droppableArr = [], dropAreaTimeout;
-
-        // initialize droppables
-        [].slice.call( document.querySelectorAll( '.drop-area .drop-area__item' )).forEach( function( el ) {
-            droppableArr.push( new Droppable( el, {
-                onDrop : function( instance, draggableEl ) {
-                    // show checkmark inside the droppabe element
-                    classie.add( instance.el, 'drop-feedback' );
-                    clearTimeout( instance.checkmarkTimeout );
-                    instance.checkmarkTimeout = setTimeout( function() { 
-                        classie.remove( instance.el, 'drop-feedback' );
-                    }, 800 );
-                    // ...
-                }
-            } ) );
-        } );
-
-        // initialize draggable(s)
-        [].slice.call(document.querySelectorAll( '#list .drag-me' )).forEach( function( el ) {
-            new Draggable( el, droppableArr, {
-                draggabilly : { containment: document.body },
-                onStart : function() {
-                    // add class 'drag-active' to body
-                    classie.add( body, 'drag-active' );
-                    // clear timeout: dropAreaTimeout (toggle drop area)
-                    clearTimeout( dropAreaTimeout );
-                    // show dropArea
-                    classie.add( dropArea, 'show' );
-                },
-                onEnd : function( wasDropped ) {
-                    var afterDropFn = function() {
-                        // hide dropArea
-                        classie.remove( dropArea, 'show' );
-                        // remove class 'drag-active' from body
-                        classie.remove( body, 'drag-active' );
-                    };
-
-                    if( !wasDropped ) {
-                        afterDropFn();
-                    }
-                    else {
-                        // after some time hide drop area and remove class 'drag-active' from body
-                        clearTimeout( dropAreaTimeout );
-                        dropAreaTimeout = setTimeout( afterDropFn, 400 );
-                    }
-                }
-            } );
-        } );
-    })();
-</script>
-
+<script src="{{ url('libs') }}/toastr.js"></script>
 <script src="{{ url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/fastclick/fastclick.js') }}"></script>
 <script src="{{ url('adminlte/js/app.min.js') }}"></script>
