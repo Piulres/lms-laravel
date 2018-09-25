@@ -16,7 +16,7 @@ class Create1537295961DatacoursesTable extends Migration
             Schema::create('datacourses', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('view')->nullable();
-                $table->float('progress')->nullable();
+                $table->decimal('progress', 5 , 4)->nullable();
                 $table->integer('rating')->nullable();
                 $table->text('testimonal')->nullable();
                 

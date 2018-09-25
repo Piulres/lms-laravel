@@ -57,6 +57,38 @@ class CoursesController extends Controller
             'user_id' => Auth::id(),
             'course_id' => $course->id,
             'view' => '0',
+            'progress' => '10%',
+        ]);
+
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->limit(1)
+        ->update(['datacourses.progress'=> '1']);
+
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->where('view', '=', NULL)
+        ->delete();      
+
+        return view('oncourse', compact('course', 'datacourses', 'trails'));
+    }
+
+    public function add($id)
+    {   
+
+        if (! Gate::allows('course_access')) {
+            return redirect('login');
+        }
+
+        $course = Course::findOrFail($id);
+        $user = Auth::id();
+
+        \App\Datacourse::updateOrCreate([
+            'user_id' => Auth::id(),
+            'course_id' => $course->id,
+            'view' => '0',
             'progress' => '0',
         ]);
 
@@ -72,8 +104,7 @@ class CoursesController extends Controller
          ->where('view', '=', NULL)
         ->delete();      
 
-        // return redirect()->route('results.show', [$test->id]);
-        return view('oncourse', compact('course', 'datacourses', 'trails'));
+        return redirect('library');
     }
 
     public function remove($id)
@@ -102,7 +133,6 @@ class CoursesController extends Controller
             // })
             // ->get();
 
-        // return view('oncourse', compact('course', 'datacourses', 'trails'));
         return redirect('library');
 
     }

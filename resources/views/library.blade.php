@@ -79,6 +79,12 @@
                             </div>
                             <div class="card-action">
                                 <a href="{{ url('courses/'. $course->id) }}">Link</a>
+                                @if (Auth::check())                                
+                                <a href="{{ url('add/'. $course->id) }}">
+                                    Add to my courses
+                                </a>
+                                @else
+                                @endif
                             </div>
                         </div>
                     </div>

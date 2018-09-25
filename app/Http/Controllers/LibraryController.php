@@ -46,7 +46,7 @@ class LibraryController extends Controller
 
         }
         
-        return view('library', compact('courses', 'mycourses', 'datacourses', 'trails'));
+        return view('library', compact('courses', 'datacourses', 'trails'));
 
     }    
 

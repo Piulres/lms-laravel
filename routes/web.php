@@ -9,6 +9,7 @@ Route::get('courses', ['uses' => 'CoursesController@index', 'as' => 'courses']);
 Route::get('courses/{id}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
 
 Route::get('start/{id}', 'CoursesController@start');   
+Route::get('add/{id}', 'CoursesController@add');   
 Route::get('remove/{id}', 'CoursesController@remove');   
 
 Route::get('/courses/{id}', 'CoursesController@show');
