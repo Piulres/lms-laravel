@@ -724,8 +724,8 @@ table.dataTable tr.selected td.select-checkbox:before
 }
 
 .view.grid-view .item {
-    width: 175px;
-    height: 175px;
+    width: 250px;
+    height: 250px;
     transition: .5s all linear;
     margin: 5px;
 }

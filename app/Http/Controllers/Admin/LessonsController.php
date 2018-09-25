@@ -103,9 +103,12 @@ class LessonsController extends Controller
         if (! Gate::allows('lesson_access')) {
             return abort(401);
         }
-        $lesson = Lesson::findOrFail($id);
 
-        return view('admin.lessons.duplicate', compact('lesson'));
+        $lesson = Lesson::findOrFail($id);
+        $new_lesson = $lesson->replicate();
+        $new_lesson->save();
+
+        return view('admin.lessons.index', compact('lesson'));
     }
 
     /**
