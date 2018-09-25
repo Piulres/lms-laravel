@@ -164,6 +164,10 @@
                             </div>
 
                             <div class="itens row center">
+                                <a class="black-text" href="login/google">Login in with Facebook</a>
+                            </div>
+
+                            <div class="itens row center">
                                 <a class="black-text" target="_blank" href="https://www.google.com">
                                     Problems? Click Here
                                 </a>
