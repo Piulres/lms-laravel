@@ -11,7 +11,7 @@ class MasterCommand3 extends Command
      *
      * @var string
      */
-    protected $signature = 'jaja:refresh-prod';
+    protected $signature = 'jaja:refreshprod';
 
     /**
      * The console command description.
