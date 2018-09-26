@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' =>
     Route::post('internal_notifications_mass_destroy', ['uses' => 'Admin\InternalNotificationsController@massDestroy', 'as' => 'internal_notifications.mass_destroy']);
     Route::resource('lessons', 'Admin\LessonsController');
     Route::post('lessons_mass_destroy', ['uses' => 'Admin\LessonsController@massDestroy', 'as' => 'lessons.mass_destroy']);
+    Route::post('lessons_duplicate/{id}', ['uses' => 'Admin\LessonsController@duplicate', 'as' => 'lessons.duplicate']);
     Route::post('lessons_restore/{id}', ['uses' => 'Admin\LessonsController@restore', 'as' => 'lessons.restore']);
     Route::delete('lessons_perma_del/{id}', ['uses' => 'Admin\LessonsController@perma_del', 'as' => 'lessons.perma_del']);
     Route::resource('coursecategories', 'Admin\CoursecategoriesController');

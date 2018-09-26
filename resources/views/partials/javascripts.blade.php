@@ -19,11 +19,15 @@
 <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
-<script src="https://cdn.datatables.net/rowreorder/1.2.4/js/dataTables.rowReorder.min.js"></script>
-<script src="{{ url('libs') }}/dataTables.editor.min.js"></script>
+<!-- <script src="https://cdn.datatables.net/rowreorder/1.2.4/js/dataTables.rowReorder.min.js"></script> -->
+<!-- <script src="{{ url('libs') }}/dataTables.editor.min.js"></script> -->
 <script src="{{ url('adminlte/js') }}/select2.full.min.js"></script>
 <script src="{{ url('adminlte/js') }}/main.js"></script>
 
+<script src="{{ url('adminlte') }}/plugins/jQueryUI/jquery-ui.js"></script>
+<script src="{{ url('libs') }}/draggable/draggabilly.pkgd.min.js"></script>
+<script src="{{ url('libs') }}/draggable/dragdrop.js"></script>
+<script src="{{ url('libs') }}/toastr.js"></script>
 <script src="{{ url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/fastclick/fastclick.js') }}"></script>
 <script src="{{ url('adminlte/js/app.min.js') }}"></script>

@@ -2,6 +2,22 @@
 body {
     font-size: 16px;
 }
+
+#toast-container {
+    top: 20px;
+    left: 50%;
+    right: auto;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.toast.success {
+    background: #0f9d58;
+}
+
 .border-bottom {
     border-bottom: 1px solid #e2e9e6;
 }
@@ -75,12 +91,31 @@ nav .brand-logo {
     line-height: 1.84rem;
 }
 
-.btn-small.btn-square {
-    height: 30px;
+.btn-square {
+    height: 20px;
     line-height: 30px;
     padding: 0;
-    width: 30px;
+    width: auto;
     text-align: center;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s all linear;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.btn-square i {
+    font-size: inherit;
+}
+
+.btn-square:hover {
+    color: black!important;
 }
 
 .actions {
@@ -258,6 +293,19 @@ body {
 .card-title {
     padding: 10px 24px;
     border-bottom: 1px solid #e2e9e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title .toggle-view a {
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.card-title .toggle-view a.active {
+    background: #ebebeb;
 }
 
 .card-title h3, .card-title h4 {
@@ -490,8 +538,8 @@ table.dataTable tbody td:last-child {
     justify-content: flex-end;
 }
 
-.buttons a {
-    margin-right: 5px;
+.buttons a, .buttons button {
+    margin: 0 5px;
 }
 
 table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
@@ -552,6 +600,277 @@ table.dataTable tr.selected td.select-checkbox:before
     backface-visibility: hidden;
     -webkit-transform-origin: 100% 100%;
     transform-origin: 100% 100%;
+}
+
+
+/* VIEWS */
+.view .expand .down {
+    display: none;
+}
+
+.view .item.expanded .expand .down {
+    display: flex;
+}
+
+.view .item.expanded .expand .up {
+    display: none;
+}
+
+.view .item .order {
+    margin-right: 10px;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.view.list-view .item {
+    margin-bottom: 10px;
+}
+
+.view.list-view .item.expanded .contain {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.view.list-view .item .contain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: inherit;
+    padding: 10px 5px 10px 15px;
+    background: rgba(242, 242, 242, 0.8);
+    border-radius: 5px;
+}
+
+.view.list-view .item .expand-contain {
+    padding: 20px 15px 20px 35px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: none;
+}
+
+.view.list-view .item .expand-contain .row {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view.list-view .item .expand-contain h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.view.list-view .item .expand-contain .download {
+    margin-top: 10px;
+    width: 110px;
+    height: 25px;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, .4);
+    color: rgba(0, 0, 0, .4);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    transition: all .4s linear;
+}
+
+.view.list-view .item .expand-contain .download:hover {
+    background: rgba(0, 0, 0, .4);
+    color: white;
+}
+
+.view.list-view .item .expand-contain .download span {
+    margin-left: 10px;
+}
+
+.view.list-view .item .expand-contain .content-item {
+    margin-top: 15px;
+}
+
+.view .left {
+    float: none;
+}
+
+.view.list-view .item .left {
+    float: none;
+    display: flex;
+    align-items: center;
+}
+
+.view.list-view .item .drag-me {
+    top: auto;
+    left: 0;
+    font-size: 13px;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.view .item .drag-me.is-active {
+    z-index: 1001;
+}
+
+.view.list-view .item .drag-me::before {
+    content: none;
+}
+
+.view.list-view .item h3 {
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
+    color: black;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+.view.list-view .item h3 span {
+    font-size: 10px;
+    color: rgba(0, 0, 0, .4);
+}
+
+.view.list-view .buttons a {
+    color: #CCC;
+}
+
+.view.grid-view {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.view.grid-view .item {
+    width: 250px;
+    height: 250px;
+    transition: .5s all linear;
+    margin: 5px;
+}
+
+.view.grid-view .item .expand-contain {
+    display: none!important;
+}
+
+.view.grid-view .item.expanded .expand-contain h4 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.view.grid-view .item .contain {
+    width: 100%;
+    height: 100%;
+    background: rgba(242, 242, 242, 0.8);
+    border-radius: 5px;
+    position: relative;
+}
+
+.view.grid-view .left {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.view.grid-view .infos {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.view.grid-view .infos h3 {
+    font-size: 12px;
+    margin: 0;
+    padding: 0 5px;
+    color: black;
+    text-transform: uppercase;
+}
+
+.view.grid-view .infos h3 span {
+    font-size: 10px;
+    color: rgba(0, 0, 0, .4);
+    display: block;
+}
+
+.view.grid-view .drag-me {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    padding: 10px 0;
+}
+
+.view.grid-view .bottom {
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    position: absolute;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    overflow: hidden;
+}
+
+.view.grid-view .buttons {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: -50px;
+    padding: 10px 0;
+    width: 100%;
+    background: #ebebee;
+    transition: all .4s linear;
+    overflow: auto;
+}
+
+.view.grid-view .buttons a, .view.grid-view .buttons form {
+    width: 25%;
+    display: flex!important;
+    justify-content: center;
+}
+
+.view.grid-view .buttons a.expand {
+    display: none!important;
+}
+
+.view.grid-view .buttons a, .view.grid-view .buttons button {
+    background: transparent!important;
+    color: #ccc;
+    box-shadow: none;
+    margin: 0;
+    font-size: 16px;
+}
+
+.view.grid-view .buttons a:hover, .view.grid-view .buttons button:hover {
+    color: black;
+}
+
+.drop-area {
+    z-index: 1000;
+}
+
+.view.grid-view .item:hover .buttons {
+    bottom: 0;
+}
+
+.drop-area__item::before, .drop-area__item::after {
+    font-family: "Font Awesome 5 Free";
+}
+
+.dummy {
+    background: rgba(255,255,255,0.1);
+    font-family: "Font Awesome 5 Free";
+    height: auto;
+    padding: 5px ;
+    width: 100%;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    text-transform: capitalize;
+}
+
+.dummy::after {
+    content: none;
 }
 
 @media(max-width: 1150px) {

@@ -115,6 +115,7 @@ return [
 			'content' => 'Content',
 			'study-material' => 'Study material',
 		],
+        'insert_lesson' => 'Lição inserida',
 	],
 	
 	'course' => [

@@ -35,7 +35,12 @@ class LessonsController extends Controller
         } else {
             $lessons = Lesson::all();
         }
-        return view('admin.lessons.index', compact('lessons'));
+
+        $generals = \App\General::get();
+
+        $courses = \App\Course::get();
+
+        return view('admin.lessons.index', compact('lessons', 'generals', 'courses'));
     }
 
     /**
@@ -90,6 +95,24 @@ class LessonsController extends Controller
 
 
 
+
+    /**
+     * Duplicate the form for the Lesson.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function duplicate($id)
+    {
+        if (! Gate::allows('lesson_access')) {
+            return abort(401);
+        }
+        $lesson = Lesson::findOrFail($id);
+        $lesson->replicate();
+
+        return redirect()->route('admin.lessons.index');
+    }
 
     /**
      * Update Lesson in storage.
