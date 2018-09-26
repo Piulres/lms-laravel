@@ -140,7 +140,9 @@ class CoursesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.courses.index');
+        $generals = \App\General::get();
+
+        return view('admin.courses.index', compact('generals'));
     }
 
     /**
@@ -162,8 +164,9 @@ class CoursesController extends Controller
 
         $tags = \App\Coursetag::get()->pluck('title', 'id');
 
+        $generals = \App\General::get();
 
-        return view('admin.courses.create', compact('instructors', 'lessons', 'categories', 'tags'));
+        return view('admin.courses.create', compact('instructors', 'lessons', 'categories', 'tags', 'generals'));
     }
 
     /**
@@ -210,10 +213,11 @@ class CoursesController extends Controller
 
         $tags = \App\Coursetag::get()->pluck('title', 'id');
 
+        $generals = \App\General::get();
 
         $course = Course::findOrFail($id);
 
-        return view('admin.courses.edit', compact('course', 'instructors', 'lessons', 'categories', 'tags'));
+        return view('admin.courses.edit', compact('course', 'instructors', 'lessons', 'categories', 'tags', 'generals'));
     }
 
     /**
@@ -268,7 +272,9 @@ $datacourses = \App\Datacourse::where('course_id', $id)->get();$trails = \App\Tr
 
         $course = Course::findOrFail($id);
 
-        return view('admin.courses.show', compact('course', 'datacourses', 'trails'));
+        $generals = \App\General::get();
+
+        return view('admin.courses.show', compact('course', 'datacourses', 'trails', 'generals'));
     }
 
 

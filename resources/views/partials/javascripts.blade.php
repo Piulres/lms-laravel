@@ -8,7 +8,9 @@
     window.colvisButtonTrans = '{{ trans("global.app_colvis") }}';
 </script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="{{ url('libs') }}/materialize/materialize.min.js"></script>
+{{--<script src="{{ url('libs') }}/materialize/materialize.min.js"></script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="{{ url('libs') }}/dashboard/dashboard.js"></script>
 <script src="{{ url('adminlte') }}/plugins/datatables/jquery.dataTables.js"></script>
 <script src="//cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
 <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>

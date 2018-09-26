@@ -3,61 +3,61 @@
 @section('content')
     <div class="row">
 
-        <div class="col-lg-6 col-md-12 card-home">
-            <div class="card">
-                <div class="card-title">
-                    <h4>Recently added users</h4>
+        <div class="col l4 s12">
+            <a href="{{ route('admin.users.index') }}" class="card-panel stats-card indigo lighten-2 indigo-text text-lighten-5">
+                <i class="fas fa-users"></i>
+                <span class="count">{{ $users->count() }}</span>
+                <div class="name">Users</div>
+            </a>
+        </div>
+
+        <div class="col l4 s12">
+            <a href="{{ route('admin.courses.index') }}" class="card-panel stats-card blue lighten-2 indigo-text text-lighten-5">
+                <i class="fas fa-book-reader"></i>
+                <span class="count">{{ $courses->count() }}</span>
+                <div class="name">Courses</div>
+            </a>
+        </div>
+
+        <div class="col l4 s12">
+            <a href="{{ route('admin.courses.index') }}" class="card-panel stats-card teal lighten-2 indigo-text text-lighten-5">
+                <i class="fas fa-train"></i>
+                <span class="count">{{ $trails->count() }}</span>
+                <div class="name">Trails</div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l4 s12">
+            <div class="card" draggable="false">
+                <div class="title">
+                    <h5>Users</h5>
+                    {{--<a class="close" href="#" draggable="false">--}}
+                        {{--<i class="mdi-content-clear"></i>--}}
+                    {{--</a>--}}
+                    <a class="minimize" href="#" draggable="false">
+                        <i class="mdi-navigation-expand-less"></i>
+                    </a>
                 </div>
-
-                <div class="card-content">
-                    <table class="highlight responsive-table ajaxTable">
-                        <thead>
-
-                            <tr>
-                                
-                                <th> @lang('global.users.fields.name')</th>
-                                <th> @lang('global.users.fields.email')</th> 
-                                <th>&nbsp;</th>
-                            </tr>
-                        </thead>
-                        @foreach($users as $user)
-                            <tr>
-                                <td>{{ $user->name }} </td> 
-                                <td>{{ $user->email }} </td> 
-                                <td>
-                                    <div class="buttons end">
-                                        @can('user_view')
-                                        <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
-                                        @endcan
-
-                                        @can('user_edit')
-                                        <a href="{{ route('admin.users.edit',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
-                                        @endcan
-
-                                        @can('user_delete')
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.users.destroy', $user->id])) !!}
-                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                        {!! Form::close() !!}
-                                        @endcan
-                                    </div>
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
-                <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ route('admin.users.index') }}" class="waves-effect waves-light btn white black-text">@lang('global.app_see_all')</a>
+                <div class="content orders-card">
+                    @foreach($users as $user)
+                    <h4>{{ $user->name }}</h4>
+                    <div class="row">
+                        <div class="col s6">
+                            <small>Total Progress</small>
+                        </div>
+                        <div class="col s6 right-   align">77%
+                        </div>
+                    </div>
+                    <div class="progress small">
+                        <div class="determinate" style="width: 77%"></div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-
-
- 
+    </div>
+    <div class="row">
         <div class="col-lg-6 col-md-12 card-home">
             <div class="card">
                 <div class="card-title">

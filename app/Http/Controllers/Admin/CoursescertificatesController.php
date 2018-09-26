@@ -80,7 +80,9 @@ class CoursescertificatesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.coursescertificates.index');
+        $generals = \App\General::get();
+
+        return view('admin.coursescertificates.index', compact('generals'));
     }
 
     /**
@@ -93,7 +95,10 @@ class CoursescertificatesController extends Controller
         if (! Gate::allows('coursescertificate_create')) {
             return abort(401);
         }
-        return view('admin.coursescertificates.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.coursescertificates.create', compact('generals'));
     }
 
     /**
@@ -129,7 +134,9 @@ class CoursescertificatesController extends Controller
         }
         $coursescertificate = Coursescertificate::findOrFail($id);
 
-        return view('admin.coursescertificates.edit', compact('coursescertificate'));
+        $generals = \App\General::get();
+
+        return view('admin.coursescertificates.edit', compact('coursescertificate', 'generals'));
     }
 
     /**
@@ -169,7 +176,9 @@ class CoursescertificatesController extends Controller
 
         $coursescertificate = Coursescertificate::findOrFail($id);
 
-        return view('admin.coursescertificates.show', compact('coursescertificate', 'datacourses'));
+        $generals = \App\General::get();
+
+        return view('admin.coursescertificates.show', compact('coursescertificate', 'datacourses', 'generals'));
     }
 
 

@@ -28,9 +28,11 @@ class HomeController extends Controller
         $users = \App\User::latest()->limit(5)->get(); 
         $courses = \App\Course::latest()->limit(5)->get(); 
         $trails = \App\Trail::latest()->limit(5)->get(); 
-        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get(); 
+        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get();
 
-        return view('index', compact( 'users', 'courses', 'trails', 'faqquestions' ));
+        $generals = \App\General::get();
+
+        return view('index', compact( 'users', 'courses', 'trails', 'faqquestions', 'generals' ));
     }
 
     public function home()
@@ -39,8 +41,10 @@ class HomeController extends Controller
         $users = \App\User::latest()->limit(5)->get(); 
         $courses = \App\Course::latest()->limit(5)->get(); 
         $trails = \App\Trail::latest()->limit(5)->get(); 
-        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get(); 
+        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get();
 
-        return view('home', compact( 'users', 'courses', 'trails', 'faqquestions' ));
+        $generals = \App\General::get();
+
+        return view('home', compact( 'users', 'courses', 'trails', 'faqquestions', 'generals' ));
     }
 }

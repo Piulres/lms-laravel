@@ -70,7 +70,7 @@
                                     @can('lesson_access')
                                     {!! Form::open(array(
                                     'style' => 'display: inline-block;',
-                                    'method' => 'DELETE',
+                                    'method' => 'POST',
                                     'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                     'route' => ['admin.lessons.duplicate', $lesson->id])) !!}
                                     {!! Form::button('<i class="far fa-clone"></i>', ['class'=>'btn-square red-text', 'type'=>'submit']) !!}

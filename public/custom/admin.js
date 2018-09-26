@@ -13,9 +13,9 @@ $(document).ready(function() {
 
     $('.material-tooltip').remove();
 
-    $('.sidenav').sidenav();
+    // $('.sidenav').sidenav();
 
-    $('select').formSelect();
+    // $('select').formSelect();
 
     $('.shuffle-tabs').tabs({
       swipeable : false,
@@ -116,7 +116,7 @@ function msgSuccess(msg) {
                             console.log(data);
                             msgSuccess('Mensagem de Sucesso');
                         }
-                        
+
                     });
 
                 }

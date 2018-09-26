@@ -1,6 +1,6 @@
 /* CUSTOM CSS MATERIALIZE RP */
 body {
-    font-size: 16px;
+    font-size: 13px;
 }
 
 #toast-container {
@@ -225,17 +225,13 @@ span.badge.new.sup {
     min-width: 180px;
 }
 
-.dropdown-content li > a, .dropdown-content li > span {
-    font-size: 12px;
-}
+/*.dropdown-content li > a, .dropdown-content li > span {*/
+    /*font-size: 12px;*/
+/*}*/
 
 /* END CUSTOM MATERIALIZE RP */
 
 /* GENERAL CSS */
-body {
-    font-size: 13px;
-}
-
 .label {margin-right:5px;margin-bottom:5px !important;display:inline-block;} #wrapper {
     position: relative;
 }
@@ -452,11 +448,11 @@ table.dataTable {
     border: 1px solid #e0e0e0;
 }
 
-/* PROGRESS */
-.progress {
-    margin: 0;
-    height: 8px;
-}
+/*!* PROGRESS *!*/
+/*.progress {*/
+    /*margin: 0;*/
+    /*height: 8px;*/
+/*}*/
 
 /* DATATABLE */
 .bordered {
@@ -896,3 +892,6 @@ table.dataTable tr.selected td.select-checkbox:before
         padding: 15px 0;
     }
 }
+
+
+

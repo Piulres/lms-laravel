@@ -25,10 +25,10 @@ class ContentCategoriesController extends Controller
             return abort(401);
         }
 
-
+        $generals = \App\General::get();
                 $content_categories = ContentCategory::all();
 
-        return view('admin.content_categories.index', compact('content_categories'));
+        return view('admin.content_categories.index', compact('content_categories', 'generals'));
     }
 
     /**
@@ -41,7 +41,10 @@ class ContentCategoriesController extends Controller
         if (! Gate::allows('content_category_create')) {
             return abort(401);
         }
-        return view('admin.content_categories.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.content_categories.create', compact('generals'));
     }
 
     /**
@@ -58,8 +61,9 @@ class ContentCategoriesController extends Controller
         $content_category = ContentCategory::create($request->all());
 
 
+        $generals = \App\General::get();
 
-        return redirect()->route('admin.content_categories.index');
+        return redirect()->route('admin.content_categories.index', compact('generals'));
     }
 
 
@@ -76,7 +80,9 @@ class ContentCategoriesController extends Controller
         }
         $content_category = ContentCategory::findOrFail($id);
 
-        return view('admin.content_categories.edit', compact('content_category'));
+        $generals = \App\General::get();
+
+        return view('admin.content_categories.edit', compact('content_category', 'generals'));
     }
 
     /**

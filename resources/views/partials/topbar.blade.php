@@ -47,8 +47,35 @@
                                 @endif
                             </ul>
                         </li>
-                        <li class="hide-on-lar-and-up">
-                            <a href="#" data-target="sidebar-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                        <li class="user">
+                            <a class="dropdown-button" data-activates="user-dropdown" href="#!">
+                                <img src="assets/_con/images/user.jpg" alt="John Doe" class="circle"> John Doe <i class="mdi-navigation-expand-more right"></i>
+                            </a>
+                            <ul id="user-dropdown" class="dropdown-content">
+                                <li>
+                                    <a href="page-profile.html">
+                                        <i class="fa fa-user"></i>
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mail-inbox.html">
+                                        <i class="fa fa-envelope"></i> Messages <span class="badge new">2 new</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#!">
+                                        <i class="fa fa-cogs"></i>
+                                        Settings</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="page-sign-in.html">
+                                        <i class="fa fa-sign-out"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

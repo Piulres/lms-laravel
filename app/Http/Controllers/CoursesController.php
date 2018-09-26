@@ -41,7 +41,9 @@ class CoursesController extends Controller
 
         $course = Course::findOrFail($id);
 
-        return view('courses', compact('course', 'datacourses', 'trails'));
+        $generals = \App\General::get();
+
+        return view('courses', compact('course', 'datacourses', 'trails', 'generals'));
     }
  
     public function start($id)

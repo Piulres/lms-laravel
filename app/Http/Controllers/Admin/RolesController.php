@@ -25,10 +25,10 @@ class RolesController extends Controller
             return abort(401);
         }
 
-
+        $generals = \App\General::get();
                 $roles = Role::all();
 
-        return view('admin.roles.index', compact('roles'));
+        return view('admin.roles.index', compact('roles', 'generals'));
     }
 
     /**
@@ -44,8 +44,9 @@ class RolesController extends Controller
         
         $permissions = \App\Permission::get()->pluck('title', 'id');
 
+        $generals = \App\General::get();
 
-        return view('admin.roles.create', compact('permissions'));
+        return view('admin.roles.create', compact('permissions', 'generals'));
     }
 
     /**
@@ -85,7 +86,9 @@ class RolesController extends Controller
 
         $role = Role::findOrFail($id);
 
-        return view('admin.roles.edit', compact('role', 'permissions'));
+        $generals = \App\General::get();
+
+        return view('admin.roles.edit', compact('role', 'permissions', 'generals'));
     }
 
     /**
@@ -130,7 +133,9 @@ $users = \App\User::whereHas('role',
 
         $role = Role::findOrFail($id);
 
-        return view('admin.roles.show', compact('role', 'users'));
+        $generals = \App\General::get();
+
+        return view('admin.roles.show', compact('role', 'users', 'generals'));
     }
 
 

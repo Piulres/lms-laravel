@@ -25,10 +25,10 @@ class PermissionsController extends Controller
             return abort(401);
         }
 
-
+        $generals = \App\General::get();
                 $permissions = Permission::all();
 
-        return view('admin.permissions.index', compact('permissions'));
+        return view('admin.permissions.index', compact('permissions', 'generals'));
     }
 
     /**
@@ -41,7 +41,10 @@ class PermissionsController extends Controller
         if (! Gate::allows('permission_create')) {
             return abort(401);
         }
-        return view('admin.permissions.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.permissions.create', compact('generals'));
     }
 
     /**
@@ -76,7 +79,9 @@ class PermissionsController extends Controller
         }
         $permission = Permission::findOrFail($id);
 
-        return view('admin.permissions.edit', compact('permission'));
+        $generals = \App\General::get();
+
+        return view('admin.permissions.edit', compact('permission', 'generals'));
     }
 
     /**
@@ -118,7 +123,9 @@ class PermissionsController extends Controller
 
         $permission = Permission::findOrFail($id);
 
-        return view('admin.permissions.show', compact('permission', 'roles'));
+        $generals = \App\General::get();
+
+        return view('admin.permissions.show', compact('permission', 'roles', 'generals'));
     }
 
 
