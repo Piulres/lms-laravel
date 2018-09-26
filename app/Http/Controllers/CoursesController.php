@@ -21,19 +21,23 @@ class CoursesController extends Controller
 
     public function index()
     {
+
         $courses = Course::latest()->get();
         return view('courses', compact('course', 'datacourses', 'trails'));
+
     }
 
     public function show($id)
     {
-               
+
         $instructors = \App\User::get()->pluck('name', 'id');       
 
         $lessons = \App\Lesson::get()->pluck('title', 'id');
 
         $categories = \App\Coursecategory::get()->pluck('title', 'id');
+
         $datacourses = \App\Datacourse::where('course_id', $id)->get();
+
         $trails = \App\Trail::whereHas('courses',
                     function ($query) use ($id) {
                         $query->where('id', $id);
@@ -42,10 +46,11 @@ class CoursesController extends Controller
         $course = Course::findOrFail($id);
 
         return view('courses', compact('course', 'datacourses', 'trails'));
+
     }
  
     public function start($id)
-    {   
+    {
 
         if (! Gate::allows('course_access')) {
             return redirect('login');
@@ -64,15 +69,28 @@ class CoursesController extends Controller
          ->where("datacourses.user_id", '=',  $user)
          ->where("datacourses.course_id", '=',  $course->id)
          ->limit(1)
-        ->get();      
+        ->get();
+
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->where('view', '=', NULL)
+        ->delete();
+
+        \App\Datacourse::updateOrCreate([
+            'user_id' => Auth::id(),
+            'course_id' => $course->id,
+            'view' => '0',
+            'progress' => '0',
+        ]);
 
         $total_lessons = $lessons->count();
-
-        $percentage = 100 / $total_lessons;
-
-        $next = $percentage * $total_lessons;
         
-        if ($total_lessons >= 0) {
+        if ($total_lessons > 0) {
+
+            $percentage = 100 / $total_lessons;
+
+            $next = $percentage * $total_lessons;
 
             DB::table('datacourses')
              ->where("datacourses.user_id", '=',  $user)
@@ -84,16 +102,30 @@ class CoursesController extends Controller
                     );
             
             return view('oncourse', compact('course', 'datacourses', 'lessons', 'total_lessons', 'percentage', 'next'));
+        
+        } else {
+
+            $percentage = 1;       
+
+            $next = $percentage * $total_lessons;
+
+            DB::table('datacourses')
+             ->where("datacourses.user_id", '=',  $user)
+             ->where("datacourses.course_id", '=',  $id)
+             ->limit(1)
+            ->update(
+                ['datacourses.progress'=> '0', 
+                'datacourses.view' => '1']
+                    );
+
+            return view('oncourse', compact('course', 'datacourses', 'lessons', 'total_lessons', 'percentage', 'next'));
+
         }
-       
 
-        $next = $percentage * $total_lessons;
-
-        return view('oncourse', compact('course', 'datacourses', 'lessons', 'total_lessons', 'percentage', 'next'));
     }
 
     public function add($id)
-    {   
+    {
 
         if (! Gate::allows('course_access')) {
             return redirect('login');
@@ -122,6 +154,7 @@ class CoursesController extends Controller
         ->delete();      
 
         return redirect('library');
+
     }
 
     public function remove($id)
@@ -141,6 +174,12 @@ class CoursesController extends Controller
          ->where("datacourses.view", '=',  '1')
          ->limit(1)
         ->update(['datacourses.view'=> '0']);
+
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->where('view', '=', NULL)
+        ->delete(); 
 
             // DB::table('jaja')
             // ->where('name', '=', 'John')
