@@ -10,6 +10,21 @@
             <div class="col s7">
                 <table class="table table-bordered table-striped">              
                     <tr>
+                        <th>@lang('global.courses.fields.featured-image')</th>
+                        <td field-key='featured_image'>
+                            @if($course->featured_image)
+                            <a href="{{ asset(env('UPLOAD_PATH').'/' . $course->featured_image) }}" target="_blank">
+                                <!-- <img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $course->featured_image) }}"/> -->
+                                <img style="max-width: 200px; height: auto;" src="{{ $course->featured_image }}"/>
+                            </a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>@lang('global.courses.fields.duration')</th>
+                        <td field-key='duration'>{{ $course->duration }}</td>
+                    </tr>
+                    <tr>
                         <th>@lang('global.courses.fields.instructor')</th>
                         <td field-key='instructor'>
                             @foreach ($course->instructor as $singleInstructor)
@@ -21,7 +36,7 @@
                         <th>@lang('global.courses.fields.lessons')</th>
                         <td field-key='lessons'>
                             @foreach ($course->lessons as $singleLessons)
-                                <span class="label label-info label-many">{{ $singleLessons->title }}</span>
+                                <span class="label label-info label-many">{{ $singleLessons->title }}; </span>
                             @endforeach
                         </td>
                     </tr>
@@ -34,20 +49,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>@lang('global.courses.fields.featured-image')</th>
-                        <td field-key='featured_image'>@if($course->featured_image)<a href="{{ asset(env('UPLOAD_PATH').'/' . $course->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $course->featured_image) }}"/></a>@endif</td>
-                    </tr>
-                    <tr>
                         <th>@lang('global.courses.fields.description')</th>
                         <td field-key='description'>{!! $course->description !!}</td>
                     </tr>
                     <tr>
                         <th>@lang('global.courses.fields.introduction')</th>
                         <td field-key='introduction'>{!! $course->introduction !!}</td>
-                    </tr>
-                    <tr>
-                        <th>@lang('global.courses.fields.duration')</th>
-                        <td field-key='duration'>{{ $course->duration }}</td>
                     </tr>
                 </table>
             </div>
@@ -56,6 +63,7 @@
                 <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('start/'. $course->id) }}">
                     Start Course
                 </a>
+                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('add/'. $course->id) }}">Add to my courses</a>
                 @else
                 <h4 class="center">Login to Start Course</h4>
                 <a style="width: 100%; margin-bottom: 5px;" class="btn modal-trigger waves-effect waves-light black" data-target="modal1" href="#modal1">
