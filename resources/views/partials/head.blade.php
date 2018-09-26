@@ -42,4 +42,8 @@
       href="//cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css"/> -->
 
 <link href="{{ url('adminlte/plugins/datetimepicker/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
+<!-- <link href="{{ url('libs/draggable/demo.css') }}" rel="stylesheet"> -->
+<!-- <link href="{{ url('libs/draggable/icons.css') }}" rel="stylesheet"> -->
+<link href="{{ url('libs/draggable/sidebar.css') }}" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <link href="{{ url('custom/admin.css') }}" rel="stylesheet">

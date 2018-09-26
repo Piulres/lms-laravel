@@ -2,29 +2,128 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
+    <div class="header-title {{$generals[0]->theme_color}}-text">
         <h2>@lang('global.lessons.title')</h2>
         @can('lesson_create')
-            <a href="{{ route('admin.lessons.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
+            <a href="{{ route('admin.lessons.create') }}" class="btn-floating btn-small waves-effect waves-light {{$generals[0]->theme_color}}"><i class="material-icons">add</i></a>
         @endcan
     </div>
-    
+
     <ul class="tabs z-depth-1">
         <li class="tab">
-            <a href="{{ route('admin.lessons.index') }}" class="grey-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+            <a href="{{ route('admin.lessons.index') }}" class="{{$generals[0]->theme_color}}-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
         </li>
         <li class="tab">
-            <a href="{{ route('admin.lessons.index') }}?show_deleted=1" class="grey-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+            <a href="{{ route('admin.lessons.index') }}?show_deleted=1" class="{{$generals[0]->theme_color}}-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
         </li>
     </ul>
 
     <div class="card">
         <div class="card-title">
             <h3>@lang('global.app_list')</h3>
+            <div class="toggle-view">
+                <a href="#" id="list-view" class="{{$generals[0]->theme_color}}-text active"><i class="fas fa-list-ul"></i></a>
+                <a href="#" id="grid-view" class="{{$generals[0]->theme_color}}-text"><i class="fas fa-th"></i></a>
+            </div>
         </div>
 
         <div class="card-content">
-            <table class="striped responsive-table ajaxTable dt-select">
+            <ul id="view" class="view list-view">
+                @if (count($lessons) > 0)
+                @foreach ($lessons as $lesson)
+                <li class="item">
+                    <div class="contain">
+                        <div class="left">
+                            <div class="drag-me">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="infos">
+                                <h3>{{ $lesson->title }} <span>{{ $lesson->slug }}</span></h3>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="buttons">
+                                @if( request('show_deleted') == 1 )
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'POST',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.lessons.restore', $lesson->id])) !!}
+                                    <!-- {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!} -->
+                                    {!! Form::button('<i class="far fa-window-restore"></i>', ['class'=>'btn-square blue-text', 'type'=>'submit']) !!}
+                                    {!! Form::close() !!}
+                                                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.lessons.perma_del', $lesson->id])) !!}
+                                    {!! Form::button('<i class="fas fa-trash-alt"></i>', ['class'=>'btn-square red-text', 'type'=>'submit']) !!}
+                                    <!-- {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!} -->
+                                    {!! Form::close() !!}
+                                @else
+                                    @can('lesson_view')
+                                    <a href="{{ route('admin.lessons.show',[$lesson->id]) }}" class="btn-square amber-text"><i class="far fa-eye"></i></a>
+                                    @endcan
+                                    @can('lesson_edit')
+                                    <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="btn-square blue-text"><i class="far fa-edit"></i></a>
+                                    @endcan
+                                    @can('lesson_access')
+                                    <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="clone btn-square">
+                                        <i class="far fa-clone"></i>
+                                    </a>
+                                    @endcan
+                                    @can('lesson_delete')
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.lessons.destroy', $lesson->id])) !!}
+                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'btn-square red-text', 'type'=>'submit']) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                @endif
+                                <a href="#" class="expand btn-square">
+                                    <span class="up">
+                                        <i class="fas fa-caret-down"></i>
+                                    </span>
+                                    <span class="down">
+                                        <i class="fas fa-caret-up"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="expand-contain">
+                        <div class="introduction-item">
+                            <h4>@lang('global.lessons.fields.introduction')</h4>
+                            {!! $lesson->introduction !!}
+                        </div>
+                        <div class="content-item">
+                            <h4>@lang('global.lessons.fields.content')</h4>
+                            {!! $lesson->content !!}
+                        </div>
+                        <a href="#" download class="download">
+                            <i class="fas fa-file-download"></i>
+                            <span>Download file</span>
+                        </a>
+                    </div>
+                </li>
+                @endforeach
+                @endif
+            </div>
+
+            @if($courses)
+            <div id="drop-area" class="drop-area">
+                <div>
+                    @foreach($courses as $course)
+                    <div class="drop-area__item fas fa-plus">
+                        <span class="dummy"> {!! $course->title !!} </span>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
+            <!-- <table class="striped responsive-table ajaxTable dt-select">
                 <thead>
                     <tr>
                         <th>@lang('global.lessons.fields.order')</th>
@@ -97,7 +196,7 @@
                         </tr>
                     @endif
                 </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
 @stop
