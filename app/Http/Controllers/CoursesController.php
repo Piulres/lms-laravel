@@ -33,7 +33,8 @@ class CoursesController extends Controller
         $lessons = \App\Lesson::get()->pluck('title', 'id');
 
         $categories = \App\Coursecategory::get()->pluck('title', 'id');
-        $datacourses = \App\Datacourse::where('course_id', $id)->get();$trails = \App\Trail::whereHas('courses',
+        $datacourses = \App\Datacourse::where('course_id', $id)->get();
+        $trails = \App\Trail::whereHas('courses',
                     function ($query) use ($id) {
                         $query->where('id', $id);
                     })->get();
@@ -51,28 +52,44 @@ class CoursesController extends Controller
         }
 
         $course = Course::findOrFail($id);
+
         $user = Auth::id();
 
-        \App\Datacourse::updateOrCreate([
-            'user_id' => Auth::id(),
-            'course_id' => $course->id,
-            'view' => '0',
-            'progress' => '10%',
-        ]);
+        $lessons = DB::table('lessons')
+            ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
+            ->where("course_lesson.course_id", '=',  $id)
+        ->get();        
 
-        DB::table('datacourses')
+        $datacourses = DB::table('datacourses')
          ->where("datacourses.user_id", '=',  $user)
          ->where("datacourses.course_id", '=',  $course->id)
          ->limit(1)
-        ->update(['datacourses.progress'=> '1']);
+        ->get();      
 
-        DB::table('datacourses')
-         ->where("datacourses.user_id", '=',  $user)
-         ->where("datacourses.course_id", '=',  $course->id)
-         ->where('view', '=', NULL)
-        ->delete();      
+        $total_lessons = $lessons->count();
 
-        return view('oncourse', compact('course', 'datacourses', 'trails'));
+        $percentage = 100 / $total_lessons;
+
+        $next = $percentage * $total_lessons;
+        
+        if ($total_lessons >= 0) {
+
+            DB::table('datacourses')
+             ->where("datacourses.user_id", '=',  $user)
+             ->where("datacourses.course_id", '=',  $id)
+             ->limit(1)
+            ->update(
+                ['datacourses.progress'=> $percentage, 
+                'datacourses.view' => '1']
+                    );
+            
+            return view('oncourse', compact('course', 'datacourses', 'lessons', 'total_lessons', 'percentage', 'next'));
+        }
+       
+
+        $next = $percentage * $total_lessons;
+
+        return view('oncourse', compact('course', 'datacourses', 'lessons', 'total_lessons', 'percentage', 'next'));
     }
 
     public function add($id)

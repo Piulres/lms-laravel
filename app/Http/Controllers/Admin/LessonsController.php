@@ -87,6 +87,10 @@ class LessonsController extends Controller
         return view('admin.lessons.edit', compact('lesson'));
     }
 
+
+
+
+
     /**
      * Update Lesson in storage.
      *
@@ -201,4 +205,6 @@ class LessonsController extends Controller
 
         return redirect()->route('admin.lessons.index');
     }
+
+
 }

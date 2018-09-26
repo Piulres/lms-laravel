@@ -76,7 +76,9 @@
                                         @endcan
                                         @can('lesson_edit')
                                         <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
-                                        @endcan
+                                        @endcan                                      
+
+
                                         @can('lesson_delete')
                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
@@ -85,7 +87,7 @@
                                             'route' => ['admin.lessons.destroy', $lesson->id])) !!}
                                             {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
-                                        @endcan
+                                        @endcan                                        
                                     </div>
                                 </td>
                                 @endif
