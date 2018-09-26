@@ -68,9 +68,13 @@
                                     <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="btn-square blue-text"><i class="far fa-edit"></i></a>
                                     @endcan
                                     @can('lesson_access')
-                                    <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="clone btn-square">
-                                        <i class="far fa-clone"></i>
-                                    </a>
+                                    {!! Form::open(array(
+                                    'style' => 'display: inline-block;',
+                                    'method' => 'DELETE',
+                                    'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                    'route' => ['admin.lessons.duplicate', $lesson->id])) !!}
+                                    {!! Form::button('<i class="far fa-clone"></i>', ['class'=>'btn-square red-text', 'type'=>'submit']) !!}
+                                    {!! Form::close() !!}
                                     @endcan
                                     @can('lesson_delete')
                                     {!! Form::open(array(
@@ -111,26 +115,25 @@
                 @endforeach
                 @endif
             </div>
-
             @if($courses)
-            <div id="drop-area" class="drop-area">
-                <div>
-                    @foreach($courses as $course)
-                    <div class="drop-area__item fas fa-plus">
-                        <span class="dummy"> {!! $course->title !!} </span>
+                <div id="drop-area" class="drop-area">
+                    <div>
+                        @foreach($courses as $course)
+                            <div class="drop-area__item fas fa-plus">
+                                <span class="dummy"> {!! $course->title !!} </span>
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
-            </div>
             @endif
             <!-- <table class="striped responsive-table ajaxTable dt-select">
                 <thead>
                     <tr>
                         <th>@lang('global.lessons.fields.order')</th>
                         @can('lesson_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
-                        @endcan
-                        <th>@lang('global.lessons.fields.title')</th>
+                        @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+            @endcan
+            <th>@lang('global.lessons.fields.title')</th>
                         <th>@lang('global.lessons.fields.slug')</th>
                         <th>@lang('global.lessons.fields.introduction')</th>
                         <th>@lang('global.lessons.fields.content')</th>
@@ -139,62 +142,62 @@
                 </thead>
                 <tbody>
                     @if (count($lessons) > 0)
-                        @foreach ($lessons as $lesson)
-                            <tr data-entry-id="{{ $lesson->id }}">
-                                <td field-key='order' class="reorder">{{ $lesson->order }}</td>
-                                @can('lesson_delete')
-                                    @if ( request('show_deleted') != 1 )<td></td>@endif
-                                @endcan
-                                <td field-key='title'>{{ $lesson->title }}</td>
-                                <td field-key='slug'>{{ $lesson->slug }}</td>
-                                <td field-key='introduction'>{!! $lesson->introduction !!}</td>
-                                <td field-key='content'>{!! $lesson->content !!}</td>
-                                <td field-key='study_material'>@if($lesson->study_material)<a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" target="_blank">Download file</a>@endif</td>
-                                @if( request('show_deleted') == 1 )
-                                <td>
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'POST',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.lessons.restore', $lesson->id])) !!}
-                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                    {!! Form::close() !!}
-                                                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.lessons.perma_del', $lesson->id])) !!}
-                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                                                </td>
-                                @else
-                                <td>
-                                    <div class="buttons">
-                                        @can('lesson_view')
-                                        <a href="{{ route('admin.lessons.show',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+            @foreach ($lessons as $lesson)
+            <tr data-entry-id="{{ $lesson->id }}">
+                <td field-key='order' class="reorder">{{ $lesson->order }}</td>
+                @can('lesson_delete')
+                @if ( request('show_deleted') != 1 )<td></td>@endif
+                @endcan
+                <td field-key='title'>{{ $lesson->title }}</td>
+                <td field-key='slug'>{{ $lesson->slug }}</td>
+                <td field-key='introduction'>{!! $lesson->introduction !!}</td>
+                <td field-key='content'>{!! $lesson->content !!}</td>
+                <td field-key='study_material'>@if($lesson->study_material)<a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" target="_blank">Download file</a>@endif</td>
+                @if( request('show_deleted') == 1 )
+                <td>
+                {!! Form::open(array(
+                    'style' => 'display: inline-block;',
+                    'method' => 'POST',
+                    'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                    'route' => ['admin.lessons.restore', $lesson->id])) !!}
+                {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                {!! Form::close() !!}
+                {!! Form::open(array(
+                    'style' => 'display: inline-block;',
+                    'method' => 'DELETE',
+                    'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                    'route' => ['admin.lessons.perma_del', $lesson->id])) !!}
+                {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                {!! Form::close() !!}
+            </td>
+            @else
+                <td>
+                    <div class="buttons">
+                @can('lesson_view')
+                    <a href="{{ route('admin.lessons.show',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
-                                        @can('lesson_edit')
-                                        <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                @can('lesson_edit')
+                    <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
                                         @endcan
-                                        @can('lesson_delete')
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.lessons.destroy', $lesson->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                        {!! Form::close() !!}
-                                        @endcan
-                                    </div>
-                                </td>
-                                @endif
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="11">@lang('global.app_no_entries_in_table')</td>
-                        </tr>
-                    @endif
+                @can('lesson_delete')
+                    {!! Form::open(array(
+                        'style' => 'display: inline-block;',
+                        'method' => 'DELETE',
+                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                        'route' => ['admin.lessons.destroy', $lesson->id])) !!}
+                    {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                    {!! Form::close() !!}
+                @endcan
+                        </div>
+                    </td>
+                @endif
+                    </tr>
+            @endforeach
+                @else
+                    <tr>
+                        <td colspan="11">@lang('global.app_no_entries_in_table')</td>
+                    </tr>
+                @endif
                 </tbody>
             </table> -->
         </div>

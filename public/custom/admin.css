@@ -3,6 +3,21 @@ body {
     font-size: 16px;
 }
 
+#toast-container {
+    top: 20px;
+    left: 50%;
+    right: auto;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.toast.success {
+    background: #0f9d58;
+}
+
 .border-bottom {
     border-bottom: 1px solid #e2e9e6;
 }

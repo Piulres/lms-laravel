@@ -51,6 +51,14 @@ $(document).ready(function() {
 
 });
 
+function msgSuccess(msg) {
+    M.toast({
+        html: msg,
+        classes: 'success',
+        activationPercent: 0.5,
+    });
+}
+
 
 (function() {
     var body = document.body,
@@ -100,6 +108,17 @@ $(document).ready(function() {
                     // after some time hide drop area and remove class 'drag-active' from body
                     clearTimeout( dropAreaTimeout );
                     dropAreaTimeout = setTimeout( afterDropFn, 400 );
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/admin/lessons/create',
+                        success: function( data ) {
+                            console.log(data);
+                            msgSuccess('Mensagem de Sucesso');
+                        }
+                        
+                    });
+
                 }
             }
         } );

@@ -98,17 +98,16 @@ class LessonsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function duplicate($id)
     {
         if (! Gate::allows('lesson_access')) {
             return abort(401);
         }
-
         $lesson = Lesson::findOrFail($id);
-        $new_lesson = $lesson->replicate();
-        $new_lesson->save();
+        $lesson->replicate();
 
-        return view('admin.lessons.index', compact('lesson'));
+        return redirect()->route('admin.lessons.index');
     }
 
     /**
