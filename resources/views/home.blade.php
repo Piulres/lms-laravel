@@ -46,7 +46,7 @@
                         <div class="col s6">
                             <small>Total Progress</small>
                         </div>
-                        <div class="col s6 right-   align">77%
+                        <div class="col s6 right-align">77%
                         </div>
                     </div>
                     <div class="progress small">
