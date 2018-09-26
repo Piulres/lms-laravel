@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s6">
+            <div class="col s7">
                 <table class="table table-bordered table-striped">              
                     <tr>
                         <th>@lang('global.courses.fields.instructor')</th>
@@ -51,26 +51,20 @@
                     </tr>
                 </table>
             </div>
-            <div class="col s6">
+            <div class="col s3 offset-s2">
                 @if (Auth::check())
-                <a class="btn waves-effect waves-light black" href="{{ url('start/'. $course->id) }}">
+                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('start/'. $course->id) }}">
                     Start Course
                 </a>
                 @else
-                <p>Login to Start Course</p>
-                <a class="btn modal-trigger waves-effect waves-light black" href="{{ url('/login') }}">
+                <h4 class="center">Login to Start Course</h4>
+                <a style="width: 100%; margin-bottom: 5px;" class="btn modal-trigger waves-effect waves-light black" data-target="modal1" href="#modal1">
                     Login
                 </a>
                 @endif
+                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('library') }}" class="btn black">@lang('global.app_back_to_list')</a>
             </div>
         </div>
-        <div class="row"> 
-            <div class="col s12">  
-                <a href="{{ url('library') }}" class="btn black">@lang('global.app_back_to_list')</a>
-            </div>
-        </div>
-            
-       
 
     </div>
 
