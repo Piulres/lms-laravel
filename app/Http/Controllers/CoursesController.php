@@ -57,25 +57,11 @@ class CoursesController extends Controller
         }
 
         $course = Course::findOrFail($id);
-
         $user = Auth::id();
-
         $lessons = DB::table('lessons')
             ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
             ->where("course_lesson.course_id", '=',  $id)
         ->get();        
-
-        $datacourses = DB::table('datacourses')
-         ->where("datacourses.user_id", '=',  $user)
-         ->where("datacourses.course_id", '=',  $course->id)
-         ->limit(1)
-        ->get();
-
-        DB::table('datacourses')
-         ->where("datacourses.user_id", '=',  $user)
-         ->where("datacourses.course_id", '=',  $course->id)
-         ->where('view', '=', NULL)
-        ->delete();
 
         \App\Datacourse::updateOrCreate([
             'user_id' => Auth::id(),
@@ -83,6 +69,25 @@ class CoursesController extends Controller
             'view' => '0',
             'progress' => '0',
         ]);
+
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->limit(1)
+        ->update(['datacourses.view'=> '1']);
+
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->where('view', '=', NULL)
+        ->delete();
+
+        $datacourses = DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->limit(1)
+        ->get();
+
          
         return view('oncourse', compact('course', 'datacourses', 'lessons'));
 
@@ -155,7 +160,7 @@ class CoursesController extends Controller
 
         return redirect('library');
 
-    }
+    }  
 
     public function done($id)
     {
@@ -165,13 +170,48 @@ class CoursesController extends Controller
         }
 
         $course = Course::findOrFail($id);
-
         $user = Auth::id();
-
         $lessons = DB::table('lessons')
             ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
             ->where("course_lesson.course_id", '=',  $id)
-        ->get();        
+        ->get();
+        $coursescertificates = DB::table('coursescertificates')
+         ->get();
+
+        // $datacourses = DB::table('datacourses')
+        $check_certificate = DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->limit(1)
+        ->get();
+
+
+        if ($check_certificate[0]->progress == '100') {
+
+            // dd($course->id);
+            DB::table('datacourses')
+             ->where("datacourses.user_id", '=',  $user)
+             ->where("datacourses.course_id", '=',  $id)
+             // ->limit(1)
+            ->update(['datacourses.certificate_id' => $id]);
+
+        }
+
+        // DB::table('lessons')         
+        //     ->where("lessons.id", '=',  $id)
+        //     ->limit(1)
+        // ->update(['lessons.status'=> '2']);
+        
+        // DB::table('datacourses')
+        //  ->where("datacourses.user_id", '=',  $user)
+        //  ->where("datacourses.course_id", '=',  $course->id)
+        //  ->limit(1)
+        // ->update(['datacourses.progress'=> '0']);
+
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $course->id)
+         ->where('view', '=', NULL)
+        ->delete();
 
         $datacourses = DB::table('datacourses')
          ->where("datacourses.user_id", '=',  $user)
@@ -179,13 +219,7 @@ class CoursesController extends Controller
          ->limit(1)
         ->get();
 
-        DB::table('lessons')         
-            ->where("lessons.id", '=',  $id)
-            ->limit(1)
-        ->update(['lessons.status'=> '2']);
-
-        return back();
-        
+        return back();        
     }
 
 }

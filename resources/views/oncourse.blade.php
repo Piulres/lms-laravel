@@ -39,7 +39,7 @@
                     <div>{{ $lesson->content }}</div>
                     <div>{{ $lesson->study_material }}</div>
                     
-                    <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('done/'. $lesson->id) }}">Done</a>
+                    <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('done/'. $course->id) }}">Done</a>
 
                     <hr>
 

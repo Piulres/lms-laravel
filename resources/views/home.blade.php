@@ -219,5 +219,67 @@
             </div>
         </div>
 
+
+        <div class="col-lg-6 col-md-12 card-home">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Certificates</h4>
+                </div>
+
+                <div class="card-content">
+                    <table class="table table-bordered table-striped ajaxTable">
+                        
+                        @foreach($certificates as $certificate)
+                            <tr>
+
+                                <td>{{ $certificate->id }} </td>
+                                <td>{{ $certificate->title }} </td>
+                                <td>
+
+                                    <div class="buttons end">
+                                        @can('coursecertificate_view')
+                                        <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-lg-6 col-md-12 card-home">
+            <div class="card">
+                <div class="card-title">
+                    <h4>My Certificates</h4>
+                </div>
+
+                <div class="card-content">
+                    <table class="table table-bordered table-striped ajaxTable">
+                        
+                        @foreach($mycertificates as $mycertificate)
+                            <tr>
+
+                                <td>{{ $mycertificate->certificate_id }} </td>
+                                <td>{{ $mycertificate->title }} </td>
+                                <td>
+
+                                    <div class="buttons end">
+                                        @can('coursecertificate_view')
+                                        <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 @endsection
