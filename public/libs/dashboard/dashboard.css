@@ -9195,7 +9195,8 @@ body {
     padding-top: 1.53846rem;
     padding-bottom: 1.53846rem;
     padding-left: 75px !important; }
-.yaybar ul > li.yay-user-info > a > img, .yaybar ul > li.yay-user-info > .sp-cancel > img {
+.yaybar ul > li.yay-user-info > a > img, .yaybar ul > li.yay-user-info > .sp-cancel > img,
+.yaybar ul > li.yay-user-info > a > .avatar-icon, .yaybar ul > li.yay-user-info > .sp-cancel > .avatar-icon {
     position: absolute;
     top: 1.73846rem;
     left: 15px;

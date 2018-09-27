@@ -11,9 +11,9 @@
 			</div>
 		</div>
 	@else
-		{!! Form::open(['method' => 'PATCH', 'route' => ['auth.change_password']]) !!}
 		<!-- If no success message in flash session show change password form  -->
 		<div class="card">
+			{!! Form::open(['method' => 'PATCH', 'route' => ['auth.change_password']]) !!}
 			<div class="title">
 				@lang('global.app_edit')
 			</div>
@@ -57,11 +57,15 @@
 						@endif
 					</div>
 				</div>
+				<div class="row">
+					<div class="col s12">
+						{!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey']) !!}
+					</div>
+				</div>
 			</div>
+			{!! Form::close() !!}
 		</div>
 
-		{!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey']) !!}
-		{!! Form::close() !!}
 	@endif
 @stop
 

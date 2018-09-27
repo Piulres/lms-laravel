@@ -4,7 +4,7 @@
             <a href="{{ url('/') }}" class="brand-logo left cyan"><span>@lang('global.global_title')</span></a>
             <ul class="right">
                 <li class="dropdown languages-menu">
-                    <a class="dropdown-button grey-text" href="#!" data-target="dropdown-language">
+                    <a class="dropdown-button" data-activates="dropdown-language" href="#!">
                         {{ strtoupper(\App::getLocale()) }}
                     </a>
                     <ul id='dropdown-language' class='dropdown-content'>
@@ -18,8 +18,9 @@
                     </ul>
                     <li class="footer"></li>
                 </li>
+                <li><a href="#!" class="search-bar-toggle"><i class="mdi-action-search"></i></a></li>
                 <li>
-                    <a class="dropdown-button grey-text" href="#!" data-target="dropdown-notifications">
+                    <a class="dropdown-button" data-activates="dropdown-notifications" href="#!">
                         <i class="far fa-bell"></i>
                         @php($notificationCount = \Auth::user()->internalNotifications()->where('read_at', null)->count())
                         @if($notificationCount > 0)
@@ -45,31 +46,45 @@
                         @endif
                     </ul>
                 </li>
+                @php($user = \Auth::user());
                 <li class="user">
-                    <a class="dropdown-button" data-activates="user-dropdown" href="#!">
-                        <img src="https://html.nkdev.info/_con/assets/_con/images/user.jpg" alt="John Doe" class="circle"> John Doe <i class="mdi-navigation-expand-more right"></i>
+                    <a class="dropdown-button user-top-infos" data-activates="user-dropdown" href="#!">
+                    @if($user->avatar)
+                        <span class="avatar-icon" style="background-image: url('{{ url('/') }}/{{ $user->avatar }}'); "></span>
+                    @else
+                        <img src="{{ url('/custom/avatar.png') }}" alt="{{$user->name . ' ' . $user->last_name}}" class="circle">{{$user->name . ' ' . $user->last_name}} <i class="mdi-navigation-expand-more right"></i>
+                    @endif
+                        {{$user->name . ' ' . $user->last_name}} <i class="mdi-navigation-expand-more right"></i>
                     </a>
-                    <ul id="user-dropdown" class="dropdown-content">
+                        <ul id="user-dropdown" class="dropdown-content">
                         <li>
-                            <a href="page-profile.html">
+                            <a href="#">
                                 <i class="fa fa-user"></i>
                                 Profile
                             </a>
                         </li>
                         <li>
-                            <a href="mail-inbox.html">
-                                <i class="fa fa-envelope"></i> Messages <span class="badge new">2 new</span>
+                            <a href="{{ route('admin.messenger.index') }}">
+                                <i class="fa fa-envelope"></i>
+                                Messages
+
+                                @php($notificationCount = \Auth::user()->internalNotifications()->where('read_at', null)->count())
+                                @if($notificationCount > 0)
+                                    <span class="badge new">{{ $notificationCount }} new</span>
+                            </span>
+                                @endif
+
                             </a>
                         </li>
                         <li>
-                            <a href="#!">
+                            <a href="{{ route('admin.generals.index') }}">
                                 <i class="fa fa-cogs"></i>
                                 Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="page-sign-in.html">
-                                <i class="fa fa-sign-out"></i>
+                            <a href="#logout" onclick="$('#logout').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
                                 Logout
                             </a>
                         </li>

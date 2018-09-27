@@ -12,7 +12,11 @@
             <!-- Sidebar toggle -->
             <!-- Logo -->
             <a href="#!" class="brand-logo">
-                <img src="{{ url('images') }}/Logo_RPX.png" alt="Con">
+                @if($generals->count() >= 1)
+                    <img src="{{url('/')}}/{{$generals[0]->site_logo}}" alt="Con">
+                @else
+                    <img src="{{ url('images') }}/Logo_RPX.png" alt="Con">
+                @endif
             </a>
             <!-- /Logo -->
         </div>
@@ -21,12 +25,21 @@
         <div class="nano-content">
             <ul class="collapsible collapsible-accordion">
                 <li class="yay-user-info">
-                    <a href="page-profile.html">
-                        <img src="assets/_con/images/user.jpg" alt="John Doe" class="circle">
-                        <h3 class="yay-user-info-name">John Doe</h3>
+                    @php($user = \Auth::user())
+                    <a href="#!">
+                        @if($user->avatar)
+                            <span class="avatar-icon" style="background-image: url('{{ url('/') }}/{{ $user->avatar }}'); "></span>
+                        @else
+                            <img src="{{ url('/custom/avatar.png') }}" alt="{{$user->name . ' ' . $user->last_name}} " class="circle">
+                        @endif
+                        <h3 class="yay-user-info-name">{{$user->name . ' ' . $user->last_name}} </h3>
                         <div class="yay-user-location">
-                            <i class="fa fa-map-marker"></i>
-                            Las Vegas, NV
+                            <i class="fas fa-toolbox"></i>
+                            @can('user_create')
+                            Administrador
+                                @else
+                                Usuário
+                            @endcan
                         </div>
                     </a>
                 </li>
@@ -185,6 +198,13 @@
                             <a href="{{ route('admin.datacourses.index') }}">
                                 <i class="fas fa-cog"></i>
                                 <span>@lang('global.datacourse.title')</span>
+                            </a>
+                        </li>@endcan
+                        @can('datalesson_access')
+                        <li>
+                            <a href="{{ route('admin.datalessons.index') }}">
+                                <i class="fas fa-cog"></i>
+                                <span>@lang('global.datalesson.title')</span>
                             </a>
                         </li>@endcan
                     </ul>

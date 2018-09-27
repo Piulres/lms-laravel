@@ -142,6 +142,11 @@ class PermissionSeed extends Seeder
             ['id' => 142, 'title' => 'datacourse_edit',],
             ['id' => 143, 'title' => 'datacourse_view',],
             ['id' => 144, 'title' => 'datacourse_delete',],
+            ['id' => 145, 'title' => 'datalesson_access',],
+            ['id' => 146, 'title' => 'datalesson_create',],
+            ['id' => 147, 'title' => 'datalesson_edit',],
+            ['id' => 148, 'title' => 'datalesson_view',],
+            ['id' => 149, 'title' => 'datalesson_delete',],
 
         ];
 

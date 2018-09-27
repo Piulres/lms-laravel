@@ -27,10 +27,10 @@
 
     <ul class="tabs z-depth-1">
         <li class="tab">
-            <a href="{{ route('admin.lessons.index') }}" class="{{$generals[0]->theme_color}}-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+            <a href="{{ route('admin.lessons.index') }}" class="{{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
         </li>
         <li class="tab">
-            <a href="{{ route('admin.lessons.index') }}?show_deleted=1" class="{{$generals[0]->theme_color}}-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+            <a href="{{ route('admin.lessons.index') }}?show_deleted=1" class="{{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
         </li>
     </ul>
 
@@ -38,8 +38,8 @@
         <div class="title">
             <h3>@lang('global.app_list')</h3>
             <div class="toggle-view">
-                <a href="#" id="list-view" class="{{$generals[0]->theme_color}}-text active"><i class="fas fa-list-ul"></i></a>
-                <a href="#" id="grid-view" class="{{$generals[0]->theme_color}}-text"><i class="fas fa-th"></i></a>
+                <a href="#" id="list-view" class="active"><i class="fas fa-list-ul"></i></a>
+                <a href="#" id="grid-view"><i class="fas fa-th"></i></a>
             </div>
         </div>
 

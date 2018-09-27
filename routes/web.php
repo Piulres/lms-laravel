@@ -11,6 +11,7 @@ Route::get('courses/{id}', ['uses' => 'CoursesController@show', 'as' => 'courses
 Route::get('start/{id}', 'CoursesController@start');   
 Route::get('add/{id}', 'CoursesController@add');   
 Route::get('remove/{id}', 'CoursesController@remove');   
+Route::get('done/{id}', 'CoursesController@done');   
 
 Route::get('/courses/{id}', 'CoursesController@show');
 Route::get('/logout', 'Auth\LoginController@logout');
@@ -113,6 +114,11 @@ Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' =>
     Route::post('datacourses_mass_destroy', ['uses' => 'Admin\DatacoursesController@massDestroy', 'as' => 'datacourses.mass_destroy']);
     Route::post('datacourses_restore/{id}', ['uses' => 'Admin\DatacoursesController@restore', 'as' => 'datacourses.restore']);
     Route::delete('datacourses_perma_del/{id}', ['uses' => 'Admin\DatacoursesController@perma_del', 'as' => 'datacourses.perma_del']);
+
+    Route::resource('datalessons', 'Admin\DatalessonsController');
+    Route::post('datalessons_mass_destroy', ['uses' => 'Admin\DatalessonsController@massDestroy', 'as' => 'datalessons.mass_destroy']);
+    Route::post('datalessons_restore/{id}', ['uses' => 'Admin\DatalessonsController@restore', 'as' => 'datalessons.restore']);
+    Route::delete('datalessons_perma_del/{id}', ['uses' => 'Admin\DatalessonsController@perma_del', 'as' => 'datalessons.perma_del']);
 
     Route::model('messenger', 'App\MessengerTopic');
     Route::get('messenger/inbox', 'Admin\MessengerController@inbox')->name('messenger.inbox');

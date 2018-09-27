@@ -31,7 +31,7 @@
         </div>
 
         <div class="col l4 s12">
-            <a href="{{ route('admin.courses.index') }}"
+            <a href="{{ route('admin.trails.index') }}"
                class="card-panel stats-card teal lighten-2 indigo-text text-lighten-5">
                 <i class="fas fa-train"></i>
                 <span class="count">{{ $trails->count() }}</span>

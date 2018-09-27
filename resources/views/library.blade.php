@@ -34,9 +34,9 @@
                                 </div>
                             </div>
                             <div class="card-action">
-                                <a href="{{ url('courses/'. $mycourse->course_id) }}">Show</a>
-                                <a href="{{ url('start/'. $mycourse->course_id) }}">Start</a>
-                                <a href="{{ url('remove/'. $mycourse->course_id) }}">Remove</a>
+                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('courses/'. $mycourse->course_id) }}">View course</a>
+                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('start/'. $mycourse->course_id) }}">Start course</a>
+                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('remove/'. $mycourse->course_id) }}">Remove from my courses</a>
                             </div>
                         </div>
                     </div>
@@ -78,11 +78,9 @@
                                 </div>
                             </div>
                             <div class="card-action">
-                                <a href="{{ url('courses/'. $course->id) }}">Link</a>
+                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('courses/'. $course->id) }}">View course</a>
                                 @if (Auth::check())                                
-                                <a href="{{ url('add/'. $course->id) }}">
-                                    Add to my courses
-                                </a>
+                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('add/'. $course->id) }}">Add to my courses</a>
                                 @else
                                 @endif
                             </div>
@@ -96,28 +94,22 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="section">
-            <div class="row">                
-                <div class="col s12 center">                
-                    @if (Auth::check())
-                    @else
-                        <a href="{{ url('/login') }}" class="btn black">Login</a>
-                        <a href="{{ url('/register') }}" class="btn black">Register</a>
-
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="parallax-container valign-wrapper">
         <div class="section no-pad-bot">
             <div class="container">
                 <div class="row center">
-                    <h5 class="header col s12 light">
+                    <h4 class="header col s12 light">
                         The LMS plataform right for you
-                    </h5>
+                    </h4>
+                </div>
+                <div class="row">                
+                    <div class="col s12 center">
+                        @if (Auth::check())
+                        @else
+                            <a style="min-width: 200px;" href="{{ url('/login') }}" class="btn black">Login</a>
+                            <a style="min-width: 200px;" href="{{ url('/register') }}" class="btn black">Register</a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
