@@ -115,6 +115,11 @@ Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' =>
     Route::post('datacourses_restore/{id}', ['uses' => 'Admin\DatacoursesController@restore', 'as' => 'datacourses.restore']);
     Route::delete('datacourses_perma_del/{id}', ['uses' => 'Admin\DatacoursesController@perma_del', 'as' => 'datacourses.perma_del']);
 
+    Route::resource('datalessons', 'Admin\DatacoursesController');
+    Route::post('datalessons_mass_destroy', ['uses' => 'Admin\DatacoursesController@massDestroy', 'as' => 'datalessons.mass_destroy']);
+    Route::post('datalessons_restore/{id}', ['uses' => 'Admin\DatacoursesController@restore', 'as' => 'datalessons.restore']);
+    Route::delete('datalessons_perma_del/{id}', ['uses' => 'Admin\DatacoursesController@perma_del', 'as' => 'datalessons.perma_del']);
+
     Route::model('messenger', 'App\MessengerTopic');
     Route::get('messenger/inbox', 'Admin\MessengerController@inbox')->name('messenger.inbox');
     Route::get('messenger/outbox', 'Admin\MessengerController@outbox')->name('messenger.outbox');

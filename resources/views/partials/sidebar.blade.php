@@ -172,6 +172,13 @@
                                     <span>@lang('global.datacourse.title')</span>
                                 </a>
                             </li>@endcan
+                             @can('datalesson_access')
+                            <li>
+                                <a href="{{ route('admin.datalessons.index') }}">
+                                    <i class="fas fa-cog"></i>
+                                    <span>@lang('global.datalesson.title')</span>
+                                </a>
+                            </li>@endcan
                         </ul>
                     </div>
                 </li>@endcan
