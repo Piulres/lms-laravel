@@ -10,7 +10,8 @@ Route::get('courses/{id}', ['uses' => 'CoursesController@show', 'as' => 'courses
 
 Route::get('start/{id}', 'CoursesController@start');   
 Route::get('add/{id}', 'CoursesController@add');   
-Route::get('remove/{id}', 'CoursesController@remove');   
+Route::get('remove/{id}', 'CoursesController@remove');
+Route::get('certificate/{id}', 'CoursesController@certificate'); 
 
 Route::get('/courses/{id}', 'CoursesController@show');
 Route::get('/logout', 'Auth\LoginController@logout');
