@@ -296,6 +296,17 @@ return [
 			'certificate' => 'Certificate',
 		],
 	],
+
+	'datalesson' => [
+		'title' => 'Data Lesson',
+		'fields' => [
+			'view' => 'View',
+			'progress' => 'Progress',
+			'user' => 'User',
+			'course' => 'Course',
+		],
+	],
+	
 	'app_order' => 'Order',
 	'app_create' => 'Create',
 	'app_save' => 'Save',
