@@ -2,18 +2,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h2>@lang('global.users.title')</h2>
-        @can('user_create')
-            <a href="{{ route('admin.users.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.users.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li><span>@lang('global.users.title')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+
+                @can('user_create')
+                    <a href="{{ route('admin.users.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                        Add User
+                    </a>
+                @endcan
+            </div>
+        </div>
     </div>
 
    <div class="card paper-shadow">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
         </div>
-        <div class="card-content">
+        <div class="content">
 
             <table class="no-order responsive-table striped ajaxTable @can('user_delete') dt-select @endcan">
                 <thead>

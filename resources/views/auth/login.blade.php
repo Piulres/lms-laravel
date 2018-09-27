@@ -17,8 +17,8 @@
                         </h4>
                         
                         <div class="card">
-                            <div class="card-title">{{ ucfirst(config('app.name')) }} @lang('global.app_login')</div>
-                            <div class="card-content">
+                            <div class="title">{{ ucfirst(config('app.name')) }} @lang('global.app_login')</div>
+                            <div class="content">
                                 @if (count($errors) > 0)
                                 <div class="alert alert-danger">
                                     <strong>Whoops!</strong> @lang('global.app_there_were_problems_with_input'):
@@ -42,7 +42,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">@lang('global.app_email')</label>
 
-                                        <div class="col-md-6">
+                                        <div class="col s6">
                                             <input type="email"
                                                    class="form-control"
                                                    name="email"
@@ -53,7 +53,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">@lang('global.app_password')</label>
 
-                                        <div class="col-md-6">
+                                        <div class="col s6">
                                             <input type="password"
                                                    class="form-control"
                                                    name="password">

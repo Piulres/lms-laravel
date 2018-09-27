@@ -2,20 +2,36 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h2>@lang('global.internal-notifications.title')</h2>
-        @can('internal_notification_create')
-            <a href="{{ route('admin.internal_notifications.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.internal-notifications.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li><span>@lang('global.internal-notifications.title')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+
+                @can('internal_notification_create')
+                    <a href="{{ route('admin.internal_notifications.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                        Add notify
+                    </a>
+                @endcan
+            </div>
+        </div>
     </div>
 
     
     <div class="card">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <table class="striped responsive-table {{ count($internal_notifications) > 0 ? 'datatable' : '' }} @can('internal_notification_delete') dt-select @endcan">
                 <thead>
                     <tr>

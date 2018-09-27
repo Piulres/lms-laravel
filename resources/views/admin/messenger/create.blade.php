@@ -4,7 +4,7 @@
 
 @section('messenger-content')
 <div class="card">
-	<div class="card-content">
+	<div class="content">
         <div class="col-md-12">
             {!! Form::open(['route' => ['admin.messenger.store'], 'method' => 'POST', 'novalidate', 'class' => 'stepperForm validate']) !!}
 

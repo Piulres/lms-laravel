@@ -1282,7 +1282,9 @@ conApp.initMaterialPlugins = function() {
 
     // init datepicker
     if(typeof $.fn.pickadate !== 'undefined') {
-        $('.datepicker').pickadate();
+        $('.datepicker').pickadate({
+            format: 'd/mm/yyyy'
+        });
     }
 
     // init dropdown

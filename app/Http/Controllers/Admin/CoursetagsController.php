@@ -61,7 +61,7 @@ class CoursetagsController extends Controller
 
         $generals = \App\General::get();
 
-        return view('admin.coursetags.create', 'generals');
+        return view('admin.coursetags.create', compact('generals'));
     }
 
     /**

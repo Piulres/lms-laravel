@@ -10,13 +10,13 @@
     {!! Form::model($lesson, ['method' => 'PUT', 'route' => ['admin.lessons.update', $lesson->id], 'files' => true,]) !!}
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_edit')</h3>
+        <div class="title">
+            <h5>@lang('global.app_edit')</h5>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     <div class="input-field">
                         {!! Form::label('order', trans('global.lessons.fields.order').'') !!}
                         {!! Form::number('order', old('order'), ['class' => 'validate']) !!}
@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     <div class="input-field">
                         {!! Form::label('title', trans('global.lessons.fields.title').'') !!}
                         {!! Form::text('title', old('title'), ['class' => 'validate']) !!}
@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     <div class="input-field">
                         {!! Form::label('slug', trans('global.lessons.fields.slug').'') !!}
                         {!! Form::text('slug', old('slug'), ['class' => 'validate']) !!}
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     <div class="input-field">
                         {!! Form::label('introduction', trans('global.lessons.fields.introduction').'') !!}
                         {!! Form::textarea('introduction', old('introduction'), ['class' => 'materialize-textarea ', 'placeholder' => '']) !!}
@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     <div class="row">
                         <div class="col-12 no-padding">
                             <div class="file-field input-field">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-12">
+                <div class="col s12">
                     <div class="input-field">
                         {!! Form::label('content', trans('global.lessons.fields.content').'') !!}
                         {!! Form::textarea('content', old('content'), ['class' => 'form-control editor', 'placeholder' => '']) !!}

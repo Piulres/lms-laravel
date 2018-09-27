@@ -1,6 +1,10 @@
 /* CUSTOM CSS MATERIALIZE RP */
-body {
-    font-size: 13px;
+/*body {*/
+    /*font-size: 13px;*/
+/*}*/
+
+.ui-helper-hidden-accessible {
+    display: none;
 }
 
 #toast-container {

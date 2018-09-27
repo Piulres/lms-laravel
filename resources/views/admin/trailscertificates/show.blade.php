@@ -1,21 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.trailscertificates.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
-    </div>
-    <div class="header-title">
-        <h2>@lang('global.trailscertificates.title')</h2>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.trailscertificates.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.trailscertificates.index') }}">
+                            @lang('global.trailscertificates.title')</a>
+                    </li> /
+                    <li><span>{{ $trailscertificate->title }}</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.trailscertificates.index') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_view')</h3>
+        <div class="title">
+            <h5>@lang('global.app_view')</h5>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col s6">
                     <table class="striped">
                         <tr>
                             <th>@lang('global.trailscertificates.fields.order')</th>
@@ -46,7 +63,7 @@
         </div>
 
         <!-- Tab panes -->
-        <div class="card-content">
+        <div class="content">
             
             <div class="active" id="datatrail">
                 <table class="striped responsive-table {{ count($datatrails) > 0 ? 'datatable' : '' }}">

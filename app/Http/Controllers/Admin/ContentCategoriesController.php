@@ -124,7 +124,9 @@ class ContentCategoriesController extends Controller
 
         $content_category = ContentCategory::findOrFail($id);
 
-        return view('admin.content_categories.show', compact('content_category', 'content_pages'));
+        $generals = \App\General::get();
+
+        return view('admin.content_categories.show', compact('content_category', 'content_pages', 'generals'));
     }
 
 

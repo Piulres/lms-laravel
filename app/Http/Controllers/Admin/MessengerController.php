@@ -37,7 +37,9 @@ class MessengerController extends Controller
     {
         $users = User::all()->pluck('email', 'id');
 
-        return view('admin.messenger.create', compact('users'));
+        $generals = \App\General::get();
+
+        return view('admin.messenger.create', compact('users', 'generals'));
     }
 
     /**
@@ -168,7 +170,9 @@ class MessengerController extends Controller
         $topics = Auth::user()->inbox()->with('receiver', 'sender')->orderBy('sent_at', 'desc')->get();
         $title  = 'Inbox';
 
-        return view('admin.messenger.index', compact('topics', 'title'));
+        $generals = \App\General::get();
+
+        return view('admin.messenger.index', compact('topics', 'title', 'generals'));
     }
 
     public function outbox()
@@ -176,6 +180,8 @@ class MessengerController extends Controller
         $topics = Auth::user()->outbox()->with('receiver', 'sender')->orderBy('sent_at', 'desc')->get();
         $title  = 'Outbox';
 
-        return view('admin.messenger.index', compact('topics', 'title'));
+        $generals = \App\General::get();
+
+        return view('admin.messenger.index', compact('topics', 'title', 'generals'));
     }
 }

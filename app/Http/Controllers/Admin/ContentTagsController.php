@@ -41,7 +41,10 @@ class ContentTagsController extends Controller
         if (! Gate::allows('content_tag_create')) {
             return abort(401);
         }
-        return view('admin.content_tags.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.content_tags.create', compact('generals'));
     }
 
     /**

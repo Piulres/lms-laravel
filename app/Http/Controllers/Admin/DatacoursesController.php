@@ -94,7 +94,7 @@ class DatacoursesController extends Controller
 
         $generals = \App\General::get();
 
-        return view('admin.datacourses.index', 'generals');
+        return view('admin.datacourses.index', compact('generals'));
     }
 
     /**
