@@ -304,6 +304,7 @@ return [
 			'progress' => 'Progress',
 			'user' => 'User',
 			'course' => 'Course',
+			'lesson' => 'Lesson',
 		],
 	],
 	

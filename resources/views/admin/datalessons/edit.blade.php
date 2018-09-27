@@ -43,6 +43,12 @@
                     {!! Form::select('course_id', $courses, old('course_id'), ['class' => 'form-control']) !!}
                     <span class="helper-text" data-error="@if($errors->has('course_id')){{ $errors->first('course_id') }}@endif" data-success="right"></span>
                 </div>
+
+                <div class="col-12 col-md-6">
+                    {!! Form::label('lesson_id', trans('global.datalesson.fields.lesson').'') !!}
+                    {!! Form::select('lesson_id', $lessons, old('lesson_id'), ['class' => 'form-control']) !!}
+                    <span class="helper-text" data-error="@if($errors->has('lesson_id')){{ $errors->first('lesson_id') }}@endif" data-success="right"></span>
+                </div>
                 
             </div>
             

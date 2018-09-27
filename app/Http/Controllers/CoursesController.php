@@ -165,10 +165,12 @@ class CoursesController extends Controller
     public function done($id)
     {
         
+        // check access
         if (! Gate::allows('course_access')) {
             return redirect('login');
         }
 
+        // call vars
         $course = Course::findOrFail($id);
         $user = Auth::id();
         $lessons = DB::table('lessons')
@@ -178,7 +180,8 @@ class CoursesController extends Controller
         $coursescertificates = DB::table('coursescertificates')
          ->get();
 
-        // $datacourses = DB::table('datacourses')
+        
+        // certificate
         $check_certificate = DB::table('datacourses')
          ->where("datacourses.user_id", '=',  $user)
          ->limit(1)
