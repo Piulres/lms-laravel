@@ -2,20 +2,14 @@
 
     <div class="container">
         <div class="row">
-            <div class="col s12">
+            <div class="col s1 black white-text">   
                 @foreach($datacourses as $datacourse)
-
-                    <p>Nº total de aulas: {{ $total_lessons }}</p>
-                    <p>Porcentagem: {{ $percentage }}</p>
-                    <p>Next: {{ $next }}</p>
-
-                    <p>Progress: {{ number_format($datacourse->progress, 9) }}</p>
-                 
-                    
+                    <!-- <sup>{{ number_format($datacourse->progress, 9) }} %</sup> -->
+                    <p>Progress: </p><h5>{{ number_format($datacourse->progress, 0) }} %</h5>
                 @endforeach
             </div>
-            <div class="col s12">   
-                <h2 class="page-title">On Course: {{ $course->title }}</h2>
+            <div class="col s11">   
+                <h2 class="page-title">Course: {{ $course->title }}</h2>
             </div>
         </div>
         <div class="row">
@@ -39,10 +33,14 @@
                 <div class="col s12">
                    
                     <h4>{{ $lesson->title }}</h4>
+                    <div>{{ $lesson->status }}</div>
                     <div>{{ $lesson->slug }}</div>
                     <div>{{ $lesson->introduction }}</div>
                     <div>{{ $lesson->content }}</div>
                     <div>{{ $lesson->study_material }}</div>
+                    
+                    <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('done/'. $lesson->id) }}">Done</a>
+
                     <hr>
 
                 </div>
