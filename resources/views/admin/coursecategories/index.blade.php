@@ -101,9 +101,9 @@
                                             'route' => ['admin.coursecategories.destroy', $coursecategory->id])) !!}
                                                 {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
-                                    </div>
-                                    @endcan
+                                        @endcan
                                     @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

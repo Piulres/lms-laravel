@@ -292,7 +292,7 @@ $datacourses = \App\Datacourse::where('course_id', $id)->get();$trails = \App\Tr
         $course = Course::findOrFail($id);
         $course->delete();
 
-        return redirect()->route('admin.courses.index');
+        return back();
     }
 
     /**

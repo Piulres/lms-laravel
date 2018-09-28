@@ -44,9 +44,6 @@
             <div class="card" draggable="false">
                 <div class="title">
                     <h5>Recently added users</h5>
-                    {{--<a class="close" href="#" draggable="false">--}}
-                    {{--<i class="mdi-content-clear"></i>--}}
-                    {{--</a>--}}
                     <a class="minimize" href="#" draggable="false">
                         <i class="mdi-navigation-expand-less"></i>
                     </a>
@@ -72,13 +69,22 @@
             <div class="card">
                 <div class="title">
                     <h5>Recently added courses</h5>
-                    {{--<a class="close" href="#"><i class="mdi-content-clear"></i></a>--}}
                     <a class="minimize" href="#"><i class="mdi-navigation-expand-less"></i></a>
                 </div>
                 <div class="content todo-card">
                     <ul class="collection">
                         @foreach($courses as $course)
-                        <li class="collection-item"><div>{{ $course->title }}<a href="#!" class="secondary-content"><i class="todo-remove mdi-action-delete"></i></a></div></li>
+                        <li class="collection-item">
+                            <div>{{ $course->title }}
+                                {!! Form::open(array(
+                                    'class' => 'secondary-content',
+                                    'method' => 'DELETE',
+                                    'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                    'route' => ['admin.courses.destroy', $course->id])) !!}
+                                {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
@@ -94,7 +100,18 @@
                 <div class="content todo-card">
                     <ul class="collection">
                         @foreach($trails as $trail)
-                        <li class="collection-item"><div>{{ $trail->title }}<a href="#!" class="secondary-content"><i class="todo-remove mdi-action-delete"></i></a></div></li>
+                        <li class="collection-item">
+                            <div>
+                                {{ $trail->title }}
+                                {!! Form::open(array(
+                                    'class' => 'secondary-content',
+                                    'method' => 'DELETE',
+                                    'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                    'route' => ['admin.courses.destroy', $course->id])) !!}
+                                {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
