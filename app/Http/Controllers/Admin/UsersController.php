@@ -97,7 +97,9 @@ class UsersController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.users.index');
+        $generals = \App\General::get();
+
+        return view('admin.users.index', compact('generals'));
     }
 
     /**
@@ -115,7 +117,9 @@ class UsersController extends Controller
 
         $teams = \App\Team::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
 
-        return view('admin.users.create', compact('roles', 'teams'));
+        $generals = \App\General::get();
+
+        return view('admin.users.create', compact('roles', 'teams', 'generals'));
     }
 
     /**
@@ -157,7 +161,9 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
 
-        return view('admin.users.edit', compact('user', 'roles', 'teams'));
+        $generals = \App\General::get();
+
+        return view('admin.users.edit', compact('user', 'roles', 'teams', 'generals'));
     }
 
     /**
@@ -207,7 +213,9 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
 
-        return view('admin.users.show', compact('user', 'user_actions', 'internal_notifications', 'datatrails', 'datacourses', 'courses'));
+        $generals = \App\General::get();
+
+        return view('admin.users.show', compact('user', 'user_actions', 'internal_notifications', 'datatrails', 'datacourses', 'courses', 'generals'));
     }
 
 

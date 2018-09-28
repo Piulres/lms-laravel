@@ -23,7 +23,8 @@ class MessengerController extends Controller
         $topics = Auth::user()->topics()->with('receiver', 'sender')->orderBy('sent_at', 'desc')->get();
         $title  = 'Messages';
 
-        return view('admin.messenger.index', compact('topics', 'title'));
+        $generals = \App\General::get();
+        return view('admin.messenger.index', compact('topics', 'title', 'generals'));
 
     }
 
@@ -36,7 +37,9 @@ class MessengerController extends Controller
     {
         $users = User::all()->pluck('email', 'id');
 
-        return view('admin.messenger.create', compact('users'));
+        $generals = \App\General::get();
+
+        return view('admin.messenger.create', compact('users', 'generals'));
     }
 
     /**
@@ -88,7 +91,9 @@ class MessengerController extends Controller
         }
         $topic->read();
 
-        return view('admin.messenger.show', compact('topic', 'unreadMessages'));
+        $generals = \App\General::get();
+
+        return view('admin.messenger.show', compact('topic', 'unreadMessages', 'generals'));
     }
 
     /**
@@ -107,7 +112,9 @@ class MessengerController extends Controller
         $topic->load('receiver', 'sender');
         $user = $topic->otherPerson()->email;
 
-        return view('admin.messenger.reply', compact('topic', 'user'));
+        $generals = \App\General::get();
+
+        return view('admin.messenger.reply', compact('topic', 'user', 'generals'));
     }
 
     /**
@@ -163,7 +170,9 @@ class MessengerController extends Controller
         $topics = Auth::user()->inbox()->with('receiver', 'sender')->orderBy('sent_at', 'desc')->get();
         $title  = 'Inbox';
 
-        return view('admin.messenger.index', compact('topics', 'title'));
+        $generals = \App\General::get();
+
+        return view('admin.messenger.index', compact('topics', 'title', 'generals'));
     }
 
     public function outbox()
@@ -171,6 +180,8 @@ class MessengerController extends Controller
         $topics = Auth::user()->outbox()->with('receiver', 'sender')->orderBy('sent_at', 'desc')->get();
         $title  = 'Outbox';
 
-        return view('admin.messenger.index', compact('topics', 'title'));
+        $generals = \App\General::get();
+
+        return view('admin.messenger.index', compact('topics', 'title', 'generals'));
     }
 }

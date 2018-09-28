@@ -25,10 +25,10 @@ class ContentTagsController extends Controller
             return abort(401);
         }
 
-
+        $generals = \App\General::get();
                 $content_tags = ContentTag::all();
 
-        return view('admin.content_tags.index', compact('content_tags'));
+        return view('admin.content_tags.index', compact('content_tags', 'generals'));
     }
 
     /**
@@ -41,7 +41,10 @@ class ContentTagsController extends Controller
         if (! Gate::allows('content_tag_create')) {
             return abort(401);
         }
-        return view('admin.content_tags.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.content_tags.create', compact('generals'));
     }
 
     /**
@@ -58,8 +61,9 @@ class ContentTagsController extends Controller
         $content_tag = ContentTag::create($request->all());
 
 
+        $generals = \App\General::get();
 
-        return redirect()->route('admin.content_tags.index');
+        return redirect()->route('admin.content_tags.index', compact('generals'));
     }
 
 
@@ -76,7 +80,9 @@ class ContentTagsController extends Controller
         }
         $content_tag = ContentTag::findOrFail($id);
 
-        return view('admin.content_tags.edit', compact('content_tag'));
+        $generals = \App\General::get();
+
+        return view('admin.content_tags.edit', compact('content_tag', 'generals'));
     }
 
     /**
@@ -118,7 +124,9 @@ class ContentTagsController extends Controller
 
         $content_tag = ContentTag::findOrFail($id);
 
-        return view('admin.content_tags.show', compact('content_tag', 'content_pages'));
+        $generals = \App\General::get();
+
+        return view('admin.content_tags.show', compact('content_tag', 'content_pages', 'generals'));
     }
 
 

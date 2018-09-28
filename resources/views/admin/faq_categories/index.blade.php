@@ -2,25 +2,41 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h2>@lang('global.faq-categories.title')</h2>
-        @can('trailtag_create')
-            <a href="{{ route('admin.faq_categories.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.faq-categories.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li><span>@lang('global.faq-categories.title')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+
+                @can('faq_category_create')
+                    <a href="{{ route('admin.faq_categories.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                        Add category
+                    </a>
+                @endcan
+            </div>
+        </div>
     </div>
 
     <div class="card">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="card-content">
-            <table class="no-order striped responsive-table ajaxTable @can('faq_category_delete') dt-select @endcan">
+        <div class="content">
+            <table class="no-order table table-striped ajaxTable @can('faq_category_delete') dt-select @else dt-show @endcan">
                 <thead>
                     <tr>
                         <th></th>
                         @can('faq_category_delete')
-                            <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                            <th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>
                         @endcan
 
                         <th>@lang('global.faq-categories.fields.title')</th>

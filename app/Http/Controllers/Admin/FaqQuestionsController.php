@@ -61,7 +61,9 @@ class FaqQuestionsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.faq_questions.index');
+        $generals = \App\General::get();
+
+        return view('admin.faq_questions.index', compact('generals'));
     }
 
     /**
@@ -77,7 +79,9 @@ class FaqQuestionsController extends Controller
         
         $categories = \App\FaqCategory::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
 
-        return view('admin.faq_questions.create', compact('categories'));
+        $generals = \App\General::get();
+
+        return view('admin.faq_questions.create', compact('categories', 'generals'));
     }
 
     /**
@@ -115,7 +119,9 @@ class FaqQuestionsController extends Controller
 
         $faq_question = FaqQuestion::findOrFail($id);
 
-        return view('admin.faq_questions.edit', compact('faq_question', 'categories'));
+        $generals = \App\General::get();
+
+        return view('admin.faq_questions.edit', compact('faq_question', 'categories', 'generals'));
     }
 
     /**
@@ -152,7 +158,9 @@ class FaqQuestionsController extends Controller
         }
         $faq_question = FaqQuestion::findOrFail($id);
 
-        return view('admin.faq_questions.show', compact('faq_question'));
+        $generals = \App\General::get();
+
+        return view('admin.faq_questions.show', compact('faq_question', 'generals'));
     }
 
 

@@ -1,22 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.content_categories.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.content-categories.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.content_categories.index') }}">
+                            @lang('global.content-categories.title')</a>
+                    </li> /
+                    <li><span>@lang('global.app_edit')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.content_categories.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="header-title">
-        <h2>@lang('global.content-categories.title')</h2>
-    </div>    
     {!! Form::model($content_category, ['method' => 'PUT', 'route' => ['admin.content_categories.update', $content_category->id]]) !!}
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_edit')</h3>
+        <div class="title">
+            <h5>@lang('global.app_edit')</h5>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     <div class="input-field">
                         {!! Form::label('title', trans('global.content-categories.fields.title').'') !!}
                         {!! Form::text('title', old('title'), ['class' => 'validate']) !!}
@@ -24,7 +41,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     <div class="input-field">
                         {!! Form::label('slug', trans('global.content-categories.fields.slug').'') !!}
                         {!! Form::text('slug', old('slug'), ['class' => 'validate']) !!}
@@ -32,11 +49,14 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="row">
+
+            </div>
+            {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light white-text']) !!}
+
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light grey white-text']) !!}
     {!! Form::close() !!}
 @stop
 

@@ -1,21 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.lessons.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
-    </div>
-    <div class="header-title">
-        <h2>@lang('global.lessons.title')</h2>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.lessons.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.lessons.index') }}">
+                            @lang('global.lessons.title')</a>
+                    </li> /
+                    <li><span>{{ $lesson->title }}</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.lessons.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_view')</h3>
+        <div class="title">
+            <h5>@lang('global.app_view')</h5>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col s6">
                     <table class="bordered striped">
                         <tr>
                             <th>@lang('global.lessons.fields.order')</th>
@@ -39,7 +56,13 @@
                         </tr>
                         <tr>
                             <th>@lang('global.lessons.fields.study-material')</th>
-                            <td field-key='study_material'>@if($lesson->study_material)<a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" target="_blank">Download file</a>@endif</td>
+                            <td>
+                            @if($lesson->study_material)
+                                <a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" download class="btn btn-small">
+                                    Download file <i class="mdi-file-file-download"></i>
+                                </a>
+                            @endif
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -54,7 +77,7 @@
         </div>
 
         <!-- Tab panes -->
-        <div class="card-content">
+        <div class="content">
             
             <div role="tabpanel" class="tab-pane active" id="courses">
                 <table class="striped responsive-table {{ count($courses) > 0 ? 'datatable' : '' }}">
@@ -137,10 +160,10 @@
                                     <td>
                                         <div class="buttons">
                                             @can('course_view')
-                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('course_edit')
-                                            <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('course_delete')
                                             {!! Form::open(array(
@@ -170,7 +193,7 @@
 
 @section('javascript')
     @parent
-    <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
     <script>
         $('.editor').each(function () {
                   CKEDITOR.replace($(this).attr('id'),{

@@ -25,10 +25,10 @@ class TeamsController extends Controller
             return abort(401);
         }
 
-
+        $generals = \App\General::get();
                 $teams = Team::all();
 
-        return view('admin.teams.index', compact('teams'));
+        return view('admin.teams.index', compact('teams', 'generals'));
     }
 
     /**
@@ -41,7 +41,10 @@ class TeamsController extends Controller
         if (! Gate::allows('team_create')) {
             return abort(401);
         }
-        return view('admin.teams.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.teams.create', compact('generals'));
     }
 
     /**
@@ -76,7 +79,9 @@ class TeamsController extends Controller
         }
         $team = Team::findOrFail($id);
 
-        return view('admin.teams.edit', compact('team'));
+        $generals = \App\General::get();
+
+        return view('admin.teams.edit', compact('team', 'generals'));
     }
 
     /**
@@ -115,7 +120,9 @@ class TeamsController extends Controller
 
         $team = Team::findOrFail($id);
 
-        return view('admin.teams.show', compact('team', 'users'));
+        $generals = \App\General::get();
+
+        return view('admin.teams.show', compact('team', 'users', 'generals'));
     }
 
 

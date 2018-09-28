@@ -1,21 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.datacourses.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
-    </div>
-    <div class="header-title">
-        <h2>@lang('global.datacourse.title')</h2>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.datacourse.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.datacourses.index') }}">
+                            @lang('global.datacourse.title')</a>
+                    </li> /
+                    <li><span>{{ $datacourse->view }}</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.datacourses.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_view')</h3>
+        <div class="title">
+            <h5>@lang('global.app_view')</h5>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col s6">
                     <table class="bordered striped">
                         <tr>
                             <th>@lang('global.datacourse.fields.view')</th>

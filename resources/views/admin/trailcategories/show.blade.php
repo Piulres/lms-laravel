@@ -1,22 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.trailcategories.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
-    </div>
-    <div class="header-title">
-        <h2>@lang('global.trailcategories.title')</h2>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.trailcategories.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.trailcategories.index') }}">
+                            @lang('global.trailcategories.title')</a>
+                    </li> /
+                    <li><span>{{ $trailcategory->title }}</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.trailcategories.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_view')</h3>
+        <div class="title">
+            <h5>@lang('global.app_view')</h5>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-md-6">
-                    <table class="table table-bordered table-striped">
+                <div class="col s6">
+                    <table class="table table-striped">
                         <tr>
                             <th>@lang('global.trailcategories.fields.title')</th>
                             <td field-key='title'>{{ $trailcategory->title }}</td>
@@ -37,7 +54,7 @@
             </ul>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             
             <div class="active" id="trails">
                 <table class="striped responsive-table {{ count($trails) > 0 ? 'datatable' : '' }}">
@@ -112,10 +129,10 @@
                                     <td class="actions">
                                         <div class="buttons d-flex align-items-center justify-content-center">
                                             @can('trail_view')
-                                            <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.trails.show',[$trail->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('trail_edit')
-                                            <a href="{{ route('admin.trails.edit',[$trail->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.trails.edit',[$trail->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('trail_delete')
                                             {!! Form::open(array(

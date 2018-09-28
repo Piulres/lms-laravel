@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <div class="col s7">
-                <table class="table table-bordered table-striped">              
+                <table class="table table-striped">
                     <tr>
                         <th>@lang('global.courses.fields.featured-image')</th>
                         <td field-key='featured_image'>

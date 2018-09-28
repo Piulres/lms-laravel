@@ -1,18 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="header-title">
-    <h2>@lang('global.teams.title')</h2>
-</div>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.roles.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.teams.index') }}">
+                            @lang('global.roles.title')</a>
+                    </li> /
+                    <li><span>{{ $team->name }}</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.roles.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_view')</h3>
+        <div class="title">
+            <h5>@lang('global.app_view')</h5>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col s6">
                     <table class="striped">
                         <tr>
                             <th>@lang('global.teams.fields.name')</th>
@@ -29,21 +49,21 @@
                 <li class="tab grey-text"><a class="grey-text" href="#users">Users</a></li>
             </ul>
         </div>
-        <div class="card-content">
+        <div class="content">
     
             <div role="tabpanel" class="tab-pane active" id="users">
                 <table class="striped responsive-table {{ count($users) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
                             <th>@lang('global.users.fields.name')</th>
-                                        <th>@lang('global.users.fields.lastname')</th>
-                                        <th>@lang('global.users.fields.website')</th>
-                                        <th>@lang('global.users.fields.email')</th>
-                                        <th>@lang('global.users.fields.avatar')</th>
-                                        <th>@lang('global.users.fields.role')</th>
-                                        <th>@lang('global.users.fields.team')</th>
-                                        <th>@lang('global.users.fields.approved')</th>
-                                                                <th>&nbsp;</th>
+                            <th>@lang('global.users.fields.lastname')</th>
+                            <th>@lang('global.users.fields.website')</th>
+                            <th>@lang('global.users.fields.email')</th>
+                            <th>@lang('global.users.fields.avatar')</th>
+                            <th>@lang('global.users.fields.role')</th>
+                            <th>@lang('global.users.fields.team')</th>
+                            <th>@lang('global.users.fields.approved')</th>
+                            <th>&nbsp;</th>
 
                         </tr>
                     </thead>
@@ -67,10 +87,10 @@
                                     <td>
                                         <div class="buttons">
                                             @can('user_view')
-                                            <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.users.show',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('user_edit')
-                                            <a href="{{ route('admin.users.edit',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.users.edit',[$user->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('user_delete')
                                             {!! Form::open(array(

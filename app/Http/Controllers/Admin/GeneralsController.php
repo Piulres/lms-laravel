@@ -76,7 +76,9 @@ class GeneralsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.generals.index');
+        $generals = \App\General::get();
+
+        return view('admin.generals.index', compact('generals'));
     }
 
     /**
@@ -89,7 +91,9 @@ class GeneralsController extends Controller
         if (! Gate::allows('general_create')) {
             return abort(401);
         }
-        return view('admin.generals.create');
+
+        $generals = \App\General::get();
+        return view('admin.generals.create', compact('generals'));
     }
 
     /**
@@ -125,7 +129,9 @@ class GeneralsController extends Controller
         }
         $general = General::findOrFail($id);
 
-        return view('admin.generals.edit', compact('general'));
+        $generals = \App\General::get();
+
+        return view('admin.generals.edit', compact('general', 'generals'));
     }
 
     /**
@@ -163,7 +169,9 @@ class GeneralsController extends Controller
         }
         $general = General::findOrFail($id);
 
-        return view('admin.generals.show', compact('general'));
+        $generals = \App\General::get();
+
+        return view('admin.generals.show', compact('general', 'generals'));
     }
 
 

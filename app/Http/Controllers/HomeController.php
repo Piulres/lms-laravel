@@ -36,9 +36,11 @@ class HomeController extends Controller
         $users = \App\User::latest()->limit(5)->get(); 
         $courses = \App\Course::latest()->limit(5)->get(); 
         $trails = \App\Trail::latest()->limit(5)->get(); 
-        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get(); 
+        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get();
 
-        return view('index', compact( 'users', 'courses', 'trails', 'faqquestions' ));
+        $generals = \App\General::get();
+
+        return view('index', compact( 'users', 'courses', 'trails', 'faqquestions', 'generals' ));
     }
 
     public function home()
@@ -47,7 +49,8 @@ class HomeController extends Controller
         $user = Auth::id();
         $users = \App\User::latest()->limit(5)->get(); 
         $courses = \App\Course::latest()->limit(5)->get(); 
-        $trails = \App\Trail::latest()->limit(5)->get(); 
+        $trails = \App\Trail::latest()->limit(5)->get();
+
         $faqquestions = \App\FaqQuestion::latest()->limit(5)->get(); 
         $certificates = \App\Coursescertificate::latest()->get();
         $datacourses = \App\Datacourse::latest()->get(); 
@@ -82,7 +85,9 @@ class HomeController extends Controller
 
        //dd($mytestimonals);
 
-        return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates', 'mytestimonals' ));
+        $generals = \App\General::get();
+
+        return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates', 'mytestimonals', 'generals' ));
     }
 
     public function testimonal()
@@ -102,5 +107,11 @@ class HomeController extends Controller
         ]);        
         
         return redirect('admin/home');
+
+        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get();
+
+        $generals = \App\General::get();
+
+        return view('home', compact( 'users', 'courses', 'trails', 'faqquestions', 'generals' ));
     }
 }

@@ -27,7 +27,7 @@
                                 <img class="responsive-img" src="images/background1.jpg">
                                 <span class="card-title">{{ $mycourse->title }}</span>
                             </div>
-                            <div class="card-content">
+                            <div class="content">
                                 <p>{{ $mycourse->description }}</p>
                                 <div class="ratings">
                                     
@@ -71,7 +71,7 @@
                                 <img class="responsive-img" src="images/background1.jpg">
                                 <span class="card-title">{{ $course->title }}</span>
                             </div>
-                            <div class="card-content">
+                            <div class="content">
                                 <p>{{ $course->description }}</p>
                                 <div class="ratings">
                                     

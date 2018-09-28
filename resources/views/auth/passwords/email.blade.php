@@ -4,8 +4,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
-                <div class="card-title">@lang('global.app_reset_password')</div>
-                <div class="card-content">
+                <div class="title">@lang('global.app_reset_password')</div>
+                <div class="content">
 
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">@lang('global.app_email')</label>
 
-                            <div class="col-md-6">
+                            <div class="col s6">
                                 <input type="email"
                                        class="form-control"
                                        name="email"

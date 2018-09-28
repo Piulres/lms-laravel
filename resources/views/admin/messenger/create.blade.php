@@ -4,13 +4,13 @@
 
 @section('messenger-content')
 <div class="card">
-	<div class="card-content">
+	<div class="content">
         <div class="col-md-12">
             {!! Form::open(['route' => ['admin.messenger.store'], 'method' => 'POST', 'novalidate', 'class' => 'stepperForm validate']) !!}
 
             @include('admin.messenger.form-partials.fields')
 
-            {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey white-color']) !!}
+            {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light white-color']) !!}
             {!! Form::close() !!}
         </div>
     </div>

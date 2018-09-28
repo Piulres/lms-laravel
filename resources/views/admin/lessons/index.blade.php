@@ -2,32 +2,48 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title {{$generals[0]->theme_color}}-text">
-        <h2>@lang('global.lessons.title')</h2>
-        @can('lesson_create')
-            <a href="{{ route('admin.lessons.create') }}" class="btn-floating btn-small waves-effect waves-light {{$generals[0]->theme_color}}"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.lessons.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li><span>@lang('global.lessons.title')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+
+                @can('lesson_create')
+                    <a href="{{ route('admin.lessons.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                        Add Lesson
+                    </a>
+                @endcan
+            </div>
+        </div>
     </div>
 
     <ul class="tabs z-depth-1">
         <li class="tab">
-            <a href="{{ route('admin.lessons.index') }}" class="{{$generals[0]->theme_color}}-text {{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
+            <a href="{{ route('admin.lessons.index') }}" class="{{ request('show_deleted') == 1 ? '' : 'active' }}">@lang('global.app_all')</a>
         </li>
         <li class="tab">
-            <a href="{{ route('admin.lessons.index') }}?show_deleted=1" class="{{$generals[0]->theme_color}}-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
+            <a href="{{ route('admin.lessons.index') }}?show_deleted=1" class="{{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
         </li>
     </ul>
 
     <div class="card">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
             <div class="toggle-view">
-                <a href="#" id="list-view" class="{{$generals[0]->theme_color}}-text active"><i class="fas fa-list-ul"></i></a>
-                <a href="#" id="grid-view" class="{{$generals[0]->theme_color}}-text"><i class="fas fa-th"></i></a>
+                <a href="#" id="list-view" class="active"><i class="fas fa-list-ul"></i></a>
+                <a href="#" id="grid-view"><i class="fas fa-th"></i></a>
             </div>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <ul id="view" class="view list-view">
                 @if (count($lessons) > 0)
                 @foreach ($lessons as $lesson)
@@ -49,7 +65,6 @@
                                         'method' => 'POST',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.lessons.restore', $lesson->id])) !!}
-                                    <!-- {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!} -->
                                     {!! Form::button('<i class="far fa-window-restore"></i>', ['class'=>'btn-square blue-text', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                                                                     {!! Form::open(array(
@@ -58,7 +73,6 @@
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.lessons.perma_del', $lesson->id])) !!}
                                     {!! Form::button('<i class="fas fa-trash-alt"></i>', ['class'=>'btn-square red-text', 'type'=>'submit']) !!}
-                                    <!-- {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!} -->
                                     {!! Form::close() !!}
                                 @else
                                     @can('lesson_view')
@@ -70,7 +84,7 @@
                                     @can('lesson_access')
                                     {!! Form::open(array(
                                     'style' => 'display: inline-block;',
-                                    'method' => 'DELETE',
+                                    'method' => 'POST',
                                     'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                     'route' => ['admin.lessons.duplicate', $lesson->id])) !!}
                                     {!! Form::button('<i class="far fa-clone"></i>', ['class'=>'btn-square red-text', 'type'=>'submit']) !!}
@@ -106,10 +120,12 @@
                             <h4>@lang('global.lessons.fields.content')</h4>
                             {!! $lesson->content !!}
                         </div>
-                        <a href="#" download class="download">
+                        @if($lesson->study_material)
+                        <a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" download class="download">
                             <i class="fas fa-file-download"></i>
                             <span>Download file</span>
                         </a>
+                        @endif
                     </div>
                 </li>
                 @endforeach
@@ -131,7 +147,7 @@
                     <tr>
                         <th>@lang('global.lessons.fields.order')</th>
                         @can('lesson_delete')
-                        @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                        @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
             @endcan
             <th>@lang('global.lessons.fields.title')</th>
                         <th>@lang('global.lessons.fields.slug')</th>
@@ -174,10 +190,10 @@
                 <td>
                     <div class="buttons">
                 @can('lesson_view')
-                    <a href="{{ route('admin.lessons.show',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                    <a href="{{ route('admin.lessons.show',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                 @can('lesson_edit')
-                    <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                    <a href="{{ route('admin.lessons.edit',[$lesson->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                 @can('lesson_delete')
                     {!! Form::open(array(
@@ -185,7 +201,7 @@
                         'method' => 'DELETE',
                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                         'route' => ['admin.lessons.destroy', $lesson->id])) !!}
-                    {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                    {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                     {!! Form::close() !!}
                 @endcan
                         </div>

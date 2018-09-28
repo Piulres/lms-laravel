@@ -1,21 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.users.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
-    </div>
-    <div class="header-title">
-        <h2>@lang('global.users.title')</h2>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.users.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.users.index') }}">
+                            @lang('global.users.title')</a>
+                    </li> /
+                    <li><span>{{ $user->name }}</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.users.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="card">
 
-        <div class="card-content">
+        <div class="content">
             <div class="title col-12">
-                <h3>@lang('global.app_view')</h3>
+                <h5>@lang('global.app_view')</h5>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col s6">
                     <table class="striped">
                         <tr>
                             <th>@lang('global.users.fields.name')</th>
@@ -69,7 +86,7 @@
                 <li class="tab grey-text"><a class="grey-text" href="#internal_notifications">Notifications</a></li>
             </ul>
         </div>
-        <div class="card-content">
+        <div class="content">
             <div id="user_actions">
                 <table class="striped responsive-table {{ count($user_actions) > 0 ? 'datatable' : '' }}">
                     <thead>
@@ -149,10 +166,10 @@
                                     <td class="actions">
                                         <div class="buttons d-flex align-items-center justify-content-end">
                                             @can('datacourse_view')
-                                            <a href="{{ route('admin.datacourses.show',[$datacourse->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.datacourses.show',[$datacourse->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('datacourse_edit')
-                                            <a href="{{ route('admin.datacourses.edit',[$datacourse->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.datacourses.edit',[$datacourse->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('datacourse_delete')
                                             {!! Form::open(array(
@@ -224,10 +241,10 @@
                                     <td class="actions">
                                         <div class="buttons d-flex align-items-center justify-content-end">
                                             @can('datatrail_view')
-                                            <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('datatrail_edit')
-                                            <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('datatrail_delete')
                                             {!! Form::open(array(
@@ -317,10 +334,10 @@
                                     <td class="actions">
                                         <div class="buttons d-flex align-items-center justify-content-end">
                                             @can('course_view')
-                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('course_edit')
-                                            <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('course_delete')
                                             {!! Form::open(array(
@@ -370,10 +387,10 @@
                                     <td class="actions">
                                         <div class="buttons d-flex align-items-center justify-content-end">
                                             @can('internal_notification_view')
-                                            <a href="{{ route('admin.internal_notifications.show',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.internal_notifications.show',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('internal_notification_edit')
-                                            <a href="{{ route('admin.internal_notifications.edit',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.internal_notifications.edit',[$internal_notification->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('internal_notification_delete')
                                             {!! Form::open(array(

@@ -35,7 +35,9 @@ class CoursecategoriesController extends Controller
             $coursecategories = Coursecategory::all();
         }
 
-        return view('admin.coursecategories.index', compact('coursecategories'));
+        $generals = \App\General::get();
+
+        return view('admin.coursecategories.index', compact('coursecategories', 'generals'));
     }
 
     /**
@@ -48,7 +50,10 @@ class CoursecategoriesController extends Controller
         if (! Gate::allows('coursecategory_create')) {
             return abort(401);
         }
-        return view('admin.coursecategories.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.coursecategories.create', compact('generals'));
     }
 
     /**
@@ -83,7 +88,9 @@ class CoursecategoriesController extends Controller
         }
         $coursecategory = Coursecategory::findOrFail($id);
 
-        return view('admin.coursecategories.edit', compact('coursecategory'));
+        $generals = \App\General::get();
+
+        return view('admin.coursecategories.edit', compact('coursecategory', 'generals'));
     }
 
     /**
@@ -125,7 +132,9 @@ class CoursecategoriesController extends Controller
 
         $coursecategory = Coursecategory::findOrFail($id);
 
-        return view('admin.coursecategories.show', compact('coursecategory', 'courses'));
+        $generals = \App\General::get();
+
+        return view('admin.coursecategories.show', compact('coursecategory', 'courses', 'generals'));
     }
 
 

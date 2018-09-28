@@ -2,11 +2,27 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h2>@lang('global.trailcategories.title')</h2>
-        @can('trailcategory_create')
-            <a href="{{ route('admin.trailcategories.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.trailcategories.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li><span>@lang('global.trailcategories.title')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+
+                @can('trailcategory_create')
+                    <a href="{{ route('admin.trailcategories.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                        Add Category
+                    </a>
+                @endcan
+            </div>
+        </div>
     </div>
     
     <ul class="tabs z-depth-1">
@@ -19,17 +35,17 @@
     </ul>
 
     <div class="card">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="card-content">
-            <table class="no-order striped responsive-table ajaxTable @can('trailcategory_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="content">
+            <table class="no-order table table-striped ajaxTable @can('trailcategory_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
                         <th>@lang('global.app_order')</th>
                         @can('trailcategory_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.trailcategories.fields.title')</th>

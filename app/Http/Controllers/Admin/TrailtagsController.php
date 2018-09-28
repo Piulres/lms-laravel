@@ -43,7 +43,9 @@ class TrailtagsController extends Controller
             $trailtags = Trailtag::all();
         }
 
-        return view('admin.trailtags.index', compact('trailtags'));
+        $generals = \App\General::get();
+
+        return view('admin.trailtags.index', compact('trailtags', 'generals'));
     }
 
     /**
@@ -56,7 +58,10 @@ class TrailtagsController extends Controller
         if (! Gate::allows('trailtag_create')) {
             return abort(401);
         }
-        return view('admin.trailtags.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.trailtags.create', compact('generals'));
     }
 
     /**
@@ -91,7 +96,9 @@ class TrailtagsController extends Controller
         }
         $trailtag = Trailtag::findOrFail($id);
 
-        return view('admin.trailtags.edit', compact('trailtag'));
+        $generals = \App\General::get();
+
+        return view('admin.trailtags.edit', compact('trailtag', 'generals'));
     }
 
     /**
@@ -133,7 +140,9 @@ class TrailtagsController extends Controller
 
         $trailtag = Trailtag::findOrFail($id);
 
-        return view('admin.trailtags.show', compact('trailtag', 'trails'));
+        $generals = \App\General::get();
+
+        return view('admin.trailtags.show', compact('trailtag', 'trails', 'generals'));
     }
 
 

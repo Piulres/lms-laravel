@@ -25,9 +25,9 @@ class UserActionsController extends Controller
             return abort(401);
         }
 
-
+        $generals = \App\General::get();
                 $user_actions = UserAction::all();
 
-        return view('admin.user_actions.index', compact('user_actions'));
+        return view('admin.user_actions.index', compact('user_actions', 'generals'));
     }
 }

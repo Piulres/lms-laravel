@@ -43,7 +43,9 @@ class CoursetagsController extends Controller
             $coursetags = Coursetag::all();
         }
 
-        return view('admin.coursetags.index', compact('coursetags'));
+        $generals = \App\General::get();
+
+        return view('admin.coursetags.index', compact('coursetags', 'generals'));
     }
 
     /**
@@ -56,7 +58,10 @@ class CoursetagsController extends Controller
         if (! Gate::allows('coursetag_create')) {
             return abort(401);
         }
-        return view('admin.coursetags.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.coursetags.create', compact('generals'));
     }
 
     /**
@@ -91,7 +96,9 @@ class CoursetagsController extends Controller
         }
         $coursetag = Coursetag::findOrFail($id);
 
-        return view('admin.coursetags.edit', compact('coursetag'));
+        $generals = \App\General::get();
+
+        return view('admin.coursetags.edit', compact('coursetag', 'generals'));
     }
 
     /**
@@ -133,7 +140,9 @@ class CoursetagsController extends Controller
 
         $coursetag = Coursetag::findOrFail($id);
 
-        return view('admin.coursetags.show', compact('coursetag', 'courses'));
+        $generals = \App\General::get();
+
+        return view('admin.coursetags.show', compact('coursetag', 'courses', 'generals'));
     }
 
 

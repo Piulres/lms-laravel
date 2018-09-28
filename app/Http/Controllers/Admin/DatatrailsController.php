@@ -92,7 +92,9 @@ class DatatrailsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.datatrails.index');
+        $generals = \App\General::get();
+
+        return view('admin.datatrails.index', compact('generals'));
     }
 
     /**
@@ -110,7 +112,9 @@ class DatatrailsController extends Controller
         $trails = \App\Trail::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
         $certificates = \App\Trailscertificate::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
 
-        return view('admin.datatrails.create', compact('users', 'trails', 'certificates'));
+        $generals = \App\General::get();
+
+        return view('admin.datatrails.create', compact('users', 'trails', 'certificates', 'generals'));
     }
 
     /**
@@ -150,7 +154,9 @@ class DatatrailsController extends Controller
 
         $datatrail = Datatrail::findOrFail($id);
 
-        return view('admin.datatrails.edit', compact('datatrail', 'users', 'trails', 'certificates'));
+        $generals = \App\General::get();
+
+        return view('admin.datatrails.edit', compact('datatrail', 'users', 'trails', 'certificates', 'generals'));
     }
 
     /**
@@ -187,7 +193,9 @@ class DatatrailsController extends Controller
         }
         $datatrail = Datatrail::findOrFail($id);
 
-        return view('admin.datatrails.show', compact('datatrail'));
+        $generals = \App\General::get();
+
+        return view('admin.datatrails.show', compact('datatrail', 'generals'));
     }
 
 
