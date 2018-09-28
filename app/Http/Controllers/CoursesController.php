@@ -73,8 +73,12 @@ class CoursesController extends Controller
             ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
             ->where("course_lesson.course_id", '=',  $id)
          ->count();
-
-        $percentage = 100 / $total_lessons;
+       
+        if ($total_lessons == 0) {            
+            $percentage = 100;            
+        } else {
+            $percentage = 100 / $total_lessons;        
+        }
 
         \App\Datacourse::updateOrCreate([
             'user_id' => Auth::id(),
@@ -113,20 +117,19 @@ class CoursesController extends Controller
 
         $check_certificate = DB::table('datacourses')
          ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $id)
          ->limit(1)
         ->get();
-
      
-        if ($check_certificate[0]->progress >= '100') {
+        if ($check_certificate[0]->progress == '100') {
 
             // dd($course->id);
             DB::table('datacourses')
              ->where("datacourses.user_id", '=',  $user)
+             ->where("datacourses.course_id", '=',  $id)
             ->update(['datacourses.certificate_id' => $id]);
 
         }
-
-
        
         return view('oncourse', compact('course', 'datacourses', 'lessons', 'total_lessons'));
 
