@@ -36,8 +36,8 @@ class UserSeed extends Seeder
                 'remember_token' => '',
                 'approved' => 1,
                 'team_id' => $faker->randomDigitNotNull,
-                            
             ]);
         }
+        
     }
 }

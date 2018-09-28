@@ -26,6 +26,9 @@ class StoreDatacoursesRequest extends FormRequest
             'view' => 'max:2147483647|nullable|numeric',
             'progress' => 'max:2147483647|nullable|numeric',
             'rating' => 'max:2147483647|nullable|numeric',
+            'testimonal' => 'max:2147483647|nullable',
+            'course_id' => 'max:2147483647|nullable|numeric',
+            'user_id' => 'max:2147483647|nullable|numeric',
         ];
     }
 }
