@@ -126,6 +126,8 @@ Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' =>
     Route::get('messenger/outbox', 'Admin\MessengerController@outbox')->name('messenger.outbox');
     Route::resource('messenger', 'Admin\MessengerController');
 
+    Route::get('testimonal', 'HomeController@testimonal');
+    Route::post('savefeedback', 'HomeController@savefeedback')->name('savefeedback');
 
     Route::get('search', 'MegaSearchController@search')->name('mega-search');
     Route::get('language/{lang}', function ($lang) {

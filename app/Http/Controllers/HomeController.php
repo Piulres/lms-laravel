@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreDatacoursesRequest;
 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Datacourse;
 
 
 
@@ -70,6 +72,35 @@ class HomeController extends Controller
 
         // dd($mycertificates);
 
-        return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates' ));
+        $mytestimonals = DB::table('datacourses')
+            ->leftJoin('courses', 'datacourses.course_id', '=', 'courses.id')
+        ->where('datacourses.user_id', '=', $user)
+        ->where('datacourses.progress', '=', 100)
+        ->where('datacourses.testimonal', '=', '')
+        ->whereNotNull('datacourses.certificate_id')
+       ->get();
+
+       //dd($mytestimonals);
+
+        return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates', 'mytestimonals' ));
+    }
+
+    public function testimonal()
+    {
+        return redirect('admin/home');
+    }
+
+    public function savefeedback(StoreDatacoursesRequest $request)
+    {
+        //dd($request);        
+        DB::table('datacourses')
+        ->where('datacourses.user_id','=', $request->user_id)
+        ->where('datacourses.course_id','=', $request->course_id)
+        ->update([
+            'rating' => $request->rating,
+            'testimonal' => $request->testimonal,
+        ]);        
+        
+        return redirect('admin/home');
     }
 }

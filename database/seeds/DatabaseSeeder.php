@@ -45,5 +45,6 @@ class DatabaseSeeder extends Seeder
 
         //$this->call(DataCoursesSeed::class);
         //$this->call(DataTrailsSeed::class);
+        
     }
 }
