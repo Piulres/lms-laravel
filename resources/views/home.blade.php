@@ -3,6 +3,16 @@
 @section('content')
     <div class="row">
 
+        <div id="testimonal-box" class="col-lg-12 col-md-12">
+            <h5>Nos de seu feedback sobre o curso: tal</h5>
+            <div class="input-field">
+                <label for="testimonal" class="">Testimonal</label>
+                <input class="validate" name="testimonal" type="text" id="testimonal">
+                <span class="helper-text" data-error="" data-success="right"></span>
+            </div>
+            <a href="#" class="waves-effect waves-light btn white black-text">Enviar</a>            
+        </div>
+       
         <div class="col-lg-6 col-md-12 card-home">
             <div class="card">
                 <div class="card-title">
