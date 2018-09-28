@@ -18,7 +18,7 @@
                 </ul>
             </div>
             <div class="col s12 m3 l2 right-align">
-                <a href="{{ route('admin.trails.index') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                <a href="{{ route('admin.trails.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                     @lang('global.app_back_to_list')
                 </a>
             </div>
@@ -33,7 +33,7 @@
         <div class="content">
             <div class="row">
                 <div class="col s6">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-striped">
                         <tr>
                             <th>@lang('global.trails.fields.order')</th>
                             <td field-key='order'>{{ $trail->order }}</td>
@@ -158,10 +158,10 @@
                                     @else
                                     <td>
                                         @can('datatrail_view')
-                                        <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('datatrail_edit')
-                                        <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                                         @can('datatrail_delete')
                                         {!! Form::open(array(
@@ -190,7 +190,7 @@
 
 @section('javascript')
     @parent
-    <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
     <script>
         $('.editor').each(function () {
                   CKEDITOR.replace($(this).attr('id'),{

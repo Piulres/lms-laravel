@@ -17,7 +17,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('trail_create')
-                    <a href="{{ route('admin.trails.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                    <a href="{{ route('admin.trails.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                         Add Trail
                     </a>
                 @endcan
@@ -40,20 +40,17 @@
         </div>
 
         <div class="content">
-            <table class="striped responsive-table ajaxTable @can('trail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-striped no-order ajaxTable @can('trail_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
                         <th>@lang('global.trails.fields.order')</th>
 
                         @can('trail_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.trails.fields.title')</th>
                         <th>@lang('global.trails.fields.slug')</th>
-                        <th>@lang('global.trails.fields.description')</th>
-                        <th>@lang('global.trails.fields.introduction')</th>
-                        <th>@lang('global.trails.fields.featured-image')</th>
                         <th>@lang('global.trails.fields.courses')</th>
                         <th>@lang('global.trails.fields.start-date')</th>
                         <th>@lang('global.trails.fields.end-date')</th>
@@ -87,9 +84,6 @@
                 @endcan
                 {data: 'title', name: 'title'},
                 {data: 'slug', name: 'slug'},
-                {data: 'description', name: 'description'},
-                {data: 'introduction', name: 'introduction'},
-                {data: 'featured_image', name: 'featured_image'},
                 {data: 'courses.title', name: 'courses.title'},
                 {data: 'start_date', name: 'start_date'},
                 {data: 'end_date', name: 'end_date'},

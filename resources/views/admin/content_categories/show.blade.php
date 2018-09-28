@@ -18,7 +18,7 @@
                 </ul>
             </div>
             <div class="col s12 m3 l2 right-align">
-                <a href="{{ route('admin.content_categories.index') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                <a href="{{ route('admin.content_categories.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                     @lang('global.app_back_to_list')
                 </a>
             </div>
@@ -33,7 +33,7 @@
         <div class="content">
             <div class="row">
                 <div class="col s6">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-striped">
                         <tr>
                             <th>@lang('global.content-categories.fields.title')</th>
                             <td field-key='title'>{{ $content_category->title }}</td>
@@ -92,10 +92,10 @@
                                     <td>
                                         <div class="buttons">
                                             @can('content_page_view')
-                                            <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('content_page_edit')
-                                            <a href="{{ route('admin.content_pages.edit',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.content_pages.edit',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('content_page_delete')
                                             {!! Form::open(array(

@@ -17,7 +17,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('permission_create')
-                    <a href="{{ route('admin.permissions.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                    <a href="{{ route('admin.permissions.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                         Add Permission
                     </a>
                 @endcan
@@ -31,12 +31,12 @@
         </div>
 
         <div class="content">
-            <table class="no-order striped responsive-table {{ count($permissions) > 0 ? 'datatable' : '' }} @can('permission_delete') dt-select @endcan">
+            <table class="table table-striped no-order dataTable {{ count($permissions) > 0 ? 'datatable' : '' }} @can('permission_delete') dt-select @else dt-show @endcan">
                 <thead>
                     <tr>
                         <th class="order-null"></th>
                         @can('permission_delete')
-                            <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                            <th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>
                         @endcan
 
                         <th>@lang('global.permissions.fields.title')</th>
@@ -58,10 +58,10 @@
                                 <td>
                                     <div class="buttons">
                                         @can('permission_view')
-                                        <a href="{{ route('admin.permissions.show',[$permission->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.permissions.show',[$permission->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('permission_edit')
-                                        <a href="{{ route('admin.permissions.edit',[$permission->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        <a href="{{ route('admin.permissions.edit',[$permission->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                                         @can('permission_delete')
                                         {!! Form::open(array(
@@ -69,7 +69,7 @@
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.permissions.destroy', $permission->id])) !!}
-                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
                                         @endcan
                                     </div>

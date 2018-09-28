@@ -17,7 +17,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('user_create')
-                    <a href="{{ route('admin.users.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                        <a href="{{ route('admin.users.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                         Add User
                     </a>
                 @endcan
@@ -30,13 +30,13 @@
             <h3>@lang('global.app_list')</h3>
         </div>
         <div class="content">
-
-            <table class="no-order responsive-table striped ajaxTable @can('user_delete') dt-select @endcan">
+            <table class="vertical-scroll table table-striped ajaxTable no-order @can('user_delete') dt-select @else dt-show @endcan">
                 <thead>
                     <tr>
-                        <th>@lang('global.app_order')</th>
+                        <th></th>
                         @can('user_delete')
-                            <th style="text-align:center;" class="select-all"><input type="checkbox" id="select-all" /></th>
+                            <th style="text-align:center;" class="select-all"><input type="checkbox" id="select-all" /><label
+                                        for="select-all"></label></th>
                         @endcan
                         <th>@lang('global.users.fields.name')</th>
                         <th>@lang('global.users.fields.lastname')</th>

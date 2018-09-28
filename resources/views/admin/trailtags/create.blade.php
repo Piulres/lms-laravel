@@ -18,7 +18,7 @@
                 </ul>
             </div>
             <div class="col s12 m3 l2 right-align">
-                <a href="{{ route('admin.trailtags.index') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                <a href="{{ route('admin.trailtags.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                     @lang('global.app_back_to_list')
                 </a>
             </div>
@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light grey', 'type'=>'submit']) !!}
+            {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
         </div>
         {!! Form::close() !!}
     </div>

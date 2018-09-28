@@ -27,7 +27,8 @@
             <table class="striped responsive-table {{ count($user_actions) > 0 ? 'datatable' : '' }} ">
                 <thead>
                     <tr>
-                        
+                        <th class="order-null"></th>
+                        <th class="order-null"></th>
                         <th>@lang('global.user-actions.created_at')</th>
                         <th>@lang('global.user-actions.fields.user')</th>
                         <th>@lang('global.user-actions.fields.action')</th>
@@ -41,7 +42,8 @@
                     @if (count($user_actions) > 0)
                         @foreach ($user_actions as $user_action)
                             <tr data-entry-id="{{ $user_action->id }}">
-                                
+                                <td class="order-null"></td>
+                                <td class="order-null"></td>
                                 <td>{{ $user_action->created_at or '' }}</td>
                                 <td field-key='user'>{{ $user_action->user->name or '' }}</td>
                                 <td field-key='action'>{{ $user_action->action }}</td>

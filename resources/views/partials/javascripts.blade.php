@@ -5,14 +5,14 @@
     window.excelButtonTrans = '{{ trans("global.app_excel") }}';
     window.pdfButtonTrans = '{{ trans("global.app_pdf") }}';
     window.printButtonTrans = '{{ trans("global.app_print") }}';
-    window.colvisButtonTrans = '{{ trans("global.app_colvis") }}';
+{{--    window.colvisButtonTrans = '{{ trans("global.app_colvis") }}';--}}
 </script>
-{{--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>--}}
-<script src="{{ url('libs') }}/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+{{--<script src="{{ url('libs') }}/jquery.min.js"></script>--}}
 <script src="{{ url('libs') }}/materialize/materialize.min.js"></script>
 <script src="{{ url('adminlte') }}/plugins/datatables/jquery.dataTables.js"></script>
-<script src="//cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
-<script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+<script src="{{ url('adminlte') }}/plugins/datatables/extensions/dataTables.buttons.js"></script>
+<script src="//cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
 <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
 <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>

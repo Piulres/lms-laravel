@@ -17,7 +17,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('course_create')
-                <a href="{{ route('admin.courses.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                <a href="{{ route('admin.courses.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                     Add Course
                 </a>
                 @endcan
@@ -40,22 +40,16 @@
         </div>
 
         <div class="content">
-            <table class="striped responsive-table ajaxTable @can('course_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-striped no-order dataTable ajaxTable @can('course_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
-                        <th>@lang('global.courses.fields.order')</th>
-
+                        <th class="order-null"></th>
                         @can('course_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.courses.fields.title')</th>
                         <th>@lang('global.courses.fields.slug')</th>
-                        <th>@lang('global.courses.fields.description')</th>
-                        <th>@lang('global.courses.fields.introduction')</th>
-                        <th>@lang('global.courses.fields.featured-image')</th>
-                        <th>@lang('global.courses.fields.instructor')</th>
-                        <th>@lang('global.courses.fields.lessons')</th>
                         <th>@lang('global.courses.fields.duration')</th>
                         <th>@lang('global.courses.fields.start-date')</th>
                         <th>@lang('global.courses.fields.end-date')</th>
@@ -82,17 +76,13 @@
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.courses.index') !!}?show_deleted={{ request('show_deleted') }}';
             window.dtDefaultOptions.columns = [@can('course_delete')
-                @endcan{data: 'order', name: 'order', className: 'reorder'},
+                @endcan
+                    {data: 'order', name: 'order', className: 'order-null'},
                 @if ( request('show_deleted') != 1 )
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endif
                 {data: 'title', name: 'title'},
                 {data: 'slug', name: 'slug'},
-                {data: 'description', name: 'description'},
-                {data: 'introduction', name: 'introduction'},
-                {data: 'featured_image', name: 'featured_image'},
-                {data: 'instructor.name', name: 'instructor.name'},
-                {data: 'lessons.title', name: 'lessons.title'},
                 {data: 'duration', name: 'duration'},
                 {data: 'start_date', name: 'start_date'},
                 {data: 'end_date', name: 'end_date'},

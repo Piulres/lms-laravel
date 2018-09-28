@@ -17,7 +17,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('trailcategory_create')
-                    <a href="{{ route('admin.trailcategories.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                    <a href="{{ route('admin.trailcategories.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                         Add Category
                     </a>
                 @endcan
@@ -40,12 +40,12 @@
         </div>
 
         <div class="content">
-            <table class="no-order striped responsive-table ajaxTable @can('trailcategory_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="no-order table table-striped ajaxTable @can('trailcategory_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
                         <th>@lang('global.app_order')</th>
                         @can('trailcategory_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.trailcategories.fields.title')</th>

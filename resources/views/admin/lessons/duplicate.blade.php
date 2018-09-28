@@ -82,13 +82,13 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light grey white-text']) !!}
+    {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light white-text']) !!}
     {!! Form::close() !!}
 @stop
 
 @section('javascript')
     @parent
-    <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
     <script>
         $('.editor').each(function () {
                   CKEDITOR.replace($(this).attr('id'),{

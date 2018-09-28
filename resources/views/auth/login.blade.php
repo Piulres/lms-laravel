@@ -151,6 +151,18 @@
                         </div>
 
                         <div class="row center">
+                            <a class="black-text" href="{{ url('login/facebook') }}">
+                                Register with facebook
+                            </a>
+                        </div>
+
+                        <div class="row center">
+                            <a class="black-text" href="{{ url('login/google') }}">
+                                Register with Google
+                            </a>
+                        </div>
+
+                        <div class="row center">
                             <a class="black-text" href="{{ route('auth.register') }}">
                                 Register
                             </a>

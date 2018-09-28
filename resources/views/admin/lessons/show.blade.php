@@ -18,7 +18,7 @@
                 </ul>
             </div>
             <div class="col s12 m3 l2 right-align">
-                <a href="{{ route('admin.lessons.index') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                <a href="{{ route('admin.lessons.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                     @lang('global.app_back_to_list')
                 </a>
             </div>
@@ -56,8 +56,12 @@
                         </tr>
                         <tr>
                             <th>@lang('global.lessons.fields.study-material')</th>
-                            <td field-key='study_material'>@if($lesson->study_material)
-                                    <a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" target="_blank" class="btn btn-small">Download file <i class="mdi-file-file-download"></i></a>@endif
+                            <td>
+                            @if($lesson->study_material)
+                                <a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" download class="btn btn-small">
+                                    Download file <i class="mdi-file-file-download"></i>
+                                </a>
+                            @endif
                             </td>
                         </tr>
                     </table>
@@ -156,10 +160,10 @@
                                     <td>
                                         <div class="buttons">
                                             @can('course_view')
-                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('course_edit')
-                                            <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.courses.edit',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('course_delete')
                                             {!! Form::open(array(
@@ -189,7 +193,7 @@
 
 @section('javascript')
     @parent
-    <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
     <script>
         $('.editor').each(function () {
                   CKEDITOR.replace($(this).attr('id'),{

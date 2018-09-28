@@ -17,7 +17,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('datacourse_create')
-                    <a href="{{ route('admin.datacourses.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                    <a href="{{ route('admin.datacourses.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                         Add Data course
                     </a>
                 @endcan
@@ -40,12 +40,12 @@
         </div>
 
         <div class="content">
-            <table class="no-order striped responsive-table ajaxTable @can('datacourse_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-striped ajaxTable @can('datacourse_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
                         <th></th>
                         @can('datacourse_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.datacourse.fields.view')</th>

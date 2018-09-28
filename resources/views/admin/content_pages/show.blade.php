@@ -18,7 +18,7 @@
                 </ul>
             </div>
             <div class="col s12 m3 l2 right-align">
-                <a href="{{ route('admin.content_pages.index') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                <a href="{{ route('admin.content_pages.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                     @lang('global.app_back_to_list')
                 </a>
             </div>
@@ -75,7 +75,7 @@
 
 @section('javascript')
     @parent
-    <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
     <script>
         $('.editor').each(function () {
                   CKEDITOR.replace($(this).attr('id'),{

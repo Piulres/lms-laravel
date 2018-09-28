@@ -18,7 +18,7 @@
                 </ul>
             </div>
             <div class="col s12 m3 l2 right-align">
-                <a href="{{ route('admin.content_tags.index') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                <a href="{{ route('admin.content_tags.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                     @lang('global.app_back_to_list')
                 </a>
             </div>
@@ -90,10 +90,10 @@
                                     <td>
                                         <div class="buttons">
                                             @can('content_page_view')
-                                            <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                            <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                             @endcan
                                             @can('content_page_edit')
-                                            <a href="{{ route('admin.content_pages.edit',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('admin.content_pages.edit',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                             @endcan
                                             @can('content_page_delete')
                                             {!! Form::open(array(
@@ -101,7 +101,7 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                                 'route' => ['admin.content_pages.destroy', $content_page->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                                    {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </div>

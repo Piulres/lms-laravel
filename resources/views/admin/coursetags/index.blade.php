@@ -17,7 +17,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('coursetag_create')
-                    <a href="{{ route('admin.coursetags.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                    <a href="{{ route('admin.coursetags.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                         Add Tag
                     </a>
                 @endcan
@@ -40,12 +40,12 @@
         </div>
 
         <div class="content">
-            <table class="striped responsive-table {{ count($coursetags) > 0 ? 'datatable' : '' }} @can('coursetag_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-striped {{ count($coursetags) > 0 ? 'datatable' : '' }} @can('coursetag_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
                         <th class="order-null"></th>
                         @can('coursetag_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.coursetags.fields.title')</th>
@@ -90,10 +90,10 @@
                                 <td>
                                     <div class="buttons">
                                         @can('coursetag_view')
-                                        <a href="{{ route('admin.coursetags.show',[$coursetag->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.coursetags.show',[$coursetag->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('coursetag_edit')
-                                        <a href="{{ route('admin.coursetags.edit',[$coursetag->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        <a href="{{ route('admin.coursetags.edit',[$coursetag->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                                         @can('coursetag_delete')
                                         {!! Form::open(array(
@@ -101,7 +101,7 @@
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.coursetags.destroy', $coursetag->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
                                         @endcan
                                     </div>

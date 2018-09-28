@@ -18,7 +18,7 @@
                 </ul>
             </div>
             <div class="col s12 m3 l2 right-align">
-                <a href="{{ route('admin.internal_notifications.index') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                <a href="{{ route('admin.internal_notifications.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                     @lang('global.app_back_to_list')
                 </a>
             </div>
@@ -33,7 +33,7 @@
         <div class="content">
             <div class="row">
                 <div class="col s6">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-striped">
                         <tr>
                             <th>@lang('global.internal-notifications.fields.text')</th>
                             <td field-key='text'>{{ $internal_notification->text }}</td>

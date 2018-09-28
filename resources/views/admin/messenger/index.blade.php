@@ -5,7 +5,7 @@
 @section('messenger-content')
     <div class="card-panel">
         <tr class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Email</th>

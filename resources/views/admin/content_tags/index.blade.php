@@ -17,7 +17,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('content_tag_create')
-                    <a href="{{ route('admin.content_tags.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                    <a href="{{ route('admin.content_tags.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                         Add @lang('global.content-tags.fields.title')
                     </a>
                 @endcan
@@ -31,12 +31,12 @@
         </div>
 
         <div class="content">
-            <table class="striped responsive-table {{ count($content_tags) > 0 ? 'datatable' : '' }} @can('content_tag_delete') dt-select @endcan">
+            <table class="table table-striped no-order dataTable {{ count($content_tags) > 0 ? 'datatable' : '' }} @can('content_tag_delete') dt-select @else dt-show @endcan">
                 <thead>
                     <tr>
                         <th class="order-null"></th>
                         @can('content_tag_delete')
-                            <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                            <th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>
                         @endcan
 
                         <th>@lang('global.content-tags.fields.title')</th>
@@ -60,10 +60,10 @@
                                     <td>
                                     <div class="buttons d-flex justify-content">
                                         @can('content_tag_view')
-                                        <a href="{{ route('admin.content_tags.show',[$content_tag->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.content_tags.show',[$content_tag->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('content_tag_edit')
-                                        <a href="{{ route('admin.content_tags.edit',[$content_tag->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        <a href="{{ route('admin.content_tags.edit',[$content_tag->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                                         @can('content_tag_delete')
                                         {!! Form::open(array(
@@ -71,7 +71,7 @@
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.content_tags.destroy', $content_tag->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                                {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
                                         @endcan
                                     </div>

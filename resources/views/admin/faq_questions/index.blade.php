@@ -17,7 +17,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('faq_question_create')
-                    <a href="{{ route('admin.faq_questions.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                    <a href="{{ route('admin.faq_questions.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                         Add question
                     </a>
                 @endcan
@@ -31,12 +31,12 @@
         </div>
 
         <div class="content">
-            <table class="no-order striped responsive-table ajaxTable @can('faq_question_delete') dt-select @endcan">
+            <table class="no-order table table-striped ajaxTable @can('faq_question_delete') dt-select @else dt-show @endcan">
                 <thead>
                     <tr>
                         <th></th>
                         @can('faq_question_delete')
-                            <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                            <th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>
                         @endcan
 
                         <th>@lang('global.faq-questions.fields.category')</th>

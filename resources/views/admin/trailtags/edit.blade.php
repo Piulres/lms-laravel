@@ -16,7 +16,7 @@
             <div class="col s12 m3 l2 right-align">
 
                 @can('trailtag_create')
-                    <a href="{{ route('admin.trailtags.create') }}" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle">
+                    <a href="{{ route('admin.trailtags.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
                         Add Trail
                     </a>
                 @endcan
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light grey', 'type'=>'submit']) !!}
+            {!! Form::button('<i class="material-icons right">send</i>Create', ['class'=>'btn waves-effect waves-light', 'type'=>'submit']) !!}
         </div>
         {!! Form::close() !!}
     </div>

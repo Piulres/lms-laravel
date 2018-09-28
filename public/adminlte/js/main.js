@@ -13,7 +13,6 @@ $(document).ready(function () {
         activeSub.parent().parent().addClass('open');
     }
     window.dtDefaultOptions = {
-        retrieve: true,
         dom: 'lBfrtip<"actions">',
         columnDefs: [],
         "iDisplayLength": 100,
@@ -29,7 +28,6 @@ $(document).ready(function () {
             {
                 extend: 'copy',
                 text: window.copyButtonTrans,
-                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -37,7 +35,6 @@ $(document).ready(function () {
             {
                 extend: 'csv',
                 text: window.csvButtonTrans,
-                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -45,7 +42,6 @@ $(document).ready(function () {
             {
                 extend: 'excel',
                 text: window.excelButtonTrans,
-                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -53,7 +49,6 @@ $(document).ready(function () {
             {
                 extend: 'pdf',
                 text: window.pdfButtonTrans,
-                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -61,20 +56,18 @@ $(document).ready(function () {
             {
                 extend: 'print',
                 text: window.printButtonTrans,
-                className: 'waves-effect waves-light btn-small grey',
                 exportOptions: {
                     columns: ':visible'
                 }
             },
-            {
-                extend: 'colvis',
-                text: window.colvisButtonTrans,
-                className: 'waves-effect waves-light btn-small grey',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-        ]
+            // {
+            //     extend: 'colvis',
+            //     text: window.colvisButtonTrans,
+            //     exportOptions: {
+            //         columns: ':visible'
+            //     }
+            // },
+        ],
     };
 
     editor
@@ -107,12 +100,13 @@ $(document).ready(function () {
                 className: 'select-checkbox',
                 targets: 1
             });
+
         }
         $(this).dataTable(window.dtDefaultOptions);
     });
     $(document).on( 'init.dt', function ( e, settings ) {
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn js-delete-selected">'+window.deleteButtonTrans+'</a>');
         }
     });
 
@@ -247,7 +241,7 @@ function processAjaxTables() {
         }
         $(this).DataTable(window.dtDefaultOptions);
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="waves-effect waves-light btn-small grey js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">'+window.deleteButtonTrans+'</a>');
+            $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn js-delete-selected">'+window.deleteButtonTrans+'</a>');
         }
     });
 

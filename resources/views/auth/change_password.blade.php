@@ -59,7 +59,7 @@
 				</div>
 				<div class="row">
 					<div class="col s12">
-						{!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey']) !!}
+						{!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
 					</div>
 				</div>
 			</div>

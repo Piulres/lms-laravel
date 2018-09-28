@@ -1,9 +1,9 @@
 @inject('request', 'Illuminate\Http\Request')
-<aside class="yaybar yay-gestures yay-light yay-shrink" id="sidebar-menu">
+<aside class="yaybar yay-gestures yay-light yay-hide-to-small yay-shrink" id="sidebar-menu">
     <div class="top">
         <div>
             <!-- Sidebar toggle -->
-            <a href="#" class="yay-toggle">
+            <a href="#" class="yay-toggle btn-toggle-menu">
                 <div class="burg1">
                 </div>
                 <div class="burg2"></div>
@@ -326,12 +326,12 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="#logout" onclick="$('#logout').submit();" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
-                        <i class="fa fa-arrow-left"></i>
-                        @lang('global.app_logout')
-                    </a>
-                </li>
+                {{--<li>--}}
+                    {{--<a href="#logout" onclick="$('#logout').submit();" class="collapsible-header yay-sub-toggle waves-effect waves-blue">--}}
+                        {{--<i class="fa fa-arrow-left"></i>--}}
+                        {{--@lang('global.app_logout')--}}
+                    {{--</a>--}}
+                {{--</li>--}}
             </ul>
         </div>
     </div>
