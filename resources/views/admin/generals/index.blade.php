@@ -40,7 +40,7 @@
         </div>
 
         <div class="content">
-            <table class="table table-striped no-order ajaxTable @can('general_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
+            <table class="table table-striped no-order ajaxTable @can('general_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show     @endif @endcan">
                 <thead>
                     <tr>
                         <th class="order-null"></th>

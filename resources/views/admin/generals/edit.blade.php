@@ -63,123 +63,127 @@
                 </div>
 
                 <div class="col s12">
-                    {!! Form::label('theme_color', trans('global.general.fields.theme-color').'') !!}
-                    <span class="helper-text" data-error="@if($errors->has('theme_color')){{ $errors->first('theme_color') }}@endif" data-success="right"></span>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'red', false, ['class' => 'with-gap', 'id' => 'red']) !!}
-                            <label for="red">Red</label>
-                        </label>
+                    <div class="col s12 no-padding">
+                        {!! Form::label('theme_color', trans('global.general.fields.theme-color').'') !!}
                     </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'pink', false, ['class' => 'with-gap', 'id' => 'pink']) !!}
-                            <label for="pink">Pink</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'purple', false, ['class' => 'with-gap', 'id' => 'purple']) !!}
-                            <label for="purple">Purple</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'deep-purple', false, ['class' => 'with-gap', 'id' => 'deep-purple']) !!}
-                            <label for="deep-purple">Deep Purple</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'indigo', false, ['class' => 'with-gap', 'id' => 'indigo']) !!}
-                            <label for="indigo">Indigo</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'blue', false, ['class' => 'with-gap', 'id' => 'blue']) !!}
-                            <label for="blue">Blue</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'light-blue', false, ['class' => 'with-gap', 'id' => 'light-blue']) !!}
-                            <label for="light-blue">Light Blue</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'cyan', false, ['class' => 'with-gap', 'id' => 'cyan']) !!}
-                            <label for="cyan">Cyan</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'teal', false, ['class' => 'with-gap', 'id' => 'teal']) !!}
-                            <label for="teal">Teal</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'green', false, ['class' => 'with-gap', 'id' => 'green']) !!}
-                            <label for="green">Green</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'light-green', false, ['class' => 'with-gap', 'id' => 'light-green']) !!}
-                            <label for="light-green">Light Green</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'lime', false, ['class' => 'with-gap', 'id' => 'lime']) !!}
-                            <label for="lime">Lime</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'yellow', false, ['class' => 'with-gap', 'id' => 'yellow']) !!}
-                            <label for="yellow">Yellow</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'amber', false, ['class' => 'with-gap', 'id' => 'amber']) !!}
-                            <label for="amber">Amber</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'orange', false, ['class' => 'with-gap', 'id' => 'orange']) !!}
-                            <label for="orange">Orange</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'deep-orange', false, ['class' => 'with-gap', 'id' => 'deep-orange']) !!}
-                            <label for="deep-orange">Deep Orange</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'brown', false, ['class' => 'with-gap', 'id' => 'brown']) !!}
-                            <label for="brown">Brown</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'grey', false, ['class' => 'with-gap', 'id' => 'grey']) !!}
-                            <label for="grey">Grey</label>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('theme_color', 'blue-grey', false, ['class' => 'with-gap', 'id' => 'blue-grey']) !!}
-                            <label for="blue-grey">Blue Grey</label>
-                        </label>
+                    <div class="col s12">
+                        <div class="radio-color">
+                            <p class="red">
+                                {!! Form::radio('theme_color', 'red', false, ['class' => 'with-gap', 'id' => 'red']) !!}
+                                <label for="red"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="pink">
+                                {!! Form::radio('theme_color', 'pink', false, ['class' => 'with-gap', 'id' => 'pink']) !!}
+                                <label for="pink"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="purple">
+                                {!! Form::radio('theme_color', 'purple', false, ['class' => 'with-gap', 'id' => 'purple']) !!}
+                                <label for="purple"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="deep-purple">
+                                {!! Form::radio('theme_color', 'deep-purple', false, ['class' => 'with-gap', 'id' => 'deep-purple']) !!}
+                                <label for="deep-purple"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="indigo">
+                                {!! Form::radio('theme_color', 'indigo', false, ['class' => 'with-gap', 'id' => 'indigo']) !!}
+                                <label for="indigo"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="blue">
+                                {!! Form::radio('theme_color', 'blue', false, ['class' => 'with-gap', 'id' => 'blue']) !!}
+                                <label for="blue"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="light-blue">
+                                {!! Form::radio('theme_color', 'light-blue', false, ['class' => 'with-gap', 'id' => 'light-blue']) !!}
+                                <label for="light-blue"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="cyan">
+                                {!! Form::radio('theme_color', 'cyan', false, ['class' => 'with-gap', 'id' => 'cyan']) !!}
+                                <label for="cyan"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="teal">
+                                {!! Form::radio('theme_color', 'teal', false, ['class' => 'with-gap', 'id' => 'teal']) !!}
+                                <label for="teal"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="green">
+                                {!! Form::radio('theme_color', 'green', false, ['class' => 'with-gap', 'id' => 'green']) !!}
+                                <label for="green"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="light-green">
+                                {!! Form::radio('theme_color', 'light-green', false, ['class' => 'with-gap', 'id' => 'light-green']) !!}
+                                <label for="light-green"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="lime">
+                                {!! Form::radio('theme_color', 'lime', false, ['class' => 'with-gap', 'id' => 'lime']) !!}
+                                <label for="lime"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="yellow">
+                                {!! Form::radio('theme_color', 'yellow', false, ['class' => 'with-gap', 'id' => 'yellow']) !!}
+                                <label for="yellow"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="amber">
+                                {!! Form::radio('theme_color', 'amber', false, ['class' => 'with-gap', 'id' => 'amber']) !!}
+                                <label for="amber"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="orange">
+                                {!! Form::radio('theme_color', 'orange', false, ['class' => 'with-gap', 'id' => 'orange']) !!}
+                                <label for="orange"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="deep-orange">
+                                {!! Form::radio('theme_color', 'deep-orange', false, ['class' => 'with-gap', 'id' => 'deep-orange']) !!}
+                                <label for="deep-orange"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="brown">
+                                {!! Form::radio('theme_color', 'brown', false, ['class' => 'with-gap', 'id' => 'brown']) !!}
+                                <label for="brown"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="grey">
+                                {!! Form::radio('theme_color', 'grey', false, ['class' => 'with-gap', 'id' => 'grey']) !!}
+                                <label for="grey"></label>
+                            </p>
+                        </div>
+                        <div class="radio-color">
+                            <p class="blue-grey">
+                                {!! Form::radio('theme_color', 'blue-grey', false, ['class' => 'with-gap', 'id' => 'blue-grey']) !!}
+                                <label for="blue-grey"></label>
+                            </p>
+                        </div>
                     </div>
 
+                    <span class="helper-text" data-error="@if($errors->has('theme_color')){{ $errors->first('theme_color') }}@endif" data-success="right"></span>
                 </div>
             </div>
 

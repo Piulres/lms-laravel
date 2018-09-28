@@ -56,7 +56,7 @@
                     @endif
                 </ul>
             </li>
-            @php($user = \Auth::user());
+            @php($user = \Auth::user())
             <li class="user">
                 <a class="dropdown-button user-top-infos" data-activates="user-dropdown" href="#!">
                 @if($user->avatar)

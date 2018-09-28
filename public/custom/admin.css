@@ -74,6 +74,67 @@ table [type=checkbox]:checked + label:before, table [type=radio]:checked + label
     display: inline-block;
 }
 
+.radio-color p {
+    width: 25px;
+    height: 25px;
+}
+
+.radio-color [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.radio-color [type="radio"]:not(:checked) + label:before {
+    height: 100%;
+    width: 100%;
+    padding-left: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin: 0;
+    border: none;
+}
+
+.radio-color [type="radio"].with-gap:checked + label:before {
+    content: none;
+}
+
+.radio-color [type="radio"].with-gap:checked + label:after {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    width: 100%;
+    margin: 0;
+    height: 100%;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    background: rgba(255, 255, 255, .6);
+    border-color: rgba(255, 255, 255, .6);
+}
+
+.box-color {
+    width: 25px;
+    height: 25px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.box-color-after {
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+
+}
+
 .avatar-icon {
     display: inline-block;
     width: 50px;

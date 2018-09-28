@@ -44,7 +44,10 @@
                         </tr>
                         <tr>
                             <th>@lang('global.general.fields.theme-color')</th>
-                            <td field-key='theme_color'>{{ $general->theme_color }}</td>
+                            <td field-key='theme_color'>
+                                <div class="box-color {{ $general->theme_color }}"></div>
+                                {{ $general->theme_color }}
+                            </td>
                         </tr>
                     </table>
                 </div>
