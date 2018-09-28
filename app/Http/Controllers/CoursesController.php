@@ -207,22 +207,28 @@ class CoursesController extends Controller
     public function done($id)
     {
       
-        // if (! Gate::allows('course_access')) {
-        //     return redirect('login');
-        // }
+        if (! Gate::allows('course_access')) {
+            return redirect('login');
+        }
 
-        // $user = Auth::id();
+        $user = Auth::id();
         
-        // $coursescertificates = DB::table('coursescertificates')
-        //  ->get();
+        $coursescertificates = DB::table('coursescertificates')
+         ->get();
         
         
-        // $lesson_active = DB::table('datalessons')
-        //  ->where("datalessons.user_id", '=',  $user)
-        //  ->where("datalessons.lesson_id", '=',  $id)
-        // ->get();
+        $lesson_active = DB::table('datalessons')
+         ->where("datalessons.user_id", '=',  $user)
+         ->where("datalessons.lesson_id", '=',  $id)
+        ->get();
 
-        
+        DB::table('datalessons')
+         ->where("datalessons.user_id", '=',  $user)
+         ->where("datalessons.lesson_id", '=',  $id)
+        ->update(['datalessons.view'=> 1]);
+
+
+
 
         // $count = $lesson_active[0]->progress;
 
