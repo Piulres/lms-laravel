@@ -4,21 +4,12 @@
 
 @section('messenger-content')
 
-    <div class="card">
-    	<div class="card-title">
-    		Reply
-    	</div>
-    	<div class="card-content">
-	        <div class="col-md-12">
-	            {{--{!! Form::open(['route' => ['admin.messenger.save'], 'method' => 'POST', 'novalidate', 'class' => 'stepperForm validate']) !!}--}}
-	            {!! Form::model($topic, ['method' => 'PUT', 'route' => ['admin.messenger.update', $topic->id]]) !!}
+	<div class="card-panel">
+		{!! Form::model($topic, ['method' => 'PUT', 'route' => ['admin.messenger.update', $topic->id]]) !!}
+		<!-- To -->
+		@include('admin.messenger.form-partials.fields')
 
-	            @include('admin.messenger.form-partials.fields')
-	            <div class="col-12">
-	            	{!! Form::submit('Reply', ['class' => 'btn waves-effect waves-light grey']) !!}
-	            </div>
-	        </div>
-	       </div>
-    </div>
+		{!! Form::submit('Reply', ['class' => 'btn white grey-text text-darken-2']) !!}
+	</div>
 
 @stop

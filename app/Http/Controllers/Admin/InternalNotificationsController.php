@@ -25,10 +25,10 @@ class InternalNotificationsController extends Controller
             return abort(401);
         }
 
-
+        $generals = \App\General::get();
                 $internal_notifications = InternalNotification::all();
 
-        return view('admin.internal_notifications.index', compact('internal_notifications'));
+        return view('admin.internal_notifications.index', compact('internal_notifications', 'generals'));
     }
 
     /**
@@ -44,8 +44,9 @@ class InternalNotificationsController extends Controller
         
         $users = \App\User::get()->pluck('name', 'id');
 
+        $generals = \App\General::get();
 
-        return view('admin.internal_notifications.create', compact('users'));
+        return view('admin.internal_notifications.create', compact('users', 'generals'));
     }
 
     /**
@@ -85,7 +86,9 @@ class InternalNotificationsController extends Controller
 
         $internal_notification = InternalNotification::findOrFail($id);
 
-        return view('admin.internal_notifications.edit', compact('internal_notification', 'users'));
+        $generals = \App\General::get();
+
+        return view('admin.internal_notifications.edit', compact('internal_notification', 'users', 'generals'));
     }
 
     /**
@@ -123,7 +126,9 @@ class InternalNotificationsController extends Controller
         }
         $internal_notification = InternalNotification::findOrFail($id);
 
-        return view('admin.internal_notifications.show', compact('internal_notification'));
+        $generals = \App\General::get();
+
+        return view('admin.internal_notifications.show', compact('internal_notification', 'generals'));
     }
 
 

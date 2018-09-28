@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreDatacoursesRequest;
 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Datacourse;
 
 
 
@@ -34,9 +36,11 @@ class HomeController extends Controller
         $users = \App\User::latest()->limit(5)->get(); 
         $courses = \App\Course::latest()->limit(5)->get(); 
         $trails = \App\Trail::latest()->limit(5)->get(); 
-        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get(); 
+        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get();
 
-        return view('index', compact( 'users', 'courses', 'trails', 'faqquestions' ));
+        $generals = \App\General::get();
+
+        return view('index', compact( 'users', 'courses', 'trails', 'faqquestions', 'generals' ));
     }
 
     public function home()
@@ -45,7 +49,8 @@ class HomeController extends Controller
         $user = Auth::id();
         $users = \App\User::latest()->limit(5)->get(); 
         $courses = \App\Course::latest()->limit(5)->get(); 
-        $trails = \App\Trail::latest()->limit(5)->get(); 
+        $trails = \App\Trail::latest()->limit(5)->get();
+
         $faqquestions = \App\FaqQuestion::latest()->limit(5)->get(); 
         $certificates = \App\Coursescertificate::latest()->get();
         $datacourses = \App\Datacourse::latest()->get(); 
@@ -71,6 +76,43 @@ class HomeController extends Controller
              
 
 
-        return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates' ));
+        $mytestimonals = DB::table('datacourses')
+            ->leftJoin('courses', 'datacourses.course_id', '=', 'courses.id')
+        ->where('datacourses.user_id', '=', $user)
+        ->where('datacourses.progress', '=', 100)
+        ->where('datacourses.testimonal', '=', '')
+        ->whereNotNull('datacourses.certificate_id')
+       ->get();
+
+       //dd($mytestimonals);
+
+        $generals = \App\General::get();
+
+        return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates', 'mytestimonals', 'generals' ));
+    }
+
+    public function testimonal()
+    {
+        return redirect('admin/home');
+    }
+
+    public function savefeedback(StoreDatacoursesRequest $request)
+    {
+        //dd($request);        
+        DB::table('datacourses')
+        ->where('datacourses.user_id','=', $request->user_id)
+        ->where('datacourses.course_id','=', $request->course_id)
+        ->update([
+            'rating' => $request->rating,
+            'testimonal' => $request->testimonal,
+        ]);        
+        
+        return redirect('admin/home');
+
+        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get();
+
+        $generals = \App\General::get();
+
+        return view('home', compact( 'users', 'courses', 'trails', 'faqquestions', 'generals' ));
     }
 }

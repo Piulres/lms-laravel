@@ -124,7 +124,8 @@ class TrailsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.trails.index');
+        $generals = \App\General::get();
+        return view('admin.trails.index', compact('generals'));
     }
 
     /**
@@ -144,8 +145,9 @@ class TrailsController extends Controller
 
         $tags = \App\Trailtag::get()->pluck('title', 'id');
 
+        $generals = \App\General::get();
 
-        return view('admin.trails.create', compact('courses', 'categories', 'tags'));
+        return view('admin.trails.create', compact('courses', 'categories', 'tags', 'generals'));
     }
 
     /**
@@ -191,7 +193,9 @@ class TrailsController extends Controller
 
         $trail = Trail::findOrFail($id);
 
-        return view('admin.trails.edit', compact('trail', 'courses', 'categories', 'tags'));
+        $generals = \App\General::get();
+
+        return view('admin.trails.edit', compact('trail', 'courses', 'categories', 'tags', 'generals'));
     }
 
     /**
@@ -239,7 +243,9 @@ $datatrails = \App\Datatrail::where('trail_id', $id)->get();
 
         $trail = Trail::findOrFail($id);
 
-        return view('admin.trails.show', compact('trail', 'datatrails'));
+        $generals = \App\General::get();
+
+        return view('admin.trails.show', compact('trail', 'datatrails', 'generals'));
     }
 
 

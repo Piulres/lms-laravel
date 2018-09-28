@@ -2,11 +2,27 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h2>@lang('global.coursetags.title')</h2>
-        @can('coursetag_create')
-            <a href="{{ route('admin.coursetags.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.coursetags.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li><span>@lang('global.coursetags.title')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+
+                @can('coursetag_create')
+                    <a href="{{ route('admin.coursetags.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                        Add Tag
+                    </a>
+                @endcan
+            </div>
+        </div>
     </div>
 
     <ul class="tabs z-depth-1">
@@ -19,17 +35,17 @@
     </ul>
 
     <div class="card">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="card-content">
-            <table class="striped responsive-table {{ count($coursetags) > 0 ? 'datatable' : '' }} @can('coursetag_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="content">
+            <table class="table table-striped {{ count($coursetags) > 0 ? 'datatable' : '' }} @can('coursetag_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
                         <th class="order-null"></th>
                         @can('coursetag_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.coursetags.fields.title')</th>
@@ -74,10 +90,10 @@
                                 <td>
                                     <div class="buttons">
                                         @can('coursetag_view')
-                                        <a href="{{ route('admin.coursetags.show',[$coursetag->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.coursetags.show',[$coursetag->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('coursetag_edit')
-                                        <a href="{{ route('admin.coursetags.edit',[$coursetag->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        <a href="{{ route('admin.coursetags.edit',[$coursetag->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                                         @can('coursetag_delete')
                                         {!! Form::open(array(
@@ -85,7 +101,7 @@
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.coursetags.destroy', $coursetag->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
                                         @endcan
                                     </div>

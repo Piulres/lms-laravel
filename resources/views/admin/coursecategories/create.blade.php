@@ -1,22 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.coursecategories.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.coursecategories.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.coursecategories.index') }}">
+                            @lang('global.coursecategories.title')</a>
+                    </li> /
+                    <li><span>@lang('global.app_create')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.coursecategories.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="header-title">
-        <h2>@lang('global.coursecategories.title')</h2>
-    </div>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.coursecategories.store']]) !!}
+
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_create')</h3>
+        {!! Form::open(['method' => 'POST', 'route' => ['admin.coursecategories.store']]) !!}
+        <div class="title">
+            <h5>@lang('global.app_create')</h5>
         </div>
         
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     <div class="input-field">
                         {!! Form::label('title', trans('global.coursecategories.fields.title').'') !!}
                         {!! Form::text('title', old('title'), ['class' => 'validate']) !!}
@@ -24,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     <div class="input-field">
                         {!! Form::label('slug', trans('global.coursecategories.fields.slug').'') !!}
                         {!! Form::text('slug', old('slug'), ['class' => 'validate']) !!}
@@ -32,11 +50,11 @@
                     </div>
                 </div>
             </div>
-            
+
+            {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
         </div>
+        {!! Form::close() !!}
     </div>
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey']) !!}
-    {!! Form::close() !!}
 @stop
 

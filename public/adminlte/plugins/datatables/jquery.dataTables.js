@@ -14203,8 +14203,8 @@
 		"sNoFooter": "no-footer",
 	
 		/* Paging buttons */
-		"sPageButton": "",
-		"sPageButtonActive": "active",
+		"sPageButton": "paginate_button",
+		"sPageButtonActive": "current",
 		"sPageButtonDisabled": "disabled",
 	
 		/* Striping classes */
@@ -14218,7 +14218,7 @@
 		"sWrapper": "dataTables_wrapper",
 		"sFilter": "dataTables_filter",
 		"sInfo": "dataTables_info",
-		"sPaging": "pagination paging_", /* Note that the type is postfixed */
+		"sPaging": "dataTables_paginate paging_", /* Note that the type is postfixed */
 		"sLength": "dataTables_length",
 		"sProcessing": "dataTables_processing",
 	

@@ -28,10 +28,10 @@ class ContentPagesController extends Controller
             return abort(401);
         }
 
-
+        $generals = \App\General::get();
                 $content_pages = ContentPage::all();
 
-        return view('admin.content_pages.index', compact('content_pages'));
+        return view('admin.content_pages.index', compact('content_pages', 'generals'));
     }
 
     /**
@@ -49,8 +49,9 @@ class ContentPagesController extends Controller
 
         $tag_ids = \App\ContentTag::get()->pluck('title', 'id');
 
+        $generals = \App\General::get();
 
-        return view('admin.content_pages.create', compact('category_ids', 'tag_ids'));
+        return view('admin.content_pages.create', compact('category_ids', 'tag_ids', 'generals'));
     }
 
     /**
@@ -69,9 +70,10 @@ class ContentPagesController extends Controller
         $content_page->category_id()->sync(array_filter((array)$request->input('category_id')));
         $content_page->tag_id()->sync(array_filter((array)$request->input('tag_id')));
 
+        $generals = \App\General::get();
 
 
-        return redirect()->route('admin.content_pages.index');
+        return redirect()->route('admin.content_pages.index', compact('generals'));
     }
 
 
@@ -94,7 +96,9 @@ class ContentPagesController extends Controller
 
         $content_page = ContentPage::findOrFail($id);
 
-        return view('admin.content_pages.edit', compact('content_page', 'category_ids', 'tag_ids'));
+        $generals = \App\General::get();
+
+        return view('admin.content_pages.edit', compact('content_page', 'category_ids', 'tag_ids', 'generals'));
     }
 
     /**
@@ -134,7 +138,9 @@ class ContentPagesController extends Controller
         }
         $content_page = ContentPage::findOrFail($id);
 
-        return view('admin.content_pages.show', compact('content_page'));
+        $generals = \App\General::get();
+
+        return view('admin.content_pages.show', compact('content_page', 'generals'));
     }
 
 

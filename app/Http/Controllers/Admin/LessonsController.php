@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreLessonsRequest;
 use App\Http\Requests\Admin\UpdateLessonsRequest;
 use App\Http\Controllers\Traits\FileUploadTrait;
+use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -53,7 +54,10 @@ class LessonsController extends Controller
         if (! Gate::allows('lesson_create')) {
             return abort(401);
         }
-        return view('admin.lessons.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.lessons.create', compact('generals'));
     }
 
     /**
@@ -89,7 +93,9 @@ class LessonsController extends Controller
         }
         $lesson = Lesson::findOrFail($id);
 
-        return view('admin.lessons.edit', compact('lesson'));
+        $generals = \App\General::get();
+
+        return view('admin.lessons.edit', compact('lesson', 'generals'));
     }
 
 
@@ -109,7 +115,10 @@ class LessonsController extends Controller
             return abort(401);
         }
         $lesson = Lesson::findOrFail($id);
-        $lesson->replicate();
+        $new_lesson = $lesson->replicate();
+        $new_lesson->save();
+        $new_lesson->slug = $new_lesson->slug . '' . $new_lesson->id;
+        $new_lesson->save();
 
         return redirect()->route('admin.lessons.index');
     }
@@ -154,7 +163,9 @@ class LessonsController extends Controller
 
         $lesson = Lesson::findOrFail($id);
 
-        return view('admin.lessons.show', compact('lesson', 'courses'));
+        $generals = \App\General::get();
+
+        return view('admin.lessons.show', compact('lesson', 'courses', 'generals'));
     }
 
 

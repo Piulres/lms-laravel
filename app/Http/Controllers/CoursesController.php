@@ -47,8 +47,9 @@ class CoursesController extends Controller
 
         $course = Course::findOrFail($id);
 
-        return view('courses', compact('course', 'datacourses', 'trails'));
+        $generals = \App\General::get();
 
+        return view('courses', compact('course', 'datacourses', 'trails', 'generals'));
     }
  
     public function start($id)
@@ -204,6 +205,51 @@ class CoursesController extends Controller
 
     }  
 
+    public function certificate($id)
+    {
+        if 
+            (! Gate::allows('course_access')) {
+            return redirect('login');
+        }
+        
+        $user = Auth::id();
+
+/*        DB::table('datacourses')->insert([
+            'view'=>'1',
+            'progress'=>'100',
+            'rating'=>'5',
+            'user_id'=>$user,
+            'course_id'=>$id,
+        ]);
+*/
+
+        $course = DB::table('courses')
+            ->leftJoin('datacourses', 'course_id', '=', 'courses.id')
+            ->leftJoin('users', 'user_id', '=', 'users.id')
+            ->where("datacourses.course_id", '=',  $id)
+            ->where("datacourses.user_id", '=',  $user)
+            ->limit(1)
+            ->get();
+        
+        if($course[0]->progress == 100){
+
+            $count = DB::table('coursescertificates')->count();
+
+            DB::table('coursescertificates')->insert([
+                'order'=>$count++,
+                'title'=>$course[0]->title,
+                'slug'=>$course[0]->name,
+            ]);
+
+            return view('certificate', compact('course'));
+
+        }else{
+
+        return redirect('library');
+
+        }
+    }
+
     public function done($id)
     {
       
@@ -259,5 +305,4 @@ class CoursesController extends Controller
          return back();
   
     }
-
 }

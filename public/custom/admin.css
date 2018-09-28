@@ -1,6 +1,149 @@
 /* CUSTOM CSS MATERIALIZE RP */
-body {
-    font-size: 16px;
+/*body {*/
+    /*font-size: 13px;*/
+/*}*/
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+.yaybar .top .brand-logo {
+    padding: 5px;
+    padding-left: 5px;
+}
+
+.yay-user-info a {
+    display: flex;
+}
+
+.user-top-infos {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-top .brand-logo {
+    padding: 5px;
+    padding-left: 5px;
+}
+
+.yay-hide .yaybar.yay-hide-to-small ul > li.yay-user-info > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.yay-hide .yaybar.yay-hide-to-small ul > li.yay-user-info > a > span {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+@media screen and (max-width: 520px) {
+    nav ul a, nav ul .sp-cancel {
+        padding: 0 10px;
+    }
+    nav .avatar-icon {
+        display: none;
+    }
+}
+
+.yay-hide .yaybar.yay-hide-to-small .nano-content > ul > li > a > i, .yay-hide .yaybar.yay-hide-to-small .nano-content > ul > li > .sp-cancel > i {
+    float: none;
+}
+
+.DTTT_container a {
+    margin-left: 5px;
+}
+
+table [type=checkbox] + label, table [type=radio] + label {
+    margin-right: 0;
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+}
+table [type=checkbox] + label:before, table [type=radio] + label:before {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+table [type=checkbox]:checked + label:before, table [type=radio]:checked + label:before {
+    left: -10px;
+}
+
+.radio-color {
+    display: inline-block;
+}
+
+.radio-color p {
+    width: 25px;
+    height: 25px;
+}
+
+.radio-color [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.radio-color [type="radio"]:not(:checked) + label:before {
+    height: 100%;
+    width: 100%;
+    padding-left: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin: 0;
+    border: none;
+}
+
+.radio-color [type="radio"].with-gap:checked + label:before {
+    content: none;
+}
+
+.radio-color [type="radio"].with-gap:checked + label:after {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    width: 100%;
+    margin: 0;
+    height: 100%;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    background: rgba(255, 255, 255, .6);
+    border-color: rgba(255, 255, 255, .6);
+}
+
+.box-color {
+    width: 25px;
+    height: 25px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.box-color-after {
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+
+}
+
+.avatar-icon {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 #toast-container {
@@ -73,17 +216,6 @@ body {
 .back-button {
     margin-bottom: 15px;
 }
-nav ul li {
-    position: relative;
-}
-
-nav .brand-logo {
-    width: 250px;
-    left: -15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .text-subhead {
     font-size: 1.15rem;
@@ -120,7 +252,7 @@ nav .brand-logo {
 
 .actions {
     text-align: right;
-    min-width: none;
+    float: left;
 }
 
 span.badge.new.sup {
@@ -225,17 +357,13 @@ span.badge.new.sup {
     min-width: 180px;
 }
 
-.dropdown-content li > a, .dropdown-content li > span {
-    font-size: 12px;
-}
+/*.dropdown-content li > a, .dropdown-content li > span {*/
+    /*font-size: 12px;*/
+/*}*/
 
 /* END CUSTOM MATERIALIZE RP */
 
 /* GENERAL CSS */
-body {
-    font-size: 13px;
-}
-
 .label {margin-right:5px;margin-bottom:5px !important;display:inline-block;} #wrapper {
     position: relative;
 }
@@ -290,36 +418,24 @@ body {
     padding: 10px 0;
 }
 
-.card-title {
-    padding: 10px 24px;
-    border-bottom: 1px solid #e2e9e6;
+.card .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.card-title .toggle-view a {
+.card .title:after, .card .title:before {
+    content: none;
+}
+
+.title .toggle-view a {
     padding: 5px 10px;
     border-radius: 5px;
     display: inline-block;
 }
 
-.card-title .toggle-view a.active {
+.title .toggle-view a.active {
     background: #ebebeb;
-}
-
-.card-title h3, .card-title h4 {
-    margin: 0;
-}
-.card-title h3 {
-    font-size: 2rem;
-    margin: 0;
-    padding-top: 10px;
-}
-
-.card-title h4 {
-    font-size: 1.8rem;
-    font-weight: 600;
 }
 
 .card-home .card-title h5, .card-home .card-title h6 {
@@ -411,11 +527,13 @@ nav .sidenav-trigger {
 /* TABLE */
 table.no-order th:first-child,
 table.no-order td:first-child {
-    display: block;
+    display: none!important;
+    font-size: 0!important;
     width: 0!important;
-    overflow: hidden;
+    overflow: hidden!important;
     padding: 0!important;
 }
+
 tbody {
     font-size: 12px;
 }
@@ -452,11 +570,11 @@ table.dataTable {
     border: 1px solid #e0e0e0;
 }
 
-/* PROGRESS */
-.progress {
-    margin: 0;
-    height: 8px;
-}
+/*!* PROGRESS *!*/
+/*.progress {*/
+    /*margin: 0;*/
+    /*height: 8px;*/
+/*}*/
 
 /* DATATABLE */
 .bordered {
@@ -472,21 +590,21 @@ table.dataTable {
     border: 1px solid #f4f4f4;
 }
 
-.dt-buttons {
-    margin-left: 20px;
-    float: left;
-}
+/*.dt-buttons {*/
+    /*margin-left: 20px;*/
+    /*float: left;*/
+/*}*/
 
-.dt-buttons .dt-button {
-    margin-right: 5px;
-}
+/*.dt-buttons .dt-button {*/
+    /*margin-right: 5px;*/
+/*}*/
 
-.dt-buttons .dt-button:last-child {
-    margin-right: 0;
-}
+/*.dt-buttons .dt-button:last-child {*/
+    /*margin-right: 0;*/
+/*}*/
 
 .dataTables_length label {
-    margin-top: 6px;
+    margin-top: 4px;
     display: block;
 }
 
@@ -499,7 +617,16 @@ table.dataTable.no-footer {
     border-bottom: none;
 }
 
+table.dataTable thead .sorting:before, table.dataTable thead .sorting:after {
+    content: none!important;
+}
+
+table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after {
+    content: none;
+}
+
 table.dataTable thead th, table.dataTable tbody td {
+    vertical-align: middle;
     min-width: auto;
     border-bottom: 1px solid #e0e0e0;
     padding: 8px 18px;
@@ -510,17 +637,37 @@ table.dataTable thead th:first-child,
 table.dataTable tbody td:first-child,
 table.dataTable thead th:nth-child(2),
 table.dataTable tbody td:nth-child(2) {
-    width: 50px;
+    min-width: 40px;
+    width: 40px!important;
+    padding: 0;
+    text-align: center;
+}
+
+table.dataTable.dt-show thead th:nth-child(2),
+table.dataTable.dt-show tbody td:nth-child(2) {
+    width: auto!important;
+}
+
+table.dataTable thead th.order-null::after,
+table.dataTable thead th.order-null::before {
+    content: none;
 }
 
 table.dataTable thead th.order-null,
 table.dataTable tbody td.order-null,
 table.dataTable thead th.order-null,
-table.dataTable tbody td.order-null {
-    width: 0.01px;
-    border: none;
-    padding: 0;
-    overflow: hidden;
+table.dataTable tbody td.order-null,
+table.dataTable thead th.order-null:nth-child(2),
+table.dataTable tbody td.order-null:nth-child(2){
+    width: 0.01px!important;
+    border: none!important;
+    padding: 0!important;
+    overflow: hidden!important;
+    color: transparent!important;
+    background: transparent!important;
+    text-indent: -999px!important;
+    font-size: 0!important;
+    display: none;
 }
 
 table.dataTable thead th:last-child,
@@ -565,7 +712,6 @@ table.dataTable td.select-checkbox:before
     width: 18px;
     height: 18px;
     border-width: 2px;
-    margin-left: -10px;
 }
 
 table.dataTable tr.selected td.select-checkbox:after
@@ -576,18 +722,27 @@ table.dataTable tr.selected td.select-checkbox:after
 table.dataTable td.select-checkbox:before
 /*table.dataTable th.select-checkbox:before*/ {
     content: '';
-    position: absolute;
     border: 2px solid #5a5a5a;
     border-radius: 1px;
-    margin-top: -9px;
+    margin-top: 1px;
     -webkit-transition: .2s;
     transition: .2s;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: 0;
 }
 
 table.dataTable tr.selected td.select-checkbox:before
 /*table.dataTable th.select-checkbox.selected-all:before*/ {
     margin-top: -14px;
-    margin-left: -10px;
+    margin-left: -15px;
     width: 12px;
     height: 22px;
     border-top: 2px solid transparent;
@@ -896,3 +1051,6 @@ table.dataTable tr.selected td.select-checkbox:before
         padding: 15px 0;
     }
 }
+
+
+

@@ -10,7 +10,8 @@ Route::get('courses/{id}', ['uses' => 'CoursesController@show', 'as' => 'courses
 
 Route::get('start/{id}', 'CoursesController@start');   
 Route::get('add/{id}', 'CoursesController@add');   
-Route::get('remove/{id}', 'CoursesController@remove');   
+Route::get('remove/{id}', 'CoursesController@remove');
+Route::get('certificate/{id}', 'CoursesController@certificate'); 
 Route::get('done/{id}', 'CoursesController@done');   
 
 Route::get('/courses/{id}', 'CoursesController@show');
@@ -125,6 +126,8 @@ Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' =>
     Route::get('messenger/outbox', 'Admin\MessengerController@outbox')->name('messenger.outbox');
     Route::resource('messenger', 'Admin\MessengerController');
 
+    Route::get('testimonal', 'HomeController@testimonal');
+    Route::post('savefeedback', 'HomeController@savefeedback')->name('savefeedback');
 
     Route::get('search', 'MegaSearchController@search')->name('mega-search');
     Route::get('language/{lang}', function ($lang) {

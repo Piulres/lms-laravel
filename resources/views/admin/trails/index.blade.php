@@ -2,11 +2,27 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h2>@lang('global.trails.title')</h2>
-        @can('trailtag_create')
-            <a href="{{ route('admin.trails.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.trails.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li><span>@lang('global.trails.title')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+
+                @can('trail_create')
+                    <a href="{{ route('admin.trails.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                        Add Trail
+                    </a>
+                @endcan
+            </div>
+        </div>
     </div>
     
     <ul class="tabs z-depth-1">
@@ -19,25 +35,22 @@
     </ul>
 
     <div class="card">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="card-content">
-            <table class="striped responsive-table ajaxTable @can('trail_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="content">
+            <table class="table table-striped no-order ajaxTable @can('trail_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
                         <th>@lang('global.trails.fields.order')</th>
 
                         @can('trail_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.trails.fields.title')</th>
                         <th>@lang('global.trails.fields.slug')</th>
-                        <th>@lang('global.trails.fields.description')</th>
-                        <th>@lang('global.trails.fields.introduction')</th>
-                        <th>@lang('global.trails.fields.featured-image')</th>
                         <th>@lang('global.trails.fields.courses')</th>
                         <th>@lang('global.trails.fields.start-date')</th>
                         <th>@lang('global.trails.fields.end-date')</th>
@@ -71,9 +84,6 @@
                 @endcan
                 {data: 'title', name: 'title'},
                 {data: 'slug', name: 'slug'},
-                {data: 'description', name: 'description'},
-                {data: 'introduction', name: 'introduction'},
-                {data: 'featured_image', name: 'featured_image'},
                 {data: 'courses.title', name: 'courses.title'},
                 {data: 'start_date', name: 'start_date'},
                 {data: 'end_date', name: 'end_date'},

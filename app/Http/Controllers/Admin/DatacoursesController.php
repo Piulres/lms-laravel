@@ -92,7 +92,9 @@ class DatacoursesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.datacourses.index');
+        $generals = \App\General::get();
+
+        return view('admin.datacourses.index', compact('generals'));
     }
 
     /**
@@ -110,7 +112,9 @@ class DatacoursesController extends Controller
         $courses = \App\Course::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
         $certificates = \App\Coursescertificate::get()->pluck('title', 'id')->prepend(trans('global.app_please_select'), '');
 
-        return view('admin.datacourses.create', compact('users', 'courses', 'certificates'));
+        $generals = \App\General::get();
+
+        return view('admin.datacourses.create', compact('users', 'courses', 'certificates', 'generals'));
     }
 
     /**
@@ -150,7 +154,9 @@ class DatacoursesController extends Controller
 
         $datacourse = Datacourse::findOrFail($id);
 
-        return view('admin.datacourses.edit', compact('datacourse', 'users', 'courses', 'certificates'));
+        $generals = \App\General::get();
+
+        return view('admin.datacourses.edit', compact('datacourse', 'users', 'courses', 'certificates', 'generals'));
     }
 
     /**
@@ -187,7 +193,9 @@ class DatacoursesController extends Controller
         }
         $datacourse = Datacourse::findOrFail($id);
 
-        return view('admin.datacourses.show', compact('datacourse'));
+        $generals = \App\General::get();
+
+        return view('admin.datacourses.show', compact('datacourse', 'generals'));
     }
 
 

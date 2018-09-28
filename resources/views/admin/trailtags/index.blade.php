@@ -2,11 +2,28 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h2>@lang('global.trailtags.title')</h2>
-        @can('trailtag_create')
-            <a href="{{ route('admin.trailtags.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.trailscertificates.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.trailscertificates.index') }}">
+                            @lang('global.trailscertificates.title')</a>
+                    </li> /
+                    <li><span>@lang('global.app_edit')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.trailscertificates.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
 
     <ul class="tabs z-depth-1">
@@ -20,17 +37,17 @@
     
 
     <div class="card">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="card-content">
-            <table class="no-order striped responsive-table {{ count($trailtags) > 0 ? 'datatable' : '' }} @can('trailtag_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+        <div class="content">
+            <table class="table table-striped {{ count($trailtags) > 0 ? 'datatable' : '' }} @can('trailtag_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
-                        <th>@lang('global.app_order')</th>
+                        <th class="order-null">@lang('global.app_order')</th>
                         @can('trailtag_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.trailtags.fields.title')</th>
@@ -47,37 +64,35 @@
                     @if (count($trailtags) > 0)
                         @foreach ($trailtags as $trailtag)
                             <tr data-entry-id="{{ $trailtag->id }}">
-                                <td field-key="order">1</td>
+                                <td class="order-null">1</td>
                                 @can('trailtag_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
                                 <td field-key='title'>{{ $trailtag->title }}</td>
                                 <td field-key='slug'>{{ $trailtag->slug }}</td>
-                                @if( request('show_deleted') == 1 )
                                 <td>
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'POST',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.trailtags.restore', $trailtag->id])) !!}
-                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                    {!! Form::close() !!}
-                                                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.trailtags.perma_del', $trailtag->id])) !!}
-                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                                                </td>
-                                @else
-                                <td>
-                                    <div class="buttons d-flex justify-content">
+                                    <div class="buttons">
+                                        @if( request('show_deleted') == 1 )
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'POST',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.trailtags.restore', $trailtag->id])) !!}
+                                            {!! Form::button('<i class="far fa-window-restore"></i>', ['class'=>'btn-square blue-text', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.trailtags.perma_del', $trailtag->id])) !!}
+                                            {!! Form::button('<i class="fas fa-trash-alt"></i>', ['class'=>'btn-square red-text', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                    @else
                                         @can('trailtag_view')
-                                        <a href="{{ route('admin.trailtags.show',[$trailtag->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.trailtags.show',[$trailtag->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('trailtag_edit')
-                                        <a href="{{ route('admin.trailtags.edit',[$trailtag->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        <a href="{{ route('admin.trailtags.edit',[$trailtag->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                                         @can('trailtag_delete')
                                         {!! Form::open(array(
@@ -85,12 +100,12 @@
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.trailtags.destroy', $trailtag->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                                {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
                                         @endcan
+                                        @endif
                                     </div>
                                 </td>
-                                @endif
                             </tr>
                         @endforeach
                     @else

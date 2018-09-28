@@ -1,23 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.datalessons.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
-    </div>
-    <div class="header-title">
-        <h2>@lang('global.datalesson.title')</h2>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.datalesson.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.datalessons.index') }}">
+                            @lang('global.datalesson.title')</a>
+                    </li> /
+                    <li><span>@lang('global.app_create')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.datalessons.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
 
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.datalessons.store']]) !!}
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_create')</h3>
+        {!! Form::open(['method' => 'POST', 'route' => ['admin.datalessons.store']]) !!}
+        <div class="title">
+            <h5>@lang('global.app_create')</h5>
         </div>
         
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col s12 m6">
                     <div class="input-field">
                         {!! Form::label('view', trans('global.datalesson.fields.view').'') !!}
                         {!! Form::number('view', old('view'), ['class' => 'validate']) !!}
@@ -25,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col s12 m6">
                     <div class="input-field">
                         {!! Form::label('progress', trans('global.datalesson.fields.progress').'') !!}
                         {!! Form::number('progress', old('progress'), ['class' => 'validate']) !!}
@@ -33,13 +50,13 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col s12 m6">
                     {!! Form::label('user_id', trans('global.datalesson.fields.user').'') !!}
                     {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control']) !!}
                     <span class="helper-text" data-error="@if($errors->has('user_id')){{ $errors->first('user_id') }}@endif" data-success="right"></span>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col s12 m6">
                     {!! Form::label('course_id', trans('global.datalesson.fields.course').'') !!}
                     {!! Form::select('course_id', $courses, old('course_id'), ['class' => 'form-control']) !!}
                     <span class="helper-text" data-error="@if($errors->has('course_id')){{ $errors->first('course_id') }}@endif" data-success="right"></span>
@@ -52,11 +69,11 @@
                 </div>
                 
             </div>
-            
+
+            {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
         </div>
+        {!! Form::close() !!}
     </div>
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey']) !!}
-    {!! Form::close() !!}
 @stop
 

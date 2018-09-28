@@ -2,11 +2,27 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h2>@lang('global.coursecategories.title')</h2>
-        @can('coursecategory_create')
-            <a href="{{ route('admin.coursecategories.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.coursecategories.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li><span>@lang('global.coursecategories.title')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+
+                @can('coursecategory_create')
+                    <a href="{{ route('admin.coursecategories.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                        Add Category
+                    </a>
+                @endcan
+            </div>
+        </div>
     </div>
 
     <ul class="tabs z-depth-1">
@@ -19,17 +35,17 @@
     </ul>
 
     <div class="card">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="card-content">
-            <table class="striped responsive-table {{ count($coursecategories) > 0 ? 'datatable' : '' }} @can('coursecategory_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan no-order">
+        <div class="content">
+            <table class="table table-striped no-order dataTable {{ count($coursecategories) > 0 ? 'datatable' : '' }} @can('coursecategory_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan no-order">
                 <thead>
                     <tr>
                         <th class="order-null"></th>
                         @can('coursecategory_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            @if ( request('show_deleted') != 1 )<th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>@endif
                         @endcan
 
                         <th>@lang('global.coursecategories.fields.title')</th>
@@ -46,38 +62,36 @@
                     @if (count($coursecategories) > 0)
                         @foreach ($coursecategories as $coursecategory)
                             <tr data-entry-id="{{ $coursecategory->id }}">
-                                <td class="oder-null"></td>
+                                <td class="order-null"></td>
                                 @can('coursecategory_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
 
                                 <td field-key='title'>{{ $coursecategory->title }}</td>
                                 <td field-key='slug'>{{ $coursecategory->slug }}</td>
-                                @if( request('show_deleted') == 1 )
                                 <td>
-                                    {!! Form::open(array(
+                                    <div class="buttons">
+                                    @if( request('show_deleted') == 1 )
+                                        {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'POST',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.coursecategories.restore', $coursecategory->id])) !!}
-                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                    {!! Form::button('<i class="far fa-window-restore"></i>', ['class'=>'btn-square blue-text', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                                                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.coursecategories.perma_del', $coursecategory->id])) !!}
-                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::button('<i class="fas fa-trash-alt"></i>', ['class'=>'btn-square red-text', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
-                                                                </td>
                                 @else
-                                <td>
-                                    <div class="buttons">
                                         @can('coursecategory_view')
-                                        <a href="{{ route('admin.coursecategories.show',[$coursecategory->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.coursecategories.show',[$coursecategory->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('coursecategory_edit')
-                                        <a href="{{ route('admin.coursecategories.edit',[$coursecategory->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        <a href="{{ route('admin.coursecategories.edit',[$coursecategory->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                                         @can('coursecategory_delete')
                                         {!! Form::open(array(
@@ -85,12 +99,12 @@
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.coursecategories.destroy', $coursecategory->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                                {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
                                         @endcan
+                                    @endif
                                     </div>
                                 </td>
-                                @endif
                             </tr>
                         @endforeach
                     @else

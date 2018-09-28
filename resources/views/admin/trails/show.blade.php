@@ -1,22 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.trails.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
-    </div>
-    <div class="header-title">
-        <h2>@lang('global.trails.title')</h2>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.trails.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.trails.index') }}">
+                            @lang('global.trails.title')</a>
+                    </li> /
+                    <li><span>{{ $trail->title }}</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.trails.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_view')</h3>
+        <div class="title">
+            <h5>@lang('global.app_view')</h5>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-md-6">
-                    <table class="table table-bordered table-striped">
+                <div class="col s6">
+                    <table class="table table-striped">
                         <tr>
                             <th>@lang('global.trails.fields.order')</th>
                             <td field-key='order'>{{ $trail->order }}</td>
@@ -89,7 +106,7 @@
             </ul>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             
             <div role="tabpanel" class="tab-pane active" id="datatrail">
                 <table class="striped responsive-table {{ count($datatrails) > 0 ? 'datatable' : '' }}">
@@ -141,10 +158,10 @@
                                     @else
                                     <td>
                                         @can('datatrail_view')
-                                        <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('datatrail_edit')
-                                        <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                                         @can('datatrail_delete')
                                         {!! Form::open(array(
@@ -173,7 +190,7 @@
 
 @section('javascript')
     @parent
-    <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
     <script>
         $('.editor').each(function () {
                   CKEDITOR.replace($(this).attr('id'),{

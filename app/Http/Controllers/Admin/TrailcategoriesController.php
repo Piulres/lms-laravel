@@ -69,7 +69,8 @@ class TrailcategoriesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.trailcategories.index');
+        $generals = \App\General::get();
+        return view('admin.trailcategories.index', compact('generals'));
     }
 
     /**
@@ -82,7 +83,10 @@ class TrailcategoriesController extends Controller
         if (! Gate::allows('trailcategory_create')) {
             return abort(401);
         }
-        return view('admin.trailcategories.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.trailcategories.create', compact('generals'));
     }
 
     /**
@@ -117,7 +121,9 @@ class TrailcategoriesController extends Controller
         }
         $trailcategory = Trailcategory::findOrFail($id);
 
-        return view('admin.trailcategories.edit', compact('trailcategory'));
+        $generals = \App\General::get();
+
+        return view('admin.trailcategories.edit', compact('trailcategory', 'generals'));
     }
 
     /**
@@ -159,7 +165,9 @@ class TrailcategoriesController extends Controller
 
         $trailcategory = Trailcategory::findOrFail($id);
 
-        return view('admin.trailcategories.show', compact('trailcategory', 'trails'));
+        $generals = \App\General::get();
+
+        return view('admin.trailcategories.show', compact('trailcategory', 'trails', 'generals'));
     }
 
 

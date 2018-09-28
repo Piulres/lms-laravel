@@ -4,8 +4,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
-                <div class="card-title">@lang('global.app_reset_password')</div>
-                <div class="card-content">
+                <div class="title">@lang('global.app_reset_password')</div>
+                <div class="content">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             @lang('global.app_reset_password_woops')
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">@lang('global.app_email')</label>
 
-                            <div class="col-md-6">
+                            <div class="col s6">
                                 <input type="email"
                                        class="form-control"
                                        name="email"
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">@lang('global.app_password')</label>
 
-                            <div class="col-md-6">
+                            <div class="col s6">
                                 <input type="password"
                                        class="form-control"
                                        name="password">
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">@lang('global.app_confirm_password')</label>
 
-                            <div class="col-md-6">
+                            <div class="col s6">
                                 <input type="password"
                                        class="form-control"
                                        name="password_confirmation">

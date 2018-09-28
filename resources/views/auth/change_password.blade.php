@@ -11,16 +11,16 @@
 			</div>
 		</div>
 	@else
-		{!! Form::open(['method' => 'PATCH', 'route' => ['auth.change_password']]) !!}
 		<!-- If no success message in flash session show change password form  -->
 		<div class="card">
-			<div class="card-title">
+			{!! Form::open(['method' => 'PATCH', 'route' => ['auth.change_password']]) !!}
+			<div class="title">
 				@lang('global.app_edit')
 			</div>
 
-			<div class="card-content">
+			<div class="content">
 				<div class="row">
-					<div class="col-12 col-md-6">
+					<div class="col m6 s12">
 						{!! Form::label('current_password', trans('global.app_current_password'), ['class' => 'control-label']) !!}
 						{!! Form::password('current_password', ['class' => 'validate']) !!}
 						<span class="helper-text" data-error="@if($errors->has('slug')){{ $errors->first('slug') }}@endif" data-success="right"></span>
@@ -33,7 +33,7 @@
 				</div>
 
 				<div class="row">
-					<div class="col-12 col-md-6">
+					<div class="col m6 s12">
 						{!! Form::label('new_password', trans('global.app_new_password'), ['class' => 'control-label']) !!}
 						{!! Form::password('new_password', ['class' => 'validate']) !!}
 						<span class="helper-text" data-error="@if($errors->has('slug')){{ $errors->first('slug') }}@endif" data-success="right"></span>
@@ -46,7 +46,7 @@
 				</div>
 
 				<div class="row">
-					<div class="col-12 col-md-6">
+					<div class="col m6 s12">
 						{!! Form::label('new_password_confirmation', trans('global.app_password_confirm'), ['class' => 'control-label']) !!}
 						{!! Form::password('new_password_confirmation', ['class' => 'validate']) !!}
 						<span class="helper-text" data-error="@if($errors->has('slug')){{ $errors->first('slug') }}@endif" data-success="right"></span>
@@ -57,11 +57,15 @@
 						@endif
 					</div>
 				</div>
+				<div class="row">
+					<div class="col s12">
+						{!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
+					</div>
+				</div>
 			</div>
+			{!! Form::close() !!}
 		</div>
 
-		{!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light grey']) !!}
-		{!! Form::close() !!}
 	@endif
 @stop
 

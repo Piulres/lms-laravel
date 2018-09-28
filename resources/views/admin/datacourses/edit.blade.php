@@ -1,22 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="back-button">
-        <a href="{{ route('admin.datacourses.index') }}" class="waves-effect waves-light btn-small grey">@lang('global.app_back_to_list')</a>
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.datacourse.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li>
+                        <a href="{{ route('admin.datacourses.index') }}">
+                            @lang('global.datacourse.title')</a>
+                    </li> /
+                    <li><span>@lang('global.app_edit')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a href="{{ route('admin.datacourses.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    @lang('global.app_back_to_list')
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="header-title">
-        <h2>@lang('global.datacourse.title')</h2>
-    </div>    
-    {!! Form::model($datacourse, ['method' => 'PUT', 'route' => ['admin.datacourses.update', $datacourse->id]]) !!}
 
     <div class="card">
-        <div class="card-title">
-            <h3>@lang('global.app_edit')</h3>
+        {!! Form::model($datacourse, ['method' => 'PUT', 'route' => ['admin.datacourses.update', $datacourse->id]]) !!}
+        <div class="title">
+            <h5>@lang('global.app_create')</h5>
         </div>
 
-        <div class="card-content">
+        <div class="content">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col m4 s12">
                     <div class="input-field">
                         {!! Form::label('view', trans('global.datacourse.fields.view').'') !!}
                         {!! Form::number('view', old('view'), ['class' => 'validate']) !!}
@@ -24,7 +41,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m4 s12">
                     <div class="input-field">
                         {!! Form::label('progress', trans('global.datacourse.fields.progress').'') !!}
                         {!! Form::number('progress', old('progress'), ['class' => 'validate']) !!}
@@ -32,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m4 s12">
                     <div class="input-field">
                         {!! Form::label('rating', trans('global.datacourse.fields.rating').'') !!}
                         {!! Form::number('rating', old('rating'), ['class' => 'validate']) !!}
@@ -40,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col s12">
                     <div class="input-field">
                         {!! Form::label('testimonal', trans('global.datacourse.fields.testimonal').'') !!}
                         {!! Form::textarea('testimonal', old('testimonal'), ['class' => 'materialize-textarea ', 'placeholder' => '']) !!}
@@ -48,29 +65,31 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     {!! Form::label('user_id', trans('global.datacourse.fields.user').'') !!}
                     {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control']) !!}
                     <span class="helper-text" data-error="@if($errors->has('user_id')){{ $errors->first('user_id') }}@endif" data-success="right"></span>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     {!! Form::label('course_id', trans('global.datacourse.fields.course').'') !!}
                     {!! Form::select('course_id', $courses, old('course_id'), ['class' => 'form-control']) !!}
                     <span class="helper-text" data-error="@if($errors->has('course_id')){{ $errors->first('course_id') }}@endif" data-success="right"></span>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col m6 s12">
                     {!! Form::label('certificate_id', trans('global.datacourse.fields.certificate').'') !!}
                     {!! Form::select('certificate_id', $certificates, old('certificate_id'), ['class' => 'form-control']) !!}
                     <span class="helper-text" data-error="@if($errors->has('certificate_id')){{ $errors->first('certificate_id') }}@endif" data-success="right"></span>
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col s12">
+                    {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
+                </div>
+            </div>
         </div>
+        {!! Form::close() !!}
     </div>
-
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light grey white-text']) !!}
-    {!! Form::close() !!}
 @stop
 

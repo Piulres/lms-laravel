@@ -80,7 +80,9 @@ class TrailscertificatesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.trailscertificates.index');
+        $generals = \App\General::get();
+
+        return view('admin.trailscertificates.index', compact('generals'));
     }
 
     /**
@@ -93,7 +95,10 @@ class TrailscertificatesController extends Controller
         if (! Gate::allows('trailscertificate_create')) {
             return abort(401);
         }
-        return view('admin.trailscertificates.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.trailscertificates.create', compact('generals'));
     }
 
     /**
@@ -129,7 +134,9 @@ class TrailscertificatesController extends Controller
         }
         $trailscertificate = Trailscertificate::findOrFail($id);
 
-        return view('admin.trailscertificates.edit', compact('trailscertificate'));
+        $generals = \App\General::get();
+
+        return view('admin.trailscertificates.edit', compact('trailscertificate', 'generals'));
     }
 
     /**
@@ -169,7 +176,9 @@ class TrailscertificatesController extends Controller
 
         $trailscertificate = Trailscertificate::findOrFail($id);
 
-        return view('admin.trailscertificates.show', compact('trailscertificate', 'datatrails'));
+        $generals = \App\General::get();
+
+        return view('admin.trailscertificates.show', compact('trailscertificate', 'datatrails', 'generals'));
     }
 
 

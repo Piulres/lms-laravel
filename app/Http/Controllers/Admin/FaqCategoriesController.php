@@ -55,7 +55,9 @@ class FaqCategoriesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.faq_categories.index');
+        $generals = \App\General::get();
+
+        return view('admin.faq_categories.index', compact('generals'));
     }
 
     /**
@@ -68,7 +70,10 @@ class FaqCategoriesController extends Controller
         if (! Gate::allows('faq_category_create')) {
             return abort(401);
         }
-        return view('admin.faq_categories.create');
+
+        $generals = \App\General::get();
+
+        return view('admin.faq_categories.create', compact('generals'));
     }
 
     /**
@@ -103,7 +108,9 @@ class FaqCategoriesController extends Controller
         }
         $faq_category = FaqCategory::findOrFail($id);
 
-        return view('admin.faq_categories.edit', compact('faq_category'));
+        $generals = \App\General::get();
+
+        return view('admin.faq_categories.edit', compact('faq_category', 'generals'));
     }
 
     /**
@@ -142,7 +149,9 @@ class FaqCategoriesController extends Controller
 
         $faq_category = FaqCategory::findOrFail($id);
 
-        return view('admin.faq_categories.show', compact('faq_category', 'faq_questions'));
+        $generals = \App\General::get();
+
+        return view('admin.faq_categories.show', compact('faq_category', 'faq_questions', 'generals'));
     }
 
 

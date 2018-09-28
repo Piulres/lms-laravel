@@ -2,25 +2,41 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header-title">
-        <h2>@lang('global.content-pages.title')</h2>
-        @can('content_page_create')
-            <a href="{{ route('admin.content_pages.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
+    <div class="page-title">
+        <div class="row">
+            <div class="col s12 m9 l10"><h1>@lang('global.content-pages.title')</h1>
+                <ul>
+                    <li>
+                        <a href="{{ url('/admin/home') }}">
+                            <i class="fa fa-home"></i>
+                            Dashboard</a>
+                    </li> /
+                    <li><span>@lang('global.content-pages.title')</span></li>
+                </ul>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+
+                @can('course_create')
+                    <a href="{{ route('admin.content_pages.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                        Add page
+                    </a>
+                @endcan
+            </div>
+        </div>
     </div>
 
     <div class="card">
-        <div class="card-title">
+        <div class="title">
             <h3>@lang('global.app_list')</h3>
         </div>
 
-        <div class="card-content">
-            <table class="striped responsive-table {{ count($content_pages) > 0 ? 'datatable' : '' }} @can('content_page_delete') dt-select @endcan">
+        <div class="content">
+            <table class="table table-striped no-order dataTable {{ count($content_pages) > 0 ? 'datatable' : '' }} @can('content_page_delete') dt-select @else dt-show @endcan">
                 <thead>
                     <tr>
                         <th class="order-null"></th>
                         @can('content_page_delete')
-                            <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                            <th><input type="checkbox" id="select-all" /><label for="select-all"></label></th>
                         @endcan
 
                         <th>@lang('global.content-pages.fields.title')</th>
@@ -60,10 +76,10 @@
                                 <td>
                                     <div class="buttons">
                                         @can('content_page_view')
-                                        <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square amber"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
                                         @endcan
                                         @can('content_page_edit')
-                                        <a href="{{ route('admin.content_pages.edit',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        <a href="{{ route('admin.content_pages.edit',[$content_page->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
                                         @endcan
                                         @can('content_page_delete')
                                         {!! Form::open(array(
@@ -71,7 +87,7 @@
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.content_pages.destroy', $content_page->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
                                         @endcan
                                     </div>
