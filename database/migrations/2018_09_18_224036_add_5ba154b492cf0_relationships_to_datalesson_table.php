@@ -21,6 +21,10 @@ class Add5ba154b492cf0RelationshipsToDatalessonTable extends Migration
                 $table->integer('course_id')->unsigned()->nullable();
                 $table->foreign('course_id', '209379_5ba1465a8371g')->references('id')->on('courses')->onDelete('cascade');
                 }
+                if (!Schema::hasColumn('datalessons', 'lesson_id')) {
+                $table->integer('lesson_id')->unsigned()->nullable();
+                $table->foreign('lesson_id', '209379_5ba1465a8371h')->references('id')->on('courses')->onDelete('cascade');
+                }
                 
         });
     }

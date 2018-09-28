@@ -19,6 +19,7 @@ class DataLessonsSeed extends Seeder
                 'progress' => $faker->numberBetween(0,100),
                 'course_id' => $faker->randomDigitNotNull,
                 'user_id' => $faker->randomDigitNotNull,            
+                'lesson_id' => $faker->randomDigitNotNull,            
             ]);
         }
     }

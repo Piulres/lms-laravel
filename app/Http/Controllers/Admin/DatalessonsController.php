@@ -32,6 +32,7 @@ class DatalessonsController extends Controller
             $query = Datalesson::query();
             $query->with("user");
             $query->with("course");
+            $query->with("lesson");
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
                 
@@ -47,6 +48,7 @@ class DatalessonsController extends Controller
                 'datalessons.progress',
                 'datalessons.user_id',
                 'datalessons.course_id',
+                'datalessons.lesson_id',
             ]);
             $table = Datatables::of($query);
 
@@ -72,6 +74,9 @@ class DatalessonsController extends Controller
             });
             $table->editColumn('course.title', function ($row) {
                 return $row->course ? $row->course->title : '';
+            });
+            $table->editColumn('lesson.title', function ($row) {
+                return $row->lesson ? $row->lesson->title : '';
             });
 
             $table->rawColumns(['actions','massDelete']);

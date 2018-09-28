@@ -36,6 +36,7 @@
                         <th>@lang('global.datalesson.fields.progress')</th>
                         <th>@lang('global.datalesson.fields.user')</th>
                         <th>@lang('global.datalesson.fields.course')</th>
+                        <th>@lang('global.datalesson.fields.lesson')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -65,6 +66,7 @@
                 {data: 'progress', name: 'progress'},
                 {data: 'user.name', name: 'user.name'},
                 {data: 'course.title', name: 'course.title'},
+                {data: 'lesson.title', name: 'lesson.title'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

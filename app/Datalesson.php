@@ -20,7 +20,7 @@ class Datalesson extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['view', 'progress', 'user_id', 'course_id', 'certificate_id'];
+    protected $fillable = ['view', 'progress', 'user_id', 'course_id', 'lesson_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -66,7 +66,16 @@ class Datalesson extends Model
     public function setCourseIdAttribute($input)
     {
         $this->attributes['course_id'] = $input ? $input : null;
-    }    
+    }
+
+    /**
+     * Set to null if empty
+     * @param $input
+     */
+    public function setLessonIdAttribute($input)
+    {
+        $this->attributes['lesson_id'] = $input ? $input : null;
+    }       
     
     public function user()
     {
@@ -76,6 +85,11 @@ class Datalesson extends Model
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id')->withTrashed();
+    }
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class, 'lesson_id')->withTrashed();
     }
         
 }

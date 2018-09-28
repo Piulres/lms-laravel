@@ -33,6 +33,10 @@
                             <th>@lang('global.datalesson.fields.course')</th>
                             <td field-key='course'>{{ $datalesson->course->title or '' }}</td>
                         </tr>
+                        <tr>
+                            <th>@lang('global.datalesson.fields.lesson')</th>
+                            <td field-key='lesson'>{{ $datalesson->lesson->title or '' }}</td>
+                        </tr>
                     </table>
                 </div>
             </div>

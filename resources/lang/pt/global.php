@@ -306,7 +306,7 @@ return [
 			'testimonal' => 'Testimonal',
 			'user' => 'User',
 			'course' => 'Course',
-			'certificate' => 'Certificate',
+			'lesson' => 'Lesson',
 		],
 	],
 	
