@@ -7,6 +7,7 @@
                     <!-- <sup>{{ number_format($datacourse->progress, 9) }} %</sup> -->
                     <p>Progress: </p><h5>{{ number_format($datacourse->progress, 0) }} %</h5>
                 @endforeach
+                <p style="color: red;">Lessons: {{ $total_lessons }}</p>
             </div>
             <div class="col s11">   
                 <h2 class="page-title">Course: {{ $course->title }}</h2>
@@ -39,12 +40,12 @@
                     <div>{{ $lesson->content }}</div>
                     <div>{{ $lesson->study_material }}</div>
                     
-                    <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('done/'. $course->id) }}">Done</a>
-
+                    <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('done/'. $lesson->id) }}">></a>
                     <hr>
 
                 </div>
             @endforeach
+            {{ $lessons->links() }}
         </div>  
 
         <div class="row"> 

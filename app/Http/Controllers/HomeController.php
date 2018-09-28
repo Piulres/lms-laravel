@@ -68,7 +68,8 @@ class HomeController extends Controller
         //  ->where("coursescertificates.id", '=', '1')
         // ->get();
 
-        // dd($mycertificates);
+             
+
 
         return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates' ));
     }
