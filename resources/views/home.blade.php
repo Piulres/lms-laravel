@@ -3,6 +3,16 @@
 @section('content')
     <div class="row">
 
+        <div id="testimonal-box" class="col-lg-12 col-md-12">
+            <h5>Nos de seu feedback sobre o curso: tal</h5>
+            <div class="input-field">
+                <label for="testimonal" class="">Testimonal</label>
+                <input class="validate" name="testimonal" type="text" id="testimonal">
+                <span class="helper-text" data-error="" data-success="right"></span>
+            </div>
+            <a href="#" class="waves-effect waves-light btn white black-text">Enviar</a>            
+        </div>
+       
         <div class="col-lg-6 col-md-12 card-home">
             <div class="card">
                 <div class="card-title">
@@ -216,6 +226,68 @@
                         @endforeach
                     </table>
                 </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6 col-md-12 card-home">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Certificates</h4>
+                </div>
+
+                <div class="card-content">
+                    <table class="table table-bordered table-striped ajaxTable">
+                        
+                        @foreach($certificates as $certificate)
+                            <tr>
+
+                                <td>{{ $certificate->id }} </td>
+                                <td>{{ $certificate->title }} </td>
+                                <td>
+
+                                    <div class="buttons end">
+                                        @can('coursecertificate_view')
+                                        <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-lg-6 col-md-12 card-home">
+            <div class="card">
+                <div class="card-title">
+                    <h4>My Certificates</h4>
+                </div>
+
+                <div class="card-content">
+                    <table class="table table-bordered table-striped ajaxTable">
+                        
+                        @foreach($mycertificates as $mycertificate)
+                            <tr>
+
+                                <td>{{ $mycertificate->certificate_id }} </td>
+                                <td>{{ $mycertificate->title }} </td>
+                                <td>
+
+                                    <div class="buttons end">
+                                        @can('coursecertificate_view')
+                                        <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+
             </div>
         </div>
 
