@@ -155,3 +155,24 @@ footer.page-footer {
 .mamama {
     font-size: 16px;
 }
+
+.pagination {
+    background-color: grey;
+    padding: 10px;
+}
+
+.pagination li.active {
+    background-color: black;
+    color: white;
+}
+
+.pagination span.page-link {
+    margin-top: 4px;
+    display: block;
+}
+
+li.page-item {
+    min-width: 30px;
+    min-height: 30px;
+    text-align: center;
+}

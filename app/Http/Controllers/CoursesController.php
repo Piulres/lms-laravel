@@ -16,17 +16,15 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Session;
 class CoursesController extends Controller
 {
-    use FileUploadTrait;    
-
+    use FileUploadTrait;
 
     public function index()
     {
-
         $courses = Course::latest()->get();
         return view('courses', compact('course', 'datacourses', 'trails'));
-
     }
 
     public function show($id)
@@ -54,60 +52,28 @@ class CoursesController extends Controller
  
     public function start($id)
     {
-
         if (! Gate::allows('course_access')) {
             return redirect('login');
         }
 
         $course = Course::findOrFail($id);
+
         $user = Auth::id();
+
         $lessonsfull = DB::table('lessons')
-            ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
-            ->where("course_lesson.course_id", '=',  $id)
+         ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
+         ->where("course_lesson.course_id", '=',  $id)
         ->get();
+
         $lessons = DB::table('lessons')
-            ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
-            ->where("course_lesson.course_id", '=',  $id)
-         ->paginate(1);
+         ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
+         ->where("course_lesson.course_id", '=',  $id)
+        ->paginate(1);
 
         $total_lessons = DB::table('lessons')
-            ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
-            ->where("course_lesson.course_id", '=',  $id)
-         ->count();
-       
-        if ($total_lessons == 0) {            
-            $percentage = 100;            
-        } else {
-            $percentage = 100 / $total_lessons;        
-        }
-
-        \App\Datacourse::updateOrCreate([
-            'user_id' => Auth::id(),
-            'course_id' => $id,
-            'view' => '0',
-        ]);
-
-        for($count = 0; $count < $total_lessons; $count++)
-        {
-            \App\Datalesson::updateOrCreate([
-                'user_id' => Auth::id(),
-                'course_id' => $id,
-                'lesson_id' => $lessonsfull[$count]->id,
-                'progress' => $percentage,
-            ]);
-        }        
-
-        DB::table('datacourses')
-         ->where("datacourses.user_id", '=',  $user)
-         ->where("datacourses.course_id", '=',  $id)
-         ->limit(1)
-        ->update(['datacourses.view'=> '1']);
-
-        DB::table('datacourses')
-         ->where("datacourses.user_id", '=',  $user)
-         ->where("datacourses.course_id", '=',  $id)
-         ->where('view', '=', NULL)
-        ->delete();
+          ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
+          ->where("course_lesson.course_id", '=',  $id)
+        ->count();
 
         $datacourses = DB::table('datacourses')
          ->where("datacourses.user_id", '=',  $user)
@@ -121,6 +87,61 @@ class CoursesController extends Controller
          ->where("datalessons.view", '=',  1)
         ->count();
 
+        $check_certificate = DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $id)
+         ->limit(1)
+        ->get();
+
+
+        // ////////////////////////////////////////////
+
+        // check lesson number
+        if ($total_lessons == 0) {            
+            $percentage = 100;            
+        } else {
+            $percentage = 100 / $total_lessons;        
+        }
+
+        // create
+        \App\Datacourse::updateOrCreate(
+        [
+            'user_id' => Auth::id(),
+            'course_id' => $id
+        ],
+        ['view' => '0']);
+
+        // add data to lessons
+        for($count = 0; $count < $total_lessons; $count++)
+        {
+            
+            $jaja = \App\Datalesson::updateOrCreate(
+                [
+                    'user_id' => Auth::id(),
+                    'course_id' => $id,
+                    'lesson_id' => $lessonsfull[$count]->id
+                ],
+                ['progress' => $percentage]
+            );
+
+        }        
+
+        // add course to mycourses
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $id)
+         ->limit(1)
+        ->update(['datacourses.view'=> '1']);
+
+        // delete duplicate course
+        DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $id)
+         ->where('view', '=', NULL)
+        ->delete();       
+
+
+        // add progress
         if ($check_done_course == $total_lessons) {
 
             DB::table('datacourses')
@@ -141,15 +162,9 @@ class CoursesController extends Controller
              ->where("datacourses.user_id", '=',  $user)
              ->where("datacourses.course_id", '=',  $id)
             ->update(['datacourses.progress' => $actual_progress]);
-        }
-
-        $check_certificate = DB::table('datacourses')
-         ->where("datacourses.user_id", '=',  $user)
-         ->where("datacourses.course_id", '=',  $id)
-         ->limit(1)
-        ->get();
-
-     
+        }     
+        
+        // add certificate
         if ($check_certificate[0]->progress == '100') {
 
             // dd($course->id);
@@ -160,15 +175,15 @@ class CoursesController extends Controller
 
         }
 
-        // dd($total_lessons);
+        // seccion variables
+        Session::put('course', $datacourses[0]->course_id);
+        Session::put('percentage', $percentage);
        
         return view('oncourse', compact('course', 'datacourses', 'lessons', 'total_lessons'));
-
     }
 
     public function add($id)
     {
-
         if (! Gate::allows('course_access')) {
             return redirect('login');
         }
@@ -196,12 +211,10 @@ class CoursesController extends Controller
         ->delete();      
 
         return redirect('library');
-
     }
 
     public function remove($id)
     {
-
         if 
             (! Gate::allows('course_access')) {
             return redirect('login');
@@ -232,7 +245,6 @@ class CoursesController extends Controller
             // ->get();
 
         return redirect('library');
-
     }  
 
     public function certificate($id)
@@ -282,31 +294,24 @@ class CoursesController extends Controller
 
     public function done($id)
     {
-      
         if (! Gate::allows('course_access')) {
             return redirect('login');
         }
 
         $user = Auth::id();
-        
-        $coursescertificates = DB::table('coursescertificates')
-         ->get();
-        
-        
-        $lesson_active = DB::table('datalessons')
-         ->where("datalessons.user_id", '=',  $user)
-         ->where("datalessons.lesson_id", '=',  $id)
-         ->limit(1)
-        ->get();
 
-        DB::table('datalessons')
-         ->where("datalessons.user_id", '=',  $user)
-         ->where("datalessons.lesson_id", '=',  $id)
-         ->where('datalessons.view', '=', NULL)
-         ->limit(1)
-        ->update(['datalessons.view'=> 1]);
-     
+        $course = Session::get('course');
+        $percentage = Session::get('percentage');
+        
+        \App\Datalesson::updateOrCreate(
+            [
+                'user_id' => Auth::id(),
+                'course_id' => $course,
+                'lesson_id' => $id
+            ],
+            ['view' => 1]
+        );
+
         return back();
-  
     }
 }

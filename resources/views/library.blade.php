@@ -24,6 +24,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <!-- <img src="{{ asset(env('UPLOAD_PATH') . $mycourse->featured_image) }}"/> -->
+                                <div style="padding: 10px;"class="black white-text">Progress: {{ $mycourse->progress }} %</div>
                                 <img class="responsive-img" src="images/background1.jpg">
                                 <span class="card-title">{{ $mycourse->title }}</span>
                             </div>
