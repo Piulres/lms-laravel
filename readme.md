@@ -1,5 +1,5 @@
-# LMS - Laravel
-### v2
+# LMS - Giridhari Das
+### RPX v2
 
 Prepare your .env file there with database connection and other settings.
 
