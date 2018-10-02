@@ -73,7 +73,8 @@ class HomeController extends Controller
         //  ->where("coursescertificates.id", '=', '1')
         // ->get();
 
-        // dd($mycertificates);
+             
+
 
         $mytestimonals = DB::table('datacourses')
             ->leftJoin('courses', 'datacourses.course_id', '=', 'courses.id')
