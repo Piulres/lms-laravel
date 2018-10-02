@@ -74,6 +74,8 @@ class CoursesController extends Controller
             ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
             ->where("course_lesson.course_id", '=',  $id)
          ->count();
+
+         //dd($lessons);
        
         if ($total_lessons == 0) {            
             $percentage = 100;            
@@ -87,16 +89,36 @@ class CoursesController extends Controller
             'view' => '0',
         ]);
 
-        for($count = 0; $count < $total_lessons; $count++)
-        {
-            \App\Datalesson::updateOrCreate([
-                'user_id' => Auth::id(),
-                'course_id' => $id,
-                'lesson_id' => $lessonsfull[$count]->id,
-                'progress' => $percentage,
-            ]);
-        }        
+        $datalessons = DB::table('datalessons')
+        ->where("datalessons.course_id", '=',  $id)
+        ->where("datalessons.user_id", '=',  $user)
+        ->get();
 
+        //dd($datalessons->count());
+
+        if($datalessons->count() == 0)
+        {
+            for($count = 0; $count < $total_lessons; $count++)
+            {
+                \App\Datalesson::create([
+                    'user_id' => Auth::id(),
+                    'course_id' => $id,
+                    'lesson_id' => $lessonsfull[$count]->id,
+                    'progress' => $percentage,
+                ]);
+            }        
+        }else{
+            foreach($datalessons as $lesson)
+            {
+                
+                \App\Datalesson::where('id','=',$lesson->id)
+                ->update([
+                    'user_id' => Auth::id(),
+                    'course_id' => $id,
+                    'progress' => $percentage,
+                ]);
+            }
+        }
         DB::table('datacourses')
          ->where("datacourses.user_id", '=',  $user)
          ->where("datacourses.course_id", '=',  $id)
@@ -121,6 +143,13 @@ class CoursesController extends Controller
          ->where("datalessons.view", '=',  1)
         ->count();
 
+
+        $check_certificate = DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $id)
+         ->limit(1)
+        ->get();
+
         if ($check_done_course == $total_lessons) {
 
             DB::table('datacourses')
@@ -142,13 +171,6 @@ class CoursesController extends Controller
              ->where("datacourses.course_id", '=',  $id)
             ->update(['datacourses.progress' => $actual_progress]);
         }
-
-        $check_certificate = DB::table('datacourses')
-         ->where("datacourses.user_id", '=',  $user)
-         ->where("datacourses.course_id", '=',  $id)
-         ->limit(1)
-        ->get();
-
      
         if ($check_certificate[0]->progress == '100') {
 
@@ -160,7 +182,7 @@ class CoursesController extends Controller
 
         }
 
-        // dd($total_lessons);
+        // dd($actual_progress);
        
         return view('oncourse', compact('course', 'datacourses', 'lessons', 'total_lessons'));
 
@@ -296,14 +318,12 @@ class CoursesController extends Controller
         $lesson_active = DB::table('datalessons')
          ->where("datalessons.user_id", '=',  $user)
          ->where("datalessons.lesson_id", '=',  $id)
-         ->limit(1)
         ->get();
 
         DB::table('datalessons')
          ->where("datalessons.user_id", '=',  $user)
          ->where("datalessons.lesson_id", '=',  $id)
-         ->where('datalessons.view', '=', NULL)
-         ->limit(1)
+         // ->where("datalessons.view", '=',  0)
         ->update(['datalessons.view'=> 1]);
      
         return back();
