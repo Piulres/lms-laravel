@@ -80,6 +80,9 @@ p {
 .modal-content h5 {
     margin-bottom: 40px;
 }
+.card .content {
+    padding: 25px;
+}
 @media only screen and (max-width: 992px) {
     .parallax-container .section {
         /*position: absolute;*/

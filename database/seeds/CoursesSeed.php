@@ -14,7 +14,7 @@ class CoursesSeed extends Seeder
     {
         $faker = Faker\Factory::create();
        
-        for($i=0;$i<10;$i++){
+         for($i=0;$i<10;$i++){
             \App\Course::create([
                 'order' => $i+1,
                 'title' => $faker->word,
@@ -27,6 +27,6 @@ class CoursesSeed extends Seeder
                 'end_date' => Carbon::createFromTimeStamp($faker->dateTimeBetween('now', '+90 days')->getTimestamp())->format('d/m/Y'),
                 'approved' => 1,
             ]);
-        }
+        } 
     }
 }
