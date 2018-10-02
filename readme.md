@@ -1,5 +1,5 @@
 # LMS - Laravel
-### v2
+### v2.1
 
 Prepare your .env file there with database connection and other settings.
 
