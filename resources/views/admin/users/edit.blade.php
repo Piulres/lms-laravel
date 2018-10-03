@@ -69,7 +69,7 @@
                 <div class="col m6 s12">
                     <div class="input-field">
                         {!! Form::label('password', trans('global.users.fields.password').'*') !!}
-                        {!! Form::password('password', ['class' => 'validate', 'required' => '']) !!}
+                        {!! Form::password('password', ['class' => 'validate']) !!}
                         <span class="helper-text" data-error="@if($errors->has('password')){{ $errors->first('password') }}@endif" data-success="right"></span>
                     </div>
                 </div>

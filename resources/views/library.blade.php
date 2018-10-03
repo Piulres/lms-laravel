@@ -64,7 +64,7 @@
             <div class="row">
 
                 @foreach($courses as $course)
-                   
+
                     <div class="col s12 m6 l4 xl4">
                         <div class="card">
                             <div class="card-image">
@@ -80,8 +80,10 @@
                             </div>
                             <div class="card-action">
                                 <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('courses/'. $course->id) }}">View course</a>
-                                @if (Auth::check())                                
-                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('add/'. $course->id) }}">Add to my courses</a>
+                                @if (Auth::check())
+                                    @if($course->user_id != Auth::id())
+                                        <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('add/'. $course->id) }}">Add to my courses</a>
+                                    @endif
                                 @else
                                 @endif
                             </div>

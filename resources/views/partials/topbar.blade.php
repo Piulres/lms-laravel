@@ -61,10 +61,10 @@
                 <a class="dropdown-button user-top-infos" data-activates="user-dropdown" href="#!">
                 @if($user->avatar)
                     <span class="avatar-icon" style="background-image: url('{{ url('/') }}/{{ $user->avatar }}'); "></span>
+                    {{$user->name . ' ' . $user->last_name}} <i class="mdi-navigation-expand-more right"></i>
                 @else
                     <img src="{{ url('/custom/avatar.png') }}" alt="{{$user->name . ' ' . $user->last_name}}" class="circle">{{$user->name . ' ' . $user->last_name}} <i class="mdi-navigation-expand-more right"></i>
                 @endif
-                    {{$user->name . ' ' . $user->last_name}} <i class="mdi-navigation-expand-more right"></i>
                 </a>
                     <ul id="user-dropdown" class="dropdown-content">
                     <li>
