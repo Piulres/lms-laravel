@@ -24,7 +24,11 @@
                         <div class="card">
                             <div class="card-image">
                                 <!-- <img src="{{ asset(env('UPLOAD_PATH') . $mycourse->featured_image) }}"/> -->
+                                @if ($mycourse->progress === null)
+                                <div style="padding: 10px;"class="black white-text">Progress: 0 %</div>
+                                @else
                                 <div style="padding: 10px;"class="black white-text">Progress: {{ $mycourse->progress }} %</div>
+                                @endif
                                 <img class="responsive-img" src="images/background1.jpg">
                                 <span class="card-title">{{ $mycourse->title }}</span>
                             </div>
@@ -81,9 +85,9 @@
                             <div class="card-action">
                                 <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('courses/'. $course->id) }}">View course</a>
                                 @if (Auth::check())
-                                    @if($course->user_id != Auth::id())
+                                    <!-- @if($course->user_id != Auth::id()) -->
                                         <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('add/'. $course->id) }}">Add to my courses</a>
-                                    @endif
+                                    <!-- @endif -->
                                 @else
                                 @endif
                             </div>

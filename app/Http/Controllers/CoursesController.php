@@ -45,9 +45,16 @@ class CoursesController extends Controller
 
         $course = Course::findOrFail($id);
 
+        $lists = DB::table('courses')
+         ->leftJoin('datacourses', 'courses.id', '=', 'datacourses.course_id')
+         ->where("courses.id", '=',  $id)
+        ->get();
+
         $generals = \App\General::get();
 
-        return view('courses', compact('course', 'datacourses', 'trails', 'generals'));
+        // dd($course);
+
+        return view('courses', compact('course', 'lists', 'datacourses', 'trails', 'generals'));
     }
  
     public function start($id)
@@ -69,6 +76,12 @@ class CoursesController extends Controller
          ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
          ->where("course_lesson.course_id", '=',  $id)
         ->paginate(1);
+
+        // $lessons = DB::table('lessons')
+        //  ->leftJoin('datalessons', 'lessons.id', '=', 'datalessons.lesson_id')
+        //  ->where("datalessons.course_id", '=',  $id)
+        //  ->where("datalessons.user_id", '=',  $user)
+        // ->paginate(1);
 
         $total_lessons = DB::table('lessons')
           ->leftJoin('course_lesson', 'lessons.id', '=', 'course_lesson.lesson_id')
@@ -210,7 +223,7 @@ class CoursesController extends Controller
          ->where('view', '=', NULL)
         ->delete();      
 
-        return redirect('library');
+        return back();
     }
 
     public function remove($id)
@@ -244,7 +257,7 @@ class CoursesController extends Controller
             // })
             // ->get();
 
-        return redirect('library');
+        return back();
     }  
 
     public function certificate($id)

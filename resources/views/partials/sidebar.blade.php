@@ -11,7 +11,7 @@
             </a>
             <!-- Sidebar toggle -->
             <!-- Logo -->
-            <a href="#!" class="brand-logo">
+            <a href="{{ URL::to('/') }}" class="brand-logo">
                 @if($generals->count() >= 1)
                     <img src="{{url('/')}}/{{$generals[0]->site_logo}}" alt="Con">
                 @else
