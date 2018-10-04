@@ -100,13 +100,6 @@ class CoursesController extends Controller
          ->where("datalessons.view", '=',  1)
         ->count();
 
-        $check_certificate = DB::table('datacourses')
-         ->where("datacourses.user_id", '=',  $user)
-         ->where("datacourses.course_id", '=',  $id)
-         ->limit(1)
-        ->get();
-
-
         // ////////////////////////////////////////////
 
         // check lesson number
@@ -177,8 +170,15 @@ class CoursesController extends Controller
             ->update(['datacourses.progress' => $actual_progress]);
         }     
         
+
         // add certificate
-        if ($check_certificate[0]->progress == '100') {
+        $check_certificate = DB::table('datacourses')
+         ->where("datacourses.user_id", '=',  $user)
+         ->where("datacourses.course_id", '=',  $id)
+         // ->limit(1)
+        ->get();
+
+        if ($check_certificate[0]->progress == 100) {
 
             // dd($course->id);
             DB::table('datacourses')
@@ -188,7 +188,7 @@ class CoursesController extends Controller
 
         }
 
-        // seccion variables
+        // session variables
         Session::put('course', $datacourses[0]->course_id);
         Session::put('percentage', $percentage);
        
