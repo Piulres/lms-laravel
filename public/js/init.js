@@ -5,12 +5,16 @@
     $('.parallax').parallax();
     $('.modal').modal();
 
-    $(".card .content p").text(function(index, currentText) {
-	    return currentText.substr(0, 150) + ' ...';
+ //    $(".card .card-reveal .c-desc").text(function(index, currentText) {
+	//     return currentText.substr(0, 125) + ' ...';
+	// });
+
+	$(".card .card-content sup").text(function(index, currentText) {
+	    return currentText.substr(0, 75) + ' ...';
 	});
 	
-	$("card .card-title").text(function(index, currentText) {
-	    return currentText.substr(0, 100);
+	$(".card .card-title .c-title").text(function(index, currentText) {
+	    return currentText.substr(0, 45);
 	});
 
   }); // end of document ready

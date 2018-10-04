@@ -41,8 +41,45 @@
     </div>
 
     <div class="row">
-       
+
+        <div class="col s12 m3">
+            <div class="card-panel red">
+                <span class="white-text">
+                    I am a very simple card. I am good at containing small bits of information.
+                    I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                </span>
+            </div>
+        </div>
+    
+        <div class="col s12 m3">
+            <div class="card-panel yellow">
+                <span class="white-text">
+                    I am a very simple card. I am good at containing small bits of information.
+                    I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                </span>
+            </div>
+        </div>
+    
+        <div class="col s12 m3">
+            <div class="card-panel blue">
+                <span class="white-text">
+                    I am a very simple card. I am good at containing small bits of information.
+                    I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                </span>
+            </div>
+        </div>
+    
+        <div class="col s12 m3">
+            <div class="card-panel green">
+                <span class="white-text">
+                    I am a very simple card. I am good at containing small bits of information.
+                    I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                </span>
+            </div>
+        </div>
+        
     </div>
+
 
 @endsection
 

@@ -11,32 +11,32 @@
                     </h2>                    
                 </div>
             </div>
+         
         
             <div class="row">
                 @foreach($mycourses as $mycourse)
-
+                    
                     <div class="col s3">
-                        <div class="card hoverable">
-                            <div class="card-image">
-                                <!-- <img src="{{ asset(env('UPLOAD_PATH') . $mycourse->featured_image) }}"/> -->
-                                @if ($mycourse->progress === null)
-                                <div style="padding: 10px;"class="black white-text">Progress: 0 %</div>
-                                @else
-                                <div style="padding: 10px;"class="black white-text">Progress: {{ $mycourse->progress }} %</div>
-                                @endif
+                        <div class="card hoverable sticky-action">
+                            <div class="card-image waves-effect waves-block waves-light">                                
                                 <img class="responsive-img" src="images/background1.jpg">
-                                <span class="card-title">{{ $mycourse->title }}</span>
+                           </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"><p class="c-title">{{ $mycourse->title }}</p><i class="material-icons right">more_vert</i></span>
+                                @if ($mycourse->progress === null)
+                                <sup>Progress: 0 %</sup>
+                                @else
+                                <sup>Progress: {{ $mycourse->progress }} %</sup>
+                                @endif
                             </div>
-                            <div class="content">
-                                <p>{{ $mycourse->description }}</p>
-                                <div class="ratings">
-                                    
-                                </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">{{ $mycourse->title }}<i class="material-icons right">close</i></span>
+                                <p class="c-desc">{{ $mycourse->description }}</p>
                             </div>
                             <div class="card-action">
-                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('courses/'. $mycourse->course_id) }}">View course</a>
-                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('start/'. $mycourse->course_id) }}">Start course</a>
-                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('remove/'. $mycourse->course_id) }}">Remove from my courses</a>
+                                <a class="btn btn-floating waves-effect waves-light blue" href="{{ url('courses/'. $mycourse->course_id) }}"><i class="material-icons">remove_red_eye</i></a>
+                                <a class="btn btn-floating waves-effect waves-light red" href="{{ url('remove/'. $mycourse->id) }}"><i class="material-icons">remove</i></a>
+                                <a class="btn btn-floating waves-effect waves-light black" href="{{ url('start/'. $mycourse->course_id) }}"><i class="material-icons">play_arrow</i></a>
                             </div>
                         </div>
                     </div>
@@ -66,28 +66,28 @@
             
             <div class="row">
                 @foreach($courses as $course)
-
+                    
                     <div class="col s3">
-                        <div class="card hoverable">
-                            <div class="card-image">
-                                <!-- <img src="{{ asset(env('UPLOAD_PATH') . $course->featured_image) }}"/> -->
+                        
+                        <div class="card hoverable sticky-action">
+                            <div class="card-image waves-effect waves-block waves-light">
                                 <img class="responsive-img" src="images/background1.jpg">
-                                <span class="card-title">{{ $course->title }}</span>
                             </div>
-                            <div class="content">
-                                <p>{{ $course->description }}</p>
-                                <div class="ratings">
-                                    
-                                </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"><p class="c-title">{{ $course->title }}</p><i class="material-icons right">more_vert</i></span>
+                                <sup>{{ $course->description }}</sup>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">{{ $course->title }}</p><i class="material-icons right">close</i></span>
+                                <p class="c-desc">{{ $course->description }}</p>
                             </div>
                             <div class="card-action">
-                                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('courses/'. $course->id) }}">View course</a>
-                                @if (Auth::check())
-                                    <!-- @if($course->user_id != Auth::id()) -->
-                                        <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('add/'. $course->id) }}">Add to my courses</a>
-                                    <!-- @endif -->
-                                @else
-                                @endif
+                            @if (Auth::check())
+                                <a class="btn btn-floating waves-effect waves-light blue" href="{{ url('courses/'. $course->id) }}"><i class="material-icons">remove_red_eye</i></a>
+                                <a class="btn btn-floating waves-effect waves-light green" href="{{ url('add/'. $course->id) }}"><i class="material-icons">add</i></a>
+                            @else
+                                <a class="btn btn-floating waves-effect waves-light blue" href="{{ url('courses/'. $course->id) }}"><i class="material-icons">remove_red_eye</i></a>
+                            @endif
                             </div>
                         </div>
                     </div>

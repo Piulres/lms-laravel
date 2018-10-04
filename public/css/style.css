@@ -164,6 +164,9 @@ li.page-item {
     min-height: 30px;
     text-align: center;
 }
+.card .card-content {
+    min-height: 140px;
+}
 .card .content {
     padding: 25px;
     min-height: 275px;
@@ -174,4 +177,9 @@ li.page-item {
 }
 section.home {
     padding: 50px 0;
+}
+.btn-floating.halfway-fab {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
 }
