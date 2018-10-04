@@ -11,33 +11,45 @@
         </div>
     </div>
     <div class="row">
+
         @if($mytestimonals->count() != 0)
 
         {!! Form::open(['method' => 'POST', 'route' => ['admin.savefeedback'], 'files' => true,]) !!}
 
-                <div id="testimonal-box" class="col-lg-12 col-md-12">
-                    <h5>Nos de seu feedback sobre o curso: {{$mytestimonals[0]->title}}</h5>
-                    <div class="col-12 col-md-12">
-                        <div class="input-field">
-                            {!! Form::label('rating', trans('global.datacourse.fields.rating').'') !!}
-                            {!! Form::number('rating', old('rating'), ['class' => 'validate']) !!}
-                            <span class="helper-text" data-error="@if($errors->has('rating')){{ $errors->first('rating') }}@endif" data-success="right"></span>
-                        </div>
-                        <div class="input-field">
-                            {!! Form::label('testimonal', trans('Feedback').'') !!}
-                            {!! Form::textarea('testimonal', old('testimonal'), ['class' => 'materialize-textarea ']) !!}
-                            <span class="helper-text" data-error="@if($errors->has('testimonal')){{ $errors->first('testimonal') }}@endif" data-success="right"></span>
-                        </div>
-                        <input type="hidden" value="{{ $mytestimonals[0]->user_id }}" name="user_id">                        
-                        <input type="hidden" value="{{ $mytestimonals[0]->course_id }}" name="course_id">      
-                        {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light white']) !!}
-                        {!! Form::close() !!}                  
-                    </div>        
-                </div>
-
-            
+            <div id="testimonal-box" class="col-lg-12 col-md-12">
+                <h5>Nos de seu feedback sobre o curso: {{$mytestimonals[0]->title}}</h5>
+                <div class="col-12 col-md-12">
+                    <div class="input-field">
+                        {!! Form::label('rating', trans('global.datacourse.fields.rating').'') !!}
+                        {!! Form::number('rating', old('rating'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('rating')){{ $errors->first('rating') }}@endif" data-success="right"></span>
+                    </div>
+                    <div class="input-field">
+                        {!! Form::label('testimonal', trans('Feedback').'') !!}
+                        {!! Form::textarea('testimonal', old('testimonal'), ['class' => 'materialize-textarea ']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('testimonal')){{ $errors->first('testimonal') }}@endif" data-success="right"></span>
+                    </div>
+                    <input type="hidden" value="{{ $mytestimonals[0]->user_id }}" name="user_id">                        
+                    <input type="hidden" value="{{ $mytestimonals[0]->course_id }}" name="course_id">      
+                    {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light black white-text']) !!}
+                    {!! Form::close() !!}                  
+                </div>        
+            </div> 
 
         @endif
+
+    </div>
+
+    <div class="row">
+       
+    </div>
+
+@endsection
+
+    <!-- WIDGETS -->
+
+    <!-- 
+    <div class="row">
 
         <div class="col l4 s12">
             <a href="{{ route('admin.users.index') }}"
@@ -65,8 +77,7 @@
                 <div class="name">Trails</div>
             </a>
         </div>
-    </div>
-    <div class="row">
+
         <div class="col l4 s12">
             <div class="card" draggable="false">
                 <div class="title">
@@ -92,6 +103,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col l4 s12">
             <div class="card">
                 <div class="title">
@@ -117,6 +129,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col l4 s12">
             <div class="card">
                 <div class="title">
@@ -145,117 +158,141 @@
             </div>
         </div>
 
-        {{--<div class="col l4 s12">--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-title">--}}
-                    {{--<h4>Recently added faqquestions</h4>--}}
-                {{--</div>--}}
+        <div class="col l4 s12">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Recently added faqquestions</h4>
+                </div>
 
-                {{--<div class="card-content">--}}
-                    {{--<table class="table table-bordered table-striped ajaxTable">--}}
-                        {{--<thead>--}}
-                        {{--<tr>--}}
+                <div class="card-content">
+                    <table class="table table-bordered table-striped ajaxTable">
+                        <thead>
+                        <tr>
 
-                            {{--<th> @lang('global.faq-questions.fields.question-text')</th>--}}
-                            {{--<th> @lang('global.faq-questions.fields.answer-text')</th>--}}
-                            {{--<th>&nbsp;</th>--}}
-                        {{--</tr>--}}
-                        {{--</thead>--}}
-                        {{--@foreach($faqquestions as $faqquestion)--}}
-                            {{--<tr>--}}
+                            <th> @lang('global.faq-questions.fields.question-text')</th>
+                            <th> @lang('global.faq-questions.fields.answer-text')</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        @foreach($faqquestions as $faqquestion)
+                            <tr>
 
-                                {{--<td>{{ $faqquestion->question_text }} </td>--}}
-                                {{--<td>{{ $faqquestion->answer_text }} </td>--}}
-                                {{--<td>--}}
-                                    {{--<div class="buttons end">--}}
-                                        {{--@can('faq_question_view')--}}
-                                        {{--<a href="{{ route('admin.faq_questions.show',[$faqquestion->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>--}}
-                                        {{--@endcan--}}
+                                <td>{{ $faqquestion->question_text }} </td>
+                                <td>{{ $faqquestion->answer_text }} </td>
+                                <td>
+                                    <div class="buttons end">
+                                        @can('faq_question_view')
+                                        <a href="{{ route('admin.faq_questions.show',[$faqquestion->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
 
-                                        {{--@can('faq_question_edit')--}}
-                                        {{--<a href="{{ route('admin.faq_questions.edit',[$faqquestion->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>--}}
-                                        {{--@endcan--}}
+                                        @can('faq_question_edit')
+                                        <a href="{{ route('admin.faq_questions.edit',[$faqquestion->id]) }}" class="waves-effect waves-light btn-small btn-square blue"><i class="material-icons">edit</i></a>
+                                        @endcan
 
-                                        {{--@can('faq_question_delete')--}}
-                                        {{--{!! Form::open(array(--}}
-                                            {{--'style' => 'display: inline-block;',--}}
-                                            {{--'method' => 'DELETE',--}}
-                                            {{--'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",--}}
-                                            {{--'route' => ['admin.faq_questions.destroy', $faqquestion->id])) !!}--}}
-                                        {{--{!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}--}}
-                                        {{--{!! Form::close() !!}--}}
-                                    {{--</div>--}}
-                                    {{--@endcan--}}
+                                        @can('faq_question_delete')
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                            'route' => ['admin.faq_questions.destroy', $faqquestion->id])) !!}
+                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!}
+                                    </div>
+                                    @endcan
 
-                                {{--</td>--}}
-                            {{--</tr>--}}
-                        {{--@endforeach--}}
-                    {{--</table>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
 
+        <div class="col l4 s12">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Certificates</h4>
+                </div>
 
-        {{--<div class="col l4 s12">--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-title">--}}
-                    {{--<h4>Certificates</h4>--}}
-                {{--</div>--}}
+                <div class="card-content">
+                    <table class="table table-bordered table-striped ajaxTable">
 
-                {{--<div class="card-content">--}}
-                    {{--<table class="table table-bordered table-striped ajaxTable">--}}
-                        {{----}}
-                        {{--@foreach($certificates as $certificate)--}}
-                            {{--<tr>--}}
+                        @foreach($certificates as $certificate)
+                            <tr>
 
-                                {{--<td>{{ $certificate->id }} </td>--}}
-                                {{--<td>{{ $certificate->title }} </td>--}}
-                                {{--<td>--}}
+                                <td>{{ $certificate->id }} </td>
+                                <td>{{ $certificate->title }} </td>
+                                <td>
 
-                                    {{--<div class="buttons end">--}}
-                                        {{--@can('coursecertificate_view')--}}
-                                        {{--<a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>--}}
-                                        {{--@endcan--}}
-                                    {{--</div>--}}
-                                {{--</td>--}}
-                            {{--</tr>--}}
-                        {{--@endforeach--}}
-                    {{--</table>--}}
-                {{--</div>--}}
+                                    <div class="buttons end">
+                                        @can('coursecertificate_view')
+                                        <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
 
-            {{--</div>--}}
-        {{--</div>--}}
+            </div>
+        </div>
 
+        <div class="col l4 s12">
+            <div class="card">
+                <div class="card-title">
+                    <h4>My Certificates</h4>
+                </div>
 
-        {{--<div class="col l4 s12">--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-title">--}}
-                    {{--<h4>My Certificates</h4>--}}
-                {{--</div>--}}
+                <div class="card-content">
+                    <table class="table table-bordered table-striped ajaxTable">
 
-                {{--<div class="card-content">--}}
-                    {{--<table class="table table-bordered table-striped ajaxTable">--}}
-                        {{----}}
-                        {{--@foreach($mycertificates as $mycertificate)--}}
-                            {{--<tr>--}}
+                        @foreach($mycertificates as $mycertificate)
+                            <tr>
 
-                                {{--<td>{{ $mycertificate->certificate_id }} </td>--}}
-                                {{--<td>{{ $mycertificate->title }} </td>--}}
-                                {{--<td>--}}
+                                <td>{{ $mycertificate->certificate_id }} </td>
+                                <td>{{ $mycertificate->title }} </td>
+                                <td>
 
-                                    {{--<div class="buttons end">--}}
-                                        {{--@can('coursecertificate_view')--}}
-                                        {{--<a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>--}}
-                                        {{--@endcan--}}
-                                    {{--</div>--}}
-                                {{--</td>--}}
-                            {{--</tr>--}}
-                        {{--@endforeach--}}
-                    {{--</table>--}}
-                {{--</div>--}}
+                                    <div class="buttons end">
+                                        @can('coursecertificate_view')
+                                        <a href="{{ route('admin.courses.show',[$course->id]) }}" class="waves-effect waves-light btn-small btn-square grey"><i class="material-icons">remove_red_eye</i></a>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
 
-            {{--</div>--}}
-        {{--</div>--}}
+            </div>
+        </div>
+
+        <div class="col l4 s12">
+            <table class="table table-bordered table-striped ajaxTable">
+                @foreach($certificates as $certificate)
+                    <tr>
+
+                        <td>id: {{ $certificate->id }} </td>
+                        <td>{{ $certificate->title }} </td>
+                        
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+
+        <div class="col l4 s12">
+            <table class="table table-bordered table-striped ajaxTable">
+                @foreach($mycertificates as $mycertificate)
+                    <tr>
+
+                        <td>id: {{ $mycertificate->certificate_id }} </td>
+                        <td>{{ $mycertificate->title }} </td>
+                        
+                    </tr>
+                @endforeach
+            </table>
+        </div>
 
     </div>
-@endsection
+    -->

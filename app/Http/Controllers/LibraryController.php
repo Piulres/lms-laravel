@@ -25,6 +25,13 @@ class LibraryController extends Controller
     public function index()
     {
         $courses = \App\Course::latest()->get();
+
+        // $courses = DB::table('courses')
+        // ->leftJoin('datacourses', 'courses.id', '=', 'datacourses.course_id')
+        // ->leftJoin('users', 'datacourses.user_id', '=', 'users.id')
+        // ->get();
+
+        //        dd($courses);
         
         if (Auth::check()) {
         

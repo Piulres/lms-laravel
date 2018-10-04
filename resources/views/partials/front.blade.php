@@ -32,7 +32,12 @@
                         </a>
                     </li>
                     @if (Auth::check())
-                    
+                    <li>                        
+                        <a class="btn waves-effect waves-light black" href="{{ url('/admin/home') }}">
+                            <i class="material-icons left">dashboard</i>dashboard
+                        </a>
+
+                    </li>
                     <li>
                         <a class="btn modal-trigger waves-effect waves-light black" href="{{ url('/logout') }}">
                             Logout

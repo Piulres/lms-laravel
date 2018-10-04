@@ -80,9 +80,6 @@ p {
 .modal-content h5 {
     margin-bottom: 40px;
 }
-.card .content {
-    padding: 25px;
-}
 @media only screen and (max-width: 992px) {
     .parallax-container .section {
         /*position: absolute;*/
@@ -128,8 +125,6 @@ footer.page-footer {
 .mgt10 i {
     margin-top: 10px;
 }
-
-
 .jajaja {
     width: 100%;
     max-width: 500px;
@@ -140,18 +135,40 @@ footer.page-footer {
 .jajaja h5 {
     margin-bottom: 40px;
 }
-
 .itens {
     margin-bottom: 10px!important;
 }
-
 .itens a {
     display: block;
     width: 100%;
     height: 20px;
     float: left;
 }
-
 .mamama {
     font-size: 16px;
+}
+.pagination {
+    background-color: grey;
+    padding: 10px;
+}
+.pagination li.active {
+    background-color: black;
+    color: white;
+}
+.pagination span.page-link {
+    margin-top: 4px;
+    display: block;
+}
+li.page-item {
+    min-width: 30px;
+    min-height: 30px;
+    text-align: center;
+}
+.card .content {
+    padding: 25px;
+    min-height: 275px;
+}
+.alert-card {
+    width: 100%;
+    padding: 10px;
 }

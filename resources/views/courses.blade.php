@@ -4,6 +4,8 @@
         <div class="row">
             <div class="col s12">
                 <h3 class="page-title">Course: {{ $course->title }}</h3>
+                @foreach($lists as $list)
+                @endforeach
             </div>
         </div>
         <div class="row">
@@ -59,11 +61,20 @@
                 </table>
             </div>
             <div class="col s3 offset-s2">
+               
+
                 @if (Auth::check())
-                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('start/'. $course->id) }}">
-                    Start Course
-                </a>
-                <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('add/'. $course->id) }}">Add to my courses</a>
+
+                    @if ($list->view === null)
+                    <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('add/'. $course->id) }}">Add to my courses</a>
+                    @else
+                    <a style="width: 100%; margin-bottom: 5px;" class="btn waves-effect waves-light black" href="{{ url('start/'. $course->id) }}">
+                        Start Course
+                    </a>
+                    @endif
+
+               
+                
                 @else
                 <h4 class="center">Login to Start Course</h4>
                 <a style="width: 100%; margin-bottom: 5px;" class="btn modal-trigger waves-effect waves-light black" data-target="modal1" href="#modal1">
