@@ -187,7 +187,15 @@ class CoursesController extends Controller
         $course->categories()->sync(array_filter((array)$request->input('categories')));
         $course->tags()->sync(array_filter((array)$request->input('tags')));
 
-
+        DB::table('coursescertificates')
+        ->insert([
+            'id'=> $course->id,
+            'order'=> $course->id,
+            'title'=> $course->title,
+            'slug'=> $course->title,
+            'updated_at' => $course->updated_at,
+            'created_at' => $course->created_at,
+        ]);
 
         return redirect()->route('admin.courses.index');
     }
