@@ -1,27 +1,22 @@
  @include('partials.front')
 
-    <div class="container">
-        <div class="section">
+    @if (Auth::check())
+    <section class="home grey lighten-3">
+        <div class="container">            
             
-            @if (Auth::check())
             <div class="row">
-            <div class="col s12 center">                    
-                <h2>                   
-                    My Courses
-                    
-                </h2>                    
+                <div class="col s12 center">
+                    <h2>
+                        My Courses
+                    </h2>                    
+                </div>
             </div>
-            </div>
-            @else
-            @endif
-
-           
-            @if (Auth::check())
+        
             <div class="row">
                 @foreach($mycourses as $mycourse)
 
-                    <div class="col s12 m6 l4 xl4">
-                        <div class="card">
+                    <div class="col s3">
+                        <div class="card hoverable">
                             <div class="card-image">
                                 <!-- <img src="{{ asset(env('UPLOAD_PATH') . $mycourse->featured_image) }}"/> -->
                                 @if ($mycourse->progress === null)
@@ -47,30 +42,33 @@
                     </div>
 
                 @endforeach
-                
-            </div>
-            @else
-            @endif
+            </div>            
 
+        </div>
+    </section>
+    @else
+    @endif
+
+    <section class="home grey lighten-5">
+        <div class="container">
 
             <div class="row">
-            <div class="col s12 center">                    
-                <h2>
-                    @if (Auth::check())
-                    Courses
-                    @else
-                    Library
-                    @endif
-                </h2>                    
-            </div>
+                <div class="col s12 center">
+                    <h2>
+                        @if (Auth::check())
+                        Courses
+                        @else
+                        Library
+                        @endif
+                    </h2>                    
+                </div>
             </div>
             
             <div class="row">
-
                 @foreach($courses as $course)
 
-                    <div class="col s12 m6 l4 xl4">
-                        <div class="card">
+                    <div class="col s3">
+                        <div class="card hoverable">
                             <div class="card-image">
                                 <!-- <img src="{{ asset(env('UPLOAD_PATH') . $course->featured_image) }}"/> -->
                                 <img class="responsive-img" src="images/background1.jpg">
@@ -95,11 +93,10 @@
                     </div>
 
                 @endforeach
-            
             </div>            
 
         </div>
-    </div>
+    </section>
 
     <div class="parallax-container valign-wrapper">
         <div class="section no-pad-bot">

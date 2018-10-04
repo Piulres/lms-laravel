@@ -172,3 +172,6 @@ li.page-item {
     width: 100%;
     padding: 10px;
 }
+section.home {
+    padding: 50px 0;
+}
