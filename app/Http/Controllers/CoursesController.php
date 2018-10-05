@@ -63,6 +63,11 @@ class CoursesController extends Controller
             return redirect('login');
         }
 
+        $lists = DB::table('courses')
+         ->leftJoin('datacourses', 'courses.id', '=', 'datacourses.course_id')
+         ->where("courses.id", '=',  $id)
+        ->get();
+
         $course = Course::findOrFail($id);
 
         $user = Auth::id();
@@ -192,7 +197,7 @@ class CoursesController extends Controller
         Session::put('course', $datacourses[0]->course_id);
         Session::put('percentage', $percentage);
        
-        return view('oncourse', compact('course', 'datacourses', 'lessons', 'total_lessons'));
+        return view('oncourse', compact('course', 'lists', 'datacourses', 'lessons', 'total_lessons'));
     }
 
     public function add($id)

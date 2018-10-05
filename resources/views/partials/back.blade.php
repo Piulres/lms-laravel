@@ -1,4 +1,4 @@
-        <footer class="page-footer grey lighten-3">
+        <footer class="page-footer grey darken-1">
             <div class="container">
                 
             </div>

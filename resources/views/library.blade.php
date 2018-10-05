@@ -171,8 +171,8 @@
                     <div class="col s12 center">
                         @if (Auth::check())
                         @else
-                            <a style="min-width: 200px;" href="{{ url('/login') }}" class="btn black">Login</a>
-                            <a style="min-width: 200px;" href="{{ url('/register') }}" class="btn black">Register</a>
+                            <a href="{{ url('/login') }}" class="btn black">Login</a>
+                            <a href="{{ url('/register') }}" class="btn black">Register</a>
                         @endif
                     </div>
                 </div>
