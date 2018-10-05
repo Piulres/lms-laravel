@@ -18,5 +18,7 @@
         </script>
         <script src="{{ url('/') }}/js/init.js">
         </script>
+        <script src="{{ url('/') }}/js/isotope.pkgd.min.js">
+        </script>
     </body>
 </html>

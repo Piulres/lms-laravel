@@ -165,11 +165,9 @@ li.page-item {
     text-align: center;
 }
 .card .card-content {
-    min-height: 140px;
 }
 .card .content {
     padding: 25px;
-    min-height: 275px;
 }
 .alert-card {
     width: 100%;
@@ -183,3 +181,31 @@ section.home {
     right: 10px;
     bottom: 10px;
 }
+
+
+/* clear fix */
+.isotope:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+/* 5 columns, percentage width */
+@media only screen and (min-width: 992px) {
+.grid-item,
+.grid-sizer {
+  width: 22%;
+}
+}
+
+.grid-item {
+  float: left;
+  min-height: 100px;
+}
+
+.gutter-sizer { width: 4%; }
+
+.grid-item--width2 { width: 48%; }
+.grid-item--height2 { height: 200px; }

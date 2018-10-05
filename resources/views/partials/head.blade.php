@@ -51,3 +51,4 @@
 <link href="{{ url('libs/draggable/sidebar.css') }}" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <link href="{{ url('custom/admin.css') }}" rel="stylesheet">
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
