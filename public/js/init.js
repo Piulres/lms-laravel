@@ -4,18 +4,27 @@
     $('.sidenav').sidenav();
     $('.parallax').parallax();
     $('.modal').modal();
+    $('.tooltipped').tooltip();
 
- //    $(".card .card-reveal .c-desc").text(function(index, currentText) {
+ 	// $(".card .card-reveal .c-desc").text(function(index, currentText) {
 	//     return currentText.substr(0, 125) + ' ...';
 	// });
 
-	$(".card .card-content sup").text(function(index, currentText) {
-	    return currentText.substr(0, 75) + ' ...';
+	$(".card .card-content .c-sup").text(function(index, currentText) {
+	    return currentText.substr(0, 125) + ' ...';
 	});
 	
-	$(".card .card-title .c-title").text(function(index, currentText) {
-	    return currentText.substr(0, 45);
+
+	$('.grid').isotope({
+		itemSelector: '.grid-item',
+		percentPosition: true,
+		masonry: {
+			columnWidth: '.grid-sizer',
+			gutter: '.gutter-sizer'
+		}
 	});
+
+
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space

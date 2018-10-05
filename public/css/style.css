@@ -29,9 +29,9 @@ p {
     width: 100%;
 }
 .brand-logo img {
-    margin-top: 0.25em;
+    margin-top: 0.4em;
     margin-left: 0.25em;
-    height: 50px;
+    height: 40px;
 }
 
 /* label focus color */
@@ -97,6 +97,7 @@ p {
         width: 80%;
     }
     .brand-logo img {
+        margin-top: 5px;
         margin-left: 0.5em;
         height: 45px;
     }
@@ -165,11 +166,9 @@ li.page-item {
     text-align: center;
 }
 .card .card-content {
-    min-height: 140px;
 }
 .card .content {
     padding: 25px;
-    min-height: 275px;
 }
 .alert-card {
     width: 100%;
@@ -183,3 +182,54 @@ section.home {
     right: 10px;
     bottom: 10px;
 }
+.card .card-action {
+    background-color: #f3f3f3;
+}
+.nomg * {
+    margin: 0px;
+}
+.jarbas {
+    margin: 2.3733333333rem 0 1.424rem 0;
+}
+.btn.tooltipped {
+    margin-bottom: 10px;
+}
+.page-title.left {
+    margin: 0;
+}
+.itans-title * {
+    margin-right: 10px;
+}
+.itans-title h2 {
+    margin-right: 20px!important;    
+}
+.itans-title a {
+    margin-top: 12px;
+}
+
+/* clear fix */
+.isotope:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+/* 5 columns, percentage width */
+@media only screen and (min-width: 992px) {
+.grid-item,
+.grid-sizer {
+  width: 22%;
+}
+}
+
+.grid-item {
+  float: left;
+  min-height: 100px;
+}
+
+.gutter-sizer { width: 4%; }
+
+.grid-item--width2 { width: 48%; }
+.grid-item--height2 { height: 200px; }
