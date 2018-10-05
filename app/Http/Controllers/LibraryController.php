@@ -37,6 +37,7 @@ class LibraryController extends Controller
 
             $user = Auth::id();
 
+            // dd($mycourses);
             $mycourses = DB::table('courses')
                 ->leftJoin('datacourses', 'courses.id', '=', 'datacourses.course_id')
                 ->leftJoin('users', 'datacourses.user_id', '=', 'users.id')
@@ -65,13 +66,14 @@ class LibraryController extends Controller
                     ->first();
                 $diff->push($a);
             }
-            //dd($diff);
 
             return view('library', compact('courses', 'mycourses', 'datacourses', 'trails','diff'));
 
         }
 
-        return view('library', compact('courses', 'datacourses', 'trails'));
+        $mycourses = collect();
+
+        return view('library', compact('courses', 'datacourses', 'trails', 'mycourses'));
 
     }    
 

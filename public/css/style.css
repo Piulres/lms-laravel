@@ -13,8 +13,11 @@ nav ul a, nav .brand-logo {
 h1 {
     font-size: 3.5em;
 }
+h2 {
+    margin-top: 3rem;
+}
 p {
-    line-height: 2rem;
+    line-height: 1.2rem;
 }
 .sidenav-trigger {
     color: #26a69a;
@@ -182,8 +185,14 @@ section.home {
     right: 10px;
     bottom: 10px;
 }
-.card .card-action {
+.card .card-action, .modal .modal-footer {
     background-color: #f3f3f3;
+}
+.modal-footer {
+    padding: 5px 25px!important;
+}
+.modal-footer .modal-close {
+    margin-right: 20px!important;
 }
 .nomg * {
     margin: 0px;
@@ -192,7 +201,7 @@ section.home {
     margin: 2.3733333333rem 0 1.424rem 0;
 }
 .btn.tooltipped {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .page-title.left {
     margin: 0;
@@ -205,6 +214,26 @@ section.home {
 }
 .itans-title a {
     margin-top: 12px;
+}
+.card.sticky-action .card-reveal {
+    padding-bottom: 84px;
+    top: 99%!important;
+}
+p.c-title {
+    margin-bottom: 20px!important;
+}
+.charles {
+    margin-top: 5px;
+    margin-bottom: -20px;
+    padding-bottom: 50px;
+}
+.brand-footer {
+    width: 30px;
+    vertical-align: middle;
+    padding: 2px;
+}
+.grid {
+    margin: 15px;
 }
 
 /* clear fix */

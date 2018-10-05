@@ -12,8 +12,8 @@
             <link href="{{ url('/') }}/css/style.css" media="screen,projection" rel="stylesheet" type="text/css"/>
         </link>
     </head>
-    <body>
-        <nav class="white" role="navigation">
+    <body class="grey lighten-3">
+        <nav class="white darken-5" role="navigation">
             <div class="nav-wrapper container">
                 <a class="brand-logo" href="/">
                     <!-- <img src="http://static.campanhaporto.com.br/guide/logo/porto-seguro/institucional/marca/inst-bgd-sm.svg"/> -->

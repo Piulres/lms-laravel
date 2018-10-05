@@ -11,9 +11,10 @@
 	// });
 
 	$(".card .card-content .c-sup").text(function(index, currentText) {
-	    return currentText.substr(0, 125) + ' ...';
+	    return currentText.substr(0, 80) + ' ...';
 	});
-	
+
+		
 
 	$('.grid').isotope({
 		itemSelector: '.grid-item',

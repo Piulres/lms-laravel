@@ -5,7 +5,7 @@
                 <div class="container">
                     <br>
                         <br>
-                            <h1 class="header center black-text">
+                            <h1 class="header center white-text">
                                 Learning Management System
                             </h1>
                             <div class="row center">
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="parallax">
-                <img alt="Unsplashed background img 1" src="images/background3.jpg"/>
+                <img alt="Unsplashed background img 1" src="images/background1.jpg"/>
             </div>
         </div>
         <div class="container">

@@ -1,9 +1,12 @@
  @include('partials.front')
 
+    
+
     @if (Auth::check())
-    <section class="home grey lighten-5">
-        <div class="container">            
-            
+    
+    <div class="charles grey lighten-3">
+        <div class="container">
+
             <div class="row">
                 <div class="col s12 center">
                     <h2>
@@ -18,8 +21,8 @@
                 <div class="grid-sizer"></div>
                 <div class="gutter-sizer"></div>
 
-                @foreach($mycourses as $mycourse)                    
-                    
+                @foreach($mycourses as $mycourse)
+
                     <div class="grid-item card hoverable sticky-action">
                         <div class="card-image waves-effect waves-block waves-light">                                
                             <img class="responsive-img" src="images/background1.jpg">
@@ -39,8 +42,28 @@
                         </div>
                         <div class="card-action">
                             <a class="btn btn-floating waves-effect waves-light blue tooltipped" data-position="bottom" data-tooltip="View Course" href="{{ url('courses/'. $mycourse->course_id) }}"><i class="material-icons">remove_red_eye</i></a>
-                            <a class="btn btn-floating waves-effect waves-light red tooltipped" data-position="bottom" data-tooltip="Remove from Courses"  href="{{ url('remove/'. $mycourse->course_id) }}"><i class="material-icons">remove</i></a>
+                            <a class="btn btn-floating waves-effect waves-light red tooltipped modal-trigger" data-target="#remove{{$mycourse->course_id}}" href="#modal2" data-position="bottom" data-tooltip="Remove from Courses"><i class="material-icons">remove</i></a>
                             <a class="btn btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Start Course" href="{{ url('start/'. $mycourse->course_id) }}"><i class="material-icons">play_arrow</i></a>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="#remove{{$mycourse->course_id}}">
+                        <div class="modal-content">
+                            <h4>
+                                Remover
+                            </h4>
+                            <p>
+                                Você deseja remover o <span class="red-text">{{ $mycourse->title }}</span> de sua lista?
+                            </p>
+                            <small class="grey-text">Seus dados de progresso estarão sempre salvos :)</small>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="left modal-close btn waves-effect waves-red darken-4 red white-text btn-flat" href="{{ url('remove/'. $mycourse->course_id) }}">
+                                Yes
+                            </a>
+                            <a class="left modal-close btn waves-effect waves-green black white-text btn-flat" href="#!">
+                                No
+                            </a>        
                         </div>
                     </div>
 
@@ -49,11 +72,12 @@
             </div>            
 
         </div>
-    </section>
+    </div>
+    
     @else
     @endif
-
-    <section class="home grey lighten-3">
+    
+    <div class="charles grey lighten-2">
         <div class="container">
 
             <div class="row">
@@ -132,8 +156,8 @@
                 @endif
                 
             </div>
-        </div>
-    </section>
+        </div> 
+    </div>   
 
     <div class="parallax-container valign-wrapper">
         <div class="section no-pad-bot">

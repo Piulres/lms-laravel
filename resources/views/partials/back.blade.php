@@ -1,11 +1,11 @@
-        <footer class="page-footer grey lighten-2">
+        <footer class="page-footer grey lighten-3">
             <div class="container">
                 
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    Made by
-                    <a class="white-text" href="http://www.rperformance.com.br">
+                    <a class="black-text" href="http://www.rperformancegroup.com">
+                        <img class="brand-footer" src="{{ url('/') }}/images/Logo_RPX.png"/>
                         RPerformance Group
                     </a>
                 </div>
