@@ -4,6 +4,7 @@
     $('.sidenav').sidenav();
     $('.parallax').parallax();
     $('.modal').modal();
+    $('.tooltipped').tooltip();
 
  	// $(".card .card-reveal .c-desc").text(function(index, currentText) {
 	//     return currentText.substr(0, 125) + ' ...';

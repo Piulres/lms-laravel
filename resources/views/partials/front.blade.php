@@ -36,15 +36,15 @@
                             </a>
                         </li>
                         <li>                        
-                            <a class="btn waves-effect waves-light black" href="{{ url('/admin/home') }}">
-                                <i class="material-icons left">dashboard</i>dashboard
-                            </a>
+                            
+                            <a class="btn btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Dashboard" href="{{ url('/admin/home') }}"><i class="material-icons">dashboard</i></a>
 
                         </li>
                         <li>
-                            <a class="btn modal-trigger waves-effect waves-light black" href="{{ url('/logout') }}">
+                            <!-- <a class="btn waves-effect waves-light black" href="{{ url('/logout') }}">
                                 Logout
-                            </a>
+                            </a> -->
+                            <a class="btn btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Logout" href="{{ url('/logout') }}"><i class="material-icons">perm_identity</i></a>
                         </li>
                         
                     @else
@@ -56,9 +56,7 @@
                         </li>
                         
                         <li>
-                            <a class="btn modal-trigger waves-effect waves-light black" data-target="modal1" href="#modal1">
-                                Login
-                            </a>
+                            <a class="btn btn-floating waves-effect waves-light black modal-trigger tooltipped" data-position="bottom" data-tooltip="Login" data-target="modal1" href="#modal1"><i class="material-icons">person</i></a>
                         </li>
 
                         
