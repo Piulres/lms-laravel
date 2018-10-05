@@ -14,6 +14,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Faker\Test\Provider\Collection;
 
 class LibraryController extends Controller
 {
@@ -24,15 +25,9 @@ class LibraryController extends Controller
      */
     public function index()
     {
-        $courses = \App\Course::latest()->get();
+        //$courses = \App\Course::latest()->get();
+        $courses = DB::table('courses')->get();
 
-        // $courses = DB::table('courses')
-        // ->leftJoin('datacourses', 'courses.id', '=', 'datacourses.course_id')
-        // ->leftJoin('users', 'datacourses.user_id', '=', 'users.id')
-        // ->get();
-
-        //        dd($courses);
-        
         if (Auth::check()) {
         
             if 
@@ -47,12 +42,35 @@ class LibraryController extends Controller
                 ->leftJoin('users', 'datacourses.user_id', '=', 'users.id')
              ->where("datacourses.user_id", '=',  $user)
              ->where("datacourses.view", '=',  '1')
-            ->get();
+            ->get();            
 
-            return view('library', compact('courses', 'mycourses', 'datacourses', 'trails'));
+            $course_list = array();
+            $mycourse_list = array();
+            
+            foreach($courses as $course){
+                array_push($course_list,$course->id);
+            }
+
+            foreach($mycourses as $mycourse){
+                array_push($mycourse_list,$mycourse->course_id);
+            }
+
+            $diff_list = array_diff($course_list,$mycourse_list);
+
+            $diff = collect();
+
+            foreach($diff_list as $item){
+                $a = DB::table('courses')
+                    ->where('id','=',$item)
+                    ->first();
+                $diff->push($a);
+            }
+            //dd($diff);
+
+            return view('library', compact('courses', 'mycourses', 'datacourses', 'trails','diff'));
 
         }
-        
+
         return view('library', compact('courses', 'datacourses', 'trails'));
 
     }    
