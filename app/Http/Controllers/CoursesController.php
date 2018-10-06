@@ -38,6 +38,15 @@ class CoursesController extends Controller
 
         $datacourses = \App\Datacourse::where('course_id', $id)->get();
 
+        // $data = \App\Datacourse::get();
+
+        $datas = DB::table('datacourses')
+                ->leftJoin('users', 'datacourses.user_id', '=', 'users.id')
+             ->where("datacourses.view", '=',  '1')
+             ->where("datacourses.course_id", '=',  $id)
+             ->limit(3)
+            ->get();        
+
         $trails = \App\Trail::whereHas('courses',
                     function ($query) use ($id) {
                         $query->where('id', $id);
@@ -52,9 +61,8 @@ class CoursesController extends Controller
 
         $generals = \App\General::get();
 
-        // dd($course);
 
-        return view('courses', compact('course', 'lists', 'datacourses', 'trails', 'generals'));
+        return view('courses', compact('course','datas', 'star', 'lists', 'datacourses', 'trails', 'generals'));
     }
  
     public function start($id)

@@ -7,6 +7,9 @@
     <div class="container">
         
         <h2 class="page-title white-text">{{ $course->title }}</h2>
+
+        <a class="btn btn-floating waves-effect waves-light blue tooltipped" data-position="bottom" data-tooltip="Back to Course List"  href="{{ url('library') }}"><i class="material-icons">keyboard_return</i></a>
+            
       
     </div>
     
