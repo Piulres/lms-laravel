@@ -49,5 +49,6 @@ class MasterCommand extends Command
         echo exec('php artisan cache:clear');
         echo exec('clear');
         echo ' Warlock of Darkness[8]: Done ';
+        echo exec('php artisan inspire');
     }
 }
