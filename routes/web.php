@@ -2,6 +2,8 @@
 // Route::get('/', function () { return redirect('/admin/home'); });
 
 Route::get('/', 'HomeController@index');
+Route::get('/speech', 'HomeController@speech');
+
 // Route::get('/library', 'LibraryController@index');
 Route::get('/library', 'LibraryController@index');
 Route::get('/guide', 'GuideController@index');

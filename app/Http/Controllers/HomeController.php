@@ -43,6 +43,12 @@ class HomeController extends Controller
         return view('index', compact( 'users', 'courses', 'trails', 'faqquestions', 'generals' ));
     }
 
+    public function speech()
+    {
+
+        return view('speech');
+    }
+
     public function home()
     {
         

@@ -71,11 +71,11 @@
                                 <span class="title blue-text">{{ $data->name }} {{ $data->lastname }}</span>
                                 <p>{{ $data->testimonal }}</p> 
 
-                                <a href="#!" class="pupa yellow-text">
+                                <a href="#!" class="pupa amber-text">
                                     {{ $data->rating }}
                                 </a>
                                 <a href="#!" class="pepe">
-                                    <i class="material-icons yellow-text">grade</i>
+                                    <i class="material-icons amber-text">grade</i>
                                 </a>
 
                             </li>
