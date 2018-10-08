@@ -309,7 +309,7 @@ class CoursesController extends Controller
                 'slug'=>$course[0]->name,
             ]);
 
-            return view('certificate', compact('course'));
+            return view('courses/certificate', compact('course'));
 
         }else{
 

@@ -13,9 +13,9 @@
             <h2 class="page-title white-text">{{ $course->title }}</h2>
             @if (Auth::check())
                 @if ($list->view === null)
-            <a class="btn btn-floating waves-effect waves-light green tooltipped" data-position="bottom" data-tooltip="Add to Courses" href="{{ url('add/'. $course->id) }}"><i class="material-icons">add</i></a>
+            <a class="btn btn-floating waves-effect waves-light green tooltipped" data-position="bottom" data-tooltip="Add to Courses" href="{{ url('courses/add/'. $course->id) }}"><i class="material-icons">add</i></a>
                 @else
-            <a class="btn btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Start Course"  href="{{ url('start/'. $course->id) }}"><i class="material-icons">play_arrow</i></a>
+            <a class="btn btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Start Course"  href="{{ url('courses/start/'. $course->id) }}"><i class="material-icons">play_arrow</i></a>
                 @endif
             @else
             <a class="btn btn-floating waves-effect waves-light black modal-trigger tooltipped" data-position="bottom" data-tooltip="Login to Start" data-target="modal1" href="#modal1"><i class="material-icons">person</i></a>

@@ -43,7 +43,7 @@
                         <div class="card-action">
                             <a class="btn btn-floating waves-effect waves-light blue tooltipped" data-position="bottom" data-tooltip="View Course" href="{{ url('courses/'. $mycourse->course_id) }}"><i class="material-icons">remove_red_eye</i></a>
                             <a class="btn btn-floating waves-effect waves-light red tooltipped modal-trigger" data-target="#remove{{$mycourse->course_id}}" href="#modal2" data-position="bottom" data-tooltip="Remove from Courses"><i class="material-icons">remove</i></a>
-                            <a class="btn btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Start Course" href="{{ url('start/'. $mycourse->course_id) }}"><i class="material-icons">play_arrow</i></a>
+                            <a class="btn btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Start Course" href="{{ url('courses/start/'. $mycourse->course_id) }}"><i class="material-icons">play_arrow</i></a>
                         </div>
                     </div>
 
@@ -58,7 +58,7 @@
                             <small class="grey-text">Seus dados de progresso estarão sempre salvos :)</small>
                         </div>
                         <div class="modal-footer">
-                            <a class="left modal-close btn waves-effect waves-red darken-4 red white-text btn-flat" href="{{ url('remove/'. $mycourse->course_id) }}">
+                            <a class="left modal-close btn waves-effect waves-red darken-4 red white-text btn-flat" href="{{ url('courses/remove/'. $mycourse->course_id) }}">
                                 Yes
                             </a>
                             <a class="left modal-close btn waves-effect waves-green black white-text btn-flat" href="#!">
@@ -116,7 +116,7 @@
                                 <div class="card-action">
                                 @if (Auth::check())
                                     <a class="btn btn-floating waves-effect waves-light blue tooltipped" data-position="bottom" data-tooltip="View Course" href="{{ url('courses/'. $course->id) }}"><i class="material-icons">remove_red_eye</i></a>
-                                    <a class="btn btn-floating waves-effect waves-light green tooltipped" data-position="bottom" data-tooltip="Add to Courses" href="{{ url('add/'. $course->id) }}"><i class="material-icons">add</i></a>
+                                    <a class="btn btn-floating waves-effect waves-light green tooltipped" data-position="bottom" data-tooltip="Add to Courses" href="{{ url('courses/add/'. $course->id) }}"><i class="material-icons">add</i></a>
                                 @else
                                     <a class="btn btn-floating waves-effect waves-light blue tooltipped" data-position="bottom" data-tooltip="View Course" href="{{ url('courses/'. $course->id) }}"><i class="material-icons">remove_red_eye</i></a>
                                 @endif
@@ -144,7 +144,7 @@
                             <div class="card-action">
                             @if (Auth::check())
                                 <a class="btn btn-floating waves-effect waves-light blue tooltipped" data-position="bottom" data-tooltip="View Course" href="{{ url('courses/'. $course->id) }}"><i class="material-icons">remove_red_eye</i></a>
-                                <a class="btn btn-floating waves-effect waves-light green tooltipped" data-position="bottom" data-tooltip="Add to Courses" href="{{ url('add/'. $course->id) }}"><i class="material-icons">add</i></a>
+                                <a class="btn btn-floating waves-effect waves-light green tooltipped" data-position="bottom" data-tooltip="Add to Courses" href="{{ url('courses/add/'. $course->id) }}"><i class="material-icons">add</i></a>
                             @else
                                 <a class="btn btn-floating waves-effect waves-light blue tooltipped" data-position="bottom" data-tooltip="View Course" href="{{ url('courses/'. $course->id) }}"><i class="material-icons">remove_red_eye</i></a>
                             @endif

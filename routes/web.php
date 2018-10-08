@@ -4,17 +4,28 @@
 Route::get('/', 'HomeController@index');
 // Route::get('/library', 'LibraryController@index');
 Route::get('/library', 'LibraryController@index');
+Route::get('/guide', 'GuideController@index');
 
-Route::get('courses', ['uses' => 'CoursesController@index', 'as' => 'courses']);
-Route::get('courses/{id}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
+Route::prefix('courses')->group(function(){
+    Route::get('', ['uses' => 'CoursesController@index', 'as' => 'courses']);
+    Route::get('{id}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
+    Route::get('start/{id}', 'CoursesController@start');
+    Route::get('add/{id}', 'CoursesController@add');
+    Route::get('remove/{id}', 'CoursesController@remove');
+    Route::get('certificate/{id}', 'CoursesController@certificate'); 
+    Route::get('done/{id}', 'CoursesController@done');
+});
 
-Route::get('start/{id}', 'CoursesController@start');   
-Route::get('add/{id}', 'CoursesController@add');   
-Route::get('remove/{id}', 'CoursesController@remove');
-Route::get('certificate/{id}', 'CoursesController@certificate'); 
-Route::get('done/{id}', 'CoursesController@done');   
+Route::prefix('trails')->group(function(){
+    Route::get('', ['uses' => 'TrailsController@index', 'as' => 'trail']);
+    Route::get('{id}', ['uses' => 'TrailsController@show', 'as' => 'trail.show']);
+    Route::get('start/{id}', 'TrailsController@start');
+    Route::get('add/{id}', 'TrailsController@add');
+    Route::get('remove/{id}', 'TrailsController@remove');
+    Route::get('certificate/{id}', 'TrailsController@certificate'); 
+    Route::get('done/{id}', 'TrailsController@done');
+});
 
-Route::get('/courses/{id}', 'CoursesController@show');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 // Authentication Routes...

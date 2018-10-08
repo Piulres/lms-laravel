@@ -2,7 +2,7 @@
 
 @foreach($lists as $list)
     @endforeach
-<div class="title-panel" style="background-image: url('../images/background1.jpg');">
+<div class="title-panel" style="background-image: url('/images/background1.jpg');">
 
     <div class="container">
         
@@ -34,7 +34,7 @@
                             {{ $lessons->links() }}
 
                             <div class="card-action">
-                                <a class="btn waves-effect waves-light black" href="{{ url('done/'. $lesson->id) }}">Submit Lesson</a>
+                                <a class="btn waves-effect waves-light black" href="{{ url('courses/done/'. $lesson->id) }}">Submit Lesson</a>
                             </div>
                             
                             <h5>title</h5>
