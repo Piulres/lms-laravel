@@ -36,7 +36,12 @@
                         @foreach ($trail->courses as $singleCourse)
                         <li>
                             <div class="collapsible-header white"><i class="material-icons">navigate_next</i>{{ $singleCourse->title }}<span class="new badge blue"></span></div>
-                            <div class="collapsible-body white"><span>{{ $singleCourse->introduction }}</span></div>
+                            <div class="collapsible-body white">
+                                <span>{{ $singleCourse->introduction }}</span>
+                                
+                                    <a class="btn btn-floating waves-effect waves-light black tooltipped right" data-position="bottom" data-tooltip="Start Course" href="{{ url('courses/start/'. $singleCourse->id) }}"><i class="material-icons">play_arrow</i></a>
+                                
+                            </div>
                         </li>
                         @endforeach
                     </ul>
