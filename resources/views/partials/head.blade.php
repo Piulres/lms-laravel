@@ -30,6 +30,11 @@
 {{--<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet">--}}
 <link href="{{ url('libs/dashboard/dashboard-icons.css') }}" rel="stylesheet">
 <link href="{{ url('libs/dashboard/dashboard.css') }}" rel="stylesheet">
+    @if($generals->count() > 0)
+        @foreach($generals as $general)
+            <link href="{{ url('libs/dashboard/colors/') }}/color-{{$general->theme_color}}.css" rel="stylesheet">
+        @endforeach
+    @endif
 
 <!-- <link href="{{ url('adminlte/css/AdminLTE.min.css') }}" rel="stylesheet"> -->
 <!-- <link href="{{ url('adminlte/css/skins/skin-blue.min.css') }}" rel="stylesheet"> -->

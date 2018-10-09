@@ -12,8 +12,7 @@
             <!-- Sidebar toggle -->
             <!-- Logo -->
             <a href="{{ URL::to('/') }}" class="brand-logo">
-                
-                    <img src="{{ url('images') }}/Logo_RPX.png" alt="Con">
+                <img src="{{ url('images') }}/Logo_RPX.png" alt="Con">
             </a>
             <!-- /Logo -->
         </div>
