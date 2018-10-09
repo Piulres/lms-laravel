@@ -568,6 +568,7 @@ th {
 
 table.dataTable {
     border: 1px solid #e0e0e0;
+    width: 100%!important;
 }
 
 /*!* PROGRESS *!*/
@@ -792,7 +793,7 @@ table.dataTable tr.selected td.select-checkbox:before
     justify-content: space-between;
     font-size: inherit;
     padding: 10px 5px 10px 15px;
-    background: rgba(242, 242, 242, 0.8);
+    background: rgba(242, 242, 242, 0.8)!important;
     border-radius: 5px;
 }
 
@@ -1026,6 +1027,10 @@ table.dataTable tr.selected td.select-checkbox:before
 
 .dummy::after {
     content: none;
+}
+
+.input-field label {
+    left: 0;
 }
 
 @media(max-width: 1150px) {

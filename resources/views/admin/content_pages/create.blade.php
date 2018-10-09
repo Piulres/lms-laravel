@@ -25,12 +25,12 @@
         </div>
     </div>
 
+    {!! Form::open(['method' => 'POST', 'route' => ['admin.content_pages.store'], 'files' => true,]) !!}
     <div class="card">
-        {!! Form::open(['method' => 'POST', 'route' => ['admin.content_pages.store'], 'files' => true,]) !!}
         <div class="title">
             <h5>@lang('global.app_create')</h5>
         </div>
-        
+
         <div class="content">
             <div class="row">
                 <div class="col m6 s12">
@@ -112,11 +112,14 @@
                     <span class="helper-text" data-error="@if($errors->has('page_text')){{ $errors->first('page_text') }}@endif" data-success="right"></span>
                 </div>
             </div>
-
-        {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
+        </div>
     </div>
-        {!! Form::close() !!}
+    <div class="row">
+        <div class="col s12">
+            {!! Form::button(trans('global.app_create') . '<i class="mdi-content-send right"></i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
+        </div>
     </div>
+    {!! Form::close() !!}
 
 @stop
 

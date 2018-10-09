@@ -3,17 +3,21 @@
 @section('title', 'New message')
 
 @section('messenger-content')
+{!! Form::open(['route' => ['admin.messenger.store'], 'method' => 'POST', 'novalidate', 'class' => 'stepperForm validate']) !!}
 <div class="card">
-	<div class="content">
+    <div class="content">
         <div class="col-md-12">
-            {!! Form::open(['route' => ['admin.messenger.store'], 'method' => 'POST', 'novalidate', 'class' => 'stepperForm validate']) !!}
 
             @include('admin.messenger.form-partials.fields')
 
-            {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light white-color']) !!}
-            {!! Form::close() !!}
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col s12">
+        {!! Form::button(trans('global.app_create') . '<i class="material-icons right">send</i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
+    </div>
+</div>
+{!! Form::close() !!}
 
 @stop

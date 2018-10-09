@@ -337,3 +337,24 @@
     </div>
 </aside>
 
+
+@if($request->segment(1) == 'home')
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+        <i class="large mdi-editor-mode-edit"></i>
+    </a>
+    <ul>
+        <li>
+            <a class="btn-floating red">
+                <i class="large mdi-av-my-library-books"></i>
+            </a>
+        </li>
+        <li>
+            <a class="btn-floating yellow darken-1">
+                <i class="large mdi-av-playlist-add"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+@endif
+

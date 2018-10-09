@@ -25,10 +25,10 @@
         </div>
     </div>
 
+    {!! Form::model($content_page, ['method' => 'PUT', 'route' => ['admin.content_pages.update', $content_page->id], 'files' => true,]) !!}
     <div class="card">
-        {!! Form::model($content_page, ['method' => 'PUT', 'route' => ['admin.content_pages.update', $content_page->id], 'files' => true,]) !!}
         <div class="title">
-            <h5>@lang('global.app_create')</h5>
+            <h5>@lang('global.app_edit')</h5>
         </div>
 
         <div class="content">
@@ -59,61 +59,65 @@
             <div class="row">
                 <div class="col m6 s12">
                     <div class="col l12" style="position: relative;"
-                    {!! Form::label('category_id', trans('global.content-pages.fields.category-id').'') !!}
-                    {!! Form::select('category_id[]', $category_ids, old('category_id'), ['class' => 'select2', 'multiple' => 'multiple', 'id' => 'selectall-category_id' ]) !!}
-                </div>
+                        {!! Form::label('category_id', trans('global.content-pages.fields.category-id').'') !!}
+                        {!! Form::select('category_id[]', $category_ids, old('category_id'), ['class' => 'select2', 'multiple' => 'multiple', 'id' => 'selectall-category_id' ]) !!}
+                    </div>
 
-                <div class="btn-group col l12">
-                    <button type="button" class="btn btn-small btn-rounded" id="selectbtn-category_id">
-                        {{ trans('global.app_select_all') }}
-                    </button>
-                    <button type="button" class="btn btn-small btn-rounded" id="deselectbtn-category_id">
-                        {{ trans('global.app_deselect_all') }}
-                    </button>
-                </div>
-                <span class="helper-text" data-error="@if($errors->has('category_id')){{ $errors->first('category_id') }}@endif" data-success="right"></span>
-            </div>
-            <div class="col m6 s12">
-                <div class="col s12" style="position: relative;">
-                    {!! Form::label('tag_id', trans('global.content-pages.fields.tag-id').'') !!}
-                    {!! Form::select('tag_id[]', $tag_ids, old('tag_id'), ['class' => 'select2', 'multiple' => 'multiple', 'id' => 'selectall-tag_id' ]) !!}
-                    <span class="helper-text" data-error="@if($errors->has('tag_id')){{ $errors->first('tag_id') }}@endif" data-success="right"></span>
-                </div>
-                <div class="col s12">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-small btn-rounded" id="selectbtn-tag_id">
+                    <div class="btn-group col l12">
+                        <button type="button" class="btn btn-small btn-rounded" id="selectbtn-category_id">
                             {{ trans('global.app_select_all') }}
                         </button>
-                        <button type="button" class="btn btn-small btn-rounded" id="deselectbtn-tag_id">
+                        <button type="button" class="btn btn-small btn-rounded" id="deselectbtn-category_id">
                             {{ trans('global.app_deselect_all') }}
                         </button>
                     </div>
-                    <span class="helper-text" data-error="@if($errors->has('tag_id')){{ $errors->first('tag_id') }}@endif" data-success="right"></span>
+                    <span class="helper-text" data-error="@if($errors->has('category_id')){{ $errors->first('category_id') }}@endif" data-success="right"></span>
+                </div>
+                <div class="col m6 s12">
+                    <div class="col s12" style="position: relative;">
+                        {!! Form::label('tag_id', trans('global.content-pages.fields.tag-id').'') !!}
+                        {!! Form::select('tag_id[]', $tag_ids, old('tag_id'), ['class' => 'select2', 'multiple' => 'multiple', 'id' => 'selectall-tag_id' ]) !!}
+                        <span class="helper-text" data-error="@if($errors->has('tag_id')){{ $errors->first('tag_id') }}@endif" data-success="right"></span>
+                    </div>
+                    <div class="col s12">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-small btn-rounded" id="selectbtn-tag_id">
+                                {{ trans('global.app_select_all') }}
+                            </button>
+                            <button type="button" class="btn btn-small btn-rounded" id="deselectbtn-tag_id">
+                                {{ trans('global.app_deselect_all') }}
+                            </button>
+                        </div>
+                        <span class="helper-text" data-error="@if($errors->has('tag_id')){{ $errors->first('tag_id') }}@endif" data-success="right"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <div class="input-field">
+                        {!! Form::label('excerpt', trans('global.content-pages.fields.excerpt').'') !!}
+                        {!! Form::textarea('excerpt', old('excerpt'), ['class' => 'materialize-textarea']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('excerpt')){{ $errors->first('excerpt') }}@endif" data-success="right"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col s12">
+                    {!! Form::label('page_text', trans('global.content-pages.fields.page-text').'') !!}
+                    {!! Form::textarea('page_text', old('page_text'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
+                    <span class="helper-text" data-error="@if($errors->has('page_text')){{ $errors->first('page_text') }}@endif" data-success="right"></span>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col s12">
-                <div class="input-field">
-                    {!! Form::label('excerpt', trans('global.content-pages.fields.excerpt').'') !!}
-                    {!! Form::textarea('excerpt', old('excerpt'), ['class' => 'materialize-textarea']) !!}
-                    <span class="helper-text" data-error="@if($errors->has('excerpt')){{ $errors->first('excerpt') }}@endif" data-success="right"></span>
-                </div>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            {!! Form::button(trans('global.app_update') . '<i class="mdi-content-send right"></i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
         </div>
-
-
-        <div class="row">
-
-            <div class="col s12">
-                {!! Form::label('page_text', trans('global.content-pages.fields.page-text').'') !!}
-                {!! Form::textarea('page_text', old('page_text'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
-                <span class="helper-text" data-error="@if($errors->has('page_text')){{ $errors->first('page_text') }}@endif" data-success="right"></span>
-            </div>
-        </div>
-
-        {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
     </div>
     {!! Form::close() !!}
 @stop

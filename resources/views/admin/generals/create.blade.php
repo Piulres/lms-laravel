@@ -26,8 +26,8 @@
     </div>
 
 
+    {!! Form::open(['method' => 'POST', 'route' => ['admin.generals.store'], 'files' => true,]) !!}
     <div class="card">
-        {!! Form::open(['method' => 'POST', 'route' => ['admin.generals.store'], 'files' => true,]) !!}
         <div class="title">
             <h5>@lang('global.app_create')</h5>
         </div>
@@ -186,11 +186,14 @@
                     <span class="helper-text" data-error="@if($errors->has('theme_color')){{ $errors->first('theme_color') }}@endif" data-success="right"></span>
                 </div>
             </div>
-
-            {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
         </div>
-        {!! Form::close() !!}
     </div>
+    <div class="row">
+        <div class="col s12">
+            {!! Form::button(trans('global.app_create') . '<i class="material-icons right">send</i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
+        </div>
+    </div>
+    {!! Form::close() !!}
 
 @stop
 

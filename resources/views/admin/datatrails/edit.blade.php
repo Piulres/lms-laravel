@@ -25,8 +25,8 @@
         </div>
     </div>
 
+    {!! Form::model($datatrail, ['method' => 'PUT', 'route' => ['admin.datatrails.update', $datatrail->id]]) !!}
     <div class="card">
-        {!! Form::model($datatrail, ['method' => 'PUT', 'route' => ['admin.datatrails.update', $datatrail->id]]) !!}
         <div class="title">
             <h5>@lang('global.app_edit')</h5>
         </div>
@@ -83,10 +83,13 @@
                     <span class="helper-text" data-error="@if($errors->has('certificate_id')){{ $errors->first('certificate_id') }}@endif" data-success="right"></span>
                 </div>
             </div>
-
-            {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
         </div>
-        {!! Form::close() !!}
     </div>
+    <div class="row">
+        <div class="col s12">
+            {!! Form::button(trans('global.app_update') . '<i class="material-icons right">send</i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
+        </div>
+    </div>
+    {!! Form::close() !!}
 @stop
 

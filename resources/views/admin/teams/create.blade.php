@@ -25,8 +25,8 @@
         </div>
     </div>
 
+    {!! Form::open(['method' => 'POST', 'route' => ['admin.teams.store']]) !!}
     <div class="card">
-        {!! Form::open(['method' => 'POST', 'route' => ['admin.teams.store']]) !!}
         <div class="title">
             <h5>@lang('global.app_create')</h5>
         </div>
@@ -40,14 +40,14 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col s12">
-                    {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
-                </div>
-            </div>
         </div>
-        {!! Form::close() !!}
     </div>
+    <div class="row">
+        <div class="col s12">
+            {!! Form::button(trans('global.app_create') . '<i class="material-icons right">send</i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
+        </div>
+    </div>
+    {!! Form::close() !!}
 
 @stop
 

@@ -88,7 +88,7 @@
                 {data: 'end_date', name: 'end_date'},
                 {data: 'categories.title', name: 'categories.title'},
                 {data: 'tags.title', name: 'tags.title'},
-                {data: 'approved', name: 'approved'},
+                {data: 'approved', name: 'approved', className: 'approved'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

@@ -40,7 +40,7 @@
                         @endcan
                         <th>@lang('global.users.fields.name')</th>
                         <th>@lang('global.users.fields.lastname')</th>
-                        <th>@lang('global.users.fields.website')</th>
+                        {{--<th>@lang('global.users.fields.website')</th>--}}
                         <th>@lang('global.users.fields.email')</th>
                         <th>@lang('global.users.fields.avatar')</th>
                         <th>@lang('global.users.fields.role')</th>
@@ -68,12 +68,12 @@
                 @endcan
                 {data: 'name', name: 'name'},
                 {data: 'lastname', name: 'lastname'},
-                {data: 'website', name: 'website'},
+                // {data: 'website', name: 'website'},
                 {data: 'email', name: 'email'},
                 {data: 'avatar', name: 'avatar'},
                 {data: 'role.title', name: 'role.title'},
                 {data: 'team.name', name: 'team.name'},
-                {data: 'approved', name: 'approved'},
+                {data: 'approved', name: 'approved', className: 'approved'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

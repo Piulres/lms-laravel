@@ -26,15 +26,15 @@
     </div>
 
 
+    {!! Form::model($user, ['method' => 'PUT', 'route' => ['admin.users.update', $user->id], 'files' => true,]) !!}
     <div class="card">
-        {!! Form::model($user, ['method' => 'PUT', 'route' => ['admin.users.update', $user->id], 'files' => true,]) !!}
         <div class="title">
-            <h5>@lang('global.app_editor')</h5>
+            <h5>@lang('global.app_edit')</h5>
         </div>
 
         <div class="content">
             <div class="row">
-                <div class="col m6 s12">
+                <div class="col m4 s12">
                     <div class="input-field">
                         {!! Form::label('name', trans('global.users.fields.name').'*') !!}
                         {!! Form::text('name', old('name'), ['class' => 'validate', 'required' => '']) !!}
@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="col m6 s12">
+                <div class="col m4 s12">
                     <div class="input-field">
                         {!! Form::label('lastname', trans('global.users.fields.lastname').'') !!}
                         {!! Form::text('lastname', old('lastname'), ['class' => 'validate']) !!}
@@ -50,15 +50,7 @@
                     </div>
                 </div>
 
-                <div class="col m6 s12">
-                    <div class="input-field">
-                        {!! Form::label('website', trans('global.users.fields.website').'') !!}
-                        {!! Form::text('website', old('website'), ['class' => 'validate']) !!}
-                        <span class="helper-text" data-error="@if($errors->has('website')){{ $errors->first('website') }}@endif" data-success="right"></span>
-                    </div>
-                </div>
-
-                <div class="col m6 s12">
+                <div class="col m4 s12">
                     <div class="input-field">
                         {!! Form::label('email', trans('global.users.fields.email').'*') !!}
                         {!! Form::email('email', old('email'), ['class' => 'validate', 'required' => '']) !!}
@@ -66,7 +58,16 @@
                     </div>
                 </div>
 
-                <div class="col m6 s12">
+                <div class="col m4 s12">
+                    <div class="input-field">
+                        {!! Form::label('website', trans('global.users.fields.website').'') !!}
+                        {!! Form::text('website', old('website'), ['class' => 'validate']) !!}
+                        <span class="helper-text" data-error="@if($errors->has('website')){{ $errors->first('website') }}@endif" data-success="right"></span>
+                    </div>
+                </div>
+
+
+                <div class="col m4 s12">
                     <div class="input-field">
                         {!! Form::label('password', trans('global.users.fields.password').'*') !!}
                         {!! Form::password('password', ['class' => 'validate']) !!}
@@ -74,7 +75,7 @@
                     </div>
                 </div>
 
-                <div class="col m6 s12">
+                <div class="col m4 s12">
                     <div class="file-field input-field">
                         <div class="btn grey">
                             <span>File</span>
@@ -86,9 +87,6 @@
                         {!! Form::hidden('avatar_max_size', 2) !!}
                         {!! Form::hidden('avatar_max_width', 4096) !!}
                         {!! Form::hidden('avatar_max_height', 4096) !!}
-                        @if ($user->avatar)
-                            <a href="{{ asset(env('UPLOAD_PATH').'/'.$user->avatar) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/'.$user->avatar) }}"></a>
-                        @endif
                         <span class="helper-text" data-error="@if($errors->has('avatar')){{ $errors->first('avatar') }}@endif" data-success="right"></span>
                     </div>
                 </div>
@@ -117,16 +115,20 @@
 
                 <div class="col s12">
                     {!! Form::hidden('approved', 0) !!}
-                    {!! Form::checkbox('approved', 1, old('approved', false), ['id' => 'approved']) !!}
+                    {!! Form::checkbox('approved', 1, old('approved'), ['id' => 'approved']) !!}
                     {!! Form::label('approved', trans('global.users.fields.approved').'') !!}
                     <span class="helper-text" data-error="@if($errors->has('approved')){$errors->first('approved') }}@endif" data-success="right"></span>
                 </div>
             </div>
 
-            {!! Form::submit(trans('global.app_update'), ['class' => 'btn waves-effect waves-light white-text']) !!}
         </div>
-        {!! Form::close() !!}
     </div>
+    <div class="row">
+        <div class="col s12">
+            {!! Form::button(trans('global.app_update') . '<i class="material-icons right">send</i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
+        </div>
+    </div>
+    {!! Form::close() !!}
 @stop
 
 @section('javascript')

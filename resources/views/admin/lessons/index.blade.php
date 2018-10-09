@@ -48,11 +48,11 @@
                 @if (count($lessons) > 0)
                 @foreach ($lessons as $lesson)
                 <li class="item">
-                    <div class="contain">
+                    <div class="contain" @if($lesson->featured_image) style="background-image: url('{{ asset(env('UPLOAD_PATH').'/thumb/' . $course->featured_image) }}'); " @endif>
                         <div class="left">
-                            <div class="drag-me">
-                                <i class="fas fa-plus"></i>
-                            </div>
+                            {{--<div class="drag-me">--}}
+                                {{--<i class="fas fa-plus"></i>--}}
+                            {{--</div>--}}
                             <div class="infos">
                                 <h3>{{ $lesson->title }} <span>{{ $lesson->slug }}</span></h3>
                             </div>
@@ -116,10 +116,10 @@
                             <h4>@lang('global.lessons.fields.introduction')</h4>
                             {!! $lesson->introduction !!}
                         </div>
-                        <div class="content-item">
-                            <h4>@lang('global.lessons.fields.content')</h4>
-                            {!! $lesson->content !!}
-                        </div>
+                        {{--<div class="content-item">--}}
+                            {{--<h4>@lang('global.lessons.fields.content')</h4>--}}
+                            {{--{!! $lesson->content !!}--}}
+                        {{--</div>--}}
                         @if($lesson->study_material)
                         <a href="{{ asset(env('UPLOAD_PATH').'/' . $lesson->study_material) }}" download class="download">
                             <i class="fas fa-file-download"></i>

@@ -25,8 +25,8 @@
         </div>
     </div>
 
+    {!! Form::model($internal_notification, ['method' => 'PUT', 'route' => ['admin.internal_notifications.update', $internal_notification->id]]) !!}
     <div class="card">
-        {!! Form::model($internal_notification, ['method' => 'PUT', 'route' => ['admin.internal_notifications.update', $internal_notification->id]]) !!}
         <div class="title">
         <h5>@lang('global.app_edit')</h5>
         </div>
@@ -65,11 +65,14 @@
                     </div>
                 </div>
             </div>
-
-            {!! Form::submit(trans('global.app_save'), ['class' => 'btn waves-effect waves-light']) !!}
         </div>
-        {!! Form::close() !!}
     </div>
+    <div class="row">
+        <div class="col s12">
+            {!! Form::button(trans('global.app_update') . '<i class="material-icons right">send</i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
+        </div>
+    </div>
+    {!! Form::close() !!}
 @stop
 
 @section('javascript')

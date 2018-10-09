@@ -4,7 +4,7 @@
 @section('content')
     <div class="page-title">
         <div class="row">
-            <div class="col s12 m9 l10"><h1>@lang('global.trailscertificates.title')</h1>
+            <div class="col s12 m9 l10"><h1>@lang('global.trailtags.title')</h1>
                 <ul>
                     <li>
                         <a href="{{ url('/admin/home') }}">
@@ -12,15 +12,15 @@
                             Dashboard</a>
                     </li> /
                     <li>
-                        <a href="{{ route('admin.trailscertificates.index') }}">
-                            @lang('global.trailscertificates.title')</a>
+                        <a href="{{ route('admin.trailtags.index') }}">
+                            @lang('global.trailtags.title')</a>
                     </li> /
                     <li><span>@lang('global.app_edit')</span></li>
                 </ul>
             </div>
             <div class="col s12 m3 l2 right-align">
-                <a href="{{ route('admin.trailscertificates.index') }}" class="btn lighten-3 z-depth-0 chat-toggle">
-                    @lang('global.app_back_to_list')
+                <a href="{{ route('admin.trailtags.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
+                    Create Tag
                 </a>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <a href="{{ route('admin.trailtags.index') }}?show_deleted=1" class="grey-text {{ request('show_deleted') == 1 ? 'active' : '' }}">@lang('global.app_trash')</a>
         </li>
     </ul>
-    
+
 
     <div class="card">
         <div class="title">
@@ -59,7 +59,7 @@
                         @endif
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     @if (count($trailtags) > 0)
                         @foreach ($trailtags as $trailtag)

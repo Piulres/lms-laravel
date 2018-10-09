@@ -45,7 +45,7 @@
         </div>
 
         <div class="card-content">
-            <table class="table table-striped ajaxTable @can('datalesson_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
+            <table class="no-order table table-striped ajaxTable @can('datalesson_delete') @if ( request('show_deleted') != 1 ) dt-select @else dt-show @endif @endcan">
                 <thead>
                     <tr>
                         <th></th>
