@@ -11,7 +11,7 @@
         </div>
     </div>
     @if($mytestimonals->count() != 0)
-        <div class="row">
+    <div class="row">
         <div class="col s12">
             <div class="card">
                 <div class="title">
@@ -19,33 +19,33 @@
                     <a class="minimize" href="#" draggable="false"><i class="mdi-navigation-expand-less"></i></a>
                 </div>
                 <div class="content">
-            {!! Form::open(['method' => 'POST', 'route' => ['admin.savefeedback'], 'files' => true,]) !!}
-            <div id="testimonal-box">
-                <div class="col m1 s12">
-                    <div class="input-field">
-                        {!! Form::label('rating', trans('global.datacourse.fields.rating').'') !!}
-                            {!! Form::number('rating', old('rating'), ['class' => 'validate']) !!}
-                            <span class="helper-text" data-error="@if($errors->has('rating')){{ $errors->first('rating') }}@endif" data-success="right"></span>
+                    {!! Form::open(['method' => 'POST', 'route' => ['admin.savefeedback'], 'files' => true,]) !!}
+                    <div id="testimonal-box">
+                        <div class="col m1 s12">
+                            <div class="input-field">
+                                {!! Form::label('rating', trans('global.datacourse.fields.rating').'') !!}
+                                    {!! Form::number('rating', old('rating'), ['class' => 'validate']) !!}
+                                    <span class="helper-text" data-error="@if($errors->has('rating')){{ $errors->first('rating') }}@endif" data-success="right"></span>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div class="input-field">
+                                {!! Form::label('testimonal', trans('Feedback').'') !!}
+                                {!! Form::textarea('testimonal', old('testimonal'), ['class' => 'materialize-textarea ']) !!}
+                                <span class="helper-text" data-error="@if($errors->has('testimonal')){{ $errors->first('testimonal') }}@endif" data-success="right"></span>
+                            </div>
+                            <input type="hidden" value="{{ $mytestimonals[0]->user_id }}" name="user_id">
+                            <input type="hidden" value="{{ $mytestimonals[0]->course_id }}" name="course_id">
+                        </div>
+                        <div class="col s12">
+                            {!! Form::button(trans('global.app_save') . '<i class="material-icons right">send</i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
+                        </div>
                     </div>
+                    {!! Form::close() !!}
                 </div>
-                <div class="col s12">
-                    <div class="input-field">
-                        {!! Form::label('testimonal', trans('Feedback').'') !!}
-                        {!! Form::textarea('testimonal', old('testimonal'), ['class' => 'materialize-textarea ']) !!}
-                        <span class="helper-text" data-error="@if($errors->has('testimonal')){{ $errors->first('testimonal') }}@endif" data-success="right"></span>
-                    </div>
-                    <input type="hidden" value="{{ $mytestimonals[0]->user_id }}" name="user_id">
-                    <input type="hidden" value="{{ $mytestimonals[0]->course_id }}" name="course_id">
-                </div>
-                <div class="col s12">
-                    {!! Form::button(trans('global.app_save') . '<i class="material-icons right">send</i>', ['class'=>'btn waves-effect waves-light right', 'type'=>'submit']) !!}
-                </div>
-            </div>
-            {!! Form::close() !!}
-            </div>
             </div>
         </div>
-        </div>
+    </div>
     @endif
 
     <div class="row">
