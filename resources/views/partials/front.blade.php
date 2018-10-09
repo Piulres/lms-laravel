@@ -35,6 +35,11 @@
                                 Courses
                             </a>
                         </li>
+                        <li>
+                            <a class="black-text" href="{{ url('/guide') }}">
+                                Trails
+                            </a>
+                        </li>
                         <li>                        
                             
                             <a class="btn btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Dashboard" href="{{ url('/admin/home') }}"><i class="material-icons">dashboard</i></a>
@@ -54,7 +59,11 @@
                                 Library
                             </a>
                         </li>
-                        
+                        <li>
+                            <a class="black-text" href="{{ url('/guide') }}">
+                                Trails
+                            </a>
+                        </li>
                         <li>
                             <a class="btn btn-floating waves-effect waves-light black modal-trigger tooltipped" data-position="bottom" data-tooltip="Login" data-target="modal1" href="#modal1"><i class="material-icons">person</i></a>
                         </li>
@@ -70,6 +79,12 @@
                         <li>
                             <a class="btn waves-effect waves-light black white-text" href="{{ url('/library') }}">
                                 Courses
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="btn waves-effect waves-light black white-text" href="{{ url('/guide') }}">
+                                Trails
                             </a>
                         </li>
 
