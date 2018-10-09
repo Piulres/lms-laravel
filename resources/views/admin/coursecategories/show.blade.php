@@ -62,18 +62,19 @@
                     <thead>
                         <tr>
                             <th>@lang('global.courses.fields.order')</th>
+                            <th></th>
                             <th>@lang('global.courses.fields.title')</th>
-                            <th>@lang('global.courses.fields.slug')</th>
-                            <th>@lang('global.courses.fields.description')</th>
-                            <th>@lang('global.courses.fields.introduction')</th>
-                            <th>@lang('global.courses.fields.featured-image')</th>
+{{--                            <th>@lang('global.courses.fields.slug')</th>--}}
+                            {{--<th>@lang('global.courses.fields.description')</th>--}}
+                            {{--<th>@lang('global.courses.fields.introduction')</th>--}}
+                            {{--<th>@lang('global.courses.fields.featured-image')</th>--}}
                             <th>@lang('global.courses.fields.instructor')</th>
-                            <th>@lang('global.courses.fields.lessons')</th>
+                            {{--<th>@lang('global.courses.fields.lessons')</th>--}}
                             <th>@lang('global.courses.fields.duration')</th>
                             <th>@lang('global.courses.fields.start-date')</th>
                             <th>@lang('global.courses.fields.end-date')</th>
-                            <th>@lang('global.courses.fields.categories')</th>
-                            <th>@lang('global.courses.fields.tags')</th>
+                            {{--<th>@lang('global.courses.fields.categories')</th>--}}
+                            {{--<th>@lang('global.courses.fields.tags')</th>--}}
                             <th>@lang('global.courses.fields.approved')</th>
                             @if( request('show_deleted') == 1 )
                             <th>&nbsp;</th>
@@ -88,34 +89,35 @@
                             @foreach ($courses as $course)
                                 <tr data-entry-id="{{ $course->id }}">
                                     <td field-key='order'>{{ $course->order }}</td>
+                                    <td></td>
                                     <td field-key='title'>{{ $course->title }}</td>
-                                    <td field-key='slug'>{{ $course->slug }}</td>
-                                    <td field-key='description'>{!! $course->description !!}</td>
-                                    <td field-key='introduction'>{!! $course->introduction !!}</td>
-                                    <td field-key='featured_image'>@if($course->featured_image)<a href="{{ asset(env('UPLOAD_PATH').'/' . $course->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $course->featured_image) }}"/></a>@endif</td>
+                                    {{--<td field-key='slug'>{{ $course->slug }}</td>--}}
+                                    {{--<td field-key='description'>{!! $course->description !!}</td>--}}
+                                    {{--<td field-key='introduction'>{!! $course->introduction !!}</td>--}}
+                                    {{--<td field-key='featured_image'>@if($course->featured_image)<a href="{{ asset(env('UPLOAD_PATH').'/' . $course->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $course->featured_image) }}"/></a>@endif</td>--}}
                                     <td field-key='instructor'>
                                         @foreach ($course->instructor as $singleInstructor)
                                             <span class="label label-info label-many">{{ $singleInstructor->name }}</span>
                                         @endforeach
                                     </td>
-                                    <td field-key='lessons'>
-                                        @foreach ($course->lessons as $singleLessons)
-                                            <span class="label label-info label-many">{{ $singleLessons->title }}</span>
-                                        @endforeach
-                                    </td>
+                                    {{--<td field-key='lessons'>--}}
+                                        {{--@foreach ($course->lessons as $singleLessons)--}}
+                                            {{--<span class="label label-info label-many">{{ $singleLessons->title }}</span>--}}
+                                        {{--@endforeach--}}
+                                    {{--</td>--}}
                                     <td field-key='duration'>{{ $course->duration }}</td>
                                     <td field-key='start_date'>{{ $course->start_date }}</td>
                                     <td field-key='end_date'>{{ $course->end_date }}</td>
-                                    <td field-key='categories'>
-                                        @foreach ($course->categories as $singleCategories)
-                                            <span class="label label-info label-many">{{ $singleCategories->title }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td field-key='tags'>
-                                        @foreach ($course->tags as $singleTags)
-                                            <span class="label label-info label-many">{{ $singleTags->title }}</span>
-                                        @endforeach
-                                    </td>
+                                    {{--<td field-key='categories'>--}}
+                                        {{--@foreach ($course->categories as $singleCategories)--}}
+                                            {{--<span class="label label-info label-many">{{ $singleCategories->title }}</span>--}}
+                                        {{--@endforeach--}}
+                                    {{--</td>--}}
+                                    {{--<td field-key='tags'>--}}
+                                        {{--@foreach ($course->tags as $singleTags)--}}
+                                            {{--<span class="label label-info label-many">{{ $singleTags->title }}</span>--}}
+                                        {{--@endforeach--}}
+                                    {{--</td>--}}
                                     <td field-key='approved'>{{ Form::checkbox("approved", 1, $course->approved == 1 ? true : false, ["disabled"]) }}</td>
                                     @if( request('show_deleted') == 1 )
                                     <td>
@@ -124,14 +126,14 @@
                                             'method' => 'POST',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.courses.restore', $course->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn-square blue-text')) !!}
                                         {!! Form::close() !!}
                                                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.courses.perma_del', $course->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn-square red-text')) !!}
                                         {!! Form::close() !!}
                                                                     </td>
                                     @else
@@ -149,7 +151,7 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                                 'route' => ['admin.courses.destroy', $course->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </div>

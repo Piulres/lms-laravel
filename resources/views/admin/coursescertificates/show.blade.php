@@ -103,14 +103,14 @@
                                             'method' => 'POST',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.datacourses.restore', $datacourse->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn-square blue-text')) !!}
                                         {!! Form::close() !!}
                                                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.datacourses.perma_del', $datacourse->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn-square red-text')) !!}
                                         {!! Form::close() !!}
                                                                     </td>
                                     @else
@@ -128,7 +128,7 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                                 'route' => ['admin.datacourses.destroy', $datacourse->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </div>

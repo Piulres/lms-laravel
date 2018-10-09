@@ -91,6 +91,8 @@
                 <table class="striped responsive-table {{ count($user_actions) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
+                            <th></th>
+                            <th></th>
                             <th>@lang('global.user-actions.created_at')</th>
                             <th>@lang('global.user-actions.fields.user')</th>
                             <th>@lang('global.user-actions.fields.action')</th>
@@ -103,6 +105,8 @@
                         @if (count($user_actions) > 0)
                             @foreach ($user_actions as $user_action)
                                 <tr data-entry-id="{{ $user_action->id }}">
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ $user_action->created_at or '' }}</td>
                                     <td field-key='user'>{{ $user_action->user->name or '' }}</td>
                                     <td field-key='action'>{{ $user_action->action }}</td>
@@ -123,6 +127,8 @@
                 <table class="striped responsive-table {{ count($datacourses) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
+                            <th></th>
+                            <th></th>
                             <th>@lang('global.datacourses.fields.course')</th>
                             <th>@lang('global.datacourses.fields.user')</th>
                             <th>@lang('global.datacourses.fields.view')</th>
@@ -140,6 +146,8 @@
                         @if (count($datacourses) > 0)
                             @foreach ($datacourses as $datacourse)
                                 <tr data-entry-id="{{ $datacourse->id }}">
+                                    <td></td>
+                                    <td></td>
                                     <td field-key='course'>{{ $datacourse->course->title or '' }}</td>
                                     <td field-key='user'>{{ $datacourse->user->name or '' }}</td>
                                     <td field-key='view'>{{ Form::checkbox("view", 1, $datacourse->view == 1 ? true : false, ["disabled"]) }}</td>
@@ -152,14 +160,14 @@
                                             'method' => 'POST',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.datacourses.restore', $datacourse->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn-square blue-text')) !!}
                                         {!! Form::close() !!}
                                                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.datacourses.perma_del', $datacourse->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn-square red-text')) !!}
                                         {!! Form::close() !!}
                                     </td>
                                     @else
@@ -177,7 +185,7 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                                 'route' => ['admin.datacourses.destroy', $datacourse->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                             </div>
@@ -198,6 +206,8 @@
                 <table class="striped responsive-table {{ count($datatrails) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
+                            <th></th>
+                            <th></th>
                             <th>@lang('global.datatrails.fields.trail')</th>
                             <th>@lang('global.datatrails.fields.user')</th>
                             <th>@lang('global.datatrails.fields.view')</th>
@@ -215,6 +225,8 @@
                         @if (count($datatrails) > 0)
                             @foreach ($datatrails as $datatrail)
                                 <tr data-entry-id="{{ $datatrail->id }}">
+                                    <td></td>
+                                    <td></td>
                                     <td field-key='trail'>{{ $datatrail->trail->title or '' }}</td>
                                     <td field-key='user'>{{ $datatrail->user->name or '' }}</td>
                                     <td field-key='view'>{{ Form::checkbox("view", 1, $datatrail->view == 1 ? true : false, ["disabled"]) }}</td>
@@ -227,14 +239,14 @@
                                             'method' => 'POST',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.datatrails.restore', $datatrail->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn-square blue-text')) !!}
                                         {!! Form::close() !!}
                                                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.datatrails.perma_del', $datatrail->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn-square red-text')) !!}
                                         {!! Form::close() !!}
                                     </td>
                                     @else
@@ -252,7 +264,7 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                                 'route' => ['admin.datatrails.destroy', $datatrail->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </div>
@@ -273,6 +285,8 @@
                 <table class="striped responsive-table {{ count($courses) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
+                            <th></th>
+                            <th></th>
                             <th>@lang('global.courses.fields.title')</th>
                             <th>@lang('global.courses.fields.instructor')</th>
                             <th>@lang('global.courses.fields.lessons')</th>
@@ -293,6 +307,8 @@
                         @if (count($courses) > 0)
                             @foreach ($courses as $course)
                                 <tr data-entry-id="{{ $course->id }}">
+                                    <td></td>
+                                    <td></td>
                                     <td field-key='title'>{{ $course->title }}</td>
                                     <td field-key='instructor'>
                                         @foreach ($course->instructor as $singleInstructor)
@@ -320,14 +336,14 @@
                                             'method' => 'POST',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.courses.restore', $course->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn-square blue-text')) !!}
                                         {!! Form::close() !!}
                                                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.courses.perma_del', $course->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn-square red-text')) !!}
                                         {!! Form::close() !!}
                                                                     </td>
                                     @else
@@ -345,7 +361,7 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                                 'route' => ['admin.courses.destroy', $course->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </div>
@@ -366,6 +382,8 @@
                 <table class="striped responsive-table {{ count($internal_notifications) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
+                            <tr></tr>
+                            <tr></tr>
                             <th>@lang('global.internal-notifications.fields.text')</th>
                             <th>@lang('global.internal-notifications.fields.link')</th>
                             <th>@lang('global.internal-notifications.fields.users')</th>
@@ -377,6 +395,8 @@
                         @if (count($internal_notifications) > 0)
                             @foreach ($internal_notifications as $internal_notification)
                                 <tr data-entry-id="{{ $internal_notification->id }}">
+                                    <td></td>
+                                    <td></td>
                                     <td field-key='text'>{{ $internal_notification->text }}</td>
                                     <td field-key='link'>{{ $internal_notification->link }}</td>
                                     <td field-key='users'>
@@ -398,7 +418,7 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                                 'route' => ['admin.internal_notifications.destroy', $internal_notification->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </div>

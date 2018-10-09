@@ -36,7 +36,7 @@
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.are_you_sure")."');",
                                         'route' => ['admin.topics.destroy', $topic->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::submit(trans('quickadmin.delete'), array('class' => 'btn-square red-text')) !!}
                                     {!! Form::close() !!}
                                 </td>
                             </tr>

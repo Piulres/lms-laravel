@@ -95,42 +95,42 @@
                                     <td field-key='user'>{{ $datatrail->user->name or '' }}</td>
                                     <td field-key='trail'>{{ $datatrail->trail->title or '' }}</td>
                                     <td field-key='certificate'>{{ $datatrail->certificate->title or '' }}</td>
+                                    <td>
+                                    <div class="buttons">
                                     @if( request('show_deleted') == 1 )
-                                    <td>
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'POST',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.datatrails.restore', $datatrail->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                        {!! Form::close() !!}
-                                                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.datatrails.perma_del', $datatrail->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                        {!! Form::close() !!}
-                                                                    </td>
-                                    @else
-                                    <td>
-                                        @can('datatrail_view')
-                                        <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
-                                        @endcan
-                                        @can('datatrail_edit')
-                                        <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
-                                        @endcan
-                                        @can('datatrail_delete')
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                            'route' => ['admin.datatrails.destroy', $datatrail->id])) !!}
-                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
-                                        {!! Form::close() !!}
-                                        @endcan
+                                            {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'POST',
+                                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                                'route' => ['admin.datatrails.restore', $datatrail->id])) !!}
+                                            {!! Form::submit(trans('global.app_restore'), array('class' => 'btn-square blue-text')) !!}
+                                            {!! Form::close() !!}
+                                                                            {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'DELETE',
+                                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                                'route' => ['admin.datatrails.perma_del', $datatrail->id])) !!}
+                                            {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn-square red-text')) !!}
+                                            {!! Form::close() !!}
+                                        @else
+                                            @can('datatrail_view')
+                                            <a href="{{ route('admin.datatrails.show',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square amber-text"><i class="material-icons">remove_red_eye</i></a>
+                                            @endcan
+                                            @can('datatrail_edit')
+                                            <a href="{{ route('admin.datatrails.edit',[$datatrail->id]) }}" class="waves-effect waves-light btn-small btn-square blue-text"><i class="material-icons">edit</i></a>
+                                            @endcan
+                                            @can('datatrail_delete')
+                                            {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'DELETE',
+                                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                                'route' => ['admin.datatrails.destroy', $datatrail->id])) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
+                                            {!! Form::close() !!}
+                                            @endcan
+                                        @endif
+                                    </div>
                                     </td>
-                                    @endif
                                 </tr>
                             @endforeach
                         @else

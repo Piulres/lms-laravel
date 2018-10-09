@@ -10,7 +10,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    @if($mytestimonals->count() != 0)
+        <div class="row">
         <div class="col s12">
             <div class="card">
                 <div class="title">
@@ -18,7 +19,6 @@
                     <a class="minimize" href="#" draggable="false"><i class="mdi-navigation-expand-less"></i></a>
                 </div>
                 <div class="content">
-            @if($mytestimonals->count() != 0)
             {!! Form::open(['method' => 'POST', 'route' => ['admin.savefeedback'], 'files' => true,]) !!}
             <div id="testimonal-box">
                 <div class="col m1 s12">
@@ -42,11 +42,11 @@
                 </div>
             </div>
             {!! Form::close() !!}
-            @endif
+            </div>
             </div>
         </div>
-    </div>
-    </div>
+        </div>
+    @endif
 
     <div class="row">
         <div class="col s12 m3">
@@ -239,7 +239,7 @@
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.faq_questions.destroy', $faqquestion->id])) !!}
-                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
                                     </div>
                                     @endcan

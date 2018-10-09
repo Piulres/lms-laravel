@@ -62,15 +62,15 @@
                         <tr>
                             <th>@lang('global.trails.fields.order')</th>
                             <th>@lang('global.trails.fields.title')</th>
-                            <th>@lang('global.trails.fields.slug')</th>
-                            <th>@lang('global.trails.fields.description')</th>
-                            <th>@lang('global.trails.fields.introduction')</th>
-                            <th>@lang('global.trails.fields.featured-image')</th>
-                            <th>@lang('global.trails.fields.courses')</th>
+                            {{--<th>@lang('global.trails.fields.slug')</th>--}}
+                            {{--<th>@lang('global.trails.fields.description')</th>--}}
+                            {{--<th>@lang('global.trails.fields.introduction')</th>--}}
+                            {{--<th>@lang('global.trails.fields.featured-image')</th>--}}
+{{--                            <th>@lang('global.trails.fields.courses')</th>--}}
                             <th>@lang('global.trails.fields.start-date')</th>
                             <th>@lang('global.trails.fields.end-date')</th>
-                            <th>@lang('global.trails.fields.categories')</th>
-                            <th>@lang('global.trails.fields.tags')</th>
+                            {{--<th>@lang('global.trails.fields.categories')</th>--}}
+                            {{--<th>@lang('global.trails.fields.tags')</th>--}}
                             <th>@lang('global.trails.fields.approved')</th>
                             @if( request('show_deleted') == 1 )
                             <th>&nbsp;</th>
@@ -86,27 +86,27 @@
                                 <tr data-entry-id="{{ $trail->id }}">
                                     <td field-key='order'>{{ $trail->order }}</td>
                                     <td field-key='title'>{{ $trail->title }}</td>
-                                    <td field-key='slug'>{{ $trail->slug }}</td>
-                                    <td field-key='description'>{!! $trail->description !!}</td>
-                                    <td field-key='introduction'>{!! $trail->introduction !!}</td>
-                                    <td field-key='featured_image'>{{ $trail->featured_image }}</td>
-                                    <td field-key='courses'>
-                                        @foreach ($trail->courses as $singleCourses)
-                                            <span class="label label-info label-many">{{ $singleCourses->title }}</span>
-                                        @endforeach
-                                    </td>
+                                    {{--<td field-key='slug'>{{ $trail->slug }}</td>--}}
+                                    {{--<td field-key='description'>{!! $trail->description !!}</td>--}}
+                                    {{--<td field-key='introduction'>{!! $trail->introduction !!}</td>--}}
+                                    {{--<td field-key='featured_image'>{{ $trail->featured_image }}</td>--}}
+                                    {{--<td field-key='courses'>--}}
+                                        {{--@foreach ($trail->courses as $singleCourses)--}}
+                                            {{--<span class="label label-info label-many">{{ $singleCourses->title }}</span>--}}
+                                        {{--@endforeach--}}
+                                    {{--</td>--}}
                                     <td field-key='start_date'>{{ $trail->start_date }}</td>
                                     <td field-key='end_date'>{{ $trail->end_date }}</td>
-                                    <td field-key='categories'>
-                                        @foreach ($trail->categories as $singleCategories)
-                                            <span class="label label-info label-many">{{ $singleCategories->title }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td field-key='tags'>
-                                        @foreach ($trail->tags as $singleTags)
-                                            <span class="label label-info label-many">{{ $singleTags->title }}</span>
-                                        @endforeach
-                                    </td>
+                                    {{--<td field-key='categories'>--}}
+                                        {{--@foreach ($trail->categories as $singleCategories)--}}
+                                            {{--<span class="label label-info label-many">{{ $singleCategories->title }}</span>--}}
+                                        {{--@endforeach--}}
+                                    {{--</td>--}}
+                                    {{--<td field-key='tags'>--}}
+                                        {{--@foreach ($trail->tags as $singleTags)--}}
+                                            {{--<span class="label label-info label-many">{{ $singleTags->title }}</span>--}}
+                                        {{--@endforeach--}}
+                                    {{--</td>--}}
                                     <td field-key='approved'>{{ Form::checkbox("approved", 1, $trail->approved == 1 ? true : false, ["disabled"]) }}</td>
                                     @if( request('show_deleted') == 1 )
                                     <td>
@@ -115,14 +115,14 @@
                                             'method' => 'POST',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.trails.restore', $trail->id])) !!}
-                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                        {!! Form::submit(trans('global.app_restore'), array('class' => 'btn-square blue-text')) !!}
                                         {!! Form::close() !!}
                                                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                             'route' => ['admin.trails.perma_del', $trail->id])) !!}
-                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn-square red-text')) !!}
                                         {!! Form::close() !!}
                                                                     </td>
                                     @else
@@ -140,7 +140,7 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                                 'route' => ['admin.trails.destroy', $trail->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </div>

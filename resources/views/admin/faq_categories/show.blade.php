@@ -55,6 +55,8 @@
                 <table class="striped responsive-table {{ count($faq_questions) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
+                            <th></th>
+                            <th></th>
                             <th>@lang('global.faq-questions.fields.category')</th>
                             <th>@lang('global.faq-questions.fields.question-text')</th>
                             <th>@lang('global.faq-questions.fields.answer-text')</th>
@@ -67,6 +69,8 @@
                         @if (count($faq_questions) > 0)
                             @foreach ($faq_questions as $faq_question)
                                 <tr data-entry-id="{{ $faq_question->id }}">
+                                    <td></td>
+                                    <td></td>
                                     <td field-key='category'>{{ $faq_question->category->title or '' }}</td>
                                     <td field-key='question_text'>{!! $faq_question->question_text !!}</td>
                                     <td field-key='answer_text'>{!! $faq_question->answer_text !!}</td>
@@ -84,7 +88,7 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                                 'route' => ['admin.faq_questions.destroy', $faq_question->id])) !!}
-                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red', 'type'=>'submit']) !!}
+                                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['class'=>'waves-effect waves-light btn-small btn-square red-text', 'type'=>'submit']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </div>
