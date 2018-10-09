@@ -134,6 +134,19 @@ Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' =>
     Route::post('datalessons_restore/{id}', ['uses' => 'Admin\DatalessonsController@restore', 'as' => 'datalessons.restore']);
     Route::delete('datalessons_perma_del/{id}', ['uses' => 'Admin\DatalessonsController@perma_del', 'as' => 'datalessons.perma_del']);
 
+
+    Route::resource('tests', 'Admin\TestsController');
+    Route::resource('roles', 'Admin\RolesController');
+    Route::resource('topics', 'Admin\TopicsController');
+    Route::resource('questions', 'Admin\QuestionsController');
+    Route::resource('questions_options', 'Admin\QuestionsOptionsController');
+    Route::resource('results', 'Admin\ResultsController');
+
+    Route::post('topics_mass_destroy', ['uses' => 'Admin\TopicsController@massDestroy', 'as' => 'topics.mass_destroy']);
+    Route::post('questions_mass_destroy', ['uses' => 'Admin\QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
+    Route::post('questions_options_mass_destroy', ['uses' => 'Admin\QuestionsOptionsController@massDestroy', 'as' => 'questions_options.mass_destroy']);
+    Route::post('results_mass_destroy', ['uses' => 'Admin\ResultsController@massDestroy', 'as' => 'results.mass_destroy']);
+
     Route::model('messenger', 'App\MessengerTopic');
     Route::get('messenger/inbox', 'Admin\MessengerController@inbox')->name('messenger.inbox');
     Route::get('messenger/outbox', 'Admin\MessengerController@outbox')->name('messenger.outbox');
