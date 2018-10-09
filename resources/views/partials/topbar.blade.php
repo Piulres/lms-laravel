@@ -6,11 +6,8 @@
             <div class="burg3"></div>
         </a>
         <a href="#!" class="brand-logo">
-            @if($generals->count() >= 1)
-                <img src="{{url('/')}}/{{$generals[0]->site_logo}}" alt="Con">
-            @else
+            
                 <img src="{{ url('images') }}/Logo_RPX.png" alt="Con">
-            @endif
         </a>
         <ul>
             <li class="dropdown languages-menu">
