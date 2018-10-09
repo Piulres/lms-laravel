@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use App\Course;
 
 class TrailsController extends Controller
 {
@@ -89,7 +90,7 @@ class TrailsController extends Controller
          $total_courses = DB::table('course_trail')
         ->leftJoin('courses', 'course_trail.course_id', '=', 'courses.id')
         ->where("course_trail.trail_id", '=',  $id)
-        ->count();
+        ->get();
         
         $datatrails = DB::table('datatrails')
         ->where("datatrails.user_id", '=',  $user)
@@ -97,13 +98,14 @@ class TrailsController extends Controller
         ->limit(1)
         ->get();
         
-        $check_done_trail = DB::table('course_trail')
-        ->leftJoin('datatrails','course_trail.trail_id','=','datatrails.trail_id')
-        ->where("datatrails.user_id", '=',  $user)
-        ->where("datatrails.trail_id", '=',  $id)
-        ->where("datatrails.view", '=',  1)
-        ->count();
-        
+        $user_course_list = DB::table('datacourses')
+        ->leftJoin('course_trail', 'course_trail.course_id', '=', 'datacourses.course_id')
+        ->leftJoin('courses', 'course_trail.course_id', '=', 'courses.id')
+        ->where('datacourses.user_id','=',$user)
+        ->where('datacourses.progress','=',100)
+        ->where('course_trail.trail_id','=',$id)
+        ->get();
+
         // ////////////////////////////////////////////
 
         // create
@@ -113,6 +115,18 @@ class TrailsController extends Controller
             'trail_id' => $id,
         ],
         ['view' => '0']);
+
+        // start trail courses
+        //dd($total_courses);
+        foreach($total_courses as $c){
+            $cc = DB::table('datacourses')
+            ->where('datacourses.user_id','=',$user)
+            ->where('datacourses.course_id','=',$c->course_id)
+            ->first();
+            if($cc===null){
+                app('App\Http\Controllers\CoursesController')->add($c->course_id);
+            }
+        }
 
         // add trail to mytrails
         DB::table('datatrails')
@@ -129,9 +143,17 @@ class TrailsController extends Controller
         ->delete();
 
         
+        // check completes courses
+        $check_done_trail = collect();
+        foreach($user_course_list as $item){
+            $a = DB::table('courses')
+            ->where('courses.id','=',$item->course_id)
+            ->first();
+            $check_done_trail->push($a);
+        }
 
         // add progress
-        if ($check_done_trail == $total_courses) {
+        if ($check_done_trail->count() == $total_courses->count()) {
 
             DB::table('datatrails')
              ->where("datatrails.user_id", '=',  $user)
@@ -140,16 +162,14 @@ class TrailsController extends Controller
             ->update(['datatrails.progress'=> '100']);
 
         } else {
+            
+            if ($total_courses->count() == 0) {            
+                $percent = 100;            
+            } else {
+                $percent = 100 / $total_courses->count();        
+            }
 
-            $courses_done = DB::table('course_trail')
-            ->leftJoin('datatrails','course_trail.trail_id','=','datatrails.trail_id')
-            ->where("datatrails.user_id", '=',  $user)
-            ->where("datatrails.trail_id", '=',  $id)
-            ->where("datatrails.view", '=',  1)
-            ->where("datatrails.progress", '=',  100)
-            ->get();
-
-            $actual_progress = $courses_done * $percent;
+            $actual_progress = $user_course_list->count() * $percent;
 
             DB::table('datatrails')
              ->where("datatrails.user_id", '=',  $user)
