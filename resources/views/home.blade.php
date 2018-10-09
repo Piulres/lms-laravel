@@ -10,6 +10,7 @@
             </div>
         </div>
     </div>
+    @if($mytestimonals->count() != 0)
     <div class="row">
         <div class="col s12">
             <div class="card">
@@ -18,7 +19,6 @@
                     <a class="minimize" href="#" draggable="false"><i class="mdi-navigation-expand-less"></i></a>
                 </div>
                 <div class="content">
-            @if($mytestimonals->count() != 0)
             {!! Form::open(['method' => 'POST', 'route' => ['admin.savefeedback'], 'files' => true,]) !!}
             <div id="testimonal-box">
                 <div class="col m1 s12">
@@ -42,11 +42,11 @@
                 </div>
             </div>
             {!! Form::close() !!}
-            @endif
-            </div>
         </div>
     </div>
-    </div>
+</div>
+</div>
+@endif
 
     <div class="row">
         <div class="col s12 m3">
