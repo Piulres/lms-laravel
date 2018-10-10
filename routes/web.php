@@ -153,7 +153,8 @@ Route::group(['middleware' => ['auth', 'approved'], 'prefix' => 'admin', 'as' =>
     Route::resource('messenger', 'Admin\MessengerController');
 
     Route::get('testimonal', 'HomeController@testimonal');
-    Route::post('savefeedback', 'HomeController@savefeedback')->name('savefeedback');
+    Route::post('savecoursefeedback', 'HomeController@savecoursefeedback')->name('savecoursefeedback');
+    Route::post('savetrailfeedback', 'HomeController@savetrailfeedback')->name('savetrailfeedback');
 
     Route::get('search', 'MegaSearchController@search')->name('mega-search');
     Route::get('language/{lang}', function ($lang) {
