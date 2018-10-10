@@ -45,7 +45,9 @@ class TestsController extends Controller
        }
        */
 
-        return view('admin.tests.create', compact('questions'));
+        $generals = \App\General::get();
+
+        return view('admin.tests.create', compact('questions','generals'));
     }
 
     /**
@@ -78,6 +80,7 @@ class TestsController extends Controller
             ]);
         }
         $test->update(['result' => $result]);
+        dd($result);
         return redirect()->route('admin.results.show', [$test->id]);
     }
 }
