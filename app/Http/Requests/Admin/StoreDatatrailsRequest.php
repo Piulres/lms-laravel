@@ -26,6 +26,9 @@ class StoreDatatrailsRequest extends FormRequest
             'view' => 'max:2147483647|nullable|numeric',
             'progress' => 'max:2147483647|nullable|numeric',
             'rating' => 'max:2147483647|nullable|numeric',
+            'testimonal' => 'max:2147483647|nullable',
+            'trail_id' => 'max:2147483647|nullable|numeric',
+            'user_id' => 'max:2147483647|nullable|numeric',
         ];
     }
 }

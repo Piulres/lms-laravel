@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\StoreDatacoursesRequest;
+use App\Http\Requests\Admin\StoreDatatrailsRequest;
 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -75,7 +76,7 @@ class HomeController extends Controller
 
         // Testimonal
 
-        $mytestimonals = DB::table('datacourses')
+        $mycoursetestimonals = DB::table('datacourses')
             ->leftJoin('courses', 'datacourses.course_id', '=', 'courses.id')
         ->where('datacourses.user_id', '=', $user)
         ->where('datacourses.progress', '=', 100)
@@ -83,9 +84,17 @@ class HomeController extends Controller
         // ->whereNotNull('datacourses.certificate_id')
        ->get();
 
+       $mytrailtestimonals = DB::table('datatrails')
+            ->leftJoin('trails', 'datatrails.trail_id', '=', 'trails.id')
+        ->where('datatrails.user_id', '=', $user)
+        ->where('datatrails.progress', '=', 100)
+        ->where('datatrails.testimonal', '=', NULL)
+        // ->whereNotNull('datacourses.certificate_id')
+       ->get();
+
         $generals = \App\General::get();
 
-        return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates', 'mytestimonals', 'generals' ));
+        return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates', 'mycoursetestimonals','mytrailtestimonals', 'generals' ));
     }
 
     public function testimonal()
@@ -93,7 +102,7 @@ class HomeController extends Controller
         return redirect('admin/home');
     }
 
-    public function savefeedback(StoreDatacoursesRequest $request)
+    public function savecoursefeedback(StoreDatacoursesRequest $request)
     {         
         DB::table('datacourses')
         ->where('datacourses.user_id','=', $request->user_id)
@@ -104,11 +113,18 @@ class HomeController extends Controller
         ]);        
         
         return redirect('admin/home');
+    }
 
-        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get();
-
-        $generals = \App\General::get();
-
-        return view('home', compact( 'users', 'courses', 'trails', 'faqquestions', 'generals' ));
+    public function savetrailfeedback(StoreDatatrailsRequest $request)
+    {         
+        DB::table('datatrails')
+        ->where('datatrails.user_id','=', $request->user_id)
+        ->where('datatrails.trail_id','=', $request->trail_id)
+        ->update([
+            'rating' => $request->rating,
+            'testimonal' => $request->testimonal,
+        ]);        
+        
+        return redirect('admin/home');
     }
 }

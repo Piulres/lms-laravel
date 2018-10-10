@@ -66,6 +66,10 @@ class GuideController extends Controller
                     ->first();
                 $diff->push($a);
             }
+            
+            foreach($mytrails as $trail){
+                app('App\Http\Controllers\TrailsController')->updateProgress($trail->id);
+            }
 
             //dd($mytrails);
 

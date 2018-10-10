@@ -12,7 +12,6 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 use Yajra\DataTables\DataTables;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -337,7 +336,7 @@ class CoursesController extends Controller
             ],
             ['view' => 1]
         );
-
+        
         return back();
     }
 }

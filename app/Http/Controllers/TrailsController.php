@@ -12,7 +12,6 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 use Yajra\DataTables\DataTables;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -58,6 +57,7 @@ class TrailsController extends Controller
 
         $generals = \App\General::get();
 
+        app('App\Http\Controllers\TrailsController')->updateProgress($id);
 
         return view('trails', compact('trail','datas', 'star', 'lists', 'datatrails', 'generals'));
     }
@@ -169,6 +169,7 @@ class TrailsController extends Controller
                 $percent = 100 / $total_courses->count();        
             }
 
+            $actual_progress = 0;
             $actual_progress = $user_course_list->count() * $percent;
 
             DB::table('datatrails')
@@ -182,10 +183,9 @@ class TrailsController extends Controller
         $check_certificate = DB::table('datatrails')
          ->where("datatrails.user_id", '=',  $user)
          ->where("datatrails.trail_id", '=',  $id)
-         // ->limit(1)
-        ->get();
+        ->first();
 
-        if ($check_certificate[0]->progress == 100) {
+        if ($check_certificate->progress == 100) {
 
             // dd($course->id);
             DB::table('datatrails')
@@ -228,6 +228,8 @@ class TrailsController extends Controller
          ->where("datatrails.trail_id", '=',  $trail->id)
          ->where('view', '=', NULL)
         ->delete();      
+
+        app('App\Http\Controllers\TrailsController')->updateProgress($trail->id);
 
         return back();
     }
@@ -289,7 +291,7 @@ class TrailsController extends Controller
 
         }else{
 
-        return redirect('library');
+        return redirect('guide');
 
         }
     }
@@ -315,5 +317,73 @@ class TrailsController extends Controller
         );
 
         return back();
+    }
+
+    public function updateProgress($id)
+    {
+
+        $user = Auth::id();
+
+        $user_course_list = DB::table('datacourses')
+        ->leftJoin('course_trail', 'course_trail.course_id', '=', 'datacourses.course_id')
+        ->leftJoin('courses', 'course_trail.course_id', '=', 'courses.id')
+        ->where('datacourses.user_id','=',$user)
+        ->where('datacourses.progress','=',100)
+        ->where('course_trail.trail_id','=',$id)
+        ->get();
+
+        
+        $total_courses = DB::table('course_trail')
+        ->leftJoin('courses', 'course_trail.course_id', '=', 'courses.id')
+        ->where("course_trail.trail_id", '=',  $id)
+        ->get();
+        
+        $check_done_trail = collect();
+        foreach($user_course_list as $item){
+            $a = DB::table('courses')
+            ->where('courses.id','=',$item->course_id)
+            ->first();
+            $check_done_trail->push($a);
+        }
+        
+        if ($check_done_trail->count() == $total_courses->count()) {
+            
+            DB::table('datatrails')
+            ->where("datatrails.user_id", '=',  $user)
+            ->where("datatrails.trail_id", '=',  $id)
+            ->limit(1)
+            ->update(['datatrails.progress'=> '100']);
+            
+        } else {
+            
+            if ($total_courses->count() == 0) {            
+                $percent = 100;            
+            } else {
+                $percent = 100 / $total_courses->count();        
+            }
+            
+            $actual_progress = $user_course_list->count() * $percent;
+            
+            DB::table('datatrails')
+             ->where("datatrails.user_id", '=',  $user)
+             ->where("datatrails.trail_id", '=',  $id)
+            ->update(['datatrails.progress' => $actual_progress]);
+        }
+
+        $trail = DB::table('datatrails')
+            ->where("datatrails.trail_id", '=',  $id)
+            ->where("datatrails.user_id", '=',  $user)
+            ->first();
+        //dd($trail->progress);
+        if($trail->progress == 100){
+
+            $count = DB::table('trailscertificates')->count();
+
+            DB::table('trailscertificates')->insert([
+                'order'=>$count++,
+                'title'=>$trail[0]->title,
+                'slug'=>$trail[0]->name,
+            ]);
+        }
     }
 }
