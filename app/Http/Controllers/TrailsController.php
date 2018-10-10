@@ -371,18 +371,20 @@ class TrailsController extends Controller
         }
 
         $trail = DB::table('datatrails')
+        ->leftJoin('trails','datatrails.trail_id','=','trails.id')
             ->where("datatrails.trail_id", '=',  $id)
             ->where("datatrails.user_id", '=',  $user)
             ->first();
         //dd($trail->progress);
+        //dd($trail);
         if($trail->progress == 100){
 
             $count = DB::table('trailscertificates')->count();
 
             DB::table('trailscertificates')->insert([
                 'order'=>$count++,
-                'title'=>$trail[0]->title,
-                'slug'=>$trail[0]->name,
+                'title'=>$trail->title,
+                'slug'=>$trail->title,
             ]);
         }
     }
