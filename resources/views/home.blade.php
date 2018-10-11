@@ -13,7 +13,7 @@
     @if($mycoursetestimonals->count() != 0)
     <div class="row">
         <div class="col s12">
-            <div class="card">
+            <div class="card minimized">
                 <div class="title">
                     <h5>Nos de seu feedback sobre o curso: {{$mycoursetestimonals[0]->title}}</h5>
                     <a class="minimize" href="#" draggable="false"><i class="mdi-navigation-expand-less"></i></a>
@@ -51,7 +51,7 @@
     @if($mytrailtestimonals->count() != 0)
     <div class="row">
         <div class="col s12">
-            <div class="card">
+            <div class="card minimized">
                 <div class="title">
                     <h5>Nos de seu feedback sobre a trail: {{$mytrailtestimonals[0]->title}}</h5>
                     <a class="minimize" href="#" draggable="false"><i class="mdi-navigation-expand-less"></i></a>

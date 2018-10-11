@@ -57,7 +57,7 @@ class TrailsController extends Controller
 
         $generals = \App\General::get();
 
-        app('App\Http\Controllers\TrailsController')->updateProgress($id);
+        //app('App\Http\Controllers\TrailsController')->updateProgress($id);
 
         return view('trails', compact('trail','datas', 'star', 'lists', 'datatrails', 'generals'));
     }
@@ -368,21 +368,27 @@ class TrailsController extends Controller
              ->where("datatrails.user_id", '=',  $user)
              ->where("datatrails.trail_id", '=',  $id)
             ->update(['datatrails.progress' => $actual_progress]);
+
+            Session::put('percentagetrail', $actual_progress);
         }
 
+        
+
+        // create certificate
         $trail = DB::table('datatrails')
+        ->leftJoin('trails','datatrails.trail_id','=','trails.id')
             ->where("datatrails.trail_id", '=',  $id)
             ->where("datatrails.user_id", '=',  $user)
             ->first();
-        //dd($trail->progress);
+       
         if($trail->progress == 100){
 
             $count = DB::table('trailscertificates')->count();
 
             DB::table('trailscertificates')->insert([
                 'order'=>$count++,
-                'title'=>$trail[0]->title,
-                'slug'=>$trail[0]->name,
+                'title'=>$trail->title,
+                'slug'=>$trail->title,
             ]);
         }
     }
