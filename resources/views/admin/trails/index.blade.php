@@ -18,7 +18,7 @@
 
                 @can('trail_create')
                     <a href="{{ route('admin.trails.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">
-                        Add Trail
+                        Add Tag
                     </a>
                 @endcan
             </div>

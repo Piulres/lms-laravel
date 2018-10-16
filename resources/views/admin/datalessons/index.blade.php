@@ -23,12 +23,6 @@
             </div>
         </div>
     </div>
-    <div class="header-title">
-        <h2>@lang('global.datalesson.title')</h2>
-        @can('trailtag_create')
-            <a href="{{ route('admin.datalessons.create') }}" class="btn-floating btn-small waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        @endcan
-    </div>
 
     <ul class="tabs z-depth-1">
         <li class="tab">
