@@ -68,8 +68,8 @@
                                         Login
                                     </a>
                                 </li>
-                                <li class="mobile" href="{{ url('/login') }}">
-                                    <a href="#">
+                                <li class="mobile">
+                                    <a href="{{ url('/login') }}">
                                         Login
                                     </a>
                                 </li>
