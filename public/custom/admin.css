@@ -1,7 +1,8 @@
 /* CUSTOM CSS MATERIALIZE RP */
-/*body {*/
-    /*font-size: 13px;*/
-/*}*/
+body {
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+}
 
 .ui-helper-hidden-accessible {
     display: none;
@@ -10,6 +11,10 @@
 .yaybar .top .brand-logo {
     padding: 5px;
     padding-left: 5px;
+}
+
+.yaybar i {
+    margin-top: 3px;
 }
 
 .yay-user-info a {
@@ -1057,5 +1062,38 @@ table.dataTable tr.selected td.select-checkbox:before
     }
 }
 
+.menu-topbar li:last-child {
+    border-right: 1px solid #d5d5d5;
+    margin-right: 15px;
+    padding-right: 15px;
+}
 
+footer {
+    padding-left: 5%;
+}
 
+.page-title div a {
+    margin-top: 6px;
+}
+
+.content .DTTT_container .btn {
+    margin-right: 5px;
+}
+
+.dataTables_wrapper .dataTables_length {
+    margin-right: 15px;
+}
+
+table {
+    border: none!important;
+    margin: 20px 0!important;
+}
+
+li.tab:hover {
+    background-color: #d5d5d5;
+    opacity: 0.5;
+}
+
+nav .dropdown-content {
+    top: 70px!important;
+}

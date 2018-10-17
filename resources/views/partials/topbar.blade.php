@@ -1,14 +1,21 @@
 <nav class="navbar-top navbar-under navbar-light">
     <div class="nav-wrapper">
-        <a href="#" class="yay-toggle btn-toggle-menu">
-            <div class="burg1"></div>
-            <div class="burg2"></div>
-            <div class="burg3"></div>
-        </a>
-        <a href="#!" class="brand-logo">
-            
-                <img src="{{ url('images') }}/Logo_RPX.png" alt="Con">
-        </a>
+
+        
+            <a href="#" class="yay-toggle btn-toggle-menu">
+                <div class="burg1">
+                </div>
+                <div class="burg2"></div>
+                <div class="burg3"></div>
+            </a>
+        
+
+        <!-- 
+        <a href="#!" class="brand-logo">            
+            <img src="{{ url('images') }}/Logo_RPX.png" alt="Con">
+        </a> 
+        -->
+        
         <ul>
             <li class="dropdown languages-menu">
                 <a class="dropdown-button" data-activates="dropdown-language" href="#!">
@@ -112,5 +119,19 @@
                 </ul>
             </li>
         </ul>
+
+        <ul class="menu-topbar">
+            <li>
+                <a class="black-text" href="{{ url('/library') }}">
+                    Library
+                </a>
+            </li>
+            <li>
+                <a class="black-text" href="{{ url('/guide') }}">
+                    Guide
+                </a>
+            </li>
+        </ul>
+
     </div>
 </nav>

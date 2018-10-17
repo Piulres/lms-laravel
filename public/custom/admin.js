@@ -5,27 +5,27 @@ $(document).ready(function() {
        $('body').toggleClass('yay-hide');
     });
 
-    if($(window).width() < 768) {
-        $('body').addClass('yay-hide');
-        $('aside.yaybar').removeClass('yay-hide-to-small yay-shrink');
-        $('aside.yaybar').addClass('yay-overlay');
-    } else {
-        $('body').removeClass('yay-hide');
-        $('aside.yaybar').addClass('yay-hide-to-small yay-shrink');
-        $('aside.yaybar').removeClass('yay-overlay');
-    }
+    // if($(window).width() < 768) {
+    //     $('body').addClass('yay-hide');
+    //     $('aside.yaybar').removeClass('yay-hide-to-small yay-shrink');
+    //     $('aside.yaybar').addClass('yay-overlay');
+    // } else {
+    //     $('body').removeClass('yay-hide');
+    //     $('aside.yaybar').addClass('yay-hide-to-small yay-shrink');
+    //     $('aside.yaybar').removeClass('yay-overlay');
+    // }
 
-    $( window ).resize(function() {
-        if($(window).width() < 768) {
-            $('body').addClass('yay-hide');
-            $('aside.yaybar').removeClass('yay-hide-to-small yay-shrink');
-            $('aside.yaybar').addClass('yay-overlay');
-        } else {
-            $('body').removeClass('yay-hide');
-            $('aside.yaybar').addClass('yay-hide-to-small yay-shrink');
-            $('aside.yaybar').removeClass('yay-overlay');
-        }
-    });
+    // $( window ).resize(function() {
+    //     if($(window).width() < 768) {
+    //         $('body').addClass('yay-hide');
+    //         $('aside.yaybar').removeClass('yay-hide-to-small yay-shrink');
+    //         $('aside.yaybar').addClass('yay-overlay');
+    //     } else {
+    //         $('body').removeClass('yay-hide');
+    //         $('aside.yaybar').addClass('yay-hide-to-small yay-shrink');
+    //         $('aside.yaybar').removeClass('yay-overlay');
+    //     }
+    // });
 
     $('.toggle-view a').on('click', function(e) {
       e.preventDefault();

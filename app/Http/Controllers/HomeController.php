@@ -34,10 +34,10 @@ class HomeController extends Controller
     public function index()
     {
         
-        $users = \App\User::latest()->limit(5)->get(); 
-        $courses = \App\Course::latest()->limit(5)->get(); 
-        $trails = \App\Trail::latest()->limit(5)->get(); 
-        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get();
+        $users = \App\User::latest()->get(); 
+        $courses = \App\Course::latest()->get(); 
+        $trails = \App\Trail::latest()->get(); 
+        $faqquestions = \App\FaqQuestion::latest()->get();
 
         $generals = \App\General::get();
 
@@ -54,19 +54,30 @@ class HomeController extends Controller
     {
         
         $user = Auth::id();
-        $users = \App\User::latest()->limit(5)->get(); 
-        $courses = \App\Course::latest()->limit(5)->get(); 
-        $trails = \App\Trail::latest()->limit(5)->get();
+        $users = \App\User::latest()->get(); 
+        $courses = \App\Course::latest()->get(); 
+        $trails = \App\Trail::latest()->get();
 
-        $faqquestions = \App\FaqQuestion::latest()->limit(5)->get(); 
+        $faqquestions = \App\FaqQuestion::latest()->get(); 
         $certificates = \App\Coursescertificate::latest()->get();
-        $datacourses = \App\Datacourse::latest()->get(); 
+        $datacourses = \App\Datacourse::latest()->get();
+
+        $check_role = DB::table('users')
+            ->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
+         ->where('users.id', '=',  $user)
+        ->limit(1)
+        ->pluck('role_id');
 
         $mycourses = DB::table('courses')
-            ->leftJoin('datacourses', 'courses.id', '=', 'datacourses.course_id')
-            ->leftJoin('users', 'datacourses.user_id', '=', 'users.id')
-         ->where('datacourses.user_id', '=',  $user)
-         ->where('datacourses.view', '=',  '1')
+                ->leftJoin('datacourses', 'courses.id', '=', 'datacourses.course_id')
+                ->leftJoin('users', 'datacourses.user_id', '=', 'users.id')
+             ->where("datacourses.user_id", '=',  $user)
+             ->where("datacourses.view", '=',  '1')
+            ->get();   
+
+        $mymessages = DB::table('messenger_topics')
+            ->leftJoin('users', 'messenger_topics.sender_id', '=', 'users.id')
+         ->where('messenger_topics.receiver_id', '=',  $user)
         ->get();
 
         $mycertificates = DB::table('coursescertificates')
@@ -91,10 +102,36 @@ class HomeController extends Controller
         ->where('datatrails.testimonal', '=', NULL)
         // ->whereNotNull('datacourses.certificate_id')
        ->get();
+      
 
         $generals = \App\General::get();
 
-        return view('home', compact( 'users', 'courses', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates', 'mycoursetestimonals','mytrailtestimonals', 'generals' ));
+        $course_list = array();
+            $mycourse_list = array();
+            
+            foreach($courses as $course){
+                array_push($course_list,$course->id);
+            }
+
+            foreach($mycourses as $mycourse){
+                array_push($mycourse_list,$mycourse->course_id);
+            }
+
+            $diff_list = array_diff($course_list,$mycourse_list);
+
+            $diff = collect();
+
+            foreach($diff_list as $item){
+                $a = DB::table('courses')
+                    ->where('id','=',$item)
+                    ->first();
+                $diff->push($a);
+            }
+
+        // dd($mycourses);
+        // dd($check_role[0]);
+
+        return view('home', compact( 'users', 'mymessages', 'check_role', 'courses', 'diff', 'mycourses', 'trails', 'faqquestions', 'certificates', 'mycertificates', 'mycoursetestimonals','mytrailtestimonals', 'generals' ));
     }
 
     public function testimonal()
@@ -127,4 +164,16 @@ class HomeController extends Controller
         
         return redirect('admin/home');
     }
+
+    public function isAdmin()
+    {
+        foreach ($this->roles()->get() as $role)
+        {
+            if ($role->name == 'Admin')
+            {
+                return true;
+            }
+        }
+    }
+
 }

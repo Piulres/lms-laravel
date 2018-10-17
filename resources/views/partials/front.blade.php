@@ -18,7 +18,6 @@
                 <a class="brand-logo" href="/">
                     <!-- <img src="http://static.campanhaporto.com.br/guide/logo/porto-seguro/institucional/marca/inst-bgd-sm.svg"/> -->
                     <img src="{{ url('/') }}/images/Logo_RPX.png"/>
-                    <!-- <p class="mamama">INSERT LOGO HERE</p> -->
                 </a>
                 <ul class="right hide-on-med-and-down">
                     
@@ -136,9 +135,8 @@
                         </div>
 
                         @if (count($errors) > 0)
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger red-text">
                                 <strong>Whoops!</strong> There were problems with input:
-                                <br><br>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>

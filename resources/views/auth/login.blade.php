@@ -20,7 +20,7 @@
                             <div class="title">{{ ucfirst(config('app.name')) }} @lang('global.app_login')</div>
                             <div class="content">
                                 @if (count($errors) > 0)
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger red-text">
                                     <strong>Whoops!</strong> @lang('global.app_there_were_problems_with_input'):
                                     <br><br>
                                     <ul>

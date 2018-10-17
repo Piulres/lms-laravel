@@ -14,6 +14,11 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<style type="text/css">
+  .content-home {
+    margin: 65px 0;
+  }
+</style>
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -53,3 +58,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <link href="{{ url('custom/admin.css') }}" rel="stylesheet">
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>

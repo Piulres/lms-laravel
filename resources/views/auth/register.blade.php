@@ -17,7 +17,7 @@
                     </div>                
 
                     @if (count($errors) > 0)
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger red-text">
                             <strong>Whoops!</strong> There were problems with input:
                             <br><br>
                             <ul>

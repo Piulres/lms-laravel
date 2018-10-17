@@ -2,19 +2,20 @@
 <aside class="yaybar yay-gestures yay-light yay-hide-to-small yay-shrink" id="sidebar-menu">
     <div class="top">
         <div>
-            <!-- Sidebar toggle -->
-            <a href="#" class="yay-toggle btn-toggle-menu">
-                <div class="burg1">
-                </div>
-                <div class="burg2"></div>
-                <div class="burg3"></div>
-            </a>
-            <!-- Sidebar toggle -->
-            <!-- Logo -->
-            <a href="{{ URL::to('/') }}" class="brand-logo">
+           
+           
+                <a href="#" class="yay-toggle btn-toggle-menu">
+                    <div class="burg1">
+                    </div>
+                    <div class="burg2"></div>
+                    <div class="burg3"></div>
+                </a>
+           
+
+            <!-- <a href="{{ URL::to('/') }}" class="brand-logo">
                 <img src="{{ url('images') }}/Logo_RPX.png" alt="Con">
-            </a>
-            <!-- /Logo -->
+            </a> -->
+            
         </div>
     </div>
     <div class="nano">
@@ -41,7 +42,7 @@
                 </li>
                 <li class="label">Menu</li>
                 <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
-                    <a href="{{ url('/admin/home') }}" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
+                    <a href="{{ url('/admin/home') }}" class="collapsible-header yay-sub-toggle waves-effect ">
                         <i class="fas fa-tachometer-alt"></i>
                         @lang('global.app_dashboard')
                     </a>
@@ -49,8 +50,8 @@
 
                 @can('content_management_access')
                 <li>
-                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
-                        <i class="fa fa-book"></i>
+                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect ">
+                        <i class="fa fa-briefcase"></i>
                         @lang('global.content-management.title')
                         <span class="fas fa-plus yay-collapse-icon mdi-navigation-expand-more"></span>
                     </a>
@@ -83,16 +84,24 @@
 
                 @can('course_management_access')
                 <li>
-                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
+                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect ">
                         <i class="fa fa-book"></i>
                         @lang('global.course-management.title')
                         <span class="fas fa-plus yay-collapse-icon mdi-navigation-expand-more"></span>
                     </a>
                     <ul class="collapsible-body">
+                        @can('course_access')
+                        <li>
+                            <a href="{{ route('admin.courses.index') }}">
+                                <i class="fa fa-list-ol"></i>
+                                <span>@lang('global.courses.title')</span>
+                            </a>
+                        </li>@endcan
+
                         @can('lesson_access')
                         <li>
                             <a href="{{ route('admin.lessons.index') }}">
-                                <i class="fas fa-list-ol"></i>
+                                <i class="fas fa-list-alt"></i>
                                 <span>@lang('global.lessons.title')</span>
                             </a>
                         </li>@endcan
@@ -100,7 +109,7 @@
                         @can('coursecategory_access')
                         <li>
                             <a href="{{ route('admin.coursecategories.index') }}">
-                                <i class="fa fa-list-ol"></i>
+                                <i class="fa fa-list"></i>
                                 <span>@lang('global.coursecategories.title')</span>
                             </a>
                         </li>@endcan
@@ -113,13 +122,6 @@
                             </a>
                         </li>@endcan
 
-                        @can('course_access')
-                        <li>
-                            <a href="{{ route('admin.courses.index') }}">
-                                <i class="fa fa-list-alt"></i>
-                                <span>@lang('global.courses.title')</span>
-                            </a>
-                        </li>@endcan
 
                         @can('coursescertificate_access')
                         <li>
@@ -133,15 +135,15 @@
 
                 @can('internal_notification_access')
                 <li class="{{ $request->segment(1) == 'internal_notifications' ? 'active' : '' }}">
-                    <a href="{{ route('admin.internal_notifications.index') }}" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
-                        <i class="fa fa-briefcase"></i>
+                    <a href="{{ route('admin.internal_notifications.index') }}" class="collapsible-header yay-sub-toggle waves-effect ">
+                        <i class="fa fa-bell"></i>
                         <span>@lang('global.internal-notifications.title')</span>
                     </a>
                 </li>@endcan
 
                 @can('faq_management_access')
                 <li>
-                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
+                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect ">
                         <i class="fa fa-question"></i>
                         @lang('global.faq-management.title')
                         <span class="fas fa-plus yay-collapse-icon mdi-navigation-expand-more"></span>
@@ -167,7 +169,7 @@
 
                 @can('setting_access')
                 <li>
-                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
+                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect ">
                         <i class="fas fa-cogs"></i>
                         @lang('global.settings.title')
                         <span class="fas fa-plus yay-collapse-icon mdi-navigation-expand-more"></span>
@@ -208,7 +210,7 @@
 
                 @can('trail_management_access')
                 <li>
-                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
+                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect ">
                         <i class="fa fa-road"></i>
                         @lang('global.trail-management.title')
                         <span class="fas fa-plus yay-collapse-icon mdi-navigation-expand-more"></span>
@@ -250,7 +252,7 @@
 
                 @can('user_management_access')
                 <li>
-                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
+                    <a href="#" class="collapsible-header yay-sub-toggle waves-effect ">
                         <i class="fa fa-users"></i>
                         @lang('global.user-management.title')
                         <span class="fas fa-plus yay-collapse-icon mdi-navigation-expand-more"></span>
@@ -304,7 +306,7 @@
 
                 @php ($unread = App\MessengerTopic::countUnread())
                 <li class="{{ $request->segment(2) == 'messenger' ? 'active' : '' }} {{ ($unread > 0 ? 'unread' : '') }}">
-                    <a href="{{ route('admin.messenger.index') }}" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
+                    <a href="{{ route('admin.messenger.index') }}" class="collapsible-header yay-sub-toggle waves-effect ">
                         <i class="fa fa-envelope"></i>
 
                         <span>Messages</span>
@@ -316,14 +318,14 @@
 
 
                 <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
-                    <a href="{{ route('auth.change_password') }}" class="collapsible-header yay-sub-toggle waves-effect waves-blue">
+                    <a href="{{ route('auth.change_password') }}" class="collapsible-header yay-sub-toggle waves-effect ">
                         <i class="fa fa-key"></i>
                         @lang('global.app_change_password')
                     </a>
                 </li>
 
                 {{--<li>--}}
-                    {{--<a href="#logout" onclick="$('#logout').submit();" class="collapsible-header yay-sub-toggle waves-effect waves-blue">--}}
+                    {{--<a href="#logout" onclick="$('#logout').submit();" class="collapsible-header yay-sub-toggle waves-effect ">--}}
                         {{--<i class="fa fa-arrow-left"></i>--}}
                         {{--@lang('global.app_logout')--}}
                     {{--</a>--}}
