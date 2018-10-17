@@ -102,8 +102,8 @@
                 </div>
             </div>
         </div>
-        <div class="parallax">
-            <img alt="Unsplashed background img 2" src="images/background3.jpg"/>
+        <div class="parallax grey">
+           
         </div>
     </div>
 

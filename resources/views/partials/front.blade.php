@@ -64,7 +64,7 @@
                             </li>
                             @else
                                 <li>
-                                    <a class="btn modal-trigger " data-target="modal1" href="#modal1">
+                                    <a class="btn" href="{{ url('/login') }}">
                                         Login
                                     </a>
                                 </li>
