@@ -6,13 +6,17 @@
 </head>
 
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini yay-hide">
 <div id="wrapper">
 
 @include('partials.topbar')
-@include('partials.sidebar')
 
-    <div class="content-wrap">
+ 
+   
+        @include('partials.sidebar')
+        <div class="content-wrap">
+   
+
         <!-- Main content -->
         @if(isset($siteTitle))
             <h3 class="page-title">
@@ -26,7 +30,7 @@
             </div>
         @endif
         @if ($errors->count() > 0)
-            <div class="alert alert-danger">
+            <div class="alert alert-danger red-text">
                 <ul class="list-unstyled">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -37,6 +41,9 @@
 
         @yield('content')
     </div>
+   
+    </div>
+    
     <div class="search-bar">
         <form action="#!">
             <!-- Header -->

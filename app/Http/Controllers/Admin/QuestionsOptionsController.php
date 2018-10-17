@@ -28,8 +28,8 @@ class QuestionsOptionsController extends Controller
         $questions_options = QuestionsOption::all();
 
        
-
-        return view('admin.questions_options.index', compact('questions_options'));
+        $generals = \App\General::get();
+        return view('admin.questions_options.index', compact('questions_options', 'generals'));
     }
 
     /**

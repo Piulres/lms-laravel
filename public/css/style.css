@@ -75,6 +75,11 @@ p {
 }
 .modal {
     width: 25%;
+    max-height: 85%;
+}
+.modal .alert-danger li {
+    height: 30px;
+    font-size: 12px;
 }
 .modal-content .row {
     margin-bottom: 0px;
@@ -224,6 +229,7 @@ section.home {
 }
 p.c-title {
     margin-bottom: 20px!important;
+    line-height: 1.2;
 }
 .charles {
     margin-bottom: -20px;
@@ -308,6 +314,9 @@ a.pepe, a.pupa {
 }
 .kappa {
     margin-top: 30px;
+}
+.alert.alert-danger {
+    height: 60px;
 }
 
 

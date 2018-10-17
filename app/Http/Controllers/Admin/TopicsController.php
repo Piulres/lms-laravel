@@ -40,7 +40,8 @@ class TopicsController extends Controller
      */
     public function create()
     {
-        return view('admin.topics.create');
+        $generals = \App\General::get();
+        return view('admin.topics.create', compact('generals'));
     }
 
     /**

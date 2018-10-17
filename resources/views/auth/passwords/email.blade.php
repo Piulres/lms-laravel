@@ -14,7 +14,7 @@
                     @endif
 
                     @if (count($errors) > 0)
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger red-text">
                             @lang('global.app_reset_password_woops')
                             <br><br>
                             <ul>

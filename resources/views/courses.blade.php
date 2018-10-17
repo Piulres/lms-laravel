@@ -32,7 +32,7 @@
                 <div class="row">
 
                     <div class="col s12">
-                        <div class="ck">{!! $course->introduction !!}</div>                                       
+                        <div class="ck">{!! $course->description !!}</div>                                       
                     </div>
 
                 </div>
@@ -55,6 +55,7 @@
 
                     </div>                    
 
+                    @foreach($datas as $data)
                     <div class="col m5 s12 offset-m1">
 
                         <h4>Testimonal</h4>
@@ -62,7 +63,6 @@
 
                         <ul class="collection shadow">
 
-                            @foreach($datas as $data)
                             
                             @if ($data->testimonal === null)
                             @else
@@ -81,11 +81,11 @@
                             </li>
                             @endif
 
-                            @endforeach                         
 
                         </ul>
 
                     </div>
+                    @endforeach                         
 
                 </div>
             </div>

@@ -14,6 +14,7 @@
         <link href="{{ url('assets/') }}/css/style.css" media="screen,projection" rel="stylesheet" type="text/css"/>
     </head>
     <body class="grey lighten-3">
+
         <header>
             <div class="gridD">
                 <div class="menu">
@@ -63,11 +64,11 @@
                             </li>
                             @else
                                 <li class="desktop">
-                                    <a class="btn modal-trigger " data-target="modal1" href="#modal1">
+                                    <a class="btn" href="{{ url('/login') }}">
                                         Login
                                     </a>
                                 </li>
-                                <li class="mobile" data-target="modal1" href="#modal1">
+                                <li class="mobile" href="{{ url('/login') }}">
                                     <a href="#">
                                         Login
                                     </a>

@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+<!-- @if ($check_role[0] == 1)
+    Hello Admin
+@else
+    Hello standard user
+@endif -->
+
 @section('content')
     <div class="page-title">
         <div class="row">
@@ -86,7 +92,7 @@
     </div>
     @endif
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col s12 m3">
             <div class="card-panel red">
                 <span class="white-text">
@@ -123,8 +129,341 @@
             </div>
         </div>
         
-    </div>
+    </div> -->
 
+    <div class="row">
+
+        <div class="col l2 s12">
+            <a href="{{ route('admin.courses.index') }}"
+               class="card-panel stats-card blue lighten-2 white-text text-lighten-5">
+                <i class="fas fa-book-reader"></i>
+                <span class="count">{{ $courses->count() }}</span>
+                <div class="name">Courses</div>
+            </a>
+        </div>
+
+        <div class="col l2 s12">
+            <a href="{{ route('admin.courses.create') }}"
+               class="card-panel stats-card blue lighten-2 white-text text-lighten-5">
+                <i class="fas fa-plus-circle"></i>
+                <span class="count">New</span>
+                <div class="name">Course</div>
+            </a>
+        </div>
+
+        <div class="col l2 s12">
+            <a href="{{ route('admin.users.index') }}"
+               class="card-panel stats-card orange lighten-2 white-text text-lighten-5">
+                <i class="fas fa-users"></i>
+                <span class="count">{{ $users->count() }}</span>
+                <div class="name">Users</div>
+            </a>
+        </div>
+
+        <div class="col l2 s12">
+            <a href="{{ route('admin.users.create') }}"
+               class="card-panel stats-card orange lighten-2 white-text text-lighten-5">
+                <i class="fas fa-plus-circle"></i>
+                <span class="count">New</span>
+                <div class="name">User</div>
+            </a>
+        </div>        
+
+        <div class="col l2 s12">
+            <a href="{{ route('admin.trails.index') }}"
+               class="card-panel stats-card green lighten-2 indigo-text text-lighten-5">
+                <i class="fas fa-train"></i>
+                <span class="count">{{ $trails->count() }}</span>
+                <div class="name">Trails</div>
+            </a>
+        </div>
+
+        <div class="col l2 s12">
+            <a href="{{ route('admin.messenger.index') }}"
+               class="card-panel stats-card purple lighten-2 indigo-text text-lighten-5">
+                <i class="fas fa-comments"></i>
+                <span class="count">{{ $mymessages->count() }}</span>
+                <div class="name">Messages</div>
+            </a>
+        </div>
+
+        <div class="col l5 s12">
+            <div class="card" draggable="false">
+                <div class="title">
+                    <h5>Your recent Courses</h5>
+                    <a class="minimize" href="#" draggable="false">
+                        <i class="mdi-navigation-expand-less"></i>
+                    </a>
+                </div>
+                <div class="content orders-card">
+                    @foreach($mycourses as $mycourse)
+                        <h4><a class="black-text" href="{{ url('courses/'. $mycourse->course_id) }}">{{ $mycourse->title }}</a></h4>
+
+                        <div class="row">
+                            <div class="col s6">
+                                <small>Total Progress</small>
+                            </div>
+                            <div class="col s6 right-align">
+                                @if ($mycourse->progress === null)
+                                0 %
+                                @else
+                                {{ $mycourse->progress }} %
+                                @endif
+                            </div>
+                        </div>
+                        <div class="progress small">                            
+                            <div class="determinate" style="width: {{ $mycourse->progress }}%"></div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="col l7 s12">
+             <div class="card" draggable="false">
+                <div class="title">
+                    <h5>Courses Analysis </h5>
+                    <a class="minimize" href="#" draggable="false">
+                        <i class="mdi-navigation-expand-less"></i>
+                    </a>
+                </div>
+
+                <div class="content orders-card">
+
+                    <div class="row">
+                        <div id="canvas-holder">
+                            <canvas id="chart-area"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 20px;">
+                        <button class="btn waves-effect waves-light" id="randomizeData">Randomize Data</button>
+                        <button class="btn waves-effect waves-light" id="addDataset">Add Dataset</button>
+                        <button class="btn waves-effect waves-light" id="removeDataset">Remove Dataset</button>
+                    </div>
+
+                    <script>
+                        'use strict';
+
+                        window.chartColors = {
+                            red: 'rgb(255, 99, 132)',
+                            orange: 'rgb(255, 159, 64)',
+                            yellow: 'rgb(255, 205, 86)',
+                            green: 'rgb(75, 192, 192)',
+                            blue: 'rgb(54, 162, 235)',
+                            purple: 'rgb(153, 102, 255)',
+                            grey: 'rgb(201, 203, 207)'
+                        };
+
+                        (function(global) {
+                            var Months = [
+                                'January',
+                                'February',
+                                'March',
+                                'April',
+                                'May',
+                                'June',
+                                'July',
+                                'August',
+                                'September',
+                                'October',
+                                'November',
+                                'December'
+                            ];
+
+                            var COLORS = [
+                                '#4dc9f6',
+                                '#f67019',
+                                '#f53794',
+                                '#537bc4',
+                                '#acc236',
+                                '#166a8f',
+                                '#00a950',
+                                '#58595b',
+                                '#8549ba'
+                            ];
+
+                            var Samples = global.Samples || (global.Samples = {});
+                            var Color = global.Color;
+
+                            Samples.utils = {
+                                // Adapted from http://indiegamr.com/generate-repeatable-random-numbers-in-js/
+                                srand: function(seed) {
+                                    this._seed = seed;
+                                },
+
+                                rand: function(min, max) {
+                                    var seed = this._seed;
+                                    min = min === undefined ? 0 : min;
+                                    max = max === undefined ? 1 : max;
+                                    this._seed = (seed * 9301 + 49297) % 233280;
+                                    return min + (this._seed / 233280) * (max - min);
+                                },
+
+                                numbers: function(config) {
+                                    var cfg = config || {};
+                                    var min = cfg.min || 0;
+                                    var max = cfg.max || 1;
+                                    var from = cfg.from || [];
+                                    var count = cfg.count || 8;
+                                    var decimals = cfg.decimals || 8;
+                                    var continuity = cfg.continuity || 1;
+                                    var dfactor = Math.pow(10, decimals) || 0;
+                                    var data = [];
+                                    var i, value;
+
+                                    for (i = 0; i < count; ++i) {
+                                        value = (from[i] || 0) + this.rand(min, max);
+                                        if (this.rand() <= continuity) {
+                                            data.push(Math.round(dfactor * value) / dfactor);
+                                        } else {
+                                            data.push(null);
+                                        }
+                                    }
+
+                                    return data;
+                                },
+
+                                labels: function(config) {
+                                    var cfg = config || {};
+                                    var min = cfg.min || 0;
+                                    var max = cfg.max || 100;
+                                    var count = cfg.count || 8;
+                                    var step = (max - min) / count;
+                                    var decimals = cfg.decimals || 8;
+                                    var dfactor = Math.pow(10, decimals) || 0;
+                                    var prefix = cfg.prefix || '';
+                                    var values = [];
+                                    var i;
+
+                                    for (i = min; i < max; i += step) {
+                                        values.push(prefix + Math.round(dfactor * i) / dfactor);
+                                    }
+
+                                    return values;
+                                },
+
+                                months: function(config) {
+                                    var cfg = config || {};
+                                    var count = cfg.count || 12;
+                                    var section = cfg.section;
+                                    var values = [];
+                                    var i, value;
+
+                                    for (i = 0; i < count; ++i) {
+                                        value = Months[Math.ceil(i) % 12];
+                                        values.push(value.substring(0, section));
+                                    }
+
+                                    return values;
+                                },
+
+                                color: function(index) {
+                                    return COLORS[index % COLORS.length];
+                                },
+
+                                transparentize: function(color, opacity) {
+                                    var alpha = opacity === undefined ? 0.5 : 1 - opacity;
+                                    return Color(color).alpha(alpha).rgbString();
+                                }
+                            };
+
+                            // DEPRECATED
+                            window.randomScalingFactor = function() {
+                                return Math.round(Samples.utils.rand(-100, 100));
+                            };
+
+                            // INITIALIZATION
+
+                            Samples.utils.srand(Date.now());
+
+                            // Google Analytics
+                            /* eslint-disable */
+                            if (document.location.hostname.match(/^(www\.)?chartjs\.org$/)) {
+                                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                                ga('create', 'UA-28909194-3', 'auto');
+                                ga('send', 'pageview');
+                            }
+                            /* eslint-enable */
+
+                        }(this));
+                        var randomScalingFactor = function() {
+                            return Math.round(Math.random() * 100);
+                        };
+                        var config = {
+                            type: 'pie',
+                            data: {
+                                datasets: [{
+                                    data: [
+                                        randomScalingFactor(),
+                                        randomScalingFactor(),
+                                        randomScalingFactor(),
+                                        randomScalingFactor(),
+                                        randomScalingFactor(),
+                                    ],
+                                    backgroundColor: [
+                                        window.chartColors.red,
+                                        window.chartColors.orange,
+                                        window.chartColors.yellow,
+                                        window.chartColors.green,
+                                        window.chartColors.blue,
+                                    ],
+                                    label: 'Dataset 1'
+                                }],
+                                labels: [
+                                    'Curso 01',
+                                    'Curso 02',
+                                    'Curso 03',
+                                    'Curso 04',
+                                    'Curso 05'
+                                ]
+                            },
+                            options: {
+                                responsive: true
+                            }
+                        };
+                        window.onload = function() {
+                            var ctx = document.getElementById('chart-area').getContext('2d');
+                            window.myPie = new Chart(ctx, config);
+                        };
+                        document.getElementById('randomizeData').addEventListener('click', function() {
+                            config.data.datasets.forEach(function(dataset) {
+                                dataset.data = dataset.data.map(function() {
+                                    return randomScalingFactor();
+                                });
+                            });
+                            window.myPie.update();
+                        });
+                        var colorNames = Object.keys(window.chartColors);
+                        document.getElementById('addDataset').addEventListener('click', function() {
+                            var newDataset = {
+                                backgroundColor: [],
+                                data: [],
+                                label: 'New dataset ' + config.data.datasets.length,
+                            };
+                            for (var index = 0; index < config.data.labels.length; ++index) {
+                                newDataset.data.push(randomScalingFactor());
+                                var colorName = colorNames[index % colorNames.length];
+                                var newColor = window.chartColors[colorName];
+                                newDataset.backgroundColor.push(newColor);
+                            }
+                            config.data.datasets.push(newDataset);
+                            window.myPie.update();
+                        });
+                        document.getElementById('removeDataset').addEventListener('click', function() {
+                            config.data.datasets.splice(0, 1);
+                            window.myPie.update();
+                        });
+                    </script>
+
+                </div>
+
+            </div>
+
+        </div>
 
 @endsection
 

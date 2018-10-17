@@ -17,7 +17,7 @@
                     </div>                
 
                     @if (count($errors) > 0)
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger red-text">
                             <strong>Whoops!</strong> There were problems with input:
                             <br><br>
                             <ul>
@@ -102,8 +102,8 @@
                 </div>
             </div>
         </div>
-        <div class="parallax">
-            <img alt="Unsplashed background img 2" src="images/background3.jpg"/>
+        <div class="parallax grey">
+           
         </div>
     </div>
 
