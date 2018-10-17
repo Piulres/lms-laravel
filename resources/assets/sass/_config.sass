@@ -1,0 +1,167 @@
+@import "components/bourbon/bourbon"
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,900')
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,900')
+
+//+font-face('Montserrat', "../fonts/SegoeUI")
+
+$montserrat: 'Montserrat', Helvetica, Arial, sans-serif
+$roboto: 'Roboto', Helvetica, Arial, sans-serif
+
+//  COLORS
+$white: #FFFFFF
+$black: #3D3D3D
+$blackText: #707070
+$grey: #797979
+$yellow: #FFBA05
+$orange: #FE8C05
+$cyan: #12E4FC
+$green: #40CAB3
+$red: #F16165
+$blue: #2D8FE3
+$lightBlue: #4CC1FE
+
+// EXTENDS CLASSES
+%transition
+	+transition(all .4s linear)
+.circle
+	+border-top-radius(50%)
+	+border-bottom-radius(50%)
+%blockCenter
+	margin-left: auto
+	margin-right: auto
+%clearfix		
+	content: '.'
+	display: block
+	clear: both
+	height: 0
+	line-height: 0
+	font-size: 0
+	visibility: hidden
+	overflow: hidden
+
+$browser-context: 14 // Default
+
+@function em($pixels, $context: $browser-context)
+	@return #{$pixels/$context}em
+
+*
+	padding: 0
+	margin: 0
+	text-decoration: none
+
+article, aside, footer, header, nav, section
+	background: transparent
+
+h1, h2, h3, h4, h5, h6
+	font-weight: 400
+	margin: 0
+h1
+	font-size: em(36)
+h2
+	font-size: em(30)
+h3
+	font-size: em(23)
+h4
+	font-size: em(21)
+h5
+	font-size: em(18)
+h6
+	font-size: em(14)
+
+html, body
+	height: 100%
+	font-family: $montserrat
+	font-size: 15px
+	background: $white
+
+body
+	padding-top: 95px
+	@media(max-width: 480px)
+		padding-top: 80px
+	p
+		font-family: $roboto
+
+[class*="icon"]
+	&::before
+		color: inherit
+		display: block
+	&.rotate180
+		&::before
+			+transform(rotate(180deg))
+
+.gridD
+	width: 100%
+	max-width: 1640px
+	+padding(null 15px)
+	+margin(null auto)
+	@media(max-width: 1670px)
+		max-width: 1420px
+	@media(max-width: 1450px)
+		max-width: 1080px
+
+
+.function 
+	height: 130px
+	box-shadow: 0 3px 6px rgba(0, 0, 0, .16)
+	-webkit-border-radius: 8px
+	-moz-border-radius: 8px
+	border-radius: 8px
+	margin-bottom: 35px
+	@include display(flex)
+	@include align-items(center)
+	@media(max-width: 1200px)
+		@include border-left-radius(65px)
+	@media(max-width: 520px)
+		@include flex-direction(column)
+		height: auto
+		@include border-left-radius(8px)
+		@include margin(60px null)
+		@include padding(30px null)
+		text-align: center
+	@media(max-width: 450px)
+		@include padding(null 15px)
+	&:last-child
+		margin-bottom: 35px
+	.icon 
+		@include size(130px)
+		min-width: 130px
+		font-size: 68px
+		@include display(flex)
+		@include justify-content(center)
+		@include align-items(center)
+		border: 7px solid transparent
+		-webkit-border-radius: 50%
+		-moz-border-radius: 50%
+		border-radius: 50%
+		overflow: hidden
+		position: relative
+		margin-left: -70px
+		margin-right: 25px
+		background: $white
+		@media(max-width: 1200px)
+			margin-left: 0
+		@media(max-width: 520px)
+			min-height: 130px
+			@include margin(-65px auto 20px)
+	&.orange
+		.icon
+			border-color: #FF8C05
+	&.blue
+		.icon
+			border-color: #4DC2FF
+	&.green
+		.icon
+			border-color: #2AD91D
+	h3
+		font-size: 20px
+		color: $white
+		font-weight: 900
+		letter-spacing: 1px
+		@media(max-width: 520px)
+			margin-bottom: 10px
+	p
+		color: $white
+		font-size: 14px
+		max-width: 390px
+		@media(max-width: 520px)
+			text-align: justify
