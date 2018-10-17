@@ -124,9 +124,15 @@ header {
   background: url('../img/bg-banner.jpg') center center no-repeat;
   background-size: cover;
   position: relative;
-  @media(max-width: 1200px) {
-    height: 650px;
+  @media(max-width: 1400px) {
+    height: calc(100vh - 95px);
   }
+  @media(max-width: 768px) {
+    height: calc(100vh - 80px);
+  }
+  //@media(max-width: 1200px) {
+  //  height: 650px;
+  //}
   .icons {
     @include position(absolute, null 0 0);
     height: 358px;
@@ -328,6 +334,130 @@ header {
 }
 
 #courses-certificates {
+  position: relative;
+  .icons {
+    > [class^="icon"], > [class*=" icon"] {
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+      -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+      background: $white;
+      @include display(flex);
+      @include justify-content(center);
+      @include align-items(center);
+      @include position(absolute, 0 null null);
+      @extend %transition;
+    }
+    .icon1, .icon5 {
+      font-size: 100px;
+      @include size(190px);
+      color: $lightGreen;
+      top: 57px;
+      right: 711px;
+      @media(max-width: 1500px) {
+        right: 611px;
+      }
+      @media(max-width: 1450px) {
+        right: 410px;
+        top: -30px;
+      }
+      @media(max-width: 992px) {
+        top: -80px;
+        right: 250px;
+        font-size: 50px;
+        @include size(150px);
+      }
+      @media(max-width: 768px) {
+        font-size: 30px;
+        @include size(70px);
+        top: -35px;
+        @include position(null, -35px null nul 50%);
+        @include transform(translateX(-50%));
+      }
+    }
+    .icon2 {
+      font-size: 80px;
+      color: $cyan;
+      @include size(180px);
+      top: -27px;
+      right: 483px;
+      @media(max-width: 1500px) {
+        right: 383px;
+      }
+      @media(max-width: 1450px) {
+        right: 83px;
+      }
+      @media(max-width: 992px) {
+        top: -80px;
+        right: 20px;
+      }
+      @media(max-width: 768px) {
+        top: -35px;
+        right: 20px;
+        font-size: 30px;
+        @include size(70px);
+      }
+    }
+    .icon3, .icon4 {
+      font-size: 65px;
+      color: $orange;
+      @include size(123px);
+    }
+    .icon3 {
+      top: 317px;
+      right: 600px;
+      @media(max-width: 1500px) {
+        right: 500px;
+      }
+      @media(max-width: 1450px) {
+        right: 400px;
+        top: 433px;
+      }
+      @media(max-width: 992px) {
+        right: auto;
+        left: 250px;
+        font-size: 40px;
+      }
+      @media(max-width: 768px) {
+        @include position(null, -35px auto null 20px);
+        @include size(70px);
+        @include transform(translateX(0));
+        font-size: 30px;
+      }
+    }
+    .icon4 {
+      color: $green;
+      top: 202px;
+      right: 384px;
+      @media(max-width: 1500px) {
+        right: 284px;
+      }
+      @media(max-width: 1050px) {
+        display: none;
+      }
+      @media(max-width: 768px) {
+        display: none;
+      }
+    }
+    .icon5 {
+      color: $yellow;
+      @include size(212px);
+      right: 190px;
+      top: 395px;
+      @media(max-width: 1500px) {
+        right: 100px;
+      }
+      @media(max-width: 992px) {
+        @include position(null, 430px auto null 20px);
+        @include size(150px);
+      }
+      @media(max-width: 768px) {
+        display: none;
+      }
+    }
+  }
   .title {
     height: 500px;
     background: url('../img/bg-banner.jpg') center center no-repeat;
@@ -389,7 +519,7 @@ header {
       @include size(33.33% 465px);
       @include margin(45px null);
       position: relative;
-      @media(max-width: 1680px) {
+      @media(max-width: 1740px) {
         @include margin(null 30px);
         width: calc(33.33% - 60px);
       }
@@ -526,6 +656,24 @@ header {
 }
 
 #get-your-head {
+  position: relative;
+  .bonecos {
+    @include position(absolute, 22px 73px null null);
+    max-width: 50%;
+    @media(max-width: 1450px) {
+      top: 280px;
+      max-width: 50%;
+    }
+    @media(max-width: 768px) {
+      max-width: 70%;
+      @include margin(40px auto -90px);
+      @include position(relative, 0 0 null null);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
   .title {
     height: 435px;
     background: url('../img/bg-banner.jpg') center center no-repeat;
@@ -533,6 +681,7 @@ header {
     @media(max-width: 768px) {
       height: auto;
       @include padding(30px null);
+      margin-bottom: 30px;
     }
     h2 {
       padding-top: 55px;
@@ -749,7 +898,7 @@ header {
       @include align-items(center);
       @include justify-content(center);
       width: 25%;
-      @media(max-width: 1680px) {
+      @media(max-width: 1740px) {
         @include margin(null 20px);
         width: calc(25% - 40px);
       }

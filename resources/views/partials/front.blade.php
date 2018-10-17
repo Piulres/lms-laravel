@@ -29,11 +29,11 @@
                     </div>
                     <div class="nav">
                         <ul>
-                            <li>
-                                <a href="{{ url('/library') }}">
-                                    Get Started
-                                </a>
-                            </li>
+                            {{--<li>--}}
+                                {{--<a href="{{ url('/library') }}">--}}
+                                    {{--Get Started--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
                             <li>
                                 <a href="{{ url('/library') }}">
                                     Library
@@ -62,8 +62,13 @@
                                 </a>
                             </li>
                             @else
-                                <li>
+                                <li class="desktop">
                                     <a class="btn modal-trigger " data-target="modal1" href="#modal1">
+                                        Login
+                                    </a>
+                                </li>
+                                <li class="mobile" data-target="modal1" href="#modal1">
+                                    <a href="#">
                                         Login
                                     </a>
                                 </li>
