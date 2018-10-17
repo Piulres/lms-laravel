@@ -45,6 +45,12 @@
 	    }
 	});
 
+	$('.btn-mobile').on('click', function(e) {
+		e.preventDefault();
+		$(this).toggleClass('active');
+		$('.nav').slideToggle();
+	});
+
 
 
   }); // end of document ready

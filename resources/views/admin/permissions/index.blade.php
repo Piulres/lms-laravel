@@ -4,7 +4,7 @@
 @section('content')
     <div class="page-title">
         <div class="row">
-            <div class="col s12 m9 l10"><h1>@lang('global.permissions.title')</h1>
+            <div class="col s12 m8"><h1>@lang('global.permissions.title')</h1>
                 <ul>
                     <li>
                         <a href="{{ url('/admin/home') }}">
@@ -14,7 +14,7 @@
                     <li><span>@lang('global.permissions.title')</span></li>
                 </ul>
             </div>
-            <div class="col s12 m3 l2 right-align">
+            <div class="col s12 m4 right-align">
 
                 @can('permission_create')
                     <a href="{{ route('admin.permissions.create') }}" class="btn lighten-3 z-depth-0 chat-toggle">

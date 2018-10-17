@@ -1,0 +1,26 @@
+$media-xLarge: 1200px
+$media-large: 992px
+$media-medium: 768px
+$media-small: 576px
+$media-xSmall: 576px
+
+// MEDIA QUERIES 
+@mixin media-xl
+	@media (min-width: #{$media-xLarge})
+		@content
+
+@mixin media-lg
+	@media (min-width: #{$media-large})
+		@content
+
+@mixin media-md
+	@media (min-width: #{$media-medium})
+		@content
+
+@mixin media-sm
+	@media (min-width: #{$media-small})
+		@content
+
+@mixin media-xs
+	@media (max-width: #{$media-xSmall})
+		@content
