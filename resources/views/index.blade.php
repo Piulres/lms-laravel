@@ -12,7 +12,7 @@
             <div class="course">
                 <i class="icon-course"></i>
                 <div class="text">
-                    <p>Cursos
+                    <p>Courses
                         <br><strong>What is a LMS?</strong>
                     </p>
                 </div>
@@ -20,7 +20,7 @@
             <div class="course">
                 <i class="icon-course"></i>
                 <div class="text">
-                    <p>Cursos
+                    <p>Courses
                         <br><strong>Building Courses</strong>
                     </p>
                 </div>
@@ -28,7 +28,7 @@
             <div class="course">
                 <i class="icon-course"></i>
                 <div class="text">
-                    <p>Cursos
+                    <p>Courses
                         <br><strong>Managing Users</strong>
                     </p>
                 </div>
@@ -36,7 +36,7 @@
             <div class="course">
                 <i class="icon-course"></i>
                 <div class="text">
-                    <p>Cursos
+                    <p>Courses
                         <br><strong>Monitoring Progress</strong>
                     </p>
                 </div>
@@ -44,15 +44,15 @@
             <div class="course">
                 <i class="icon-course"></i>
                 <div class="text">
-                    <p>Cursos
+                    <p>Courses
                         <br><strong>Advanced Features</strong>
                     </p>
                 </div>
             </div>
         </div>
         <div class="why">
-            <p>Porque usar uma
-                <br><strong>plataforma de ensino?</strong></p>
+            <p>Why use a
+                <br><strong>teaching platform?</strong></p>
             <div class="icon-bg">
                 <i class="icon-book"></i>
             </div>
@@ -286,8 +286,8 @@
     <section id="depoiments">
         <div class="title">
             <span>“</span>
-            <h2>Confira os depoimentos
-                <br><strong>de nossos alunos.</strong></h2>
+            <h2>Check out the testimonials
+                <br><strong>from our students.</strong></h2>
         </div>
         <div class="depoiments">
             <div class="overflow">
@@ -314,15 +314,15 @@
         <div class="gridD">
             <div class="item">
                 <i class="icon-calendar"></i>
-                <p>Acesso na <strong>duração</strong> de 1 ano</p>
+                <p>Access for <strong>1 year</strong></p>
             </div>
             <div class="item">
                 <i class="icon-teaching"></i>
-                <p>Estude <strong>24h/dia</strong> onde e quando quiser</p>
+                <p>Study <strong>24 hours / day</strong> wherever and whenever you want</p>
             </div>
             <div class="item">
                 <i class="icon-people"></i>
-                <p>Novos cursos toda <strong>semana</strong></p>
+                <p>New courses <strong>every week</strong></p>
             </div>
         </div>
     </footer>

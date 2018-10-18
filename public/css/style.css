@@ -97,6 +97,15 @@ p {
         top: 10%;
     }
 }
+@media only screen and (min-width: 600px) {
+    #how-system .function {
+        margin-left: 70px!important;
+    }
+    .function {
+        margin-left: 70px;
+    }
+
+}
 @media only screen and (max-width: 600px) {
     #index-banner .section {
         top: 0;
@@ -340,8 +349,14 @@ a.pepe, a.pupa {
     font-weight: 500!important;
     font-size: 1rem!important;
 }
-.function {
+/*#how-system .function {
     margin-left: 70px!important;
+}*/
+/*.function {
+    margin-left: 70px;
+}*/
+#depoiments .title h2 {
+    max-width: 400px!important;
 }
 #courses-certificates .title p,
 #get-your-head .title p {
