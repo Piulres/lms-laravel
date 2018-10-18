@@ -318,7 +318,49 @@ a.pepe, a.pupa {
 .alert.alert-danger {
     height: 60px;
 }
-
+#banner {
+    height: 100%!important;
+}
+#line .course p strong {
+    font-weight: 100!important;
+}
+#line .why p {
+    font-size: 1.8em!important;
+    line-height: 1em!important;
+    color: #FFFFFF!important;
+    font-weight: 300!important;
+}
+#line .course .text {
+    margin-left: 10px!important;
+}
+#line .course i {
+    font-size: 50px!important;
+}
+#line .course p {
+    font-weight: 500!important;
+    font-size: 1rem!important;
+}
+.function {
+    margin-left: 70px!important;
+}
+#courses-certificates .title p,
+#get-your-head .title p {
+    font-weight: 300!important;
+}
+#courses-certificates .courses .course .infos {   
+    padding: 80px 40px!important;
+}
+#courses-certificates .courses .course h3::after {
+    height: 4px!important;
+    margin-top: 15px!important;
+    margin-bottom: 30px!important;
+}
+#courses-certificates .courses .course {
+    height: 375px!important;
+}
+#get-your-head .title h2 {
+    margin-bottom: 30px!important;
+}
 
 .grid {
     margin: 15px;

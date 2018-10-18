@@ -29,7 +29,11 @@
                        </div>
                         <div class="card-content">
                             <span class="card-title activator grey-text text-darken-4"><p class="c-title">{{ $mycourse->title }}</p><i class="material-icons right tooltipped" data-position="bottom" data-tooltip="Read More">more_vert</i></span>
-                            
+                            @if ($mycourse->progress === null)
+                            <sup class="blue-text">Progress: 0 %</sup></br>
+                            @else
+                            <sup class="blue-text">Progress: {{ number_format($mycourse->progress, 0, '.', '') }} %</sup></br>
+                            @endif
                             <sup class="c-sup">{{ $mycourse->description }}</sup>
                         </div>
                         <div class="card-reveal">

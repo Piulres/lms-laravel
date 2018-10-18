@@ -4,7 +4,7 @@
             <div class="icons"></div>
             <h1>The fastest path to
                 <br><strong>awesome learning</strong></h1>
-            <a href="#" class="button">Take a tour</a>
+            <a href="#" class="button">Get Started</a>
         </div>
     </section>
     <section id="line">
