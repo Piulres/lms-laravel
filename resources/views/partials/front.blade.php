@@ -30,11 +30,11 @@
                     </div>
                     <div class="nav">
                         <ul>
-                            <li>
-                                <a href="{{ url('/library') }}">
-                                    Get Started
-                                </a>
-                            </li>
+                            {{--<li>--}}
+                                {{--<a href="{{ url('/library') }}">--}}
+                                    {{--Get Started--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
                             <li>
                                 <a href="{{ url('/library') }}">
                                     Library
@@ -63,8 +63,13 @@
                                 </a>
                             </li>
                             @else
-                                <li>
+                                <li class="desktop">
                                     <a class="btn" href="{{ url('/login') }}">
+                                        Login
+                                    </a>
+                                </li>
+                                <li class="mobile">
+                                    <a href="{{ url('/login') }}">
                                         Login
                                     </a>
                                 </li>

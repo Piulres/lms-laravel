@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,900");
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,900");
-header .menu .btn-mobile span {
+header .menu .btn-mobile span, #courses-certificates .icons > [class^="icon"], #courses-certificates .icons > [class*=" icon"] {
   transition: all 0.4s linear;
 }
 
@@ -89,7 +89,7 @@ body p {
   margin-left: auto;
 }
 
-@media (max-width: 1670px) {
+@media (max-width: 1740px) {
   .gridD {
     max-width: 1420px;
   }
@@ -415,9 +415,15 @@ header .menu .btn-mobile.active span:last-child {
   position: relative;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   #banner {
-    height: 650px;
+    height: calc(100vh - 95px);
+  }
+}
+
+@media (max-width: 768px) {
+  #banner {
+    height: calc(100vh - 80px);
   }
 }
 
@@ -764,6 +770,216 @@ header .menu .btn-mobile.active span:last-child {
   }
 }
 
+#courses-certificates {
+  position: relative;
+}
+
+#courses-certificates .icons > [class^="icon"], #courses-certificates .icons > [class*=" icon"] {
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  background: #FFFFFF;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -moz-flex;
+  display: flex;
+  box-pack: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  box-align: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -ms-flex-align: center;
+  position: absolute;
+  top: 0;
+}
+
+#courses-certificates .icons .icon1, #courses-certificates .icons .icon5 {
+  font-size: 100px;
+  height: 190px;
+  width: 190px;
+  color: #29D924;
+  top: 57px;
+  right: 711px;
+}
+
+@media (max-width: 1500px) {
+  #courses-certificates .icons .icon1, #courses-certificates .icons .icon5 {
+    right: 611px;
+  }
+}
+
+@media (max-width: 1450px) {
+  #courses-certificates .icons .icon1, #courses-certificates .icons .icon5 {
+    right: 410px;
+    top: -30px;
+  }
+}
+
+@media (max-width: 992px) {
+  #courses-certificates .icons .icon1, #courses-certificates .icons .icon5 {
+    top: -80px;
+    right: 250px;
+    font-size: 50px;
+    height: 150px;
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  #courses-certificates .icons .icon1, #courses-certificates .icons .icon5 {
+    font-size: 30px;
+    height: 70px;
+    width: 70px;
+    top: -35px;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+#courses-certificates .icons .icon2 {
+  font-size: 80px;
+  color: #12E4FC;
+  height: 180px;
+  width: 180px;
+  top: -27px;
+  right: 483px;
+}
+
+@media (max-width: 1500px) {
+  #courses-certificates .icons .icon2 {
+    right: 383px;
+  }
+}
+
+@media (max-width: 1450px) {
+  #courses-certificates .icons .icon2 {
+    right: 83px;
+  }
+}
+
+@media (max-width: 992px) {
+  #courses-certificates .icons .icon2 {
+    top: -80px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  #courses-certificates .icons .icon2 {
+    top: -35px;
+    right: 20px;
+    font-size: 30px;
+    height: 70px;
+    width: 70px;
+  }
+}
+
+#courses-certificates .icons .icon3, #courses-certificates .icons .icon4 {
+  font-size: 65px;
+  color: #FE8C05;
+  height: 123px;
+  width: 123px;
+}
+
+#courses-certificates .icons .icon3 {
+  top: 317px;
+  right: 600px;
+}
+
+@media (max-width: 1500px) {
+  #courses-certificates .icons .icon3 {
+    right: 500px;
+  }
+}
+
+@media (max-width: 1450px) {
+  #courses-certificates .icons .icon3 {
+    right: 400px;
+    top: 433px;
+  }
+}
+
+@media (max-width: 992px) {
+  #courses-certificates .icons .icon3 {
+    right: auto;
+    left: 250px;
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  #courses-certificates .icons .icon3 {
+    top: -35px;
+    right: auto;
+    left: 20px;
+    height: 70px;
+    width: 70px;
+    transform: translateX(0);
+    font-size: 30px;
+  }
+}
+
+#courses-certificates .icons .icon4 {
+  color: #40CAB3;
+  top: 202px;
+  right: 384px;
+}
+
+@media (max-width: 1500px) {
+  #courses-certificates .icons .icon4 {
+    right: 284px;
+  }
+}
+
+@media (max-width: 1050px) {
+  #courses-certificates .icons .icon4 {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #courses-certificates .icons .icon4 {
+    display: none;
+  }
+}
+
+#courses-certificates .icons .icon5 {
+  color: #FFBA05;
+  height: 212px;
+  width: 212px;
+  right: 190px;
+  top: 395px;
+}
+
+@media (max-width: 1500px) {
+  #courses-certificates .icons .icon5 {
+    right: 100px;
+  }
+}
+
+@media (max-width: 992px) {
+  #courses-certificates .icons .icon5 {
+    top: 430px;
+    right: auto;
+    left: 20px;
+    height: 150px;
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  #courses-certificates .icons .icon5 {
+    display: none;
+  }
+}
+
 #courses-certificates .title {
   height: 500px;
   background: url("../img/bg-banner.jpg") center center no-repeat;
@@ -888,7 +1104,7 @@ header .menu .btn-mobile.active span:last-child {
   position: relative;
 }
 
-@media (max-width: 1680px) {
+@media (max-width: 1740px) {
   #courses-certificates .courses .course {
     margin-right: 30px;
     margin-left: 30px;
@@ -1083,6 +1299,39 @@ header .menu .btn-mobile.active span:last-child {
   background: #2D8FE3;
 }
 
+#get-your-head {
+  position: relative;
+}
+
+#get-your-head .bonecos {
+  position: absolute;
+  top: 22px;
+  right: 73px;
+  max-width: 50%;
+}
+
+@media (max-width: 1450px) {
+  #get-your-head .bonecos {
+    top: 280px;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  #get-your-head .bonecos {
+    max-width: 70%;
+    margin: 40px auto -90px;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+}
+
+#get-your-head .bonecos img {
+  max-width: 100%;
+  height: auto;
+}
+
 #get-your-head .title {
   height: 435px;
   background: url("../img/bg-banner.jpg") center center no-repeat;
@@ -1094,6 +1343,7 @@ header .menu .btn-mobile.active span:last-child {
     height: auto;
     padding-top: 30px;
     padding-bottom: 30px;
+    margin-bottom: 30px;
   }
 }
 
@@ -1492,7 +1742,7 @@ header .menu .btn-mobile.active span:last-child {
   width: 25%;
 }
 
-@media (max-width: 1680px) {
+@media (max-width: 1740px) {
   #clients ul li {
     margin-right: 20px;
     margin-left: 20px;
